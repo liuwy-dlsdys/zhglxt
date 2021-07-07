@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhglxt.demo.mapper.ImportDemoMapper">
+
+    <select id="selectUserList" resultType="com.zhglxt.demo.entity.ImportSysUser">
+        SELECT
+            u.user_id AS userId,
+            u.dept_id AS deptId,
+            u.login_name AS loginName,
+            u.user_name AS userName,
+            u.id_card AS idCard,
+            u.user_type AS userType,
+            u.email,
+            u.avatar,
+            u.phonenumber,
+            u.`password`,
+            u.sex,
+            u.salt,
+            u.`status`,
+            u.del_flag AS delFlag,
+            u.login_ip AS loginIp,
+            u.login_date AS loginDate,
+            u.create_by AS createBy,
+            u.create_time AS createTime,
+            u.remark
+        FROM
+            t_user u
+        WHERE
+            u.del_flag = '0'
+        ORDER BY
+            create_time ASC
+    </select>
+
+    <insert id="insertBatch">
+        insert into t_user(
+            dept_id,
+            login_name,
+            user_name,
+            email,
+            phonenumber,
+            sex,
+            `status`,
+            id_card,
+            user_type,
+            del_flag,
+            create_by,
+            create_time,
+            remark
+        ) values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+                #{item.deptId},
+                #{item.loginName},
+                #{item.userName},
+                #{item.email},
+                #{item.phonenumber},
+                #{item.sex},
+                0,
+                #{item.idCard},
+                0,
+                0,
+                'system',
+                sysdate(),
+                #{item.remark}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="clean">
+        truncate table t_user
+    </delete>
+
+</mapper> 

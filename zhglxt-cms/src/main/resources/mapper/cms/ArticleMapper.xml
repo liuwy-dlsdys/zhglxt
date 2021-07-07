@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhglxt.cms.mapper.ArticleMapper">
+    <select id="selectArticleList" resultType="com.zhglxt.cms.entity.Article">
+        SELECT
+        a.id,
+        a.site_id AS 'siteId',
+        a.column_id AS 'columnId',
+        c.column_name AS 'columnName',
+        c.column_flag AS 'columnFlag',
+        d.content,
+        a.title,
+        a.title_color AS 'titleColor',
+        a.link,
+        a.image,
+        a.keywords,
+        a.description,
+        a.weight,
+        a.weight_time AS 'weightTime',
+        a.hits,
+        a.sort,
+        a.posid AS 'posId',
+        a.`status`,
+        a.create_by AS 'createBy',
+        a.create_time AS 'createTime',
+        a.update_by AS 'updateBy',
+        a.update_time AS 'updateTime',
+        a.remark
+        FROM
+        cms_article a
+        JOIN cms_column c ON a.column_id = c.column_id
+        JOIN cms_article_data d ON d.article_id = a.id
+        <where>
+            <if test="id != null and id!=''">
+                AND a.id = #{id}
+            </if>
+            <if test="siteId != null and siteId!=''">
+                AND a.site_id = #{siteId}
+            </if>
+            <if test="columnId != null and columnId!=''">
+                AND a.column_id = #{columnId}
+            </if>
+            <if test="columnFlag != null and columnFlag!=''">
+                AND c.column_flag = #{columnFlag}
+            </if>
+            <if test="status != null and status!=''">
+                AND a.`status` = #{status}
+            </if>
+            <if test="title != null and title!=''">
+                AND a.title like concat('%', #{title}, '%')
+            </if>
+        </where>
+        ORDER BY
+        a.sort ASC,
+        a.update_time DESC
+    </select>
+
+    <insert id="addArticle">
+        insert into cms_article (
+        <if test="id != null and id != ''">
+            id,
+        </if>
+        <if test="siteId != null and siteId != ''">
+            site_id,
+        </if>
+        <if test="columnId != null and columnId != ''">
+            column_id,
+        </if>
+        <if test="title != null and title != ''">
+            title,
+        </if>
+        <if test="image != null and image != ''">
+            image,
+        </if>
+        <if test="description != null and description != ''">
+            description,
+        </if>
+        <if test="sort != null and sort != ''">
+            sort,
+        </if>
+        <if test="remark != null and remark != ''">
+            remark,
+        </if>
+        `status`,
+        create_by,
+        create_time,
+        update_by,
+        update_time
+        )values(
+        <if test="id != null and id != ''">
+            #{id},
+        </if>
+        <if test="siteId != null and siteId != ''">
+            #{siteId},
+        </if>
+        <if test="columnId != null and columnId != ''">
+            #{columnId},
+        </if>
+        <if test="title != null and title != ''">
+            #{title},
+        </if>
+        <if test="image != null and image != ''">
+            #{image},
+        </if>
+        <if test="description != null and description != ''">
+            #{description},
+        </if>
+        <if test="sort != null and sort != ''">
+            #{sort},
+        </if>
+        <if test="remark != null and remark != ''">
+            #{remark},
+        </if>
+        <if test="status != null and status != ''">
+            #{status},
+        </if>
+        #{createBy},
+        sysdate(),
+        #{updateBy},
+        sysdate()
+        )
+    </insert>
+
+    <insert id="addArticleContent">
+		insert into cms_article_data (
+			id,
+			article_id,
+			content
+		)values(
+			#{id},
+			#{articleId},
+			#{content}
+		)
+	</insert>
+
+    <update id="updateArticle">
+        update cms_article
+        <set>
+            column_id = #{columnId},
+            title = #{title},
+            image = #{image},
+            description = #{description},
+            sort = #{sort},
+            remark = #{remark},
+            `status` = #{status},
+            update_by = #{updateBy},
+            update_time = sysdate()
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="updateArticleContent">
+        update cms_article_data
+        <set>
+            content = #{content},
+        </set>
+        where article_id = #{articleId}
+    </update>
+
+    <delete id="deleteArticle">
+        DELETE FROM cms_article WHERE id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteArticleContentByArticleIds">
+        DELETE FROM cms_article_data WHERE article_id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectArticleListBySiteIds" resultType="com.zhglxt.cms.entity.Article">
+        SELECT
+        a.id,
+        a.site_id AS 'siteId',
+        a.column_id AS 'columnId',
+        a.title,
+        a.title_color AS 'titleColor',
+        a.link,
+        a.image,
+        a.keywords,
+        a.description,
+        a.weight,
+        a.weight_time AS 'weightTime',
+        a.hits,
+        a.sort,
+        a.posid AS 'posId',
+        a.`status`,
+        a.create_by AS 'createBy',
+        a.create_time AS 'createTime',
+        a.update_by AS 'updateBy',
+        a.update_time AS 'updateTime',
+        a.remark
+        FROM
+        cms_article a
+        <where>
+            AND a.site_id IN
+            <foreach collection="array" item="siteId" open="(" separator="," close=")">
+                #{siteId}
+            </foreach>
+        </where>
+    </select>
+
+    <delete id="deleteArticleBySiteIds">
+        DELETE FROM cms_article WHERE site_id in
+        <foreach collection="array" item="siteIds" open="(" separator="," close=")">
+            #{siteIds}
+        </foreach>
+    </delete>
+
+</mapper>

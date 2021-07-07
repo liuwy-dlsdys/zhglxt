@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('请假审批')"/>
+    <th:block th:include="include :: datetimepicker-css"/>
+    <th:block th:include="include :: select2-css"/>
+</head>
+<body>
+<div class="main-content">
+    <form id="form-leave" class="form-horizontal">
+        <input id="treeId" name="deptId" type="hidden" th:value="${leave.dept.deptId}"/>
+        <input id="userIdSelect" name="userId" type="hidden" th:value="${leave.user.userId}"/>
+
+        <input name="id" type="hidden" th:value="${leave.id}"/>
+        <input name="act.taskId" type="hidden" th:value="${leave.act.taskId}"/>
+        <input name="act.taskName" type="hidden" th:value="${leave.act.taskName}"/>
+        <input name="act.taskDefKey" type="hidden" th:value="${leave.act.taskDefKey}"/>
+        <input name="act.procInsId" type="hidden" th:value="${leave.act.procInsId}"/>
+        <input name="act.procDefId" type="hidden" th:value="${leave.act.procDefId}"/>
+        <input id="flag" name="act.flag" type="hidden" th:value="${leave.act.flag}"/>
+
+        <h4 class="form-header h4">[[${leave.act.taskName}]]：审批</h4>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><span style="color: red; ">*</span>姓名：</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="请输入用户名称" id="userSuggest"
+                                   th:value="${leave.user.userName}" readonly="readonly" maxlength="20" required>
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><span style="color: red; ">*</span>归属部门：</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <input name="dept.deptName" id="treeName" type="text" th:value="${leave.dept.deptName}"
+                                   onclick="selectDeptTree()" placeholder="请选择归属部门" class="form-control" required>
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">性别：</label>
+                    <div class="col-sm-8">
+                        <select name="gender" class="form-control m-b" th:with="type=${@dict.getType('sys_user_sex')}">
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                    th:value="${dict.dictValue}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">岗位：</label>
+                    <div class="col-sm-8">
+                        <input name="post" placeholder="请输入岗位" class="form-control" th:value="${leave.post}" type="text"
+                               maxlength="10" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">请假开始时间：</label>
+                    <div class="col-sm-8">
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input name="startTime" type="text" class="form-control" id="startTime"
+                                   th:value="${#dates.format(leave.startTime, 'yyyy-MM-dd HH:mm')}"
+                                   placeholder="yyyy-MM-dd HH:mm" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">请假结束时间：</label>
+                    <div class="col-sm-8">
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input name="endTime" type="text" class="form-control" id="endTime"
+                                   th:value="${#dates.format(leave.endTime, 'yyyy-MM-dd HH:mm')}"
+                                   placeholder="yyyy-MM-dd HH:mm" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">请假原因：</label>
+                    <div class="col-xs-10">
+                        <textarea name="content" maxlength="500" th:text="${leave.content}" class="form-control"
+                                  rows="3" required="required"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 class="form-header h4">其它信息</h4>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">备注：</label>
+                    <div class="col-xs-10">
+                        <textarea name="remarks" maxlength="500" th:text="${leave.remarks}" class="form-control"
+                                  rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:if="${not #strings.isEmpty(leave.deptText)}">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">部门经理意见：</label>
+                    <div class="col-xs-10">
+                        <textarea name="deptText" maxlength="500" th:text="${leave.deptText}" readonly="readonly"
+                                  class="form-control" rows="3" required="required"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:if="${not #strings.isEmpty(leave.hrText)}">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">HR意见：</label>
+                    <div class="col-xs-10">
+                        <textarea name="hrText" maxlength="500" th:text="${leave.hrText}" readonly="readonly"
+                                  class="form-control" rows="3" required="required"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" th:if="${not #strings.isEmpty(leave.zjlText)}">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">总经理意见：</label>
+                    <div class="col-xs-10">
+                        <textarea name="zjlText" maxlength="500" th:text="${leave.zjlText}" readonly="readonly"
+                                  class="form-control" rows="3" required="required"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" shiro:hasAllPermissions="'activiti:leaveAudit:edit'">
+            <div class="col-sm-offset-5 col-sm-10">
+                <button type="button" class="btn btn-sm btn-success" onclick="submitApply()"><i class="fa fa-check"></i>提交申请
+                </button>&nbsp;
+                <button type="button" class="btn btn-sm btn-success" onclick="destroy()"
+                        th:if="${not #lists.isEmpty(leave.id)}"><i class="fa fa-check"></i>销毁申请
+                </button>&nbsp;
+            </div>
+        </div>
+        <h4 class="form-header h4">流转信息</h4>
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<th:block th:include="include :: datetimepicker-js"/>
+<th:block th:include="include :: select2-js"/>
+<script>
+    var prefix = ctx + "activiti/task";
+    var prefix2 = ctx + "oa/leave";
+
+    $(function () {
+        queryHistoicFlowList();
+    })
+
+    /*流转历史信息*/
+    function queryHistoicFlowList() {
+        var options = {
+            url: prefix + "/histoicFlow",
+            /*是否显示分页*/
+            pagination:false,
+            /*是否显示刷新按钮*/
+            showSearch:false,
+            /*是否显示详细视图和列表视图的切换按钮*/
+            showToggle:false,
+            showColumns:false,
+            showRefresh:false,
+            search:false,
+            columns: [
+                {
+                    field: 'histIns.activityName',
+                    title: '执行环节'
+                },
+                {
+                    field: 'sssigneeName',
+                    title: '执行人'
+                },
+                {
+                    field: 'histIns.startTime',
+                    title: '开始时间'
+                },
+                {
+                    field: 'histIns.endTime',
+                    title: '结束时间'
+                },
+                {
+                    field: 'comment',
+                    title: '提交意见'
+                },
+                {
+                    field: 'taskFor',
+                    title: '任务历时'
+                }]
+        };
+        $.table.init(options);
+    }
+
+    //销毁申请
+    function destroy() {
+        $("#flag").val('no');
+        var url = prefix2 + "/save";
+        if ($.validate.form()) {
+            var data = $("#form-leave").serializeArray();
+            $.operate.post(url, data, function (result) {
+                window.parent.location.reload(); //刷新父页面
+                var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                parent.layer.close(index);  // 关闭layer
+            });
+        }
+    }
+
+    //提交申请
+    function submitApply() {
+        $("#flag").val('yes');
+        var url = prefix2 + "/save";
+        if ($.validate.form()) {
+            var data = $("#form-leave").serializeArray();
+            $.operate.post(url, data, function (result) {
+                window.parent.location.reload(); //刷新父页面
+                var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                parent.layer.close(index);  // 关闭layer
+            });
+        }
+    }
+
+    $("#form-leave").validate({
+        onkeyup: false,
+        rules: {
+            loginName: {
+                minlength: 2,
+                maxlength: 20,
+                remote: {
+                    url: prefix + "/checkLoginNameUnique",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        name: function () {
+                            return $.common.trim($("#loginName").val());
+                        }
+                    },
+                    dataFilter: function (data, type) {
+                        return $.validate.unique(data);
+                    }
+                }
+            },
+            password: {
+                minlength: 3,
+                maxlength: 20
+            },
+        },
+        messages: {
+            "loginName": {
+                remote: "用户已经存在"
+            },
+        },
+        focusCleanup: true
+    });
+
+    /*选择部门*/
+    function selectDeptTree() {
+        var treeId = $("#treeId").val();
+        var deptId = $.common.isEmpty(treeId) ? "100" : $("#treeId").val();
+        var url = ctx + "system/dept/selectDeptTree/" + deptId;
+        var options = {
+            title: '选择部门',
+            width: "380",
+            url: url,
+            callBack: doSubmit
+        };
+        $.modal.openOptions(options);
+    }
+
+    function doSubmit(index, layero) {
+        var tree = layero.find("iframe")[0].contentWindow.$._tree;
+        if ($.tree.notAllowParents(tree)) {
+            var body = layer.getChildFrame('body', index);
+            $("#treeId").val(body.find('#treeId').val());
+            $("#treeName").val(body.find('#treeName').val());
+            layer.close(index);
+        }
+    }
+
+</script>
+</body>
+</html>

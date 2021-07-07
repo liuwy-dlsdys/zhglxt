@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhglxt.oa.mapper.NotifyMapper">
+    <select id="selectNotifyList" resultType="com.zhglxt.oa.entity.Notify">
+        SELECT
+        a.id,
+        a.notify_type AS 'notifyType',
+        a.notify_title AS 'notifyTitle',
+        a.notify_content AS 'notifyContent',
+        a.files,
+        a.`status`,
+        a.create_by AS 'createBy',
+        a.create_time AS 'createTime',
+        a.update_by AS 'updateBy',
+        a.update_time AS 'updateTime',
+        a.remark,
+        a.del_flag AS 'delFlag',
+        b.read_num AS 'readNum',
+        b.un_read_num AS 'unReadNum'
+        <if test="isSelf">
+            ,r.read_flag AS 'readFlag'
+        </if>
+        FROM
+        oa_notify a
+        LEFT JOIN (
+        SELECT
+        r.notify_id,
+        sum(
+        CASE
+        WHEN r.read_flag = '1' THEN
+        1
+        ELSE
+        0
+        END
+        ) read_num,
+        sum(
+        CASE
+        WHEN r.read_flag != '1' THEN
+        1
+        ELSE
+        0
+        END
+        ) un_read_num
+        FROM
+        oa_notify_record r
+        GROUP BY
+        r.notify_id
+        ) b ON b.notify_id = a.id
+        <!-- 我的通知 -->
+        <if test="isSelf">
+            JOIN oa_notify_record r ON r.notify_id = a.id AND r.user_id = #{userId}
+        </if>
+        <where>
+            a.del_flag = 0
+            <if test="id != null and id != '' ">
+                AND a.id = #{id}
+            </if>
+            <if test="notifyTitle != null and notifyTitle != '' ">
+                AND a.notify_title like concat('%', #{notifyTitle}, '%')
+            </if>
+            <if test="notifyType != null and notifyType != '' ">
+                AND a.notify_type = #{notifyType}
+            </if>
+            <if test="status != null and status != '' ">
+                AND a.`status` = #{status}
+            </if>
+        </where>
+        ORDER BY
+        a.update_time DESC
+    </select>
+
+    <insert id="insertNotify">
+        insert into oa_notify (
+        <if test="id != null and id != '' ">id,</if>
+        <if test="notifyTitle != null and notifyTitle != '' ">notify_title,</if>
+        <if test="notifyType != null and notifyType != '' ">notify_type,</if>
+        <if test="notifyContent != null and notifyContent != '' ">notify_content,</if>
+        <if test="status != null and status != '' ">status,</if>
+        <if test="remark != null and remark != ''">remark,</if>
+        <if test="createBy != null and createBy != ''">create_by,</if>
+        <if test="updateBy != null and updateBy != ''">update_by,</if>
+        create_time,
+        update_time
+        )values(
+        <if test="id != null and id != '' ">#{id},</if>
+        <if test="notifyTitle != null and notifyTitle != ''">#{notifyTitle},</if>
+        <if test="notifyType != null and notifyType != ''">#{notifyType},</if>
+        <if test="notifyContent != null and notifyContent != ''">#{notifyContent},</if>
+        <if test="status != null and status != ''">#{status},</if>
+        <if test="remark != null and remark != ''">#{remark},</if>
+        <if test="createBy != null and createBy != ''">#{createBy},</if>
+        <if test="updateBy != null and updateBy != ''">#{updateBy},</if>
+        sysdate(),
+        sysdate()
+        )
+    </insert>
+
+    <update id="updateNotify">
+        UPDATE
+        oa_notify
+        SET
+        <if test="notifyType != null and notifyType != '' ">
+            notify_type = #{notifyType},
+        </if>
+        <if test="notifyTitle != null and notifyTitle != '' ">
+            notify_title = #{notifyTitle},
+        </if>
+        <if test="notifyContent != null and notifyContent != '' ">
+            notify_content = #{notifyContent},
+        </if>
+        <if test="files != null and files != '' ">
+            files = #{files},
+        </if>
+        <if test="status != null and status != '' ">
+            `status` = #{status},
+        </if>
+        <if test="remark != null and remark != '' ">
+            remark = #{remark},
+        </if>
+        <if test="delFlag != null and delFlag != '' ">
+            del_flag = #{delFlag}
+        </if>
+        update_by = #{updateBy},
+        update_time = sysdate()
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="deleteNotifyByIds">
+        DELETE FROM oa_notify WHERE id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

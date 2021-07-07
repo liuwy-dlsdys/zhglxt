@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('广告管理列表')"/>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="advertising-form">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            广告标题：<input type="text" name="title"/>
+                        </li>
+                        <li>
+                            显示状态：<select name="status" th:with="type=${@dict.getType('cms_show_hide')}">
+                            <option value="">所有</option>
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                    th:value="${dict.dictValue}"></option>
+                        </select>
+                        </li>
+                        <li>
+                            <a class="btn btn-success btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-success btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-success" onclick="$.operate.addFull()" shiro:hasPermission="'cms:advertising:add'">
+                <i class="fa fa-plus"></i> 新增
+            </a>
+            <a class="btn btn-success single disabled" onclick="$.operate.editFull()"
+               shiro:hasPermission="'cms:advertising:edit'">
+                <i class="fa fa-edit"></i> 修改
+            </a>
+            <a class="btn btn-success multiple disabled" onclick="$.operate.removeAll()"
+               shiro:hasPermission="'cms:advertising:remove'">
+                <i class="fa fa-remove"></i> 删除
+            </a>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('cms:advertising:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('cms:advertising:remove')}]];
+    var datas = [[${@dict.getType('cms_show_hide')}]];
+    var prefix = ctx + "cms/advertising";
+
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit?id={id}",
+            removeUrl: prefix + "/remove",
+            sortName: "sort",
+            modalName: "广告管理",
+            rememberSelected: true,
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    visible: false,
+                    title: '编号'
+                },
+                {
+                    field: 'title',
+                    title: '广告标题',
+                    formatter: function (value, row, index) {
+                        return $.table.tooltip(value);
+                    }
+                },
+                {
+                    field: 'content',
+                    title: '广告内容',
+                    formatter: function (value, row, index) {
+                        return $.table.tooltip(value);
+                    }
+                },
+                {
+                    field: 'name',
+                    title: '图片名称',
+                    formatter: function (value, row, index) {
+                        return $.table.tooltip(value);
+                    }
+                },
+                {
+                    field: 'imageUrl',
+                    title: '图片',
+                    formatter: function (value, row, index) {
+                        // 图片预览（注意：如存储在本地直接获取数据库路径，如有配置context-path需要使用ctx+路径）
+                        // 如：/profile/upload/2019/08/08/3b7a839aced67397bac694d77611ce72.png
+                        return $.table.imageView(value);
+                    }
+                },
+                {
+                    field: 'imageUrl',
+                    title: '图片路径',
+                    formatter: function (value, row, index) {
+                        return $.table.tooltip(value);
+                    }
+                },
+                {
+                    field: 'jumpUrl',
+                    title: '图片链接地址',
+                    formatter: function (value, row, index) {
+                        return $.table.tooltip(value);
+                    }
+                },
+                {
+                    field: 'sort',
+                    title: '排序',
+                    sortable: true
+                },
+                {
+                    field: 'status',
+                    title: '状态',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return $.table.selectDictLabel(datas, value);
+                    }
+                },
+                {
+                    field: 'createTime',
+                    title: '创建时间',
+                    sortable: true
+                },
+                {
+                    field: 'updateTime',
+                    title: '更新时间',
+                    sortable: true
+                },
+                {
+                    field: 'updateBy',
+                    title: '更新人'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.editFull(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

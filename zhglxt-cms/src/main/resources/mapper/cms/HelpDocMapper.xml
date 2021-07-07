@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhglxt.cms.mapper.HelpDocMapper">
+    <select id="selectHelpDocList" resultType="com.zhglxt.cms.entity.HelpDoc">
+        SELECT
+            id,
+            `name`,
+            content,
+            sort,
+            `status`,
+            create_by AS createBy,
+            create_time AS createTime,
+            update_by AS updateBy,
+            update_time AS updateTime,
+            remark
+        FROM
+            cms_help_doc
+        <where>
+            <if test="id != null and id!=''">
+                AND id = #{id}
+            </if>
+            <if test="status != null and status!=''">
+                AND `status` = #{status}
+            </if>
+            <if test="name != null and name!=''">
+                AND `name` like concat('%', #{name}, '%')
+            </if>
+        </where>
+        ORDER BY
+            sort ASC,
+            update_time DESC
+    </select>
+
+    <insert id="addHelpDoc">
+         insert into cms_help_doc (
+            id,
+            `name`,
+            content,
+            sort,
+            `status`,
+            create_by,
+            create_time,
+            update_by,
+            update_time,
+            remark
+         )
+         values (
+            #{id},
+            #{name},
+            #{content},
+            #{sort},
+            #{status},
+            #{createBy},
+            sysdate(),
+            #{updateBy},
+            sysdate(),
+            #{remark}
+         )
+    </insert>
+
+    <update id="updateHelpDoc">
+        update cms_help_doc
+        <set>
+            `name` = #{name},
+            content = #{content},
+            sort = #{sort},
+            `status` = #{status},
+            update_by = #{updateBy},
+            update_time = sysdate(),
+            remark = #{remark}
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteHelpDoc">
+        DELETE FROM cms_help_doc WHERE id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper> 

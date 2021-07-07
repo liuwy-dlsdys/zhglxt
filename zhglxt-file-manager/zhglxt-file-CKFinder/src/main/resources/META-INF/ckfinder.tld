@@ -1,0 +1,119 @@
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+   "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<!-- a tab library descriptor -->
+<taglib xmlns="http://java.sun.com/JSP/TagLibraryDescriptor">
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>ckfinder</short-name>
+	<uri>http://cksource.com/ckfinder</uri>
+
+	<tag>
+		<name>ckfinder</name>
+		<tag-class>com.zhglxt.file.manager.connector.CKFinderTag</tag-class>
+		<body-content>empty</body-content>
+
+
+		<attribute>
+			<name>basePath</name>
+			<required>true</required>
+		</attribute>
+
+		<attribute>
+			<name>width</name>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>height</name>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>selectFunction</name>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>selectFunctionData</name>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>selectThumbnailFunction</name>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>selectThumbnailFunctionData</name>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>disableThumbnailSelection</name>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>className</name>
+			<required>false</required>
+		</attribute>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>startupPath</name>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>resourceType</name>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>rememberLastFolder</name>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>startupFolderExpanded</name>
+			<required>false</required>
+		</attribute>
+
+	</tag>
+
+	<tag>
+		<name>setupCKEditor</name>
+		<tag-class>com.zhglxt.file.manager.connector.CKFinderSetupCKEditor</tag-class>
+		<body-content>empty</body-content>
+		<description>Setups params for CKEditor.</description>
+
+		<attribute>
+			<name>basePath</name>
+			<required>false</required>
+			<description>Path from current JSP file to ckfinder main folder.</description>
+		</attribute>
+		
+		<attribute>
+			<name>editor</name>
+			<required>false</required>
+			<description>Name of CKEditor to be integrated with CKFinder.</description>
+		</attribute>
+		
+		<attribute>
+			<name>imageType</name>
+			<required>false</required>
+			<description>CKFinder image type name</description>
+		</attribute>
+		
+		<attribute>
+			<name>flashType</name>
+			<required>false</required>
+			<description>CKFinder flash type name</description>
+		</attribute>
+	</tag>
+</taglib>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head>
+    <th:block th:include="include :: header('请假列表')"/>
+</head>
+<body class="gray-bg">
+
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="config-form">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            姓名：<input type="text" name="name"/>
+                        </li>
+                        <li>
+                            <a class="btn btn-success btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-success btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-success " onclick="$.operate.addFull()" shiro:hasPermission="'activiti:leave:add'">
+                <i class="fa fa-plus"></i> 添加请假申请
+            </a>
+            <a class="btn btn-success multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="'activiti:leave:remove'">
+                <i class="fa fa-remove"></i> 删除
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script th:inline="javascript">
+    var removeFlag = [[${@permission.hasPermi('activiti:leave:remove')}]];
+    var listFlag = [[${@permission.hasPermi('activiti:leave:list')}]];
+    var prefix = ctx + "oa/leave";
+
+    $(function () {
+        var options = {
+            url: prefix + "/getLeaveList",
+            createUrl: prefix + "/add",
+            removeUrl: prefix + "/remove",
+            modalName: "请假流程",
+            /* 翻页记住选中 */
+            rememberSelected: true,
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: '编号',
+                    visible: false
+                },
+                {
+                    field: 'user.userName',
+                    title: '姓名'
+                },
+                {
+                    field: 'dept.deptName',
+                    title: '部门'
+                },
+                {
+                    field: 'post',
+                    title: '岗位职责'
+                },
+                {
+                    field: 'content',
+                    title: '请假原因'
+                },
+                {
+                    field: 'startTime',
+                    title: '请假开始时间'
+                },
+                {
+                    field: 'endTime',
+                    title: '请假结束时间'
+                },
+                {
+                    field: 'createDate',
+                    title: '申请时间'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + listFlag + '" href="#" onclick="leaveDetail(\'' + row.id + '\')"><i class="fa fa-play-circle-o"></i>详情</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+
+    //详情
+    function leaveDetail(id) {
+        var options = {
+            title: '请假详情',
+            url: prefix + "/form?id=" + id,
+            btn: ['<i class="fa fa-close"></i> 关闭'],
+            yes: function (index, layero) {
+                layer.close(index);
+            }
+        };
+        $.modal.openOptions(options);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+# 项目相关配置
+zhglxt:
+  # 名称
+  name: WEB应用系统
+  # 版本
+  version: 4.6.2
+  # 版权年份
+  copyrightYear: 2019-2021
+  # 实例演示开关
+  demoEnabled: false
+  # 文件路径 （ Windows配置:  D:/zhglxt_userfiles   ;Linux配置:   /usr/projects/zhglxt/zhglxt_userfiles ）
+  profile: D:/zhglxt_userfiles
+  # 获取ip地址开关
+  addressEnabled: true
+  # 是否启用CKFinder插件
+  ckfinderEnabled: true
+
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为80
+  port: 8888
+  servlet:
+    # 应用的访问路径
+    context-path: /zhglxt
+  tomcat:
+    # 存放Tomcat的日志目录(win系统:  D:/tomcat/projects/zhglxt/logs   ;Linux系统: /usr/tomcaat/projects/zhglxt/logs)
+    basedir: D:/tomcat/projects/zhglxt/logs
+    accesslog:
+      # 开启日志记录
+      enabled: true
+      # 访问日志存放目录
+      directory: logs
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+
+# Spring配置
+spring:
+  # 模板引擎
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    # 缓存启用设置
+    cache: false
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: static/i18n/messages
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  #多个yml配置文件加载配置
+  profiles:
+    active: mybatis,druid,shiro,activiti,quartz
+  # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size: 50MB
+      # 设置总上传的文件大小
+      max-request-size: 100MB
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+      #配置需要实时更新的目录
+      additional-paths: resources/**,static/**,templates/**
+
+# 用户配置
+user:
+  password:
+    # 密码错误{maxRetryCount}次锁定10分钟
+    maxRetryCount: 5
+
+# 日志配置
+logging:
+  level:
+    # ALL  : 是最低等级的，用于打开所有日志记录
+    # TRACE: 很低的日志级别，一般不会使用
+    # DEBUG: 指出细粒度信息事件对调试应用程序是非常有帮助的，主要用于开发过程中打印一些运行信息
+    # INFO : 消息在粗粒度级别上突出强调应用程序的运行过程。打印一些你感兴趣的或者重要的信息，这个可以用于生产环境中输出程序运行的一些重要信息，但是不能滥用，避免打印过多的日志
+    # WARN : 表明会出现潜在错误的情形，有些信息不是错误信息，但是也要给程序员的一些提示
+    # ERROR: 指出虽然发生错误事件，但仍然不影响系统的继续运行。打印错误和异常信息，如果不想输出太多的日志，可以使用这个级别
+    # FATAL: 指出每个严重的错误事件将会导致应用程序的退出。这个级别比较高了。重大错误，这种级别你可以直接停止程序了
+    # OFF  : 是最高等级的，用于关闭所有日志记录
+    # 建议只使用四个级别，优先级从高到低分别是ERROR、WARN、INFO、DEBUG
+    com.zhglxt: DEBUG
+    org.springframework: WARN
+    # 打印activiti SQL到控制台
+    org.activiti.engine.impl.persistence.entity: DEBUG
+
+# 防止XSS攻击
+xss:
+  # 过滤开关
+  enabled: true
+  # 排除链接（多个用逗号分隔）
+  excludes: /system/notice/*,/oa/notify/*
+  # 匹配链接
+  urlPatterns: /system/*,/monitor/*,/tool/*
+
+# Swagger配置
+swagger:
+  # 是否开启swagger
+  enabled: true
+  #屏蔽所有资源（当我们部署系统到生产系统,为了接口安全,需要屏蔽所有Swagger的相关资源）
+  production: false

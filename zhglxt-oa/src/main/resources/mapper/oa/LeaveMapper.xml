@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhglxt.oa.mapper.LeaveMapper">
+
+    <sql id="leaveColumns">
+		a.id,
+		a.post,
+		a.content,
+		a.start_time AS "startTime",
+		a.end_time AS "endTime",
+		a.proc_ins_id AS "procInsId",
+		a.exe_date,
+		a.dept_text AS "deptText",
+		a.hr_text AS "hrText",
+		a.zjl_text AS "zjlText",
+		u.user_id AS "user.userId",
+		u.user_name AS "user.userName",
+		d.dept_id AS "dept.deptId",
+		d. dept_name AS "dept.deptName",
+		a.create_by AS "createBy.userId",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.userId",
+		a.update_date,
+		a.remarks,
+		a.del_flag
+	</sql>
+
+    <sql id="leaveJoins">
+		JOIN sys_user u ON u.user_id = a.user_id
+		JOIN sys_dept d ON d.dept_id = a.office_id
+    </sql>
+
+    <select id="getLeaveList" resultType="com.zhglxt.oa.entity.Leave">
+        SELECT
+        <include refid="leaveColumns"/>
+        FROM oa_leave a
+        <include refid="leaveJoins"/>
+        WHERE 1=1
+        AND a.del_flag ='0'
+        <if test="user != null and user.userId != null and user.userId != ''">
+            AND u.user_id LIKE
+            <if test="dbName == 'oracle'">'%'||#{userId}||'%'</if>
+            <if test="dbName == 'mssql'">'%'+#{userId}+'%'</if>
+            <if test="dbName == 'mysql'">CONCAT('%', #{userId}, '%')</if>
+        </if>
+        <if test="id !=null and id!=''">
+            AND a.id=#{id}
+        </if>
+        <if test="userId !=null and userId!=''">
+            AND a.user_id=#{userId}
+        </if>
+        <if test="deptId !=null and deptId!=''">
+            AND d.dept_id=#{deptId}
+        </if>
+		<if test="name !=null and name!=''">
+			AND u.user_name like concat('%', #{name}, '%')
+		</if>
+        ORDER BY a.update_date DESC
+    </select>
+
+    <select id="getLeaveById" resultType="com.zhglxt.oa.entity.Leave">
+        SELECT
+        <include refid="leaveColumns"/>
+        FROM oa_leave a
+        <include refid="leaveJoins"/>
+        WHERE 1=1
+        AND a.del_flag = '0'
+        <if test="id !=null and id!=''">
+            AND a.id=#{id}
+        </if>
+        ORDER BY a.update_date DESC
+    </select>
+
+    <insert id="insert">
+		INSERT INTO oa_leave(
+			id, 
+			user_id, 
+			office_id, 
+			post, 
+			start_time,
+			end_time,
+			content,
+			create_by, 
+			create_date, 
+			update_by, 
+			update_date, 
+			remarks, 
+			del_flag
+		) VALUES (
+			#{id}, 
+			#{userId}, 
+			#{deptId}, 
+			#{post}, 
+			#{startTime}, 
+			#{endTime}, 
+			#{content},
+			#{createBy}, 
+			#{createDate}, 
+			#{updateBy}, 
+			#{updateDate}, 
+			#{remarks}, 
+			#{delFlag}
+		)
+	</insert>
+
+    <update id="update">
+		UPDATE oa_leave SET 
+			user_id = #{userId},
+			office_id = #{deptId},
+			post = #{post}, 
+			start_time = #{startTime}, 
+			end_time = #{endTime}, 
+			content = #{content},
+			update_by = #{updateBy},
+			update_date = #{updateDate}, 
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+
+	<!-- collection = map的key ； item = 自定义 -->
+    <update id="updateLeaveInFoByIds">
+		UPDATE oa_leave SET del_flag = '1' WHERE id IN
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+		 	#{id}
+		</foreach>
+	</update>
+
+    <!-- collection = list  ； item = 传入的list -->
+	<update id="updateLeaveInFoToList">
+		UPDATE oa_leave SET del_flag = '1' WHERE id IN
+		<foreach collection="list" item="idList" open="(" separator="," close=")">
+			#{idList}
+		</foreach>
+	</update>
+
+    <!-- collection = array  ； item = 传入的idArray -->
+	<update id="updateLeaveInFoToArray">
+		UPDATE oa_leave SET del_flag = '1' WHERE id IN
+		<foreach collection="array" item="idArray" open="(" separator="," close=")">
+			#{idArray}
+		</foreach>
+	</update>
+
+    <update id="updateHrText">
+		UPDATE oa_leave SET 
+			hr_text = #{hrText},
+			update_by = #{updateBy.userId}, 
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+
+    <update id="updateDeptText">
+		UPDATE oa_leave SET 
+			dept_text = #{deptText},
+			update_by = #{updateBy.userId}, 
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+
+    <update id="updateZjlText">
+		UPDATE oa_leave SET 
+			zjl_text = #{zjlText},
+			update_by = #{updateBy.userId}, 
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+
+</mapper> 

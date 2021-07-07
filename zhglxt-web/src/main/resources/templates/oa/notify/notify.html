@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('通知列表')"/>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="notice-form">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            公告标题：<input type="text" name="notifyTitle"/>
+                        </li>
+                        <li>
+                            公告类型：<select name="notifyType" th:with="type=${@dict.getType('oa_notify_type')}">
+                            <option value="">所有</option>
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                    th:value="${dict.dictValue}"></option>
+                        </select>
+                        </li>
+                        <li>
+                            公告状态：<select name="status" th:with="type=${@dict.getType('oa_notify_status')}">
+                            <option value="">所有</option>
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                    th:value="${dict.dictValue}"></option>
+                        </select>
+                        </li>
+                        <li>
+                            <a class="btn btn-success btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-success btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-success" onclick="$.operate.addFull()" shiro:hasPermission="'oa:notify:add'">
+                <i class="fa fa-plus"></i> 新增
+            </a>
+            <a class="btn btn-success multiple disabled" onclick="$.operate.removeAll()"
+               shiro:hasPermission="'oa:notify:remove'">
+                <i class="fa fa-remove"></i> 删除
+            </a>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('oa:notify:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('oa:notify:remove')}]];
+    var types = [[${@dict.getType('oa_notify_type')}]];
+    var datas = [[${@dict.getType('oa_notify_status')}]];
+    var prefix = ctx + "oa/notify";
+
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            modalName: "公告",
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: '序号'
+                },
+                {
+                    field: 'notifyTitle',
+                    title: '公告标题',
+                    formatter: function (value, row, index) {
+                        //发布状态不允许操作
+                        if (row.status == '1') {
+                            return '<a onclick="$.operate.editFullS(\'' + row.id + '\')">' + row.notifyTitle + '</a>';
+                        }
+                        return '<a onclick="$.operate.editFull(\'' + row.id + '\')">' + row.notifyTitle + '</a>';
+                    }
+                },
+                {
+                    field: 'notifyType',
+                    title: '公告类型',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return $.table.selectDictLabel(types, value);
+                    }
+                },
+                {
+                    field: 'status',
+                    title: '状态',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return $.table.selectDictLabel(datas, value);
+                    }
+                },
+                {
+                    title: '已读/未读',
+                    formatter: function (value, row, index) {
+                        return (row.readNum == null ? 0 : row.readNum) + '/' + (row.readNum == null ? 0 : row.readNum + row.unReadNum == null ? 0 : row.unReadNum);
+                    }
+                },
+                {
+                    field: 'createBy',
+                    title: '创建者'
+                },
+                {
+                    field: 'updateTime',
+                    title: '更新时间',
+                    sortable: true
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+                        //发布状态不允许操作
+                        if (row.status == '1') {
+                            actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.editFullS(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        } else {
+                            actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.editFull(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        }
+                        actions.push('<a class="btn btn-success btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

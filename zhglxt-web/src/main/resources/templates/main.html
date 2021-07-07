@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--360浏览器优先以webkit内核解析-->
+    <title>系统介绍</title>
+    <link rel="shortcut icon" href="../static/favicon.png" th:href="@{favicon.png}"/>
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link href="../static/css/animate.min.css" th:href="@{/css/animate.min.css}" rel="stylesheet"/>
+    <link href="../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+</head>
+<body class="gray-bg">
+<div class="row border-bottom white-bg dashboard-header" style="background-color: #f4f6f7">
+    <div class="col-sm-6">
+        <div style="font-size: 18px">
+            <h2><b>简介：</b></h2>
+            <p style="text-indent: 2em;"><b>本系统</b>（基于SpringBoot+MyBatis+Apache Shiro+Bootstrap+Thymeleaf）<b>可用于开发所有的企业级WEB应用系统。可进行深度的定制开发，做出更强的企业级应用系统。</b></p>
+            <p> 支持大部分主流浏览器（如：IE9+浏览器、Google Chrome、火狐浏览器、360浏览器等...)</p>
+            <p style="color: #ca4440;"><b>让开发者更加专于注业务逻辑的实现，从而缩短项目周期，节省开发成本，提高软件安全质量</b></p>
+        </div>
+    </div>
+    <div style="float:left;margin-top: 8px;width: 1px;height: 220px;background: darkgray;margin-left: 5px;"></div>
+    <div class="col-sm-5" style="font-size: 18px;">
+        <h2><b>温馨提示：</b></h2>
+        <p style="text-indent: 2em">
+            本系统工作流程引擎使用的是Activiti5，部署到Tomcat服务器时，流转信息-提交意见-会出现乱码。
+        </p>
+        <p>解决方案：</p>
+        <p style="text-indent: 2em;">
+            修改Tomcat的catalina.bat参数：找到Tomcat的bin目录下的catalina.bat文件进行修改。在@echo off的下面添加以下命令即可。<br>
+            <p style="color: #ca4440;text-indent: 2em;">set "JAVA_OPTS=%JAVA_OPTS% %JSSE_OPTS% -Dfile.encoding=UTF-8"</p>
+        </p>
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>更新日志<i style="color: #ca4440">单击版本号进行 （展开 / 收起） </i></h5>
+                </div>
+                <div class="ibox-content no-padding">
+                    <div class="panel-body">
+                        <div class="panel-group" id="version">
+                            <!--9.2.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v92">v9.2.0</a><code class="pull-right">2021.06.16-now</code>
+                                    </h5>
+                                </div>
+                                <div id="v92" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>修复summernote富文本插件选择上传图片、视频等文件时出现遮罩层无法选择问题</li>
+                                            <li>新增示例（多图上传）</li>
+                                            <li>企业官网管理-站点栏目管理-站点列表：删除站点逻辑优化(删除站点的同时，删除所有关联该站点的业务数据)</li>
+                                            <li>系统图片文件上传路径优化</li>
+                                            <li>markdown在线编辑器页面优化</li>
+                                            <li>系统登录、注册、首页页面优化</li>
+                                            <li>CKFinder文件管理器上传文件名逻辑修改</li>
+                                            <li>在线办公-个人办公-请假申请-请假列表权限优化</li>
+                                            <li>升级summernote到最新版本v0.8.18</li>
+                                            <li>防止富文本点击按钮弹框时，页面会回到顶部</li>
+                                            <li>去除多余的favicon.ico引入</li>
+                                            <li>修复企业官网管理-内容管理-文章列表：左侧栏目树点击‘刷新’按钮时,没有刷新右侧表格数据问题</li>
+                                            <li>系统版本升级到v4.6.2</li>
+                                            <li>优化表格树显示</li>
+                                            <li>修复切换主题错误问题</li>
+                                            <li>在线办公-通知通告-通告管理-新增、编辑页面：接收人树型构造逻辑优化</li>
+                                            <li>工作流代码优化</li>
+                                            <li>企业官网管理下新增-文档管理-文档列表，可在线编辑系统的使用文档并在企业官网进行查看</li>
+                                            <li>修复企业官网管理-栏目管理-栏目列表：修改上级目录无效问题</li>
+                                            <li>系统配置文件优化</li>
+                                            <li>新增MarkDown在线编辑器editor.md示例</li>
+                                            <li>修复登录页面弹窗文字不显示的问题</li>
+                                            <li>企业官网-内容管理-文章列表-栏目列表（排除外部链接）树型结构逻辑优化</li>
+                                            <li>升级pagehelper到最新版1.3.1</li>
+                                            <li>允许手动设置对称加密秘钥</li>
+                                            <li>登录页面系统名称取配置文件的系统名称</li>
+                                            <li>优化大数据(百万级)导入Demo</li>
+                                            <li>新增大数据导入Demo(EasyExcel)</li>
+                                            <li>优化表格行拖拽事件处理</li>
+                                            <li>修复示例弹层js报错</li>
+                                            <li>升级commons.fileupload到最新版本v1.4</li>
+                                            <li>升级commons.io到最新版本v2.10.0</li>
+                                            <li>新增表格示例（自定义视图分页）</li>
+                                            <li>定时任务屏蔽rmi远程调用</li>
+                                            <li>添加刷新options配置</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--9.1.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v91">v9.1.0</a><code class="pull-right">2021.05.27-2021-06-15</code>
+                                    </h5>
+                                </div>
+                                <div id="v91" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>修复个人办公-我的任务-条件搜索查询功能</li>
+                                            <li>个人办公-我的任务-搜索日期条件限制：创建时间起、止，选择日期限制（创建日期止 不能选择小于 创建日期起）</li>
+                                            <li>个人办公-我的任务-请假申请-添加请假申请：请假开始、结束时间，选择日期限制（请假结束时间 不能选择小于 请假开始时间）</li>
+                                            <li>datetimepicker日期组件-清除按钮-样式调整</li>
+                                            <li>请假申请流程-流转信息-优化</li>
+                                            <li>首页、README.md、maven优化</li>
+                                            <li>请假申请流程优化</li>
+                                            <li>修复请假驳回时的审批意见、流转信息的提交意见、任务历时无法显示问题</li>
+                                            <li>请假申请列表-新增根据请假人查询、删除、批量删除功能</li>
+                                            <li>升级spring-boot-maven-plugin插件版本到v2.5.0</li>
+                                            <li>升级maven-compiler-plugin插件版本到v3.8.1</li>
+                                            <li>升级maven-war-plugin插件版本到v3.3.1</li>
+                                            <li>升级spring-boot-maven-plugin插件版本到v2.5.0</li>
+                                            <li>升级maven-compiler-plugin插件版本到v3.8.1</li>
+                                            <li>升级maven-war-plugin插件版本到v3.3.1</li>
+                                            <li>升级spring-boot-starter-aop到最新版本v2.5.1</li>
+                                            <li>升级guava到最新版本v30.1.1-jre</li>
+                                            <li>升级easyexcel到最新版本v2.2.10</li>
+                                            <li>maven依赖配置优化</li>
+                                            <li>升级oshi到最新版本v5.7.4</li>
+                                            <li>升级jna版本到v5.8.0</li>
+                                            <li>优化部门启用状态</li>
+                                            <li>新增表格参数（是否支持打印页面showPrint）</li>
+                                            <li>区分Byte[]类型防止出现死循环</li>
+                                            <li>升级knife4j版本到v2.0.6（以兼容swagger3）</li>
+                                            <li>升级swagger到最新版本v3.0.0</li>
+                                            <li>修复导出角色数据范围翻译缺少仅本人</li>
+                                            <li>导出Excel文件支持数据流下载方式</li>
+                                            <li>移除冗余文件</li>
+                                            <li>调整main路径下样式路径</li>
+                                            <li>升级bootstrap-table到最新版本v1.18.3</li>
+                                            <li>IDCardUtils工具类优化</li>
+                                            <li>调整用户测试接口swagger注解</li>
+                                            <li>增加表格重置分页的参数</li>
+                                            <li>更新README.md、首页-技术选型 说明</li>
+                                            <li>增加表格重置分页的参数</li>
+                                            <li>修复表格图片预览移动端宽高无效问题</li>
+                                            <li>行拖拽重命名reorder-row-js</li>
+                                            <li>修复两处存在SQL注入漏洞问题</li>
+                                            <li>集成yuicompressor实现(CSS/JS压缩)</li>
+                                            <li>优化参数&字典缓存操作</li>
+                                            <li>修复druid最新版本数据监控页面刷新后空白问题</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--9.0.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v90">v9.0.0</a><code class="pull-right">2021.04.08-2021.05.27</code>
+                                    </h5>
+                                </div>
+                                <div id="v90" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>新增表格参数（导出方式&导出文件类型）</li>
+                                            <li>修正mapper.java.vm模板注释</li>
+                                            <li>修复请求形参未传值记录日志异常问题</li>
+                                            <li>修正方法名单词拼写错误</li>
+                                            <li>升级fastjson到最新版1.2.76</li>
+                                            <li>升级druid到最新版本v1.2.6</li>
+                                            <li>系统用户、注册用户新增身份证号码字段</li>
+                                            <li>新增IDcard工具类</li>
+                                            <li>调整新增、编辑用户页面排版</li>
+                                            <li>关闭中文访问路径校验，以便CKFinder查看对应的中文目录下（或中文名称）的各文件（需要开启时可自行开启）</li>
+                                            <li>升级layer到最新版本v3.5.0</li>
+                                            <li>升级layui到最新版本v2.6.6</li>
+                                            <li>升级laydate到最新版本v5.3.0</li>
+                                            <li>动态生成密匙，防止默认密钥泄露</li>
+                                            <li>通知通告-选择接收人-改造为部门人员树型结构选择方式，用户体验更佳</li>
+                                            <li>系统部门树 选择逻辑修改-非部门子节点不可选择</li>
+                                            <li>修复用户管理-岗位下拉框、通知通告-接收人下拉框，在IE浏览器下不兼容问题</li>
+                                            <li>企业官网广告、文章内容缩略图样式调整</li>
+                                            <li>使用预定义的常量，避免实例化对象</li>
+                                            <li>树级结构更新子节点的anecstors字段时应把replace替换为replaceFirst</li>
+                                            <li>修复了删除操作日志时没有记录日志的bug</li>
+                                            <li>企业官网新增背景音乐（打开网站自动播放背景音乐）</li>
+                                            <li>企业官网优化（文章内容显示全部状态的数据）</li>
+                                            <li>企业官网优化（1、官网栏目逻辑代码优化,去除冗余的查询方式 2、支持多站点建站，各个站点之间数据互不影响，可随意切换站点）</li>
+                                            <li>企业官网（栏目、内容管理）的树形菜单结构，新增时自动选中</li>
+                                            <li>示例演示模块显示隐藏权限优化</li>
+                                            <li>实例演示弹框-弹层组件，增加 相册层 示例</li>
+                                            <li>主子表操作封装处理增加文本域类型</li>
+                                            <li>示例演示中弹框-弹层表格，增加 回调形式 回显到父窗体</li>
+                                            <li>调整验证码路径和代码生成模板注释</li>
+                                            <li>新增示例（表格列拖拽）</li>
+                                            <li>日志注解兼容获取json类型的参数</li>
+                                            <li>修复表单向导插件有滚动条时底部工具栏无法固定问题</li>
+                                            <li>修复表单向导示例</li>
+                                            <li>优化ExcelUtil空值处理</li>
+                                            <li>修正模板字符编码</li>
+                                            <li>升级mybatis到最新版3.5.6 阻止远程代码执行漏洞</li>
+                                            <li>修复删除用户bug</li>
+                                            <li>升级系统版本到4.6.1</li>
+                                            <li>优化代码生成导出模板名称</li>
+                                            <li>修复横向菜单无法打开页签问题</li>
+                                            <li>部门新增、主子表代码生成优化</li>
+                                            <li>代码格式化、导包格式化整理</li>
+                                            <li>新增示例（导出选择列）</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--8.9.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v89">v8.9.0</a><code
+                                            class="pull-right">2021.01.01-2021.04.07</code>
+                                    </h5>
+                                </div>
+                                <div id="v89" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>企业官网新增企业发展史时间轴</li>
+                                            <li>数据库链接配置信息修改</li>
+                                            <li>新增IE浏览器版本过低（低于IE9）提示页面</li>
+                                            <li>新增数据库密码加密配置</li>
+                                            <li>锁屏-解锁屏幕后显示之前打开的页签</li>
+                                            <li>操作日志返回参数添加非空验证</li>
+                                            <li>数据监控默认账户密码防止越权访问</li>
+                                            <li>个人中心错误问题</li>
+                                            <li>velocity剔除commons-collections版本，防止3.2.1版本的反序列化漏洞</li>
+                                            <li>将控制器基类的日志设置成 this.getClass()，这样在日志里就可以记录是在哪个控制器记录的</li>
+                                            <li>文件管理系统模块优化</li>
+                                            <li>子表模板默认日期格式化</li>
+                                            <li>升级oshi到最新版本v5.6.0</li>
+                                            <li>升级jna到v5.7.0</li>
+                                            <li>代码生成预览语言根据后缀名高亮显示</li>
+                                            <li>升级SpringBoot到最新版本2.2.13</li>
+                                            <li>升级shiro到最新版1.7.1 阻止身份认证绕过漏洞</li>
+                                            <li>企业官方网站-文章内容-上传的文件路径修改为可公共访问</li>
+                                            <li>升级bootstrapTable相关组件到最新版本v1.18.2</li>
+                                            <li>升级bootstrapTable到最新版本v1.18.0</li>
+                                            <li>搜索建议选择后隐藏列表</li>
+                                            <li>主子表示例增加初始化数据</li>
+                                            <li>优化Excel导入增加空行判断</li>
+                                            <li>更新fileinput.css</li>
+                                            <li>优化更多操作按钮左侧移入内容闪现消失情况</li>
+                                            <li>修复主子表提交中列隐藏后出现列偏移问题</li>
+                                            <li>表格销毁清除记住选择数据</li>
+                                            <li>调整Map通用处理工具类中数组参数拼接</li>
+                                            <li>升级fastjson到最新版1.2.75</li>
+                                            <li>增加表格动态列Demo</li>
+                                            <li>代码生成选择主子表关联元素必填</li>
+                                            <li>修复导入数据为负浮点数时，导入结果会丢失精度问题</li>
+                                            <li>企业官网-新增站点管理</li>
+                                            <li>升级druid到最新版本v1.2.4</li>
+                                            <li>企业官网伪静态化</li>
+                                            <li>新增企业官网-解决方案-查看详情</li>
+                                            <li>新增企业官网-新闻动态-查看详情</li>
+                                            <li>修复企业官网-文章新增、编辑时，富文本编辑器无法上传图片问题</li>
+                                            <li>修改文件上传的默认路径</li>
+                                            <li>系统版本升级到4.6.0</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--8.8.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v88">v8.8.0</a><code
+                                            class="pull-right">2020.12.03-2020.12.31</code>
+                                    </h5>
+                                </div>
+                                <div id="v88" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>tree根据Id和Name选中指定节点增加空判断</li>
+                                            <li>企业官网-官网首页、关于我们、联系我们代码优化</li>
+                                            <li>初始列默认字段类型</li>
+                                            <li>代码生成: 数据库文本类型生成表单文本域</li>
+                                            <li>Excel注解支持Image图片导出</li>
+                                            <li>代码生成日期控件区分范围</li>
+                                            <li>新增 企业官网</li>
+                                            <li>cms官网-广告管理-添加广告标题、广内容</li>
+                                            <li>防止错误页返回主页出现嵌套问题</li>
+                                            <li>新增示例（标签 & 提示）</li>
+                                            <li>添加单据打印示例</li>
+                                            <li>弹出层openOptions移动端自适应</li>
+                                            <li>通知通告 发布状态为草稿状态时：隐藏接收人 tab</li>
+                                            <li>公共方法（addFull添加信息 全屏）在无参数时没有替换url中参数字符为空的问题</li>
+                                            <li>使用widthUnit定义选项单位</li>
+                                            <li>浏览文件解决bootstrap-treetable,表头跟表格宽度不同步的问题</li>
+                                            <li>修复主子表editColumn table dataIndex循环bug</li>
+                                            <li>新增表格参数（自定义打印页面模板printPageBuilder）</li>
+                                            <li>请求返回值使用常量web_status.SUCCESS</li>
+                                            <li>新增通告通知模块功能</li>
+                                            <li>升级SpringBoot到最新版本2.2.12 提升启动速度</li>
+                                            <li>菜单新增是否刷新页面</li>
+                                            <li>新增选项卡是否刷新属性</li>
+                                            <li>系统管理-参数设置-列表页面：新增更新时间、更新人字段显示</li>
+                                            <li>流程图为中文名称时查看流程图页面错误问题修复</li>
+                                            <li>修改表格初始参数sortName默认值为undefined</li>
+                                            <li>获取属性的get方法空值验证</li>
+                                            <li>修复生成主子表外键名错误</li>
+                                            <li>修复online sessionId大小写bug</li>
+                                            <li>修复代码生成: 生成主子表代码, 子表新增数据报错</li>
+                                            <li>目录结构优化</li>
+                                            <li>去除 Maven打包时，提示dependencies.dependency.systemPath警告</li>
+                                            <li>删除用户和角色解绑关联</li>
+                                            <li>打包优化</li>
+                                            <li>新增锁定屏幕功能</li>
+                                            <li>回显数据字典防止空值</li>
+                                            <li>防止匿名访问进行过滤</li>
+                                            <li>新增密码字符范围提示</li>
+                                            <li>主子表操作添加通用addColumn方法</li>
+                                            <li>升级bitwalker到最新版本1.21</li>
+                                            <li>WebUtil代码优化</li>
+                                            <li>升级poi到最新版本4.1.2</li>
+                                            <li>Excel支持注解align对齐方式</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--8.7.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v87">v8.7.0</a><code
+                                            class="pull-right">2020.10.01-2020.12.02</code>
+                                    </h5>
+                                </div>
+                                <div id="v87" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>升级bootstrap-fileinput到最新版本5.1.3</li>
+                                            <li>表格树加载完成触发tooltip方法</li>
+                                            <li>升级SpringBoot到最新版本2.1.18</li>
+                                            <li>修正转换字符串的目标字符集属性</li>
+                                            <li>新增表格参数（是否显示行间隔色striped）</li>
+                                            <li>升级bootstrapTable相关组件到最新版本v1.18.0</li>
+                                            <li>升级bootstrapTable到最新版本v1.18.0</li>
+                                            <li>代码生成删除多余的数字float类型</li>
+                                            <li>修复用户详细页面用户编号格式错位</li>
+                                            <li>新增表格参数（渲染完成后执行的事件onPostBody）</li>
+                                            <li>表格树逻辑优化</li>
+                                            <li>防止未初始参数脚本导致的异常</li>
+                                            <li>修复封装类转基础数据空指针异常</li>
+                                            <li>升级oshi到最新版本v5.3.6</li>
+                                            <li>新增缓存监控功能</li>
+                                            <li>session配置永不过期，不删除在线会话信息</li>
+                                            <li>树表溢出元素内容隐藏</li>
+                                            <li>系统版本升级到4.5.1</li>
+                                            <li>任意文件下载漏洞修复</li>
+                                            <li>升级shiro到最新版1.7.0 阻止权限绕过漏洞</li>
+                                            <li>新增表格行触发事件（onCheck、onUncheck、onCheckAll、onUncheckAll）</li>
+                                            <li>修复多页签关闭非当前选项出现空白问题</li>
+                                            <li>升级druid到最新版本v1.2.2</li>
+                                            <li>代码生成预览支持高亮显示</li>
+                                            <li>mapperLocations配置支持分隔符</li>
+                                            <li>权限调整</li>
+                                            <li>系统版本升级到v4.5.0</li>
+                                            <li>修复代码生成模板文件上传组件缺少ctx的问题</li>
+                                            <li>格式化页面代码</li>
+                                            <li>关闭缓存统计信息</li>
+                                            <li>修正拼写错误</li>
+                                            <li>去除用户手机邮箱部门必填验证</li>
+                                            <li>注册账号设置默认用户名称及密码最后更新时间</li>
+                                            <li>添加检查密码范围支持的特殊字符包括：~!@#$%^&*()-=_+</li>
+                                            <li>账号密码支持自定义更新周期</li>
+                                            <li>初始密码支持自定义修改策略</li>
+                                            <li>用户修改新密码不能与旧密码相同</li>
+                                            <li>调整sql默认时间</li>
+                                            <li>新增日期格式化方法</li>
+                                            <li>解决代码生成没有bit类型的问题</li>
+                                            <li>树结构加载添加callBack回调方法</li>
+                                            <li>解决用户管理页面滚动返回顶部条失效</li>
+                                            <li>升级pagehelper到最新版1.3.0</li>
+                                            <li>回显数据字典（字符串数组）增加空值判断</li>
+                                            <li>升级druid到最新版本v1.2.1</li>
+                                            <li>升级fastjson到最新版1.2.74</li>
+                                            <li>修改前端密码长度校验和错误提示不符问题</li>
+                                            <li>jna指定版本</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--8.6.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v86">v8.6.0</a><code
+                                            class="pull-right">2020.08.01-2020.09.30</code>
+                                    </h5>
+                                </div>
+                                <div id="v86" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>文件上传工具类代码优化</li>
+                                            <li>AjaxResult重写put方法，以方便链式调用</li>
+                                            <li>增强验证码校验的语义，便于理解</li>
+                                            <li>修改session同步逻辑错误</li>
+                                            <li>添加导入数据弹出窗体自定义宽高</li>
+                                            <li>用户信息参数返回忽略掉密码字段</li>
+                                            <li>优化swaggerUI界面，新增Knife4j</li>
+                                            <li>升级oshi到最新版本v5.2.5</li>
+                                            <li>修正语义错误&删除多余方法</li>
+                                            <li>修改主子表提交示例代码</li>
+                                            <li>升级springboot到2.1.17 提升安全性</li>
+                                            <li>优化$.modal.close方法</li>
+                                            <li>导入excel整形值校验优化</li>
+                                            <li>菜单&数据权限新增（展开/折叠 全选/全不选 父子联动）</li>
+                                            <li>表单向导插件更换为jquery-smartwizard</li>
+                                            <li>新增表格列宽拖动插件</li>
+                                            <li>优化页脚显示控制的判断表达式</li>
+                                            <li>输入框组验证错误后置图标提示颜色</li>
+                                            <li>限制系统内置参数不允许删除</li>
+                                            <li>新增系统参数设置（是否开启页脚功能）</li>
+                                            <li>修复窗体大小改变后浮动提示框失效问题</li>
+                                            <li>修复点击左上角返回首页，浏览器刷新导致之前的菜单重新弹出;超出字符提示增加换行</li>
+                                            <li>修复菜单收起时当前选中菜单和展开的子菜单间存在间隔</li>
+                                            <li>新增表格参数（通过自定义函数设置标题样式headerStyle）</li>
+                                            <li>调整字符串格式化(%s )参数为空时转为空字符串</li>
+                                            <li>mapper层添加@Component注解，去除Could not autowire. No beans of 'xxx' type found提示</li>
+                                            <li>Excel导出类型NUMERIC支持精度浮点类型</li>
+                                            <li>降级druid到版本v1.1.22，防止出现一些错误</li>
+                                            <li>修改页签行高</li>
+                                            <li>新增CKFidner2.x API</li>
+                                            <li>数据字典缓存空值处理</li>
+                                            <li>升级druid到最新版本v1.1.23</li>
+                                            <li>去除mini菜单窗口底部波浪线</li>
+                                            <li>生成代码补充必填样式</li>
+                                            <li>新增菜单导航显示风格（default为左侧导航菜单，topnav为顶部导航菜单）</li>
+                                            <li>
+                                                更新支付Demo【更新appid、商户私钥、支付宝公钥、支付宝网关】（由于现在个人无法进行支付签约，必须要企业营业执照才能进行签约，所以无法查看完善的支付流程）
+                                            </li>
+                                            <li>新增表格参数（通过自定义函数设置页脚样式footerStyle）</li>
+                                            <li>上传媒体类型添加视频格式</li>
+                                            <li>数据权限判断参数类型</li>
+                                            <li>修正数据库字符串类型nvarchar</li>
+                                            <li>优化递归子节点</li>
+                                            <li>修复多表格搜索formId无效</li>
+                                            <li>添加Ajax局部刷新demo</li>
+                                            <li>导出Excel调整targetAttr获取值方法，防止get方法不规范</li>
+                                            <li>生成页面时不忽略remark属性</li>
+                                            <li>字典数据列表页添加关闭按钮</li>
+                                            <li>Excel注解支持自动统计数据总和</li>
+                                            <li>系统版本升级到4.4.0</li>
+                                            <li>同步表结构不存在时，提示错误信息</li>
+                                            <li>系统首页优化</li>
+                                            <li>修改表格行内编辑示例旧值参数</li>
+                                            <li>设置默认排序顺序</li>
+                                            <li>fastjson升级为1.2.73版本（修复高危漏洞）</li>
+                                            <li>shiro升级到1.6.0版本（修复高危漏洞）</li>
+                                            <li>Excel注解支持设置BigDecimal精度&舍入规则</li>
+                                            <li>代码生成支持同步数据库</li>
+                                            <li>操作日志记录排除敏感属性字段</li>
+                                            <li>修复页面存在多表格，回调函数res数据不正确问题</li>
+                                            <li>修复不同浏览器附件下载中文名乱码的问题</li>
+                                            <li>jquery-zTree树插件版本升级到3.5.44</li>
+                                            <li>表格树标题内容支持html语义化标签</li>
+                                            <li>主子表示例添加日期列</li>
+                                            <li>强退后立即清理登录帐号的缓存会话信息，防止强退后的用户继续进行访问操作</li>
+                                            <li>操作日志查询方式调整</li>
+                                            <li>修复更新表格插件后导致的记住我错误</li>
+                                            <li>代码生成支持富文本控件</li>
+                                            <li>菜单页签联动优化</li>
+                                            <li>修改Excel设置STRING单元格类型</li>
+                                            <li>修复更新表格插件后导致的主子表错误</li>
+                                            <li>用户密码支持自定义配置规则</li>
+                                            <li>邮箱长度限制50</li>
+                                            <li>修复多表格无法设置实例配置问题</li>
+                                            <li>添加获取当前的环境配置方法</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--8.5.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v85">v8.5.0</a><code
+                                            class="pull-right">2020.06.16-2020.07.30</code>
+                                    </h5>
+                                </div>
+                                <div id="v85" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>移除jcpfree打印插件&Demo</li>
+                                            <li>新增表格打印Demo</li>
+                                            <li>新增表格自动刷新Demo</li>
+                                            <li>HTML过滤器改为将html转义</li>
+                                            <li>表格样式优化</li>
+                                            <li>新增表格参数（自定义加载文本的字体大小loadingFontSize）</li>
+                                            <li>表格请求方式method支持自定义配置</li>
+                                            <li>升级表格行编辑&移动端适应插件</li>
+                                            <li>更换表格冻结列插件</li>
+                                            <li>升级bootstrapTable到最新版本1.17.1</li>
+                                            <li>修复配置应用的访问路径首页页签重复问题</li>
+                                            <li>openTab打开时滚动到当前页签</li>
+                                            <li>截取返回参数长度，防止超出异常</li>
+                                            <li>字符未使用下划线不进行驼峰式处理</li>
+                                            <li>文件名修改为uuid方式</li>
+                                            <li>添加定时任务cron表达式验证</li>
+                                            <li>拆分表格插件，按需引入</li>
+                                            <li>兼容IE浏览器对象不支持toBlob属性或方法问题</li>
+                                            <li>更换图片裁剪工具为cropper</li>
+                                            <li>角色管理-分配用户-不允许对超级系统管理员进行“取消授权”操作</li>
+                                            <li>修改切换“浅蓝”主题，首页菜单字体和主题背景颜色冲突的问题</li>
+                                            <li>用户角色操作项：对“超级管理员”角色进行优化（去除删除操作项、启用状态不可关闭）</li>
+                                            <li>规范（格式化）yml文件内容格式</li>
+                                            <li>Excel支持sort导出排序</li>
+                                            <li>代码生成支持自定义路径</li>
+                                            <li>代码生成支持选择上级菜单</li>
+                                            <li>代码生成支持上传控件</li>
+                                            <li>用户分配角色不允许选择超级管理员角色</li>
+                                            <li>添加右侧冻结列示例</li>
+                                            <li>冻结列右侧自适应</li>
+                                            <li>修复表格冻结列错位问题</li>
+                                            <li>信息安全漏洞（请务必保持cipherKey密钥唯一性）</li>
+                                            <li>检查字符支持小数点&降级改成异常提醒</li>
+                                            <li>openOptions函数中加入自定义maxmin属性</li>
+                                            <li>支持openOptions方法最大化</li>
+                                            <li>验证码清除，防止多次使用</li>
+                                            <li>修复验证码使用后仍可用的问题</li>
+                                            <li>支持openOptions方法多个按钮回调</li>
+                                            <li>右键页签操作实现与菜单联动</li>
+                                            <li>关闭顶部tab页时，左侧菜单定位到当前显示页</li>
+                                            <li>对文件上传、修改、编辑操作进行权限控制。演示模式不允许操作</li>
+                                            <li>升级shiro到最新版1.5.3 阻止权限绕过漏洞</li>
+                                            <li>新增isLinkage支持页签与菜单联动</li>
+                                            <li>修复代码生成,导入表结构出现异常时,页面不提醒问题</li>
+                                            <li>加载头像时，图片如果不存在，则显示一个默认头像</li>
+                                            <li>Excel支持dictType读取字符串组内容</li>
+                                            <li>Excel导出支持字典类型</li>
+                                            <li>升级系统版本4.3</li>
+                                            <li>代码生成主子表序号调整</li>
+                                            <li>Excel支持readConverterExp读取字符串组内容</li>
+                                            <li>修复jquery表单序列化时复选框未选中不会序列化到对象中去问题</li>
+                                            <li>代码生成-显示类型-支持复选框</li>
+                                            <li>新增回显数据字典（字符串数组）</li>
+                                            <li>用户信息添加输入框组图标&鼠标按下显示密码</li>
+                                            <li>主子表生成模板多余逗号问题</li>
+                                            <li>输入框组图标元素修改成圆角</li>
+                                            <li>修复浏览器手动缩放比例后菜单无法自适应问题</li>
+                                            <li>常量接口修改为常量类</li>
+                                            <li>前端表单样式修改成圆角</li>
+                                            <li>ajaxSuccess判断修正</li>
+                                            <li>HttpUtils.sendPost()方法，参数无需拼接参数到url</li>
+                                            <li>HTML过滤器不替换&实体</li>
+                                            <li>代码生成模板支持主子表</li>
+                                            <li>代码生成浮点型改用BigDecimal</li>
+                                            <li>主子表示例添加序号&防止insertRow数据被初始化</li>
+                                            <li>新增示例（主子表提交）</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--8.4.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v84">v8.4.0</a><code
+                                            class="pull-right">2020.05.04-2020.06.15</code>
+                                    </h5>
+                                </div>
+                                <div id="v84" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>修复表单构建单选和多选框渲染问题</li>
+                                            <li>添加是否开启swagger配置</li>
+                                            <li>代码生成模板调整，字段为String并且必填则加空串条件</li>
+                                            <li>字典数据查询列表根据dictSort升序排序</li>
+                                            <li>首页菜单显示调整</li>
+                                            <li>修复树表对imageView和tooltip方法无效问题</li>
+                                            <li>新增多级联动下拉示例</li>
+                                            <li>升级fastjson到最新版1.2.70 修复高危安全漏洞</li>
+                                            <li>demo页面清除html链接，防止点击后跳转出现404</li>
+                                            <li>新增demo子系统模块</li>
+                                            <li>新增表格列参数（是否列选项可见ignore）</li>
+                                            <li>修复部分情况节点不展开问题</li>
+                                            <li>在线用户强退方法合并</li>
+                                            <li>修复selectColumns方法获取子对象数据无效问题</li>
+                                            <li>修改数据源类型优先级，先根据方法，再根据类</li>
+                                            <li>类上数据源类型获取不到问题，修改优先级，先根据方法，再根据类</li>
+                                            <li>修改上级部门（选择项排除本身和下级）</li>
+                                            <li>修复关闭标签页后刷新还是上次地址问题</li>
+                                            <li>通用http发送方法增加参数 contentType 编码类型</li>
+                                            <li>更换IP地址查询接口</li>
+                                            <li>新增表格参数（是否启用显示卡片视图cardView）</li>
+                                            <li>修复选择菜单后刷新页面，菜单箭头显示不对问题</li>
+                                            <li>添加校验部门包含未停用的子部门</li>
+                                            <li>针对性屏蔽Enter</li>
+                                            <li>取消回车自动提交表单</li>
+                                            <li>新增表格参数（是否显示全屏按钮showFullscreen）</li>
+                                            <li>'A','I','BUTTON' 标签忽略clickToSelect事件，防止点击操作按钮时选中</li>
+                                            <li>新增表格参数（是否启用分页条无限循环的功能paginationLoop）</li>
+                                            <li>String类型比较相等问题调整</li>
+                                            <li>表格添加显示/隐藏所有列方法 showAllColumns/hideAllColumns</li>
+                                            <li>新增表格参数（是否显示表头showHeader）</li>
+                                            <li>邮箱显示截取部分字符串，防止低分辨率错位</li>
+                                            <li>优化查询条件label为时间对齐问题</li>
+                                            <li>fix bug: 字典排序值=0时无效</li>
+                                            <li>升级fastjson到最新版1.2.68 修复安全加固</li>
+                                            <li>list*.vm模板优化</li>
+                                            <li>删除无用注解</li>
+                                            <li>添加data数据加载属性及示例</li>
+                                            <li>代码生成列属性根据sort排序</li>
+                                            <li>气泡弹出框特效移至通用js</li>
+                                            <li>图片预览事件属性修正</li>
+                                            <li>@Override注解缺失</li>
+                                            <li>修复冻结列排序样式无效问题</li>
+                                            <li>修复“更多操作”，部分浏览器不兼容情况</li>
+                                            <li>升级Bootstrap版本到v3.3.7</li>
+                                            <li>修复context-path的情况下个人中心刷新导致样式问题</li>
+                                            <li>mysql驱动包移至web模块</li>
+                                            <li>去掉多余的依赖</li>
+                                            <li>全屏editFull打开适配表树</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--8.3.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v83">v8.3.0</a><code
+                                            class="pull-right">2020.02.18-2020.05.03</code>
+                                    </h5>
+                                </div>
+                                <div id="v83" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>用户管理添加分配角色页面</li>
+                                            <li>定时任务添加调度日志按钮</li>
+                                            <li>新增是否开启用户注册功能</li>
+                                            <li>页面滚动显示返回顶部按钮</li>
+                                            <li>移动端定时任务&角色管理更多操作可点击</li>
+                                            <li>定时任务&角色管理添加更多操作按钮</li>
+                                            <li>移动端点击左侧目录不进行菜单切换</li>
+                                            <li>代码生成细节优化</li>
+                                            <li>iframe框架页会话过期弹出超时提示</li>
+                                            <li>移动端登录不显示左侧菜单</li>
+                                            <li>首页logo固定，不随菜单滚动</li>
+                                            <li>任务分组字典翻译（调度日志详细）</li>
+                                            <li>字典管理添加缓存读取</li>
+                                            <li>字典数据列表标签显示样式</li>
+                                            <li>参数管理支持缓存操作</li>
+                                            <li>日期控件清空结束时间设置开始默认值为2099-12-31</li>
+                                            <li>表格树添加获取数据后响应回调处理</li>
+                                            <li>批量替换表前缀调整</li>
+                                            <li>调整包顺序</li>
+                                            <li>!153 支持表格导入模板的弹窗表单加入其它输入控件</li>
+                                            <li>登录页面默认模式设置</li>
+                                            <li>重置刷新表格树</li>
+                                            <li>新增支持导出数据字段排序</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--8.2.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v82">v8.2.0</a><code
+                                            class="pull-right">2019.12.01-2020.02.17</code>
+                                    </h5>
+                                </div>
+                                <div id="v82" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>新增-CMS内容管理-子系统</li>
+                                            <li>新增-文件管理-子系统</li>
+                                            <li>新增-工作流程管理-子系统</li>
+                                            <li>修改代码生成部分细节问题</li>
+                                            <li>新增表格参数（是否单选checkbox）</li>
+                                            <li>防止db字段名为一个字母导致出现生成异常</li>
+                                            <li>druid未授权不允许访问</li>
+                                            <li>表格树父节点兼容0,'0','',null</li>
+                                            <li>调整表格树兼容父节点判断</li>
+                                            <li>必填的项增加星号</li>
+                                            <li>修复select2不显示校验错误信息</li>
+                                            <li>HTML过滤器不替换双引号为&<b>quot;</b>，防止json格式无效</li>
+                                            <li>添加HTML过滤器，用于去除XSS漏洞隐患</li>
+                                            <li>修复多数据源下enabled=false导致读取不到bean导致异常问题</li>
+                                            <li>修复翻页记住选择项数据问题</li>
+                                            <li>用户邮箱长度限制20</li>
+                                            <li>修改错误页面返回主页出现嵌套问题</li>
+                                            <li>表格浮动提示单双引号转义</li>
+                                            <li>代码生成防止缓存内的数据没有及时写入到zip文件</li>
+                                            <li>支持配置四级菜单</li>
+                                            <li>升级shiro到最新版1.4.2 阻止rememberMe漏洞攻击</li>
+                                            <li>升级summernote到最新版本v0.8.12</li>
+                                            <li>侧边栏添加一套深蓝色主题</li>
+                                            <li>Excel注解dateFormat属性为字符串时间时格式处理</li>
+                                            <li>浏览代码时间字符串处理</li>
+                                            <li>支持mode配置history（表示去掉地址栏的#）</li>
+                                            <li>修复War部署无法正常shutdown,ehcache内存泄漏</li>
+                                            <li>修复代码生成短字段无法识别问题</li>
+                                            <li>修复war包部署情况下404、500等页面样式丢失问题</li>
+                                            <li>系统会话缓存优化</li>
+                                            <li>代码生成模板增加导出功能日志记录</li>
+                                            <li>serviceImpl模版 update方法判断bug修正</li>
+                                            <li>操作日志详情bug修复</li>
+                                            <li>系统首页thymeleaf语法优化</li>
+                                            <li>select2选择数量限制提示语</li>
+                                            <li>代码生成查询时忽略大小写、翻页记住选中、表注释未填写也允许导入</li>
+                                            <li>代码生成唯一编号调整为tableId</li>
+                                            <li>全局配置类修改为注解，防止多环境配置下读取问题</li>
+                                            <li>中文URL转义</li>
+                                            <li>用户头像加载bug修复</li>
+                                            <li>修复多表格情况下，firstLoad只对第一个表格生效</li>
+                                            <li>处理打包出现警告问题</li>
+                                            <li>默认主题样式，防止网速慢情况下出现空白</li>
+                                            <li>修复文件上传多级目录识别问题</li>
+                                            <li>解码url，防止中文导致页面不能加载问题</li>
+                                            <li>右键Tab页刷新事件重复请求问题</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--8.1.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v81">v8.1.0</a><code
+                                            class="pull-right">2019.10.22-2019.11.30</code>
+                                    </h5>
+                                </div>
+                                <div id="v81" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>支持多表格实例操作</li>
+                                            <li>浮动提示方法tooltip支持弹窗</li>
+                                            <li>代码生成&字典数据支持模糊条件查询</li>
+                                            <li>增加页签全屏方法</li>
+                                            <li>增加清除表单验证错误信息方法</li>
+                                            <li>支持iframe局部刷新页面</li>
+                                            <li>支持在线切换主题</li>
+                                            <li>修改图片预览设置的高宽参数颠倒问题</li>
+                                            <li>操作日志新增解锁账户功能</li>
+                                            <li>管理员用户&角色不允许操作</li>
+                                            <li>去掉jsoup包调用自定义转义工具</li>
+                                            <li>添加时间轴示例</li>
+                                            <li>修复翻页记住选择时获取指定列值的问题</li>
+                                            <li>代码生成sql脚本添加导出按钮</li>
+                                            <li>添加表格父子视图示例</li>
+                                            <li>添加表格行内编辑示例</li>
+                                            <li>升级fastjson到最新版1.2.60 阻止漏洞攻击</li>
+                                            <li>升级echarts到最新版4.2.1</li>
+                                            <li>操作日志新增返回参数</li>
+                                            <li>支持mybatis通配符扫描任意多个包</li>
+                                            <li>权限验证多种情况处理</li>
+                                            <li>修复树形类型的代码生成的部分必要属性无法显示</li>
+                                            <li>修复非表格插件情况下重置出现异常</li>
+                                            <li>修复富文本编辑器有序列表冲突</li>
+                                            <li>代码生成表前缀配置支持多个</li>
+                                            <li>修复自动去除表前缀配置无效问题</li>
+                                            <li>菜单列表按钮数据可见不显示（权限标识控制）</li>
+                                            <li>修复设置会话超时时间无效问题</li>
+                                            <li>新增本地资源通用下载方法</li>
+                                            <li>操作日志记录新增请求方式</li>
+                                            <li>代码生成单选按钮属性重名修复</li>
+                                            <li>优化select2下拉框宽度不会随浏览器改变</li>
+                                            <li>修复代码生成树表异常</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--8.0.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v80">v8.0.0</a><code
+                                            class="pull-right">2019.08.08-2019.10.21</code>
+                                    </h5>
+                                </div>
+                                <div id="v80" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>代码生成支持预览、编辑，保存方案</li>
+                                            <li>新增防止表单重复提交注解</li>
+                                            <li>新增后端校验（和前端保持一致）</li>
+                                            <li>新增同一个用户最大会话数控制</li>
+                                            <li>Excel导出子对象支持多个字段</li>
+                                            <li>定时任务支持静态调用和多参数</li>
+                                            <li>定时任务增加分组条件查询</li>
+                                            <li>字典类型增加任务分组数据</li>
+                                            <li>新增表格是否首次加载数据</li>
+                                            <li>新增parentTab选项卡可在同一页签打开</li>
+                                            <li>多数据源支持类注解（允许继承父类的注解）</li>
+                                            <li>部门及以下数据权限（调整为以下及所有子节点）</li>
+                                            <li>新增角色数据权限配（仅本人数据权限）</li>
+                                            <li>修改菜单权限显示问题</li>
+                                            <li>上传文件修改路径及返回名称</li>
+                                            <li>添加报表插件及示例</li>
+                                            <li>添加首页统计模板</li>
+                                            <li>添加表格拖拽示例</li>
+                                            <li>添加卡片列表示例</li>
+                                            <li>添加富文本编辑器示例</li>
+                                            <li>添加表格动态增删改查示例</li>
+                                            <li>添加用户页面岗位选择框提示</li>
+                                            <li>点击菜单操作添加背景高亮显示</li>
+                                            <li>表格树新增showSearch是否显示检索信息</li>
+                                            <li>解决表格列设置sortName无效问题</li>
+                                            <li>表格图片预览支持自定义设置宽高</li>
+                                            <li>添加表格列浮动提示（单击文本复制）</li>
+                                            <li>PC端收起菜单后支持浮动显示</li>
+                                            <li>详细操作样式调整</li>
+                                            <li>修改用户更新描述空串不更新问题</li>
+                                            <li>导入修改为模板渲染</li>
+                                            <li>修改菜单及部门排序规则</li>
+                                            <li>角色导出数据范围表达式翻译</li>
+                                            <li>添加summernote富文本字体大小</li>
+                                            <li>优化表格底部下边框防重叠&汇总像素问题</li>
+                                            <li>树表格支持属性多层级访问</li>
+                                            <li>修复IE浏览器用户管理界面右侧留白问题</li>
+                                            <li>重置按钮刷新表格</li>
+                                            <li>重置密码更新用户缓存</li>
+                                            <li>优化验证码属性参数</li>
+                                            <li>支持数据监控配置用户名和密码</li>
+                                            <li>文件上传修改按钮背景及加载动画</li>
+                                            <li>支持配置一级菜单href跳转</li>
+                                            <li>侧边栏添加一套浅色主题</li>
+                                            <li>树表格添加回调函数（校验异常状态）</li>
+                                            <li>用户个人中心适配手机端显示</li>
+                                            <li>Excel支持设置导出类型&更换样式</li>
+                                            <li>检查属性改变修改为克隆方式（防止热部署强转异常）</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5><i style="color: #ca4440">开发者工具 </i>&<i style="color: #ca4440"> 技术选型</i><i>单击标题进行 （展开 / 收起）</i></h5>
+                </div>
+                <div class="ibox-content no-padding">
+                    <div class="panel-body">
+                        <div class="panel-group" id="coreTechnology">
+
+                            <!--系统运行部署环境-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#JDK-Tomcat">系统运行部署环境：JDK 1.8+ 、MySQL5.7+、Tomcat 8+</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="JDK-Tomcat" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        JDK是 Java 语言的软件开发工具包，主要用于移动设备、嵌入式设备上的java应用程序。JDK是整个java开发的核心，它包含了JAVA的运行环境（JVM+Java系统类库）和JAVA工具。
+                                        <br><br>
+                                        MySQL是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，属于 Oracle 旗下产品。MySQL 是最流行的关系型数据库管理系统之一，在 WEB 应用方面，MySQL是最好的 RDBMS (Relational Database Management System，关系数据库管理系统) 应用软件之一。
+                                        <br>
+                                        MySQL是一种关系型数据库管理系统，关系数据库将数据保存在不同的表中，而不是将所有数据放在一个大仓库内，这样就增加了速度并提高了灵活性。
+                                        <br>
+                                        MySQL所使用的 SQL 语言是用于访问数据库的最常用标准化语言。MySQL 软件采用了双授权政策，分为社区版和商业版，由于其体积小、速度快、总体拥有成本低，尤其是开放源码这一特点，一般中小型网站的开发都选择 MySQL 作为网站数据库。
+                                        <br><br>
+                                        Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。对于一个初学者来说，可以这样认为，当在一台机器上配置好Apache 服务器，可利用它响应HTML（标准通用标记语言下的一个应用）页面的访问请求。实际上Tomcat是Apache 服务器的扩展，但运行时它是独立运行的，所以当你运行tomcat 时，它实际上作为一个与Apache 独立的进程单独运行的。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--开发集成环境-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#IntelliJ-IDEA">开发集成环境：IntelliJ IDEA 2019.2</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="IntelliJ-IDEA" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        IDEA 全称 IntelliJ IDEA，是java编程语言开发的集成环境。IntelliJ在业界被公认为最好的java开发工具，尤其在智能代码助手、代码自动提示、重构、JavaEE支持、各类版本工具(git、svn等)、JUnit、CVS整合、代码分析、 创新的GUI设计等方面的功能可以说是超常的。IDEA是JetBrains公司的产品，这家公司总部位于捷克共和国的首都布拉格，开发人员以严谨著称的东欧程序员为主。它的旗舰版本还支持HTML，CSS，PHP，MySQL，Python等。免费版只支持Java,Kotlin等少数语言
+                                        <br><br>
+                                        特色功能:<br>
+                                        IDEA所提倡的是智能编码，是减少程序员的工作，IDEA的特色功能有以下22点
+                                        <ol>
+                                            <li>智能的选取</li>
+                                            <li>丰富的导航模式</li>
+                                            <li>历史记录功能</li>
+                                            <li>JUnit的完美支持</li>
+                                            <li>对重构的优越支持</li>
+                                            <li>编码辅助</li>
+                                            <li>灵活的排版功能</li>
+                                            <li>XML的完美支持</li>
+                                            <li>动态语法检测</li>
+                                            <li>代码检查</li>
+                                            <li>对JSP的完全支持</li>
+                                            <li>智能编辑</li>
+                                            <li>EJB支持</li>
+                                            <li>列编辑模式</li>
+                                            <li>预置模板</li>
+                                            <li>完美的自动代码完成</li>
+                                            <li>版本控制完美支持</li>
+                                            <li>不使用代码的检查</li>
+                                            <li>智能代码</li>
+                                            <li>正则表达式的查找和替换功能</li>
+                                            <li>JavaDoc预览支持</li>
+                                            <li>程序员意图支持</li>
+                                        </ol>
+                                        <br>优点:
+                                        <ol>
+                                            <li>
+                                                最突出的功能自然是调试（Debug)，可以对Java代码，JavaScript，JQuery，Ajax等技术进行调试<br>
+                                                比如查看Map类型的对象，如果实现类采用的是哈希映射，则会自动过滤空的Entry实例<br>
+                                                其次，需要动态Evaluate一个表达式的值，比如我得到了一个类的实例，但是并不知晓它的API，可以通过Code Completion点出它所支持的方法<br>
+                                                最后，在多线程调试的情况下，Log on console的功能可以帮你检查多线程执行的情况
+                                            </li>
+                                        </ol>
+
+                                        <br>快捷键:
+                                        <ol>
+                                            <li>写代码时用Alt-Insert（Code|Generate…）可以创建类里面任何字段的getter与setter方法</li>
+                                            <li>按Ctrl-N再键入类的名字可以快速地在编辑器里打开任何一个类。从显示出来的下拉列表里选择类。同样的方法你可以通过使用Ctrl-Shift-N打开工程中的非Java文件</li>
+                                            <li>Ctrl-D复制当前行，Ctrl-Y删除当前行</li>
+                                            <li>Ctrl-Shift-U，Ctrl+Shift+Alt+U显示类继承结构图，再按Alt-M</li>
+                                            <li>Alt-F1 回到当前文件所在的目录结构</li>
+                                            <li>Ctrl-Shift-V 粘贴最近复制过的一些信息</li>
+                                            <li>Ctrl-Shift-F7 高亮显示所有该文本，按Esc高亮消失</li>
+                                            <li>Ctrl-E 最近打开的文件</li>
+                                            <li>Ctrl-P 方法参数提示</li>
+                                            <li>Alt+ Up/Down 在方法间快速移动定位</li>
+                                            <li>Ctrl+W 选中代码，连续按会有其他效果</li>
+                                            <li>Shift + F6 选中目录结构的文件，重命名</li>
+                                            <li>Ctrl + Alt + F12 进入当前文件所在磁盘位置</li>
+                                            <li>Ctrl + Shift + F搜索文件</li>
+                                            <li>Ctrl + Shift + R 搜索指定范围文件，替换文字</li>
+                                            <li>Ctrl + Shift +W 返回上一次选择的代码块状态</li>
+                                            <li>Ctrl + Shift + J 自动将下一行合并到当前行末尾</li>
+                                            <li>Ctrl + Tab Switcher 导航 与 Ctrl + E 类似效果</li>
+                                            <li>Ctrl + Shift + C 复制当前文件磁盘路径到剪贴板</li>
+                                        </ol>
+
+                                        <br>系统要求:
+                                        <br><br>
+                                        Windows
+                                        <ol>
+                                            <li>Microsoft Windows 10/8/7 (incl.64-bit)</li>
+                                            <li>4 GB RAM minimum, 8 GB RAM recommended</li>
+                                            <li>2 GB hard disk space + at least 1 G for caches</li>
+                                            <li>1024×768 minimum screen resolution</li>
+                                            <li>JDK 1.6 or higher</li>
+                                        </ol>
+                                        <br>
+                                        Mac OS X
+                                        <ol>
+                                            <li>Mac OS X 10.5 or higher, up to 10.9 (Mavericks)</li>
+                                            <li>4 GB RAM minimum, 8 GB RAM recommended</li>
+                                            <li>2 GB hard disk space + at least 1 G for caches</li>
+                                            <li>1024×768 minimum screen resolution</li>
+                                            <li>Java 6</li>
+                                        </ol>
+                                        <br>
+                                        Linux
+                                        <ol>
+                                            <li>GNOME or KDE desktop</li>
+                                            <li>4 GB RAM minimum, 8 GB RAM recommended</li>
+                                            <li>2 GB hard disk space + at least 1 G for caches</li>
+                                            <li>1024×768 minimum screen resolution</li>
+                                            <li>Oracle JDK 6 or JDK 7</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--项目版本控制-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Git">项目版本控制：Git</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Git" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Git（读音为/gɪt/）是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理。 也是Linus Torvalds为了帮助管理Linux内核开发而开发的一个开放源码的版本控制软件。
+                                        <br><br>功能特性 ：
+                                        <lo>
+                                            <li>从服务器上克隆完整的Git仓库（包括代码和版本信息）到单机上</li>
+                                            <li>在自己的机器上根据不同的开发目的，创建分支，修改代码</li>
+                                            <li>在单机上自己创建的分支上提交代码</li>
+                                            <li>在单机上合并分支</li>
+                                            <li>把服务器上最新版的代码fetch下来，然后跟自己的主分支合并</li>
+                                            <li>生成补丁（patch），把补丁发送给主开发者</li>
+                                            <li>看主开发者的反馈，如果主开发者发现两个一般开发者之间有冲突（他们之间可以合作解决的冲突），就会要求他们先解决冲突，然后再由其中一个人提交。如果主开发者可以自己解决，或者没有冲突，就通过</li>
+                                            <li>一般开发者之间解决冲突的方法，开发者之间可以使用pull 命令解决冲突，解决完冲突之后再向主开发者提交补丁</li>
+                                        </lo>
+                                        <br><br>优点 ：
+                                        <lo>
+                                            <li>适合分布式开发，强调个体</li>
+                                            <li>公共服务器压力和数据量都不会太大</li>
+                                            <li>速度快、灵活</li>
+                                            <li>任意两个开发者之间可以很容易的解决冲突</li>
+                                            <li>离线工作</li>
+                                        </lo>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--项目管理工具-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Apache-Maven">项目管理工具：Apache Maven 3.8.1</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Apache-Maven" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Maven是一个项目管理工具，它包含了一个项目对象模型 (Project Object Model)，一组标准集合，一个项目生命周期(Project Lifecycle)，一个依赖管理系统(Dependency Management System)，和用来运行定义在生命周期阶段(phase)中插件(plugin)目标(goal)的逻辑。当你使用Maven的时候，你用一个明确定义的项目对象模型来描述你的项目，然后Maven可以应用横切的逻辑，这些逻辑来自一组共享的（或者自定义的）插件。
+                                        <br> <br>
+                                        Maven 有一个生命周期，当你运行 mvn install 的时候被调用。这条命令告诉 Maven 执行一系列的有序的步骤，直到到达你指定的生命周期。遍历生命周期旅途中的一个影响就是，Maven 运行了许多默认的插件目标，这些目标完成了像编译和创建一个 JAR 文件这样的工作。
+                                        <br> <br>
+                                        此外，Maven能够很方便的帮你管理项目报告，生成站点，管理JAR文件，等等。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--持续集成工具-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Jenkins">持续集成工具：Jenkins2.295</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Jenkins" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工具，用于监控持续重复的工作，旨在提供一个开放易用的软件平台，使软件项目可以进行持续集成
+                                        <br><br>功能：
+                                        <lo>
+                                            <li>持续的软件版本发布/测试项目</li>
+                                            <li>监控外部调用执行的工作</li>
+                                        </lo>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--SpringBoot框架-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#SpringBoot">主框架：SpringBoot 2.2.13</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="SpringBoot" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Spring Boot：是一款开箱即用框架，提供各种默认配置来简化项目配置。让我们的Spring应用变的更轻量化、更快的入门。
+                                        在主程序执行main函数就可以运行。你也可以打包你的应用为jar并通过使用java -jar来运行你的Web应用。它遵循"约定优先于配置"的原则，
+                                        使用SpringBoot只需很少的配置，大部分的时候直接使用默认的配置即可。可以与Spring Cloud的微服务无缝结合。
+                                        <br>Spring Boot2.0 环境要求必须是jdk8或以上版本，Tomcat8或以上版本。
+                                        <br><br>优点：
+                                        <lo>
+                                            <li>使编码变得简单： 推荐使用注解。</li>
+                                            <li>使配置变得简单： 自动配置、快速构建项目、快速集成新技术能力 没有冗余代码生成和XML配置的要求</li>
+                                            <li>使部署变得简单： 内嵌Tomcat、Jetty、Undertow等web容器，无需以war包形式部署</li>
+                                            <li>使监控变得简单： 自带项目监控</li>
+                                        </lo>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--持久层-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#MyBatis">持久层：Apache MyBatis 3.5.6</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="MyBatis" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs(Plain Ordinary Java Object,普通的 Java对象)映射成数据库中的记录。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--数据库连接池-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Druid">数据库连接池：Alibaba Druid 1.2.6</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Druid" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Druid是一个数据库连接池。Druid是目前最好的数据库连接池，在功能、性能、扩展性方面，都超过其他数据库连接池，包括DBCP、C3P0、BoneCP、Proxool、JBoss DataSource。Druid已经在阿里巴巴部署了超过600个应用，经过一年多生产环境大规模部署的严苛考验。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--前端视图层-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Bootstrap">前端视图层：Bootstrap 3.3</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Bootstrap" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Bootstrap是美国Twitter公司的设计师Mark Otto和Jacob Thornton合作基于HTML、CSS、JavaScript 开发的简洁、直观、强悍的前端开发框架，使得 Web 开发更加快捷。Bootstrap提供了优雅的HTML和CSS规范，它即是由动态CSS语言Less写成。Bootstrap一经推出后颇受欢迎，一直是GitHub上的热门开源项目，包括NASA的MSNBC（微软全国广播公司）的Breaking News都使用了该项目。 国内一些移动开发者较为熟悉的框架，如WeX5前端开源框架等，也是基于Bootstrap源码进行性能优化而来。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--前端模板引擎-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Thymeleaf">前端模板引擎：Thymeleaf 3.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Thymeleaf" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Thymeleaf是一个用于Web和独立Java环境的模板引擎，能够处理HTML、XML、JavaScript、CSS甚至纯文本。能轻易的与Spring
+                                        MVC等
+                                        Web框架进行集成作为Web应用的模板引擎。
+                                        与其它模板引擎（比如FreeMaker）相比，Thymeleaf最大的特点是能够直接在浏览器中打开并正确显示模板页面，
+                                        而不需要启动整个Web应用（更加方便前后端分离，比如方便类似VUE前端设计页面），抛弃JSP吧。Thymeleaf 3.0是一个完全彻底重构的模板引擎，
+                                        极大的减少内存占用和提升性能和并发性，避免v2.1版因大量的输出标记的集合产生的资源占用。Thymeleaf 3.0放弃了大多数面向DOM的处理机制，
+                                        变成了一个基于事件的模板处理器，它通过处理模板标记或文本并立即生成其输出，甚至在新事件之前响应模板解析器/缓存事件。
+                                        Thymeleaf是Spring Boot官方推荐使用的模板。
+                                        <br><br>优点：
+                                        <lo>
+                                            <li>国际化支持非常简单</li>
+                                            <li>语法简单，功能强大。内置大量常用功能，使用非常方便</li>
+                                            <li>可以很好的和Spring集成</li>
+                                            <li>静态html嵌入标签属性，浏览器可以直接打开模板文件，便于前后端联调</li>
+                                            <li>Spring Boot 官方推荐，用户群广</li>
+                                        </lo>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Shiro安全控制-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Shiro">安全框架：Apache Shiro 1.7.1</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Shiro" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Apache Shiro是Java的一个安全框架。Shiro可以帮助我们完成：认证、授权、加密、会话管理、与Web集成、缓存等。
+                                        其不仅可以用在 JavaSE环境，也可以用在 JavaEE 环境。
+                                        <br><br>优点：
+                                        <lo>
+                                            <li>简单的身份认证，支持多种数据源</li>
+                                            <li>对角色的简单的授权，支持细粒度的授权</li>
+                                            <li>不跟任何的框架或者容器捆绑，可以独立运行</li>
+                                        </lo>
+
+                                        <br>特性：
+                                        <lo>
+                                            <li>Authentication身份认证/登录，验证用户是不是拥有相应的身份</li>
+                                            <li>
+                                                Authorization授权，即验证权限，验证某个已认证的用户是否拥有某个权限，即判断用户是否能做事情SessionManagement会话管理，即用户登录后就是一次会话，在没有退出之前，它的所有信息都在会话中
+                                            </li>
+                                            <li>Cryptography加密，保护数据的安全性，如密码加密存储到数据库，而不是明文存储</li>
+                                            <li>Caching缓存，比如用户登录后，其用户信息，拥有的角色/权限不必每次去查，提高效率</li>
+                                            <li>ConcurrencyShiro支持多线程应用的并发验证，即如在一个线程中开启另一个线程，能把权限自动传播过去</li>
+                                            <li>Testing提供测试支持</li>
+                                            <li>RunAs允许一个用户假装为另一个用户（如果他们允许）的身份进行访问</li>
+                                            <li>RememberMe记住我，这是非常常见的功能，即一次登录后，下次再来的话不用登录了</li>
+                                        </lo>
+
+                                        <br>架构：
+                                        <lo>
+                                            <li>Subject主体，代表了当前的“用户”，这个用户不一定是一个具体的人，与当前应用交互的任何东西都是Subject，如网络爬虫，
+                                                机器人等；即一个抽象概念；所有Subject都绑定到SercurityManager，与Subject的所有交互都会委托给SecurityManager；可以把Subject认为是一个门面；SecurityManager才是实际的执行者
+                                            </li>
+                                            <li>SecurityManage安全管理器；即所有与安全有关的操作都会与SecurityManager交互；且它管理着所有Subject；
+                                                可以看出它是Shiro的核心，它负责与后边介绍的其他组件进行交互
+                                            </li>
+                                            <li>Realm域，Shiro从Realm获取安全数据（如用户，角色，权限），就是说SecurityManager要验证用户身份，
+                                                那么它需要从Realm获取相应的用户进行比较以确定用户身份是否合法；也需要从Realm得到用户相应的角色/权限进行验证用户是否能进行操作；可以有1个或多个Realm，我们一般在应用中都需要实现自己的Realm
+                                            </li>
+                                            <li>
+                                                SessionManager如果写过Servlet就应该知道Session的概念，Session需要有人去管理它的生命周期，这个组件就是SessionManager
+                                            </li>
+                                            <li>
+                                                SessionDAODAO大家都用过，数据库访问对象，用于会话的CRUD，比如我们想把Session保存到数据库，那么可以实现自己的SessionDAO，也可以写入缓存，以提高性能
+                                            </li>
+                                            <li>CacheManager缓存控制器，来管理如用户，角色，权限等的缓存的；因为这些数据基本上很少去改变，放到缓存中后可以提高访问的性能</li>
+                                        </lo>
+                                        <br>应用代码通过Subject来进行认证和授权，而Subject又委托给SecurityManager；
+                                        我们需要给Shrio的SecurityManager注入Realm，从而让SecurityManager能得到合法的用户及其权限进行判断，
+                                        Shiro不提供维护用户/权限，而是通过Realm让开发人员自己注入。
+                                        <br>Shiro不会去维护用户，维护权限；这些需要自己去设计/提供；然后通过响应的接口注入给Shiro即可
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--缓存框架-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#ehcache">缓存框架：ehcache 1.7.1</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="ehcache" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Ehcache是一种广泛使用的开源Java分布式缓存。主要面向通用缓存,Java EE和轻量级容器。它具有内存和磁盘存储，缓存加载器,缓存扩展,缓存异常处理程序,一个gzip缓存servlet过滤器,支持REST和SOAP api等特点。
+                                        <br><br>
+                                        Ehcache最初是由Greg Luck于2003年开始开发。2009年,该项目被Terracotta购买。软件仍然是开源,但一些新的主要功能(例如，快速可重启性之间的一致性的)只能在商业产品中使用，例如Enterprise EHCache and BigMemory。维基媒体Foundationannounced目前使用的就是Ehcache技术。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--日志框架-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#slf4j-logback">日志框架：slf4j 1.2.3日志接口 + Logback 1.2.3日志的实现</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="slf4j-logback" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        SLF4J，即简单日志门面（Simple Logging Facade for Java），不是具体的日志解决方案，它只服务于各种各样的日志系统,他主要解决的问题场景如下，假如系统今天采用了A日志框架，过了2天由于特殊原因，需要切换到B日志框架，那如果没有这个门面，则需要更改所有的日志代码，而有了这个门面，项目中直接使用门面来输入日志，则切换时没有影响，不需要改变任何代码，只需要引入新的依赖，做一个配置即可。
+                                        <br><br>
+                                        Logback是由log4j创始人设计的又一个开源日志组件。logback当前分成三个模块：logback-core,logback- classic和logback-access。logback-core是其它两个模块的基础模块。logback-classic是log4j的一个 改良版本。此外logback-classic完整实现SLF4J API使你可以很方便地更换成其它日志系统如log4j或JDK14 Logging。logback-access访问模块与Servlet容器集成提供通过Http来访问日志的功能
+                                        <br><br>
+                                        SLF4J和Logback取代Commons Logging和Log4j；始终使用SLF4J的接口写入日志，使用Logback只需要配置，不需要修改代码
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--任务调度框架-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Quartz">任务调度框架：Quartz 2.3.2</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Quartz" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Quartz是一个完全由java编写的开源作业调度框架。是一个任务调度框架(库)，它几乎可以集成到任何应用系统中。术语”job schedule”似乎为不同的人提供了不同的想法。总之，作业调度是负责执行（或通知）其他软件组件在预定时间执行的服务组件。虽然通过schedule可以简单实现一些系统任务定时执行，当您学习如何使用它来驱动应用程序的业务流程的流程时，Quartz的全部潜力是可以实现的。
+                                        <br><br>Quartz的一些特点 ：
+                                        <lo>
+                                            <li>非常灵活的，并包含多个使用范例，它们可以单独或一起使用，以实现您所期望的行为，并使您能够以最“自然”的方式来编写您的项目的代码</li>
+                                            <li>非常轻量级的，只需要非常少的配置 —— 它实际上可以被跳出框架来使用，如果你的需求是一些相对基本的简单的需求的话</li>
+                                            <li>具有容错机制，并且可以在重启服务的时候持久化你的定时任务，你的任务也不会丢失</li>
+                                            <li>不是一个任务队列——虽然它确实可以在一些小规模应用中合理的作为一个任务队列来使用</li>
+                                            <li>不是一个网格计算引擎——虽然在某些小规模应用中，这样做确实可以达到应用的要求（定时计算、统计一些数据）</li>
+                                            <li>不是一个提供给业务人员的执行服务——它是一个库，很容易集成到应用程序中去做一些未来某时刻可能会一直循环执行的相关的任务</li>
+                                        </lo>
+
+                                        <br><br>Quartz 基础结构 ：
+                                        <br>
+                                        Quartz 对任务调度的领域问题进行了高度抽象，提出了调度器、任务和触发器 3 个核心概念，并在 org.quartz 中通过接口和类对核心概念进行描述。
+                                        <br><br>
+                                        <lo>
+                                            <li>Job：接口。开发者通过实现该接口定义需要执行的任务</li>
+                                            <li>JobDetail：Quartz 在每次执行 Job 时，都重新创建一个 Job 实例，所以它不是直接接受一个 Job 的实例，而是接受一个 Job 实现类，以便运行时通过反射机制实例化 Job。因此需要一个类来描述 Job 的实现类及其他相关的静态信息，如 Job 名称、描述、关联的监听器等，JobDetail 承担了这一角色</li>
+                                            <li>Trigger：描述触发 Job 执行的时间触发规则。主要有SimpleTrigger、CronTrigger 两个实现类</li>
+                                            <li>SimpleTrigger：当仅需要触发一次或者以固定间隔周期执行时</li>
+                                            <li>CronTrigger：可以通过 Cron 表达式定义出各种复杂的调度方案</li>
+                                            <li>Calendar：一些日历特定时间点的集合（可以简单的理解为 java.util.Calendar 的集合：java.util.Calendar ）。一个 Trigger 可以和多个 Calendar 关联，以便包含或排除某些时间点</li>
+                                            <li>Scheduler：一个 Quartz 的独立运行容器，Trigger 和 JobDetail 可以注册到 Scheduler 中，两者在 Scheduler 中拥有各自的组及名称。组及名称是 Scheduler 查找容器中某一对象的依据，Trigger 和 JobDetail 的组及名称的组合都必须唯一（但 Scheduler 和 Trigger 的组合名称可以相同，因为他们是不同的类型，处于不同的容器中）。Scheduler 可以将 Trigger 绑定到某一个 JobDetails 中，这样当 Trigger 被触发时，对应的 Job 就被执行。一个 Job 可以对应多个 Trigger，但一个 Trigger 只能对应一个 Job</li>
+                                        </lo>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--业务流程管理（BPM）框架-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Activiti">业务流程管理（BPM）框架：Activiti 5.23.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Activiti" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Activiti是一个独立运作和经营的开源项目品牌，并将独立于Alfresco开源ECM系统运行。Activiti是一种轻量级，可嵌入的BPM引擎，而且还设计适用于可扩展的云架构。 Activiti将提供宽松的Apache许可2.0，以便这个项目可以广泛被使用，同时促进Activiti BPM引擎和BPMN 2.0的匹配，该项目现正由OMG通过标准审定。 加入Alfresco Activiti项目的是VMware的SpringSource分支，Alfresco的计划把该项目提交给Apache基础架构，希望吸引更多方面的BPM专家和促进BPM的创新
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--文件管理器-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#CKFinder">文件管理器：CKFinder 2.6.3</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="CKFinder" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        CKFinder是一个强大而易于使用的Web浏览器的Ajax文件管理器。 其简单的界面使得它直观，快速学习的各类用户，从高级人才到互联网初学者
+                                        <br><br>特点 ：
+                                        <lo>
+                                            <li>文件夹树导航 ：用户直观的。质量 缩略图 ，使很快找到的东西。多语言 支持，自动用户语言检测。敏感的 上下文菜单 的文件和文 件夹。</li>
+                                            <li>用户可完全控制 ：创建，重命名，复制，移动和删除文件夹和文件</li>
+                                            <li>全部开发人员的控制 ：所有功能都可以精确地配置了强大的ACL和用户角色的系统。轻量级 接口。</li>
+                                            <li>没有页面刷新： 快速反应</li>
+                                            <li>安全的文件上传 ：所有上传的文件是根据发展商签的规则。完整 的源代码 ，包括服务器端的集成。整合即时fckeditor和 CKEditor</li>
+                                        </lo>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--服务端验证-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Hibernate-Validation">服务端验证：Hibernate Validation 6.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Hibernate-Validation" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Hibernate Validator 是 Bean Validation 的实现，Hibernate Validator 内置了 JSR303/JSR380 中所有的 constraint 的实现，还额外提供了很多自定义的 constraint。
+                                        <br><br>使用方式 ：
+                                        <lo>
+                                            <li>在要校验的Bean的字段上添加注解</li>
+                                            <li>校验方式有两种：
+                                                1、在要校验的Bean前添加@Valid或者@Validated注解；
+                                                2、通过Validation.buildDefaultValidatorFactory()；
+                                            </li>
+                                        </lo>
+                                        <br><br>通用约束 ：
+                                        <lo>
+                                            <li>Bean Validation 中内置的 constraint</li>
+                                            <li>Hibernate Validator 附加的 constraint</li>
+                                        </lo>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--客户端验证-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#jQuery-Validation-Plugin">客户端验证：jQuery Validation Plugin 1.13.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="jQuery-Validation-Plugin" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        jQuery Validation Plugin 这个 jQuery 插件使简单的客户端表单验证变得容易，同时仍然提供大量的自定义选项。如果您要从头开始构建新的东西，或者当您尝试将某些东西集成到具有大量现有标记的现有应用程序中时，它都是一个不错的选择。该插件捆绑了一组有用的验证方法，包括URL和电子邮件验证，同时提供了编写自己的方法的API。所有捆绑的方法都带有英语的默认错误消息和其他 37 种语言的翻译
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--树型插件-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#jQuery-zTree">树型插件：jQuery zTree 3.5.12</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="jQuery-zTree" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        zTree 是一个依靠 jQuery 实现的多功能 “树插件”。优异的性能、灵活的配置、多种功能的组合是 zTree 最大优点。
+                                        <br>
+                                        jQuery zTree 是开源免费的软件（MIT 许可证）。在开源的作用下，zTree 越来越完善。
+                                        <br><br>
+                                        主要特性：
+                                        <ol>
+                                            <li>zTree v3.0 将核心代码按照功能进行了分割，不需要的代码可以不用加载</li>
+                                            <li>采用了 延迟加载 技术，上万节点轻松加载，即使在 IE6 下也能基本做到秒杀</li>
+                                            <li>兼容 IE、FireFox、Chrome、Opera、Safari 等浏览器</li>
+                                            <li>支持 JSON 数据</li>
+                                            <li>支持静态 和 Ajax 异步加载节点数据</li>
+                                            <li>支持任意更换皮肤 / 自定义图标（依靠css）</li>
+                                            <li>支持极其灵活的 checkbox 或 radio 选择功能</li>
+                                            <li>提供多种事件响应回调</li>
+                                            <li>灵活的编辑（增/删/改/查）功能，可随意拖拽节点，还可以多节点拖拽哟</li>
+                                            <li>在一个页面内可同时生成多个 Tree 实例</li>
+                                            <li>简单的参数配置实现 灵活多变的功能</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--JSON解析器-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#FastJSON">JSON解析器：FastJSON 1.2.76</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="FastJSON" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        fastjson是阿里巴巴的开源JSON解析库，它可以解析JSON格式的字符串，支持将Java Bean序列化为JSON字符串，也可以从JSON字符串反序列化到JavaBean。其目前已经被广泛应用在各种场景中，包括cache存储、RPC通讯、MQ通讯、网络协议通讯、Android客户端、Ajax服务器处理程序等等。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--弹出层组件-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#layer">弹出层组件：layer 3.5.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="layer" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        layer，一个可以让你想到即可做到的web弹窗（层）解决方案（js组件），作者贤心（前端开发工程师）。layer侧重于用户灵活的自定义，为不同人的使用习惯提供动力。其意义在于，可以让您的页面拥有更丰富与便捷的操作体验，而您只需在调用时简单地配置相关参数，即可轻松实现。
+                                        <br> <br>
+                                        与同类弹出层组件相比，layer的优势明显，她尽可能地在以更少的代码展现出更强健的功能。layer格外注重性能的提升，在多层模式的回调处理中，具备其它多数层组件所没有的“独立不冲突”（截至到2013年10月23，已有115859人次关注新版layer）。您完全可以大可放心地在页面弹出任意数量的层，她们彼此不妨碍。当你问及她的兼容时，layer必须告诉你，她兼容了一切浏览器，包括古老的ie6。
+                                        <br> <br>
+                                        layer公开了如此多的接口（api），这使得您可以DIY太多您需要的风格，尤其是页面层模式，意味着必要时您可以完全抛弃layer的现有皮肤，并用你的思维去勾勒她的衣着。而问题在于，我必须中止“王婆卖瓜”的陈述。因为一切的不足或友好，都需要您在使用过程中去发现。
+                                        <br> <br>
+                                        据不完全统计，截至到2013年8月30号，layer已服务于6000多家web平台。layer作为layUI库的成员，将一直致力于为web开发提供动力。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--日期与时间组件-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#layDate">日期与时间组件：layDate 5.3.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="layDate" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        layDate是一个JS日期与时间的组件，是 layui 独立维护的三大组件之一。不依赖第三方库，同时兼容所有的浏览器。使用方法也比较简单，拓展功能很方便。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--获取系统信息组件-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#oshi">获取系统信息组件：oshi 5.6.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="oshi" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        OSHI是一个基于JNA的免费的本地操作系统和Java的硬件信息库。它不需要安装任何额外的本机库，旨在提供跨平台的实现来检索系统信息，如操作系统版本、进程、内存和CPU使用情况、磁盘和分区、设备、传感器等。
+                                        <br> <br>
+                                        兼容系统： Linux, Windows, Solaris, AIX, HP-UX, FreeBSD and Mac OSX
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--表格组件-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#BootstrapTable">表格组件：BootstrapTable 1.18.3</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="BootstrapTable" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Bootstrap Table与一些最广泛使用的CSS框架集成的扩展表。（支持Bootstrap，语义UI，Bulma，Material Design，Foundation）
+                                        <br><br>
+                                        Bootstrap Table旨在减少开发时间，并且不需要开发人员的特定知识。它既轻量级又功能丰富。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--获取浏览器名称及版本号组件-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#bitwalker">获取浏览器名称及版本号组件：bitwalker 1.21</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="bitwalker" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        bitwalker一个获取浏览器名称及版本号的组件
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--导入导出组件-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Apache-POI">导入导出组件：Apache POI 4.1.2</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Apache-POI" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Apache POI是Apache软件基金会的开放源码函式库，POI提供API给Java程序对Microsoft Office格式档案读和写的功能
+                                        <br><br>基本功能 ：
+                                        <lo>
+                                            <li>HSSF － 提供读写Microsoft Excel格式档案的功能</li>
+                                            <li>XSSF － 提供读写Microsoft Excel OOXML格式档案的功能</li>
+                                            <li>HWPF － 提供读写Microsoft Word格式档案的功能</li>
+                                            <li>HSLF － 提供读写Microsoft PowerPoint格式档案的功能</li>
+                                            <li>HDGF － 提供读写Microsoft Visio格式档案的功能</li>
+                                        </lo>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--富文本编辑器-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#summernote">富文本编辑器：summernote 0.8.18</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="summernote" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        bootstrap插件summernote富文本编辑器
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--系统接口文档框架-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Swagger">系统接口文档框架：Swagger 3.0.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Swagger" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Swagger 是一个规范且完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。
+                                        <br>
+                                        Swagger 的目标是对 REST API 定义一个标准且和语言无关的接口，可以让人和计算机拥有无须访问源码、文档或网络流量监测就可以发现和理解服务的能力。当通过 Swagger 进行正确定义，用户可以理解远程服务并使用最少实现逻辑与远程服务进行交互。与为底层编程所实现的接口类似，Swagger 消除了调用服务时可能会有的猜测。
+                                        <br><br>
+                                        <ol>
+                                            Swagger 的优势
+                                            <li>支持 API 自动生成同步的在线文档：使用 Swagger 后可以直接通过代码生成文档，不再需要自己手动编写接口文档了，对程序员来说非常方便，可以节约写文档的时间去学习新技术</li>
+                                            <li>提供 Web 页面在线测试 API：光有文档还不够，Swagger 生成的文档还支持在线测试。参数和格式都定好了，直接在界面上输入参数对应的值即可在线测试接口</li>
+                                        </ol>
+                                        <br>
+                                        Swagger常用注解
+                                        <br>
+                                        <p>
+                                            @Api：用在请求的类上，表示对类的说明
+                                            tags="说明该类的作用，可以在UI界面上看到的注解"
+                                            value="该参数没什么意义，在UI界面上也看到，所以不需要配置"
+                                            <br><br>
+                                            @ApiOperation：用在请求的方法上，说明方法的用途、作用
+                                            value="说明方法的用途、作用"
+                                            notes="方法的备注说明"
+                                            <br><br>
+                                            @ApiImplicitParams：用在请求的方法上，表示一组参数说明
+                                            <br><br>
+                                            @ApiImplicitParam：用在@ApiImplicitParams注解中，指定一个请求参数的各个方面
+                                            name：参数名
+                                            value：参数的汉字说明、解释
+                                            required：参数是否必须传
+                                            paramType：参数放在哪个地方
+                                            · header --> 请求参数的获取：@RequestHeader
+                                            · query --> 请求参数的获取：@RequestParam
+                                            · path（用于restful接口）--> 请求参数的获取：@PathVariable
+                                            · div（不常用）
+                                            · form（不常用）
+                                            dataType：参数类型，默认String，其它值dataType="Integer"
+                                            defaultValue：参数的默认值
+                                            <br><br>
+                                            @ApiResponses：用在请求的方法上，表示一组响应
+                                            @ApiResponse：用在@ApiResponses中，一般用于表达一个错误的响应信息
+                                            code：数字，例如400
+                                            message：信息，例如"请求参数没填好"
+                                            response：抛出异常的类
+                                            <br><br>
+                                            @ApiModel：用于响应类上，表示一个返回响应数据的信息
+                                            （这种一般用在post创建的时候，使用@RequestBody这样的场景，
+                                            请求参数无法使用@ApiImplicitParam注解进行描述的时候）
+                                            @ApiModelProperty：用在属性上，描述响应类的属性
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--MarkDown在线编辑器-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#editormd">MarkDown在线编辑器：editor.md 1.5.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="editormd" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Editor.md 是一款开源的、可嵌入的 Markdown 在线编辑器（组件），基于 CodeMirror、jQuery 和 Marked 构建。
+                                        <br><br>
+                                        主要特性：
+                                        <ol>
+                                            <li>支持通用 Markdown / CommonMark 和 GFM (GitHub Flavored Markdown) 风格的语法，也可变身为代码编辑器；</li>
+                                            <li>支持实时预览、图片（跨域）上传、预格式文本/代码/表格插入、代码折叠、跳转到行、搜索替换、只读模式、自定义样式主题和多语言语法高亮等功能；</li>
+                                            <li>支持 ToC（Table of Contents）、Emoji表情、Task lists、@链接等 Markdown 扩展语法；</li>
+                                            <li>支持 TeX 科学公式（基于 KaTeX）、流程图 Flowchart 和 时序图 Sequence Diagram;</li>
+                                            <li>支持识别和解析 HTML 标签，并且支持自定义过滤标签及属性解析，具有可靠的安全性和几乎无限的扩展性；</li>
+                                            <li>支持 AMD / CMD 模块化加载（支持 Require.js & Sea.js），并且支持自定义扩展插件；</li>
+                                            <li>兼容主流的浏览器（IE8+）和 Zepto.js，且支持 iPad 等平板设备；</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5><b>其它：</b></h5>
+                </div>
+                <div class="ibox-content">
+                    <div style="text-align: center">
+                        <b>有志者，事竟成，破釜沉舟，百二秦关终属楚</b>
+                        <br>
+                        <b>苦心人，天不负，卧薪尝胆，三千越甲可吞吴</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>请小哥喝杯咖啡</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="alert alert-warning">
+                        请小哥喝杯咖啡（点击图片放大）
+                    </div>
+                    <p id="pay-qrcode">
+                        <a href="javascript:;">
+                            <img th:src="@{/img/pay.png}" width="100%" alt="请使用手机支付宝或者微信扫码支付">
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/ajax/libs/layer/layer.min.js}"></script>
+<script type="text/javascript">
+    $('#pay-qrcode').click(function () {
+        var html = $(this).html();
+        parent.layer.open({
+            title: false,
+            type: 1,
+            closeBtn: false,
+            shadeClose: true,
+            area: ['600px', '360px'],
+            content: html
+        });
+    });
+</script>
+</body>
+</html>

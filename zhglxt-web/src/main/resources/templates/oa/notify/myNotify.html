@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('我的通知列表')"/>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="notice-form">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            公告标题：<input type="text" name="notifyTitle"/>
+                        </li>
+                        <li>
+                            公告类型：<select name="notifyType" th:with="type=${@dict.getType('oa_notify_type')}">
+                            <option value="">所有</option>
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                    th:value="${dict.dictValue}"></option>
+                        </select>
+                        </li>
+                        <li>
+                            <a class="btn btn-success btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-success btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('oa:notify:edit')}]];
+    var types = [[${@dict.getType('oa_notify_type')}]];
+    var datas = [[${@dict.getType('oa_notify_status')}]];
+    var read = [[${@dict.getType('oa_notify_read')}]];
+    var prefix = ctx + "oa/notify";
+
+    $(function () {
+        var options = {
+            url: prefix + "/self",
+            updateUrl: prefix + "/self/{id}",
+            modalName: "我的通告",
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: '序号'
+                },
+                {
+                    field: 'notifyTitle',
+                    title: '公告标题',
+                    formatter: function (value, row, index) {
+                        return '<a onclick="$.operate.editFullS(\'' + row.id + '\')">' + row.notifyTitle + '</a>';
+                    }
+                },
+                {
+                    field: 'notifyType',
+                    title: '公告类型',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return $.table.selectDictLabel(types, value);
+                    }
+                },
+                {
+                    field: 'status',
+                    title: '状态',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return $.table.selectDictLabel(datas, value);
+                    }
+                },
+                {
+                    field: 'readFlag',
+                    title: '查阅状态',
+                    formatter: function (value, row, index) {
+                        return $.table.selectDictLabel(read, value);
+                    }
+                },
+                {
+                    field: 'updateTime',
+                    title: '更新时间',
+                    sortable: true
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

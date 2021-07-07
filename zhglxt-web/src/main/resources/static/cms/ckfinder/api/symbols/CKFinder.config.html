@@ -1,0 +1,2907 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>CKFinder.config - CKFinder 2 JavaScript API Documentation</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 230px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 260px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px;
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+	<h1>CKFinder 2 JavaScript API Documentation</h1>
+	<hr />
+</div>
+
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div>
+	<a href="../index.html">Code Index</a>
+</div>
+<hr />
+<h2>Namespaces</h2>
+<ul class="classList">
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.html">CKFinder</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ajax.html">CKFinder.ajax</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.config.html">CKFinder.config</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.html">CKFinder.dataTypes</a>
+			</li>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dom.html">CKFinder.dom</a>
+			</li>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.env.html">CKFinder.env</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.tools.html">CKFinder.tools</a>
+			</li>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinderAPI.html">CKFinderAPI</a>
+			</li>
+		
+	
+</ul>
+<h2>Classes</h2>
+<ul class="classList">
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.Acl.html">CKFinder.dataTypes.Acl</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.BasketFolder.html">CKFinder.dataTypes.BasketFolder</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.Connector.html">CKFinder.dataTypes.Connector</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.File.html">CKFinder.dataTypes.File</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.Folder.html">CKFinder.dataTypes.Folder</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.ResourceType.html">CKFinder.dataTypes.ResourceType</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.html">CKFinder.dialog</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.html">CKFinder.dialog.definition</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.button.html">CKFinder.dialog.definition.button</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.checkbox.html">CKFinder.dialog.definition.checkbox</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.content.html">CKFinder.dialog.definition.content</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.contentObject.html">CKFinder.dialog.definition.contentObject</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.file.html">CKFinder.dialog.definition.file</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.fileButton.html">CKFinder.dialog.definition.fileButton</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.hbox.html">CKFinder.dialog.definition.hbox</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.html.html">CKFinder.dialog.definition.html</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.radio.html">CKFinder.dialog.definition.radio</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.select.html">CKFinder.dialog.definition.select</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.textarea.html">CKFinder.dialog.definition.textarea</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.textInput.html">CKFinder.dialog.definition.textInput</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.uiElement.html">CKFinder.dialog.definition.uiElement</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.vbox.html">CKFinder.dialog.definition.vbox</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definitionObject.html">CKFinder.dialog.definitionObject</a>
+			</li>
+		
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dom.document.html">CKFinder.dom.document</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dom.domObject.html">CKFinder.dom.domObject</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dom.element.html">CKFinder.dom.element</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dom.node.html">CKFinder.dom.node</a>
+			</li>
+		
+	
+		
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.button.html">CKFinder.ui.dialog.button</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.checkbox.html">CKFinder.ui.dialog.checkbox</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.file.html">CKFinder.ui.dialog.file</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.fileButton.html">CKFinder.ui.dialog.fileButton</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.hbox.html">CKFinder.ui.dialog.hbox</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.html.html">CKFinder.ui.dialog.html</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.labeledElement.html">CKFinder.ui.dialog.labeledElement</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.radio.html">CKFinder.ui.dialog.radio</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.select.html">CKFinder.ui.dialog.select</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.textarea.html">CKFinder.ui.dialog.textarea</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.textInput.html">CKFinder.ui.dialog.textInput</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.uiElement.html">CKFinder.ui.dialog.uiElement</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.vbox.html">CKFinder.ui.dialog.vbox</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.xml.html">CKFinder.xml</a>
+			</li>
+		
+	
+		
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Namespace CKFinder.config
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class CKFinder.config.">
+				<caption>Namespace Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/CKFinder.config.html#constructor">CKFinder.config</a></b>
+							</div>
+							<div class="description">Holds the default configuration settings.</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+
+				
+				
+
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class CKFinder.config.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.baseFloatZIndex">baseFloatZIndex</a></b>
+								</div>
+								<div class="description">The base Z-index for floating dialogs and popups.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.callback">callback</a></b>
+								</div>
+								<div class="description">A function to be called when CKFinder will load (after receiving the result of the "Init" command, before loading files/folders from the server).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.connectorInfo">connectorInfo</a></b>
+								</div>
+								<div class="description">Additional (GET) parameters to send to the server with each request.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.connectorPath">connectorPath</a></b>
+								</div>
+								<div class="description">Path to the server connector.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.customConfig">customConfig</a></b>
+								</div>
+								<div class="description">The URL path for the custom configuration file to be loaded.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.defaultDisplayDate">defaultDisplayDate</a></b>
+								</div>
+								<div class="description">Whether to display the modification time in the files pane.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.defaultDisplayFilename">defaultDisplayFilename</a></b>
+								</div>
+								<div class="description">Whether to display file names in the files pane.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.defaultDisplayFilesize">defaultDisplayFilesize</a></b>
+								</div>
+								<div class="description">Whether to display the size of a file in the files pane.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.defaultLanguage">defaultLanguage</a></b>
+								</div>
+								<div class="description">The language to be used if <a href="../symbols/CKFinder.config.html#.language">CKFinder.config.language</a> is left empty and it's notpossible to localize the application to the user language.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.defaultSortBy">defaultSortBy</a></b>
+								</div>
+								<div class="description">The default sort order of listed files.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.defaultViewType">defaultViewType</a></b>
+								</div>
+								<div class="description">The default file view.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.directDownload">directDownload</a></b>
+								</div>
+								<div class="description">How the "Download" command should work.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.disableHelpButton">disableHelpButton</a></b>
+								</div>
+								<div class="description">If true, disables Help button in the toolbar.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.disableThumbnailSelection">disableThumbnailSelection</a></b>
+								</div>
+								<div class="description">Whether selecting thumbnails automatically created by CKFinder should be possible.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.extraPlugins">extraPlugins</a></b>
+								</div>
+								<div class="description">List of additional plugins to be loaded.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.fileIcons">fileIcons</a></b>
+								</div>
+								<div class="description">List of available file icons, separated by a pipe.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.gallery_autoLoad">gallery_autoLoad</a></b>
+								</div>
+								<div class="description">When this configuration is set to <code>true</code>, and there is no supported lightbox pluginalready loaded in the page, the Gallery plugin will load Colorbox to present the images in the currentfolder when executing the View command.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.gallery_config">gallery_config</a></b>
+								</div>
+								<div class="description">Configuration options for the lightbox library used by the Gallery plugin.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.height">height</a></b>
+								</div>
+								<div class="description">The height of CKFinder application, in relative or absolute, e.g.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.id">id</a></b>
+								</div>
+								<div class="description">The id of CKFinder instance.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.language">language</a></b>
+								</div>
+								<div class="description">The user interface language localization to use.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.logStackTrace">logStackTrace</a></b>
+								</div>
+								<div class="description">Whether CKFinder should log stack trace when an exception occurs.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.maxSimultaneousUploads">maxSimultaneousUploads</a></b>
+								</div>
+								<div class="description">Maximum number of files that will be sent to the server at the same timeThis is just the maximum number of uploads that will be requested by CKFinder, but thebrowser will limit anyhow the maximum number of connections to the server.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.popupFeatures">popupFeatures</a></b>
+								</div>
+								<div class="description">String containing a comma-separated list of features for a popup window in which CKFinder will be opened.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.popupTitle">popupTitle</a></b>
+								</div>
+								<div class="description">Title for the popup window in which CKFinder will be opened.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.readOnly">readOnly</a></b>
+								</div>
+								<div class="description">If this configuration is set to <code>true</code>, CKFinder will work in read-only mode, so theuser will be able to browse the files but will not be able to introduce any changes.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.rememberLastFolder">rememberLastFolder</a></b>
+								</div>
+								<div class="description">Whether CKFinder should remember the last used folder in a cookie and open it automatically next time.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.removePlugins">removePlugins</a></b>
+								</div>
+								<div class="description">List of plugins that must not be loaded.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.resourceType">resourceType</a></b>
+								</div>
+								<div class="description">Resource type to display.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.selectActionData">selectActionData</a></b>
+								</div>
+								<div class="description">Additional data that should be passed to the <a href="../symbols/CKFinder.config.html#.selectActionFunction">CKFinder.config.selectActionFunction</a> in the second argument.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.selectActionFunction">selectActionFunction</a></b>
+								</div>
+								<div class="description">Function to be executed when file is selected.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.selectMultiple">selectMultiple</a></b>
+								</div>
+								<div class="description">If this configuration is set to <code>true</code>, the user will be able to select multiple filesand perform actions with them, and not just a single file.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.selectThumbnailActionData">selectThumbnailActionData</a></b>
+								</div>
+								<div class="description">Additional data that should be passed to the <a href="../symbols/CKFinder.config.html#.selectThumbnailActionFunction">CKFinder.config.selectThumbnailActionFunction</a> in the second argument.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.selectThumbnailActionFunction">selectThumbnailActionFunction</a></b>
+								</div>
+								<div class="description">Function to be executed when thumbnail is selected.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.showContextMenuArrow">showContextMenuArrow</a></b>
+								</div>
+								<div class="description">Whether to show the arrow to launch the context menu forall browsers.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.sidebarWidth">sidebarWidth</a></b>
+								</div>
+								<div class="description">Initial width for the sidebar (where the folders pane is located).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.skin">skin</a></b>
+								</div>
+								<div class="description">The skin to load.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.startupFolderExpanded">startupFolderExpanded</a></b>
+								</div>
+								<div class="description">Used only when <a href="../symbols/CKFinder.config.html#.startupPath">CKFinder.config.startupPath</a> is set.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.startupPath">startupPath</a></b>
+								</div>
+								<div class="description">Resource Type and the name of the startup folder, separated with a colonIf defined, CKFinder will open the selected folder automatically.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.tabIndex">tabIndex</a></b>
+								</div>
+								<div class="description">The CKFinder tabindex value.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.thumbnailDelay">thumbnailDelay</a></b>
+								</div>
+								<div class="description">The number of miliseconds before requesting another thumbnail.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.uiColor">uiColor</a></b>
+								</div>
+								<div class="description">The base user interface color to be used by the editor.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.useNativeIcons">useNativeIcons</a></b>
+								</div>
+								<div class="description">Use the icon in thumbnails views for non-pictures from the user's OS.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								CKFinder.config.<b><a href="../symbols/CKFinder.config.html#.width">width</a></b>
+								</div>
+								<div class="description">The application width in CSS size format or pixel integer.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Namespace Detail
+				</div>
+				
+				<div class="fixedFont" style="float:left">
+						<b>CKFinder.config</b>
+				</div>
+
+				<div style="float:right">
+					<span class="heading">Since:</span>
+						
+							2.0
+						
+				</div>
+				<div style="clear:both"></div>
+				
+				<div class="description">
+					Holds the default configuration settings. Changes to this object arereflected in all CKFinder instances, if not specificaly specified for thoseinstances.
+					
+				</div>
+				
+				
+				
+					
+						<pre class="code">// All applications created after the following setting will not load custom// configuration files.CKFinder.config.customConfig = '';</pre>
+					
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name=".baseFloatZIndex"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Number}</span>
+					<span class="light">CKFinder.config.</span><b>baseFloatZIndex</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The base Z-index for floating dialogs and popups.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.baseFloatZIndex = 2000</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								10000
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".callback"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Function}</span>
+					<span class="light">CKFinder.config.</span><b>callback</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						A function to be called when CKFinder will load (after receiving the result of the "Init" command, before loading files/folders from the server).
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">var finder = new CKFinder();finder.basePath = "/ckfinder/";finder.callback = function( api ) {	api.openMsgDialog( "", "Almost ready to go!" );};finder.create();</pre>
+						
+					
+					
+
+						
+						
+						
+
+					<hr />
+				
+					<a name=".connectorInfo"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>connectorInfo</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.1.1
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Additional (GET) parameters to send to the server with each request. The value of this configuration is appended to the query string of each server request.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.connectorInfo = 'scale=300x300&amp;page=Animals';</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								''
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".connectorPath"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>connectorPath</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Path to the server connector. The default valued is different between various server side version of CKFinder.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.connectorPath = '/path/to/custom/server/connector.php';</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								'core/connector/php/connector.php'
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".customConfig"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>customConfig</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The URL path for the custom configuration file to be loaded. If notoverloaded with inline configurations, it defaults to the "config.js"file present in the root of the CKFinder installation directory.<br /><br />CKFinder will recursively load custom configuration files defined insideother custom configuration files.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">// Load a specific configuration file.CKFinder.create( { basePath : '/ckfinder/', customConfig : '/myconfig.js' } );</pre>
+						
+					
+						
+							<pre class="code">// Do not load any custom configuration file.CKFinder.create( { basePath : '/ckfinder/', customConfig : '' } );</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								'&lt;CKFinder folder&gt;/config.js'
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".defaultDisplayDate"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">CKFinder.config.</span><b>defaultDisplayDate</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0.1
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Whether to display the modification time in the files pane.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.defaultDisplayDate = false;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								true
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".defaultDisplayFilename"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">CKFinder.config.</span><b>defaultDisplayFilename</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0.1
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Whether to display file names in the files pane.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.defaultDisplayFilename = false;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								true
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".defaultDisplayFilesize"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">CKFinder.config.</span><b>defaultDisplayFilesize</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0.1
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Whether to display the size of a file in the files pane.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.defaultDisplayFilesize = false;// Enable for "Images" resource typeconfig.defaultDisplayFilesize_Images = true;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								true
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".defaultLanguage"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>defaultLanguage</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The language to be used if <a href="../symbols/CKFinder.config.html#.language">CKFinder.config.language</a> is left empty and it's notpossible to localize the application to the user language.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.defaultLanguage = 'it';</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								'en'
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".defaultSortBy"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>defaultSortBy</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0.1
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The default sort order of listed files.<ul><li>filename - sort by name (default)</li><li>date - sort by modification time</li><li>size - sort by file size</li></ul>
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.defaultSortBy = 'date';// It is possible to specify sort order for selected resource type.// For example to specify sort order type for "Images" resource type:config.defaultSortBy_Images = 'size';</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								filename
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".defaultViewType"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>defaultViewType</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0.1
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The default file view.<ul><li>thumbnails - The "thumbnails" mode will display each file as a "box". For images, a small preview of it (called thumbnail) will be displayed inside the box. For other files, an icon will be available instead.)</li><li>list - The "list" mode will display all files as a list, one bellow the other. No image previews are available in this mode.</li></ul>
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.defaultViewType = 'thumbnails';// It is possible to specify view mode for selected resource type.// For example to specify view type for "Files" resource type:config.defaultViewType_Files = 'list';</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								thumbnails
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".directDownload"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">CKFinder.config.</span><b>directDownload</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						How the "Download" command should work.If set to true, CKFinder will just point to the file adding ?download at the end.In this way, .htaccess can be used to send the "Content-Disposition" header and send the file.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.directDownload = true;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								false
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".disableHelpButton"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">CKFinder.config.</span><b>disableHelpButton</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						If true, disables Help button in the toolbar.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.disableHelpButton = true;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								false
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".disableThumbnailSelection"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">CKFinder.config.</span><b>disableThumbnailSelection</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Whether selecting thumbnails automatically created by CKFinder should be possible.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.disableThumbnailSelection = true;</pre>
+						
+					
+					
+
+						
+						
+						
+
+					<hr />
+				
+					<a name=".extraPlugins"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>extraPlugins</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						List of additional plugins to be loaded. This is a tool setting whichmakes it easier to add new plugins, without having to touch andpossibly breaking the CKFinder.config.plugins setting.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.extraPlugins = 'imageresize,watermark';</pre>
+						
+					
+					
+
+						
+						
+						
+
+					<hr />
+				
+					<a name=".fileIcons"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>fileIcons</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						List of available file icons, separated by a pipe.Icons are located in the skins/[skinname]/images/icons folder.
+						
+					</div>
+					
+					
+					
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								'ai|avi|bmp|cs|dll|doc|exe|fla|gif|jpg|js|mdb|mp3|ogg|pdf|ppt|rdp|swf|swt|txt|vsd|xls|xml|zip'
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".gallery_autoLoad"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">CKFinder.config.</span><b>gallery_autoLoad</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.2
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						When this configuration is set to <code>true</code>, and there is no supported lightbox pluginalready loaded in the page, the Gallery plugin will load Colorbox to present the images in the currentfolder when executing the View command.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">// Disable auto-loading of Colorbox to show images.config.gallery_autoLoad = false;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								true
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".gallery_config"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Object}</span>
+					<span class="light">CKFinder.config.</span><b>gallery_config</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.2
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Configuration options for the lightbox library used by the Gallery plugin. Refer to the documentationof the lightbox library that you use on your website in order to find appropriate settings.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">// Set Colorbox 'transition' configuration setting to 'fade'.config.gallery_config = { transition : 'fade' };</pre>
+						
+					
+					
+
+						
+						
+						
+
+					<hr />
+				
+					<a name=".height"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Number|String}</span>
+					<span class="light">CKFinder.config.</span><b>height</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The height of CKFinder application, in relative or absolute, e.g. 30px, 5em.Note: Percentage unit is not supported yet. e.g. 30%.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.height = 500;config.height = '25em';config.height = '300px';</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								'400'
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".id"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>id</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The id of CKFinder instance. An optional setting, that is usually used to distinguishvarious CKFinder instances in the server side configuration file.This way it is possible to use different baseUrl / baseDir depending on what id is passed to the server connector.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">var finder = new CKFinder();finder.basePath = "/ckfinder/";finder.<b>id</b> = "myApplication";finder.create();</pre>
+						
+					
+					
+
+						
+						
+						
+
+					<hr />
+				
+					<a name=".language"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">CKFinder.config.</span><b>language</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The user interface language localization to use. If empty, CKFinderautomatically localize the application to the user language, if supported,otherwise the <a href="../symbols/CKFinder.config.html#.defaultLanguage">CKFinder.config.defaultLanguage</a> language is used.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">// Load the German interface.config.language = 'de';</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								''
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".logStackTrace"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">CKFinder.config.</span><b>logStackTrace</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Whether CKFinder should log stack trace when an exception occurs.Global setting, not distinguished per CKFinder instance.Note: enabling it will slow down the application.Might be useful during debugging and writing plugins.Can't be disabled in custom config.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.logStackTrace = true;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								false
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".maxSimultaneousUploads"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Number}</span>
+					<span class="light">CKFinder.config.</span><b>maxSimultaneousUploads</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.2
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Maximum number of files that will be sent to the server at the same timeThis is just the maximum number of uploads that will be requested by CKFinder, but thebrowser will limit anyhow the maximum number of connections to the server.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">// 0 == unlimitedconfig.maxSimultaneousUploads = 0;// Only two files at onceconfig.maxSimultaneousUploads = 2;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								1
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".popupFeatures"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">CKFinder.config.</span><b>popupFeatures</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.4.4
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						String containing a comma-separated list of features for a popup window in which CKFinder will be opened.The full list can be found at <a target="_blank" src="http://www.w3schools.com/jsref/met_win_open.asp">w3schools</a> or at<a target="_blank" src="https://developer.mozilla.org/en-US/docs/Web/API/window.open">Mozilla Developer Network</a>.<br /> Note: Some of the features are browser specific and some of the features' settings can be forced by browsers.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.popupFeatures = 'menubar=yes,toolbar=no,modal=yes';</pre>
+						
+					
+					
+
+						
+						
+							<dl class="detailList">
+							<dt class="heading">See:</dt>
+							
+							<dd>CKFinder#.popup</dd>
+							
+							<dd>CKFinder#popup</dd>
+							
+							</dl>
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								'location=no,menubar=no,toolbar=no,dependent=yes,minimizable=no,modal=yes,alwaysRaised=yes,resizable=yes'
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".popupTitle"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">CKFinder.config.</span><b>popupTitle</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.4.4
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Title for the popup window in which CKFinder will be opened.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.popupTitle = 'My Custom Title';</pre>
+						
+					
+					
+
+						
+						
+							<dl class="detailList">
+							<dt class="heading">See:</dt>
+							
+							<dd>CKFinder#.popup</dd>
+							
+							<dd>CKFinder#popup</dd>
+							
+							</dl>
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								'CKFinder 2'
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".readOnly"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{boolean}</span>
+					<span class="light">CKFinder.config.</span><b>readOnly</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.2
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						If this configuration is set to <code>true</code>, CKFinder will work in read-only mode, so theuser will be able to browse the files but will not be able to introduce any changes. Thanks tothis setting you will be able to use CKFinder as an online gallery.<br />Note: This will only disable certain UI elements. In order to successfully block file uploads ormodifications you will need to adjust ACL settings accordingly in the server side configuration file.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.readOnly = true;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								false
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".rememberLastFolder"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">CKFinder.config.</span><b>rememberLastFolder</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Whether CKFinder should remember the last used folder in a cookie and open it automatically next time.In some cases, it may be required to store the name of last used folder in separate cookies for different CKFinder instances.In such case, assign the <a href="../symbols/CKFinder.config.html#.id">CKFinder.config.id</a> property.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.rememberLastFolder = false;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								true
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".removePlugins"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>removePlugins</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						List of plugins that must not be loaded. This is a tool setting whichmakes it easier to avoid loading plugins that are otherwise automaticallyloaded by CKFinder.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">// Disable flash uploads.config.removePlugins = 'flashupload';</pre>
+						
+					
+						
+							<pre class="code">// Remove the "Basket" folder in the folders pane.config.removePlugins = 'basket';</pre>
+						
+					
+						
+							<pre class="code">// Remove the "Help" button.config.removePlugins = 'help';</pre>
+						
+					
+						
+							<pre class="code">// Remove all the three plugins above.config.removePlugins = 'help,basket,flashupload';</pre>
+						
+					
+					
+
+						
+						
+						
+
+					<hr />
+				
+					<a name=".resourceType"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>resourceType</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Resource type to display. By default CKFinder displays all available resource types. If ResourceType propertyis set, CKFinder will display only specified resource type.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">var finder = new CKFinder();finder.basePath = "/ckfinder/";finder.<b>resourceType</b> = 'Images';finder.create();</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								null (all available resource types will be shown)
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".selectActionData"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Function}</span>
+					<span class="light">CKFinder.config.</span><b>selectActionData</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Additional data that should be passed to the <a href="../symbols/CKFinder.config.html#.selectActionFunction">CKFinder.config.selectActionFunction</a> in the second argument.
+						
+					</div>
+					
+					
+					
+						
+					
+					
+
+						
+						
+							<dl class="detailList">
+							<dt class="heading">See:</dt>
+							
+							<dd><a href="../symbols/CKFinder.config.html#.selectActionFunction">CKFinder.config.selectActionFunction</a></dd>
+							
+							</dl>
+						
+						
+
+					<hr />
+				
+					<a name=".selectActionFunction"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Function}</span>
+					<span class="light">CKFinder.config.</span><b>selectActionFunction</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Function to be executed when file is selected. The following arguments are passed:<ul><li><code>fileUrl</code> - URL to a selected file</li><li><code>data</code> - an object with aditional information about the file<ul><li><code>fileUrl</code> - URL to a target file (when selecting a thumbnail, fileUrl != data['fileUrl'], because thumbnail URL != target file URL)</li><li><code>fileSize</code> - file size (in kilobytes)</li><li><code>fileDate</code> - modification time (ex. 201105192207, format: YYYYMMDDhhmm)</li><li><code>selectActionData</code> - additional data passed to this function (if any, see <a href="../symbols/CKFinder.config.html#.selectActionData">CKFinder.config.selectActionData</a>)</li></ul><li><code>allFiles</code> - An array of all selected files. Each member of the array is an object containing two properties: <code>url</cod> which is the selected file URL and <code>data</code> which is exactly the same as the <code>data</code> argument described above.</li></li></ul>The function is executed in CKFinderAPI scope, which means that you can simply use "this" to access <a href="../symbols/CKFinderAPI.html">CKFinderAPI</a>.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">var finder = new CKFinder();finder.selectActionData = "container";finder.selectActionFunction = function( fileUrl, data ) {	alert( 'Selected file: ' + fileUrl );	// Using CKFinderAPI to show simple dialog.	this.openMsgDialog( '', 'Additional data: ' + data['selectActionData'] );	document.getElementById( data['selectActionData'] ).innerHTML = fileUrl;}</pre>
+						
+					
+					
+
+						
+						
+						
+
+					<hr />
+				
+					<a name=".selectMultiple"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{boolean}</span>
+					<span class="light">CKFinder.config.</span><b>selectMultiple</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.3
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						If this configuration is set to <code>true</code>, the user will be able to select multiple filesand perform actions with them, and not just a single file.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.selectMultiple = false;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								true
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".selectThumbnailActionData"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Function}</span>
+					<span class="light">CKFinder.config.</span><b>selectThumbnailActionData</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Additional data that should be passed to the <a href="../symbols/CKFinder.config.html#.selectThumbnailActionFunction">CKFinder.config.selectThumbnailActionFunction</a> in the second argument.
+						
+					</div>
+					
+					
+					
+						
+					
+					
+
+						
+						
+							<dl class="detailList">
+							<dt class="heading">See:</dt>
+							
+							<dd><a href="../symbols/CKFinder.config.html#.selectThumbnailActionFunction">CKFinder.config.selectThumbnailActionFunction</a></dd>
+							
+							</dl>
+						
+						
+
+					<hr />
+				
+					<a name=".selectThumbnailActionFunction"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Function}</span>
+					<span class="light">CKFinder.config.</span><b>selectThumbnailActionFunction</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Function to be executed when thumbnail is selected. The following arguments are passed:<ul><li><code>fileUrl</code> - URL to a selected thumbnail</li><li><code>data</code> - an object with aditional information about the file<ul><li><code>fileUrl</code> - URL to a target file (when selecting a thumbnail, fileUrl != data['fileUrl'], because thumbnail URL is different than target file URL)</li><li><code>fileSize</code> - file size (in kilobytes)</li><li><code>fileDate</code> - modification time (ex. 201105192207, format: YYYYMMDDhhmm)</li><li><code>selectActionData</code> - additional data passed to this function (if any, see <a href="../symbols/CKFinder.config.html#.selectThumbnailActionData">CKFinder.config.selectThumbnailActionData</a>)</li></ul></li><li><code>allFiles</code> - An array of all selected files. Each member of the array is an object containing two properties: <code>url</cod> which is the selected thumbnail's URL and <code>data</code> which is exactly the same as the <code>data</code> argument described above.</li></ul>The function is executed in CKFinderAPI scope, which means that you can simply use "this" to access <a href="../symbols/CKFinderAPI.html">CKFinderAPI</a>.<br />When defining this function, you might also want to modify the <b>directAccess</b> setting for thumbnails in the server side configuration file (set this option to true, otherwise the url to a thumbnail will be a dynamic link to a server connector).
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">var finder = new CKFinder();finder.selectThumbnailActionData = "container";finder.selectThumbnailActionFunction = function( fileUrl, data ) {	alert( 'Selected file: ' + fileUrl );	// Using CKFinderAPI to show simple dialog.	this.openMsgDialog( '', 'Additional data: ' + data['selectThumbnailActionData'] );	document.getElementById( data['selectThumbnailActionData'] ).innerHTML = fileUrl;}</pre>
+						
+					
+					
+
+						
+						
+						
+
+					<hr />
+				
+					<a name=".showContextMenuArrow"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{boolean}</span>
+					<span class="light">CKFinder.config.</span><b>showContextMenuArrow</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.1
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Whether to show the arrow to launch the context menu forall browsers. It will always be enabled for mobile browsers.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.showContextMenuArrow = true;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								false
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".sidebarWidth"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>sidebarWidth</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.3
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Initial width for the sidebar (where the folders pane is located). The initial width could also be set by changing the respecitve CSS definitions. Leaving this configuration empty will revert to the CSS definitions.This setting can contain any applicable CSS unit. A plain number without a unit will be treated as pixels.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">// Set the width to 50%config.sidebarWidth = '50%';</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								''
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".skin"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>skin</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The skin to load. It may be the name of the skin folder inside theCKFinder installation path, or the name and the path separated by a comma.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.skin = 'v2';</pre>
+						
+					
+						
+							<pre class="code">config.skin = 'myskin,/customstuff/myskin/';</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								'kama'
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".startupFolderExpanded"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">CKFinder.config.</span><b>startupFolderExpanded</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Used only when <a href="../symbols/CKFinder.config.html#.startupPath">CKFinder.config.startupPath</a> is set.If set to true, the initial folder will be opened automatically on startup.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.startupFolderExpanded = false;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								true
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".startupPath"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">CKFinder.config.</span><b>startupPath</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Resource Type and the name of the startup folder, separated with a colonIf defined, CKFinder will open the selected folder automatically.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">"Files:/"</pre>
+						
+					
+						
+							<pre class="code">config.startupPath = "Images:/cars/";</pre>
+						
+					
+					
+
+						
+						
+						
+
+					<hr />
+				
+					<a name=".tabIndex"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Number}</span>
+					<span class="light">CKFinder.config.</span><b>tabIndex</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The CKFinder tabindex value.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.tabIndex = 1;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								0 (zero)
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".thumbnailDelay"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{Number}</span>
+					<span class="light">CKFinder.config.</span><b>thumbnailDelay</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.1
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The number of miliseconds before requesting another thumbnail.If your server have problems with handling many requests in a short time, increase this value. In versions prior to 2.4.1 the default value was 50 miliseconds.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">// disable delayconfig.thumbnailDelay = 0;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								100
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".uiColor"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{string}</span>
+					<span class="light">CKFinder.config.</span><b>uiColor</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.1
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The base user interface color to be used by the editor.Available only for the Kama skin.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">// Using a color code.config.uiColor = '#AADC6E';// Using an HTML color name.config.uiColor = 'Gold';</pre>
+						
+					
+					
+
+						
+						
+						
+
+					<hr />
+				
+					<a name=".useNativeIcons"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{boolean}</span>
+					<span class="light">CKFinder.config.</span><b>useNativeIcons</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.1
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						Use the icon in thumbnails views for non-pictures from the user's OS.This setting works only in Firefox.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.useNativeIcons = true;</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								false
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name=".width"> </a>
+					<div class="fixedFont" style="float:left">&lt;static&gt; 
+					
+					<span class="light">{String|Number}</span>
+					<span class="light">CKFinder.config.</span><b>width</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The application width in CSS size format or pixel integer.
+						
+					</div>
+					
+					
+					
+						
+							<pre class="code">config.width = 850;</pre>
+						
+					
+						
+							<pre class="code">config.width = '75%';</pre>
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								'' (empty)
+							</dd>
+							</dl>
+						
+
+					
+				
+			
+
+<!-- ============================== method details ========================= -->		
+			
+
+			<!-- ============================== event details ========================= -->		
+			
+
+			<hr />
+		</div>
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+	Copyright &copy; 2007-2015, <a href="http://cksource.com/">CKSource</a> - Frederico Knabben. All rights reserved.
+</div>
+
+	</body>
+</html>

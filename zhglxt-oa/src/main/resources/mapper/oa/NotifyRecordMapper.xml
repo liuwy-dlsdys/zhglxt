@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhglxt.oa.mapper.NotifyRecordMapper">
+    <insert id="insertAll">
+        INSERT INTO oa_notify_record(
+        id,
+        notify_id,
+        user_id
+        )
+        VALUES
+        <foreach collection="list" item="e" index="index" separator=",">
+            (#{e.id},
+            #{e.notifyId},
+            #{e.userId})
+        </foreach>
+    </insert>
+
+    <delete id="deleteByNotifyId">
+        DELETE FROM oa_notify_record
+        WHERE notify_id in
+        <foreach collection="array" item="notifyId" open="(" separator="," close=")">
+            #{notifyId}
+        </foreach>
+
+    </delete>
+
+    <select id="selectByNotify" resultType="com.zhglxt.oa.entity.NotifyRecord">
+        SELECT
+        id,
+        notify_id AS notifyId,
+        user_id AS userId,
+        read_flag AS readFlag,
+        read_date AS readDate
+        FROM
+        oa_notify_record
+        <where>
+            <if test="notifyId != null and notifyId != '' ">
+                and notify_id = #{notifyId}
+            </if>
+            <if test="userId != null and userId != '' ">
+                and user_id = #{userId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getNotifyNumber" resultType="java.lang.Integer">
+		SELECT count(0) FROM oa_notify_record WHERE read_flag =0 AND user_id = #{userId}
+	</select>
+
+    <update id="updateNotifyRecordByNotifyIdAndUserId">
+		UPDATE
+			oa_notify_record
+		SET read_flag = 1,read_date = sysdate()
+		WHERE notify_id = #{notifyId} AND user_id = #{userId}
+	</update>
+</mapper>

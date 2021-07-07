@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('编辑站点')"/>
+    <th:block th:include="include :: summernote-css"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-site-edit" th:object="${site}">
+        <input id="id" name="id" type="hidden" th:field="*{id}"/>
+        <div class="form-group">
+            <label class="col-sm-3 control-label is-required">名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="name" id="name" th:field="*{name}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">标题：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="title" id="title" th:field="*{title}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">描述：</label>
+            <div class="col-sm-8">
+                <textarea type="text" name="description" class="form-control" th:rows="5" th:field="*{description}"
+                          placeholder="请输描述内容"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">关键字：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="keywords" th:field="*{keywords}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">站点域名：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="siteDomain" th:field="*{siteDomain}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">背景音乐：</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" id="bgMusic" name="bgMusic" th:field="*{bgMusic}">
+            </div>
+            <div class="col-sm-3">
+                <a class="btn btn-success" onclick="BrowseServer('images:/userfiles/system/files/music/', 'bgMusic')">选择</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">版权信息：</label>
+            <div class="col-sm-9">
+                <input id="copyright" name="copyright" th:field="*{copyright}" type="hidden">
+                <div id="editor" class="summernote"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label is-required">排序：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="sort" th:field="*{sort}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">是否显示：</label>
+            <div class="col-sm-9">
+                <div class="radio-box" th:each="dict : ${@dict.getType('cms_show_hide')}">
+                    <input type="radio" th:id="${dict.dictCode}" name="status" th:value="${dict.dictValue}"
+                           th:field="*{status}" th:checked="${dict.default}">
+                    <label th:for="${dict.dictCode}" th:text="${dict.dictLabel}"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">备注：</label>
+            <div class="col-sm-8">
+                <textarea type="text" name="remark" class="form-control" th:field="*{remark}" th:rows="3"
+                          placeholder="请输入文本"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<th:block th:include="include :: summernote-js"/>
+<th:block th:include="include :: CKFinder-js"/>
+<script type="text/javascript" th:inline="javascript">
+    var prefix = ctx + "cms/site";
+    $(function () {
+        $('.summernote').summernote({
+            placeholder: '请输入版权信息',
+            height: 320,
+            lang: 'zh-CN',
+            followingToolbar: false,
+            dialogsInBody: true,
+            callbacks: {
+                onImageUpload: function (files) {
+                    sendFile(files[0], this);
+                }
+            }
+        });
+        var content = $("#copyright").val();
+        $('#editor').summernote('code', content);
+    })
+
+    // 上传文件
+    function sendFile(file, obj) {
+        var data = new FormData();
+        data.append("file", file);
+        $.ajax({
+            type: "POST",
+            url: ctx + "common/upload",
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.code == web_status.SUCCESS) {
+                    $(obj).summernote('editor.insertImage', result.url, result.fileName);
+                } else {
+                    $.modal.alertError(result.msg);
+                }
+            },
+            error: function (error) {
+                $.modal.alertWarning("图片上传失败。");
+            }
+        });
+    }
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            var sHTML = $('.summernote').summernote('code');
+            $("#copyright").val(sHTML);
+            $.operate.save(prefix + "/edit", $('#form-site-edit').serializeArray());
+        }
+    }
+
+    function BrowseServer(startupPath, functionData) {
+        //使用“CKFinder”类在页面中呈现CKFinder
+        var finder = new CKFinder();
+        //语言
+        // finder.language='zh-cn';
+        // finder.width='777';
+        // finder.height='557';
+        //CKFinder的安装路径 (default = "/ckfinder/").
+        finder.basePath = ctx + 'ckfinder/ckfinder.html?Type=files';
+        //打开的路径: "Type:/path/to/directory/"
+        finder.startupPath = startupPath;
+        //要在第二个参数中传递给selectActionFunction的其它数据。
+        //要更新的字段的Id。
+        finder.selectActionData = functionData;
+        //选择文件时调用的函数的名称
+        finder.selectActionFunction = SetFileField;
+        // Launch CKFinder
+        finder.popup({width: 777, height: 557, popupTitle: 'CKFinder Popup', popupFeatures: 'menubar=yes,modal=yes'});
+    }
+
+    //选择文件时调用
+    function SetFileField(fileUrl, data) {
+        $("#bgMusic").val(data["fileUrl"]);
+    }
+
+</script>
+</body>
+</html>

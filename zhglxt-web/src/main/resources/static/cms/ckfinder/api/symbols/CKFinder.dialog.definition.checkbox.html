@@ -1,0 +1,873 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>CKFinder.dialog.definition.checkbox - CKFinder 2 JavaScript API Documentation</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 230px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 260px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px;
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+	<h1>CKFinder 2 JavaScript API Documentation</h1>
+	<hr />
+</div>
+
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div>
+	<a href="../index.html">Code Index</a>
+</div>
+<hr />
+<h2>Namespaces</h2>
+<ul class="classList">
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.html">CKFinder</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ajax.html">CKFinder.ajax</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.config.html">CKFinder.config</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.html">CKFinder.dataTypes</a>
+			</li>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dom.html">CKFinder.dom</a>
+			</li>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.env.html">CKFinder.env</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.tools.html">CKFinder.tools</a>
+			</li>
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinderAPI.html">CKFinderAPI</a>
+			</li>
+		
+	
+</ul>
+<h2>Classes</h2>
+<ul class="classList">
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.Acl.html">CKFinder.dataTypes.Acl</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.BasketFolder.html">CKFinder.dataTypes.BasketFolder</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.Connector.html">CKFinder.dataTypes.Connector</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.File.html">CKFinder.dataTypes.File</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.Folder.html">CKFinder.dataTypes.Folder</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dataTypes.ResourceType.html">CKFinder.dataTypes.ResourceType</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.html">CKFinder.dialog</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.html">CKFinder.dialog.definition</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.button.html">CKFinder.dialog.definition.button</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.checkbox.html">CKFinder.dialog.definition.checkbox</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.content.html">CKFinder.dialog.definition.content</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.contentObject.html">CKFinder.dialog.definition.contentObject</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.file.html">CKFinder.dialog.definition.file</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.fileButton.html">CKFinder.dialog.definition.fileButton</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.hbox.html">CKFinder.dialog.definition.hbox</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.html.html">CKFinder.dialog.definition.html</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.radio.html">CKFinder.dialog.definition.radio</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.select.html">CKFinder.dialog.definition.select</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.textarea.html">CKFinder.dialog.definition.textarea</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.textInput.html">CKFinder.dialog.definition.textInput</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.uiElement.html">CKFinder.dialog.definition.uiElement</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definition.vbox.html">CKFinder.dialog.definition.vbox</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dialog.definitionObject.html">CKFinder.dialog.definitionObject</a>
+			</li>
+		
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dom.document.html">CKFinder.dom.document</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dom.domObject.html">CKFinder.dom.domObject</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dom.element.html">CKFinder.dom.element</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.dom.node.html">CKFinder.dom.node</a>
+			</li>
+		
+	
+		
+	
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.button.html">CKFinder.ui.dialog.button</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.checkbox.html">CKFinder.ui.dialog.checkbox</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.file.html">CKFinder.ui.dialog.file</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.fileButton.html">CKFinder.ui.dialog.fileButton</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.hbox.html">CKFinder.ui.dialog.hbox</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.html.html">CKFinder.ui.dialog.html</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.labeledElement.html">CKFinder.ui.dialog.labeledElement</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.radio.html">CKFinder.ui.dialog.radio</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.select.html">CKFinder.ui.dialog.select</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.textarea.html">CKFinder.ui.dialog.textarea</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.textInput.html">CKFinder.ui.dialog.textInput</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.uiElement.html">CKFinder.ui.dialog.uiElement</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.ui.dialog.vbox.html">CKFinder.ui.dialog.vbox</a>
+			</li>
+		
+	
+		
+			<li>
+				<a href="../symbols/CKFinder.xml.html">CKFinder.xml</a>
+			</li>
+		
+	
+		
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class CKFinder.dialog.definition.checkbox
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				<br />Extends
+					<a href="../symbols/CKFinder.dialog.definition.uiElement.html">CKFinder.dialog.definition.uiElement</a>.<br />
+				
+			
+				
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class CKFinder.dialog.definition.checkbox.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/CKFinder.dialog.definition.checkbox.html#constructor">CKFinder.dialog.definition.checkbox</a></b>()
+							</div>
+							<div class="description">The definition of a checkbox element.</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+
+				
+				
+
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class CKFinder.dialog.definition.checkbox.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/CKFinder.dialog.definition.checkbox.html#default">default</a></b>
+								</div>
+								<div class="description">The default state.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/CKFinder.dialog.definition.checkbox.html#label">label</a></b>
+								</div>
+								<div class="description">The label of the UI element.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/CKFinder.dialog.definition.checkbox.html#validate">validate</a></b>
+								</div>
+								<div class="description">(Optional) The validation function.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+				<dl class="inheritsList">
+				<dt>Fields borrowed from class <a href="../symbols/CKFinder.dialog.definition.uiElement.html">CKFinder.dialog.definition.uiElement</a>: </dt><dd><a href="../symbols/CKFinder.dialog.definition.uiElement.html#accessKey">accessKey</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#className">className</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#hidden">hidden</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#id">id</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onBlur">onBlur</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onChange">onChange</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onClick">onClick</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onDblclick">onDblclick</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onFocus">onFocus</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onHide">onHide</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onKeyDown">onKeyDown</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onKeypress">onKeypress</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onKeyup">onKeyup</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onLoad">onLoad</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onMousedown">onMousedown</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onMouseout">onMouseout</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onMouseover">onMouseover</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onMouseup">onMouseup</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#onShow">onShow</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#style">style</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#title">title</a>, <a href="../symbols/CKFinder.dialog.definition.uiElement.html#type">type</a></dd>
+				</dl>
+				
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont" style="float:left">
+						<b>CKFinder.dialog.definition.checkbox</b>()
+				</div>
+
+				<div style="float:right">
+					<span class="heading">Since:</span>
+						
+							2.0
+						
+				</div>
+				<div style="clear:both"></div>
+				
+				<div class="description">
+					The definition of a checkbox element.<div style="padding:10px;margin:10px;border:1px #000 solid;background:#E0E0E0">This class is not really part of the API. It just illustrates the propertiesthat developers can use to define and create groups of checkbox buttons.<br /><br />Once the dialog is opened, the created element becomes a <a href="../symbols/CKFinder.ui.dialog.checkbox.html">CKFinder.ui.dialog.checkbox</a> object and can be accessed with <a href="../symbols/CKFinder.dialog.html#getContentElement">CKFinder.dialog#getContentElement</a>.</div>For a complete example of dialog definition, please check <a href="../symbols/CKFinder.dialog.html#.add">CKFinder.dialog.add</a>.
+					
+				</div>
+				
+				
+				
+					
+						<pre class="code">// There is no constructor for this class, the user just has to define an// object with the appropriate properties.// Example:{	<b>type : 'checkbox',</b>	id : 'agree',	label : 'I agree',	'default' : 'checked',	onClick : function() {		// this = CKFinder.ui.dialog.checkbox		alert( 'Checked: ' + this.getValue() );	}}</pre>
+					
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="default"> </a>
+					<div class="fixedFont" style="float:left">
+					
+					<span class="light">{String}</span>
+					<b>default</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The default state.
+						
+					</div>
+					
+					
+					
+						
+					
+					
+
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								'' (unchecked)
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name="label"> </a>
+					<div class="fixedFont" style="float:left">
+					
+					<span class="light">{String}</span>
+					<b>label</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						The label of the UI element.
+						
+					</div>
+					
+					
+					
+						
+					
+					
+
+						
+						
+						
+
+					<hr />
+				
+					<a name="validate"> </a>
+					<div class="fixedFont" style="float:left">
+					
+					<span class="light">{Function}</span>
+					<b>validate</b>
+					
+					</div>
+					<div style="float:right">
+						<span class="heading">Since:</span>
+							
+								2.0
+							
+					</div>
+					<div style="clear:both"></div>
+					<div class="description">
+						(Optional) The validation function.
+						
+					</div>
+					
+					
+					
+						
+					
+					
+
+						
+						
+						
+
+					
+				
+			
+
+<!-- ============================== method details ========================= -->		
+			
+
+			<!-- ============================== event details ========================= -->		
+			
+
+			<hr />
+		</div>
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+	Copyright &copy; 2007-2015, <a href="http://cksource.com/">CKSource</a> - Frederico Knabben. All rights reserved.
+</div>
+
+	</body>
+</html>

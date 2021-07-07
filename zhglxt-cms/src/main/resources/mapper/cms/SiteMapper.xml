@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhglxt.cms.mapper.SiteMapper">
+
+    <select id="selectSiteList" resultType="com.zhglxt.cms.entity.Site">
+        SELECT
+        a.id,
+        a.`name`,
+        a.title,
+        a.description,
+        a.site_domain AS 'siteDomain',
+        a.bg_music AS 'bgMusic',
+        a.copyright,
+        a.keywords,
+        a.sort,
+        a.`status`,
+        a.create_by AS 'createBy',
+        a.create_time AS 'createTime',
+        a.update_by AS 'updateBy',
+        a.update_time AS 'updateTime',
+        a.remark
+        FROM
+        cms_site a
+        <where>
+            <if test="id!=null and id!=''">
+                AND a.id = #{id}
+            </if>
+            <if test="status!=null and status!=''">
+                AND a.`status`= #{status}
+            </if>
+            <if test="name !=null and name!=''">
+                AND a.`name` like concat('%', #{name}, '%')
+            </if>
+        </where>
+        ORDER BY
+        a.sort ASC,
+        a.update_time DESC
+    </select>
+
+    <insert id="insertSite" parameterType="map">
+		INSERT INTO cms_site (
+            id,
+			`name`,
+			title,
+			description,
+			site_domain,
+			bg_music,
+			copyright,
+			keywords,
+			sort,
+			`status`,
+			create_by,
+			create_time,
+			update_by,
+			update_time,
+			remark
+        )VALUES(
+            #{id},
+            #{name},
+			#{title},
+			#{description},
+            #{siteDomain},
+            #{bgMusic},
+            #{copyright},
+            #{keywords},
+            #{sort},
+            #{status},
+            #{createBy},
+            sysdate(),
+            #{updateBy},
+            sysdate(),
+            #{remark}
+        )
+	</insert>
+
+    <update id="updateSite" parameterType="map">
+		UPDATE cms_site SET
+            `name` = #{name},
+            title = #{title},
+            description = #{description},
+            site_domain = #{siteDomain},
+            bg_music = #{bgMusic},
+            copyright = #{copyright},
+            keywords = #{keywords},
+            sort = #{sort},
+            `status` = #{status},
+            update_by = #{updateBy},
+            update_time = sysdate(),
+            remark = #{remark}
+        WHERE id = #{id}
+	</update>
+
+    <delete id="deleteSite">
+        DELETE FROM cms_site WHERE id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper> 

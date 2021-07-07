@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('编辑文章')"/>
+    <th:block th:include="include :: summernote-css"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-article-edit" th:object="${article}">
+        <input id="id" name="id" type="hidden" th:field="*{id}"/>
+        <input id="treeId" name="columnId" type="hidden" th:field="*{columnId}"/>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">所属栏目：</label>
+            <div class="col-sm-8">
+                <div class="input-group">
+                    <input class="form-control" type="text" onclick="selectDeptTree()" id="treeName"
+                           th:readonly="readonly" th:field="*{columnName}">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label is-required">文章标题：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="title" id="title" th:field="*{title}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">摘要：</label>
+            <div class="col-sm-8">
+                <textarea type="text" name="description" class="form-control" th:rows="3" th:field="*{description}"
+                          placeholder="请输摘要内容"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">缩略图：</label>
+            <div class="col-sm-3">
+                <div id="thumbnails">
+                    <div th:if="${not #strings.isEmpty(article.image)}">
+                        <img th:src="${article.image}" style="max-width:120px;max-height:100px">
+                        <a href="javascript:" onclick="clearImge(this)">x</a>
+                        <div>
+                            <a th:href="${article.image}" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+                <input class="form-control" id="image" type="hidden" name="image" th:field="*{image}"/>
+            </div>
+            <div class="col-sm-5">
+                <a class="btn btn-success" onclick="BrowseServer('images:/userfiles/system/cms/article/', 'image')">
+                    <i class="fa fa-plus"></i>选择
+                </a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label is-required">排序：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="sort" th:field="*{sort}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">是否显示：</label>
+            <div class="col-sm-9">
+                <div class="radio-box" th:each="dict : ${@dict.getType('cms_show_hide')}">
+                    <input type="radio" th:id="${dict.dictCode}" name="status" th:value="${dict.dictValue}"
+                           th:field="*{status}" th:checked="${dict.default}">
+                    <label th:for="${dict.dictCode}" th:text="${dict.dictLabel}"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">文章内容：</label>
+            <div class="col-sm-9">
+                <input id="content" name="content" th:field="*{content}" type="hidden">
+                <div id="editor" class="summernote"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">备注：</label>
+            <div class="col-sm-8">
+                <textarea type="text" name="remark" class="form-control" th:field="*{remark}" th:rows="3"
+                          placeholder="请输入文本"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<th:block th:include="include :: CKFinder-js"/>
+<th:block th:include="include :: summernote-js"/>
+<script type="text/javascript" th:inline="javascript">
+    var prefix = ctx + "cms/article";
+    $(function () {
+        $('.summernote').summernote({
+            placeholder: '请输入文章内容',
+            height: 320,
+            lang: 'zh-CN',
+            followingToolbar: false,
+            dialogsInBody: true,
+            callbacks: {
+                onImageUpload: function (files) {
+                    sendFile(files[0], this);
+                }
+            }
+        });
+        var content = $("#content").val();
+        $('#editor').summernote('code', content);
+    })
+
+    // 上传文件
+    function sendFile(file, obj) {
+        var data = new FormData();
+        data.append("file", file);
+        $.ajax({
+            type: "POST",
+            url: ctx + "common/cms/upload",
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.code == web_status.SUCCESS) {
+                    $(obj).summernote('editor.insertImage', result.url, result.fileName);
+                } else {
+                    $.modal.alertError(result.msg);
+                }
+            },
+            error: function (error) {
+                $.modal.alertWarning("图片上传失败。");
+            }
+        });
+    }
+
+    $("#form-article-edit").validate({
+        onkeyup: false,
+        rules: {
+            outLink: {
+                required: true,
+            },
+            sort: {
+                digits: true
+            },
+            /*name:{
+                remote: {
+                    url: prefix + "/checkcColumnNameUnique",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        "pId": function() {
+                            return $("input[name='pId']").val();
+                        },
+                        "name" : function() {
+                            return $.common.trim($("#name").val());
+                        }
+                    },
+                    dataFilter: function(data, type) {
+                        return $.validate.unique(data);
+                    }
+                }
+            },*/
+        },
+        messages: {
+            "name": {
+                remote: "栏目名称已经存在"
+            }
+        },
+        focusCleanup: true
+    });
+
+    function selectDeptTree() {
+        var options = {
+            title: '栏目选择',
+            width: "380",
+            url: prefix + "/selectColumnTree?columnId=" + $("#treeId").val(),
+            callBack: doSubmit
+        };
+        $.modal.openOptions(options);
+    }
+
+    function doSubmit(index, layero) {
+        var body = layer.getChildFrame('body', index);
+        $("#treeId").val(body.find('#treeId').val());
+        $("#treeName").val(body.find('#treeName').val());
+        layer.close(index);
+    }
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            var sHTML = $('.summernote').summernote('code');
+            $("#content").val(sHTML);
+            $.operate.save(prefix + "/edit", $('#form-article-edit').serializeArray());
+        }
+    }
+
+    function BrowseServer(startupPath, functionData) {
+        //使用“CKFinder”类在页面中呈现CKFinder
+        var finder = new CKFinder();
+        //语言
+        // finder.language='zh-cn';
+        // finder.width='777';
+        // finder.height='557';
+        //CKFinder的安装路径 (default = "/ckfinder/").
+        finder.basePath = ctx + 'ckfinder/ckfinder.html?Type=Images';
+        //打开的路径: "Type:/path/to/directory/"
+        finder.startupPath = startupPath;
+        //要在第二个参数中传递给selectActionFunction的其他数据。
+        //要更新的字段的Id。
+        finder.selectActionData = functionData;
+        //选择文件时调用的函数的名称
+        finder.selectActionFunction = SetFileField;
+        //选择缩略图时调用的函数的名称
+        finder.selectThumbnailActionFunction = ShowThumbnails;
+        // Launch CKFinder
+        finder.popup({width: 777, height: 557, popupTitle: 'CKFinder Popup', popupFeatures: 'menubar=yes,modal=yes'});
+    }
+
+    //选择文件时调用
+    function SetFileField(fileUrl, data) {
+        //自定义缩略图
+        var sFileName = this.getSelectedFile().name;
+        document.getElementById('thumbnails').innerHTML = '';
+        document.getElementById('thumbnails').innerHTML +=
+            '<div>' +
+            '<img src="' + fileUrl + '" style="max-width:120px;max-height:100px"/>' +
+            '<a href="javascript:" onclick="clearImge(this);">×</a>' +
+            '<div>' +
+            '<a href="' + data["fileUrl"] + '" target="_blank">' + sFileName + '</a>' +
+            '</div>' +
+            '</div>';
+        //更新表单slt的值
+        // document.getElementById(data["selectActionData"]).value = fileUrl;
+        $("#image").val(data["fileUrl"]);
+        //自动填充图片名称
+        //$("#name").val(sFileName);
+    }
+
+    //选择一个缩略图时将调用该函数
+    function ShowThumbnails(fileUrl, data) {
+        var sFileName = this.getSelectedFile().name;
+        //每次选择清空原来的值
+        document.getElementById('thumbnails').innerHTML = '';
+        //重新添加缩略图
+        document.getElementById('thumbnails').innerHTML +=
+            '<div class="thumb">' +
+            '<img src="' + fileUrl + '" style="max-width:120px;max-height:100px"/><a href="javascript:" onclick="clearImge(this);">×</a>' +
+            '<div style="padding-left: 25%">' +
+            '<a href="' + data["fileUrl"] + '" target="_blank">' + sFileName + '</a>' +
+            '</div>' +
+            '</div>';
+        //更新表单image的值
+        $("#image").val(data["fileUrl"]);
+        //自动填充图片名称
+        //$("#name").val(sFileName);
+
+        //它不需要返回任何值
+        //当返回false时，CKFinder将不会自动关闭。
+        return true;
+    }
+
+    //清除缩略图、图片路径
+    function clearImge(eml) {
+        document.getElementById('thumbnails').innerHTML = '';
+        $("#image").val("");
+        $("#name").val("");
+    }
+</script>
+</body>
+</html>

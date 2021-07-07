@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('编辑文档')"/>
+    <th:block th:include="include :: editorMd-css"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-helpDoc-edit" th:object="${helpDoc}">
+        <input id="id" name="id" type="hidden" th:field="*{id}"/>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">文章内容：</label>
+            <div class="col-sm-11">
+                <div id="editormd" style="width: auto">
+                    <textarea style="display:none;" name="content" th:field="*{content}"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label is-required">文档名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="name" th:field="*{name}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label is-required">排序：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="sort" th:field="*{sort}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">是否显示：</label>
+            <div class="col-sm-2">
+                <div class="radio-box" th:each="dict : ${@dict.getType('cms_show_hide')}">
+                    <input type="radio" th:id="${dict.dictCode}" name="status" th:value="${dict.dictValue}"
+                           th:field="*{status}" th:checked="${dict.default}">
+                    <label th:for="${dict.dictCode}" th:text="${dict.dictLabel}"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">备注：</label>
+            <div class="col-sm-8">
+                <textarea type="text" name="remark" class="form-control" th:field="*{remark}" th:rows="3"
+                          placeholder="请输入文本"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<div th:include="include :: editorMd-js"></div>
+<script type="text/javascript" th:inline="javascript">
+    var prefix = ctx + "cms/helpDoc";
+    $(function () {
+        init()
+    })
+
+    function init(){
+        testEditor = editormd("editormd", {
+            width: "95%",
+            height: 700,
+            syncScrolling : "single",
+            path: ctx +"/editormd/lib/",
+            // 启用上传图片
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp","pdf"],
+            // 上传图片的请求接口
+            imageUploadURL : ctx + "common/markdown/upload",
+            /*工具栏置顶*/
+            toolbarAutoFixed: true,
+            /*工具栏标题*/
+            tocTitle: $("#name").val(),
+            // 开启流程图
+            flowChart : true,
+            // 启用栏目下拉
+            tocDropdown: true,
+            // 开启表情符号
+            emoji : true,
+            // 工具栏图标的设置
+            toolbarIcons : function () {
+                return ["undo","redo","|","bold","del","italic","quote","ucwords","uppercase","lowercase","|",
+                    "h1","h2","h3","h4","h5","h6","|","list-ul","list-ol","hr","|",
+                    "link","reference-link","image","code","preformatted-text","code-block","table","datetime","emoji","html-entities","pagebreak","|",
+                    "goto-line","watch","preview","fullscreen","clear","search","|",
+                    "help", "||"];
+            }
+        }).imagePaste();
+    }
+
+    $("#form-helpDoc-edit").validate({
+        onkeyup: false,
+        rules: {
+            outLink: {
+                required: true,
+            },
+            sort: {
+                digits: true
+            },
+        },
+        messages: {
+            "name": {
+                remote: "名称已经存在"
+            }
+        },
+        focusCleanup: true
+    });
+
+
+    function doSubmit(index, layero) {
+        layer.close(index);
+    }
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/edit", $('#form-helpDoc-edit').serializeArray());
+        }
+    }
+
+</script>
+</body>
+</html>

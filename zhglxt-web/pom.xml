@@ -1,0 +1,175 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.zhglxt</groupId>
+        <artifactId>zhglxt</artifactId>
+        <version>4.6.2</version>
+    </parent>
+    <artifactId>zhglxt-web</artifactId>
+    <packaging>war</packaging>
+    <description>
+        web服务入口
+    </description>
+
+    <dependencies>
+
+        <!-- SpringBoot集成thymeleaf模板 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- spring-boot-devtools -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional> <!-- 表示依赖不会传递 -->
+        </dependency>
+
+        <!-- Mysql驱动包 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <!-- 核心模块 -->
+        <dependency>
+            <groupId>com.zhglxt</groupId>
+            <artifactId>zhglxt-framework</artifactId>
+        </dependency>
+        <!-- 定时任务 -->
+        <dependency>
+            <groupId>com.zhglxt</groupId>
+            <artifactId>zhglxt-quartz</artifactId>
+        </dependency>
+        <!-- 代码生成 -->
+        <dependency>
+            <groupId>com.zhglxt</groupId>
+            <artifactId>zhglxt-generator</artifactId>
+        </dependency>
+
+        <!-- 工作流模块 -->
+        <dependency>
+            <groupId>com.zhglxt</groupId>
+            <artifactId>zhglxt-activiti</artifactId>
+        </dependency>
+
+        <!-- OA系统模块 -->
+        <dependency>
+            <groupId>com.zhglxt</groupId>
+            <artifactId>zhglxt-oa</artifactId>
+        </dependency>
+
+        <!-- CMS系统模块 -->
+        <dependency>
+            <groupId>com.zhglxt</groupId>
+            <artifactId>zhglxt-cms</artifactId>
+        </dependency>
+
+        <!-- 文件管理器 -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>zhglxt-file-CKFinder</artifactId>
+            <version>${zhglxt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>zhglxt-file-CKFinderPlugin-FileEditor</artifactId>
+            <version>${zhglxt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>zhglxt-file-CKFinderPlugin-ImageResize</artifactId>
+            <version>${zhglxt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>zhglxt-file-CKFinderPlugin-Watermark</artifactId>
+            <version>${zhglxt.version}</version>
+        </dependency>
+
+        <!-- demo子系统模块 -->
+        <dependency>
+            <groupId>com.zhglxt</groupId>
+            <artifactId>zhglxt-demo</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--热启动插件-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.5.0</version>
+                <configuration>
+                    <fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <!--打war时，同时把lib目录下的jar也打进去-->
+                    <!--<webResources>
+                       <resource>
+                         <directory>${project.basedir}/src/main/resources/lib</directory>
+                            <targetPath>WEB-INF/lib/</targetPath>
+                            <includes>
+                              <include>**/*.jar</include>
+                            </includes>
+                       </resource>
+                     </webResources>-->
+                    <!--打包配置-->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warName>${project.artifactId}</warName>
+                </configuration>
+            </plugin>
+
+        <!-- YUI Compressor (CSS/JS压缩) -->
+        <!--<plugin>
+            <groupId>net.alchim31.maven</groupId>
+            <artifactId>yuicompressor-maven-plugin</artifactId>
+            <version>1.5.1</version>
+            <executions>
+                <execution>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>compress</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <encoding>UTF-8</encoding>
+                <jswarn>false</jswarn>
+                <nosuffix>true</nosuffix>
+                <linebreakpos>50000</linebreakpos>
+                <sourceDirectory>src/main/resources/static</sourceDirectory>
+                <force>true</force>
+                <includes>
+                    <include>**/*.js</include>
+                    <include>**/*.css</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.min.js</exclude>
+                    <exclude>**/*.min.css</exclude>
+                    <exclude>**/fileinput.js</exclude>
+                    <exclude>**/bootstrap-table/**</exclude>
+                </excludes>
+            </configuration>
+        </plugin>-->
+
+        </plugins>
+        <!-- 项目名称，war包名称 -->
+        <finalName>${project.artifactId}</finalName>
+    </build>
+</project>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head>
+	<th:block th:include="include :: header('流程列表')" />
+</head>
+<body class="gray-bg">
+
+	<div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="config-form">
+					<div class="select-list">
+						<ul>
+						    <li>
+								流程名称：<input type="text" name="name"/>
+							</li>
+							<li>
+								部署编号：<input type="text" name="deploymentId"/>
+							</li>
+							<li>
+								<a class="btn btn-success btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-success btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			
+			<div class="btn-group-sm hidden-xs" id="toolbar" role="group">
+				<a class="btn btn-success " onclick="$.operate.add()">
+					<i class="fa fa-plus"></i> 导入
+				</a>
+				<a class="btn btn-success btn-del disabled" onclick="$.operate.removeAll()">
+					<i class="fa fa-remove"></i> 删除
+				</a>
+			</div>
+			<div class="col-sm-12 select-table table-striped">
+				<table id="bootstrap-table" ></table>
+			</div>
+		</div>
+	</div>
+<div th:include="include :: footer"></div>
+<script th:inline="javascript">
+    var removeFlag = [[${@permission.hasPermi('activiti:process:remove')}]];
+    var modelFlag = [[${@permission.hasPermi('activiti:process:model')}]];
+    var editFlag = [[${@permission.hasPermi('activiti:process:edit')}]];
+    var prefix = ctx + "activiti/process";
+
+    $(function () {
+        var options = {
+        	uniqueId: "id",
+            url: prefix + "/processList",
+            createUrl: prefix + "/add",
+            removeUrl: prefix + "/remove",
+            modalName: "流程管理",
+            search: false,
+            showExport: false,
+            columns: [{
+                checkbox: true
+            },
+            {
+                field: 'category',
+                title: '流程分类',
+                align:'center'
+            },
+            {
+                field: 'id',
+                title: '流程ID',
+                align:'center'
+                
+            },
+            {
+                field: 'deploymentId',
+                title: '部署编号',
+                align:'center'
+            },
+            {
+                field: 'name',
+                title: '流程名称',
+                align:'center'
+            },
+            {
+                field: 'key',
+                title: '流程标识',
+                align:'center'
+            },
+            {
+                field: 'version',
+                title: '流程版本',
+                align:'center'
+            },
+            {
+                field: 'deploymentTime',
+                title: '部署时间',
+                align:'center'
+            },
+            {
+                title: '流程文件名称',
+                align:'center',
+                formatter: function (value, row, index) {
+                	var url = prefix + '/resource/' + row.resourceName + '/' + row.deploymentId;
+                    var action = '<a href="' + encodeURI(encodeURI(url)) + '" target="_blank">' + row.resourceName + '</a>';
+                    return action;
+                }
+            },
+            {
+                title: '流程图片名称',
+                align:'center',
+                formatter: function (value, row, index) {
+                	var url = prefix + '/resource/' + row.diagramResourceName + '/' + row.deploymentId;
+                    var action = '<a href="' +encodeURI(encodeURI(url)) + '" target="_blank">' + row.diagramResourceName + '</a>';
+                    return action;
+                }
+            },
+            {
+                title: '是否挂起',
+                align:'center',
+                formatter: function (value, row, index) {
+                    return row.suspended?'是':'否';
+                }
+            },
+            {
+                title: '操作',
+                align: 'center',
+                formatter: function (value, row, index) {
+                    var actions = [];
+                    if(row.suspended){
+                    	actions.push('<a class="btn btn-success btn-xs" href="#" onclick="updateState(\'' + row.id + '\','+row.suspended+')"><i class="fa fa-edit"></i>激活</a>');
+                    }else{
+                    	actions.push('<a class="btn btn-success btn-xs" href="#" onclick="updateState(\'' + row.id + '\','+row.suspended+')"><i class="fa fa-edit"></i>挂起</a>');
+                    }
+                    actions.push('<a class="btn btn-success btn-xs" href="#" onclick="$.operate.remove(\'' + row.deploymentId + '\')"><i class="fa fa-remove"></i>删除</a>');
+                    actions.push('<a class="btn btn-success btn-xs" href="#" onclick="covertToModel(\'' + row.id + '\')"><i class="fa fa-play-circle-o"></i>转为模型</a> ');
+                    return actions.join('');
+                }
+            }]
+        };
+        $.table.init(options);
+    });
+
+    function covertToModel(processId) {
+        $.modal.confirm("确定要将部署的流程转换为模型吗？", function () {
+        	var url = prefix + "/convertToModel/" + processId;
+            $.operate.get(url);
+        });
+    }
+    
+    function updateState(processId,state){
+    	var url;
+    	var str;
+    	if(state){
+    		str="确定要将部署的流程激活吗？";
+    	}else{
+    		str="确定要将部署的流程挂起吗？";
+    	}
+    	$.modal.confirm(str, function () {
+    		if(state){
+    			url=prefix + "/updateState/active?procDefId=" + processId;
+    		}else{
+    			url=prefix + "/updateState/suspend?procDefId=" + processId;
+    		}
+            $.operate.get(url);
+        });
+    }
+</script>
+</body>
+</html>

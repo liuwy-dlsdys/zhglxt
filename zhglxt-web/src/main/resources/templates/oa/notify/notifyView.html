@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('查看通知通告')"/>
+    <th:block th:include="include :: summernote-css"/>
+    <th:block th:include="include :: select2-css"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-notice-edit" th:object="${notify}">
+        <input id="id" name="id" th:field="*{id}" type="hidden">
+        <div class="form-group">
+            <label class="col-sm-2 control-label is-required">公告标题：</label>
+            <div class="col-sm-10">
+                <input id="notifyTitle" name="notifyTitle" th:field="*{notifyTitle}" class="form-control" type="text"
+                       required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">公告类型：</label>
+            <div class="col-sm-10">
+                <select name="notifyType" class="form-control m-b" th:with="type=${@dict.getType('oa_notify_type')}">
+                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"
+                            th:field="*{notifyType}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">公告内容：</label>
+            <div class="col-sm-10">
+                <input id="notifyContent" name="notifyContent" th:field="*{notifyContent}" type="hidden">
+                <div id="editor" class="summernote"></div>
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<th:block th:include="include :: summernote-js"/>
+<th:block th:include="include :: select2-js"/>
+<script type="text/javascript" th:inline="javascript">
+    var prefix = ctx + "oa/notify";
+
+    $(function () {
+        $('.summernote').summernote({
+            placeholder: '请输入公告内容',
+            height: 320,
+            lang: 'zh-CN',
+            followingToolbar: false,
+            dialogsInBody: true,
+            callbacks: {
+                onImageUpload: function (files) {
+                    sendFile(files[0], this);
+                }
+            }
+        });
+        var content = $("#notifyContent").val();
+        $('#editor').summernote('code', content);
+    });
+
+</script>
+</body>
+</html>

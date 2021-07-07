@@ -1,0 +1,5 @@
+#定时任务调度配置
+org:
+  quartz:
+    jobStore:
+      isClusterd: true #true 加入集群；false 不加入集群

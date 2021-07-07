@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head>
+    <th:block th:include="include :: header('大数据导入示例')"/>
+</head>
+<body class="gray-bg">
+
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="config-form">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            登录名称：<input type="text" name="loginName"/>
+                        </li>
+                        <li>
+                            手机号码：<input type="text" name="phonenumber"/>
+                        </li>
+                        <li>
+                            用户状态：<select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
+                            <option value="">所有</option>
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                    th:value="${dict.dictValue}"></option>
+                        </select>
+                        </li>
+                        <li class="select-time">
+                            <label>创建时间： </label>
+                            <input type="text" class="time-input" id="startTime" placeholder="开始时间"
+                                   name="params[beginTime]"/>
+                            <span>-</span>
+                            <input type="text" class="time-input" id="endTime" placeholder="结束时间"
+                                   name="params[endTime]"/>
+                        </li>
+                        <li>
+                            <a class="btn btn-success btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-success btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.table.importExcel()" shiro:hasPermission="'demo:user:import'">
+                    <i class="fa fa-upload"></i> 导入（EasyExcel-100万数据-两分钟左右完成导入）
+                </a>
+                <!--<a class="btn btn-success" onclick="$.table.exportExcel()" shiro:hasPermission="'demo:user:export'">
+                    <i class="fa fa-download"></i> 导出
+                </a>-->
+                <a class="btn btn-danger" onclick="$.operate.clean()">
+                    <i class="fa fa-trash"></i> 清空
+                </a>
+            </div>
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('demo:user:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('demo:user:remove')}]];
+    var prefix = ctx + "demo/import";
+
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            exportUrl: prefix + "/export",
+            importUrl: prefix + "/importData",
+            importTemplateUrl: prefix + "/importTemplate",
+            cleanUrl: prefix + "/clean",
+            sortName: "createTime",
+            sortOrder: "asc",
+            modalName: "用户",
+            /* 翻页记住选中 */
+            rememberSelected: true,
+            columns: [{
+                field: 'state',
+                checkbox: true
+            },
+                {
+                    field: 'userId',
+                    title: '用户ID',
+                    visible: false
+                },
+                {
+                    field: 'loginName',
+                    title: '登录名称',
+                    sortable: true
+                },
+                {
+                    field: 'userName',
+                    title: '用户名称'
+                },
+                {
+                    field: 'idCard',
+                    title: '身份证号码'
+                },
+                {
+                    field: 'email',
+                    title: '邮箱',
+                    visible: false
+                },
+                {
+                    field: 'phonenumber',
+                    title: '手机'
+                },
+                {
+                    visible: editFlag == 'hidden' ? false : true,
+                    title: '用户状态',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return statusTools(row);
+                    }
+                },{
+                    field: 'remark',
+                    title: '备注'
+                }]
+        };
+        $.table.init(options);
+    });
+    /* 用户状态显示 */
+    function statusTools(row) {
+        if (row.status == 1) {
+            return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.userId + '\')"></i> ';
+        } else {
+            return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disable(\'' + row.userId + '\')"></i> ';
+        }
+    }
+</script>
+</body>
+<!-- 导入区域 -->
+<script id="importTpl" type="text/template">
+    <form enctype="multipart/form-data" class="mt20 mb10">
+        <div class="col-xs-offset-1">
+            <input type="file" id="file" name="file"/>
+            <div class="mt10 pt5">
+                <input type="checkbox" id="updateSupport" name="updateSupport" title="如果登录账户已经存在，更新这条数据。"> 是否更新已经存在的用户数据
+                &nbsp; <a onclick="$.table.importTemplate()" class="btn btn-default btn-xs"><i
+                    class="fa fa-file-excel-o"></i> 下载模板</a>
+            </div>
+            <font color="red" class="pull-left mt10">
+                提示：仅允许导入“xls”或“xlsx”格式文件！
+            </font>
+        </div>
+    </form>
+</script>
+</html>

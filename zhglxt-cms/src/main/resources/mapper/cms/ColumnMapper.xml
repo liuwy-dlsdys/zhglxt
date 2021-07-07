@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhglxt.cms.mapper.ColumnMapper">
+
+    <select id="selectColumnList" resultType="com.zhglxt.cms.entity.Column">
+        SELECT
+        t.column_id AS id,
+        t.parent_id AS pId,
+        t.site_id AS siteId,
+        s.name AS siteName,
+        t.column_code AS columnCode,
+        t.column_name AS name,
+        <if test="columnId!=null and columnId!=''">
+            (
+            SELECT
+            y.column_name
+            FROM
+            cms_column y
+            WHERE
+            y.column_id IN (
+            SELECT
+            u.parent_id
+            FROM
+            cms_column u
+            WHERE
+            u.column_id =#{columnId}
+            )
+            ) AS upColumnName,
+        </if>
+        t.column_name AS title,
+        t.column_flag AS columnFlag,
+        t.`status`,
+        t.is_show AS display,
+        t.out_link AS outLink,
+        t.href,
+        t.create_by AS createBy,
+        t.create_time AS createTime,
+        t.update_by AS updateby,
+        t.update_time AS updateTime,
+        t.sort,
+        t.remark
+        FROM
+        cms_column t LEFT JOIN cms_site s ON s.id = t.site_id
+        <where>
+            <if test="parentId!=null and parentId!=''">
+                AND t.parent_id =#{parentId}
+            </if>
+            <if test="status!=null and status!=''">
+                AND t. STATUS =#{status}
+            </if>
+            <if test="display!=null and display!=''">
+                AND t.is_show = #{display}
+            </if>
+            <if test="siteId!=null and siteId!=''">
+                AND t.site_id = #{siteId}
+            </if>
+            <if test="siteName!=null and siteName!=''">
+                AND s.name like concat('%', #{siteName}, '%')
+            </if>
+            <if test="columnId!=null and columnId!=''">
+                AND t.column_id =#{columnId}
+            </if>
+            <if test="outLink!=null and outLink!=''">
+                AND t.out_link =#{outLink}
+            </if>
+            <if test="columnName!=null and columnName!=''">
+                AND t.column_name like concat('%', #{columnName}, '%')
+            </if>
+        </where>
+        ORDER BY
+        t.sort ASC
+    </select>
+
+    <insert id="insertColumnMenu" parameterType="map">
+        INSERT INTO cms_column (
+            column_id,
+            parent_id,
+            site_id,
+            `column_name`,
+            column_flag,
+            out_link,
+            href,
+            is_show,
+            STATUS,
+            sort,
+            create_by,
+            create_time,
+            update_time,
+            remark
+        )VALUES(
+            #{id},
+            #{parentId},
+            #{siteId},
+            #{name},
+            #{columnFlag},
+            #{outLink},
+            #{href},
+            #{display},
+            #{status},
+            #{sort},
+            #{createBy},
+            sysdate(),
+            sysdate(),
+            #{remark}
+        )
+    </insert>
+
+    <delete id="deleteColumn" parameterType="map">
+        DELETE FROM cms_column WHERE column_id=#{columnId}
+    </delete>
+
+    <update id="updateColumn" parameterType="map">
+        UPDATE cms_column SET
+            parent_id = #{pId},
+            `column_name` = #{name},
+            site_id = #{siteId},
+            status = #{status},
+            out_link = #{outLink},
+            column_flag = #{columnFlag},
+            href = #{href},
+            sort = #{sort},
+            is_show = #{display},
+            update_by = #{updateBy},
+            update_time = sysdate(),
+            remark = #{remark}
+        WHERE column_id = #{id}
+    </update>
+
+    <delete id="deleteColumnsBySiteIds">
+        DELETE FROM cms_column WHERE site_id IN
+        <foreach collection="array" item="siteId" open="(" separator="," close=")">
+            #{siteId}
+        </foreach>
+    </delete>
+
+</mapper> 

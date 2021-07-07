@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head>
+	<th:block th:include="include :: header('我的任务列表')"/>
+	<th:block th:include="include :: datetimepicker-css"/>
+</head>
+<body class="gray-bg">
+	<div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="config-form">
+					<div class="select-list">
+						<ul>
+						    <li>
+								流程类型：
+								<select name="procDefKey" th:with="type=${@dict.getType('act_type')}">
+									<option value="">所有</option>
+									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+								</select>
+							</li>
+						    <li>
+								创建时间起：<input id="startTime" type="text" name="startTime" placeholder="yyyy-MM-dd HH:mm:ss"/>
+							</li>
+						    <li>
+								创建时间止：<input id="endTime" type="text" name="endTime" placeholder="yyyy-MM-dd HH:mm:ss"/>
+							</li>
+							<li>
+								<a class="btn btn-success btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-success btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			<div class="col-sm-12 select-table table-striped">
+				<table id="bootstrap-table"></table>
+			</div>
+		</div>
+	</div>
+<div th:include="include :: footer"></div>
+<th:block th:include="include :: datetimepicker-js"/>
+<th:block th:include="include :: select2-js"/>
+<script th:inline="javascript">
+    var removeFlag = [[${@permission.hasPermi('activiti:leave:remove')}]];
+    var listFlag = [[${@permission.hasPermi('activiti:leave:list')}]];
+    var prefix = ctx + "activiti/task";
+
+    $(function () {
+    	init()
+		$("#startTime").datetimepicker({
+			format: "yyyy-mm-dd",
+			autoclose: true,//选中后自动关闭
+			clearBtn: true, //显示清除按钮
+			minView: "month",
+			todayBtn: true  //显示今天按钮
+		}).on('changeDate', function (event) {
+			event.preventDefault();
+			event.stopPropagation();
+			var startTime = event.date;
+			$('#endTime').datetimepicker('setStartDate', startTime);
+		});
+
+		$("#endTime").datetimepicker({
+			format: "yyyy-mm-dd",
+			autoclose: true,//选中后自动关闭
+			clearBtn: true, //显示清除按钮
+			minView: "month",
+			todayBtn: true  //显示今天按钮
+		}).on('changeDate', function (event) {
+			event.preventDefault();
+			event.stopPropagation();
+			var endTime = event.date;
+			$("#startTime").datetimepicker('setEndDate', endTime);
+		});
+    });
+
+    function init(){
+    	 var options = {
+    	        	uniqueId: "id",
+    	            url: prefix + "/todoList",
+    	            removeUrl: prefix + "/remove?taskId={taskId}",
+    	            modalName: "我的任务",
+    	            search: false,
+    	            showExport: false,
+    	            columns: [{
+    	                checkbox: true
+    	            },
+    	            {
+    	                title: '标题',
+    	                formatter: function (value, row, index) {
+    	                	var action ="";
+    	                	if(row.task.assignee==null){
+    	                    	action = '<a href="#" th:title="签收任务">'+row.vars.title+'</a>';
+    	                	}else{
+    	                    	action = '<a href="#" onclick="taskTodo(\'' + row.task.id + '\',\'' + row.task.name + '\',\'' + row.task.taskDefinitionKey + '\',\'' + row.task.processDefinitionId + '\',\'' + row.task.processInstanceId + '\',\'' + row.status + '\')">'+row.vars.title+'</a>';
+    	                	}
+    	                    return action;
+    	                }
+    	            },
+    	            {
+    	                title: '当前环节',
+    	                formatter: function (value, row, index) {
+    	                	var action = '<a href="#" onclick="taskTracking(\'' + row.task.processDefinitionId + '\',\'' + row.task.processInstanceId + '\')">'+row.task.name+'</a>';
+    	                    return action;
+    	                }
+    	            },
+    	            {
+    	                field: 'procDef.name',
+    	                title: '流程类型'
+    	            },
+    	            {
+    	                field: 'procDef.version',
+    	                title: '流程版本'
+    	            },
+    	            {
+    	                field: 'task.createTime',
+    	                title: '创建时间'
+    	            },
+    	            {
+    	                title: '操作',
+    	                align: 'center',
+    	                formatter: function (value, row, index) {
+    	                    var actions = [];
+    	                    if(row.task.assignee==null){
+    	                    	actions.push('<a class="btn btn-success btn-xs" href="#" onclick="taskSign(\'' + row.task.id + '\')"><i class="fa fa-play-circle-o"></i>任务签收</a>');
+    	                    }else{
+    	                    	actions.push('<a class="btn btn-success btn-xs" href="#" onclick="taskTodo(\'' + row.task.id + '\',\'' + row.task.name + '\',\'' + row.task.taskDefinitionKey + '\',\'' + row.task.processDefinitionId + '\',\'' + row.task.processInstanceId + '\',\'' + row.status + '\')"><i class="fa fa-play-circle-o"></i>任务办理</a> ');
+    	                    }
+    	                    if(row.task.executionId==null){
+    	                    	actions.push('<a class="btn btn-success btn-xs" href="#" onclick="$.operate.remove(\'' + row.task.id + '\')"><i class="fa fa-remove"></i>删除任务</a> ');
+    	                    }
+    	                    actions.push('<a class="btn btn-success btn-xs" href="#" onclick="taskTracking(\'' + row.task.processDefinitionId + '\',\'' + row.task.processInstanceId + '\')"><i class="fa fa-play-circle-o"></i>跟踪</a>');
+    	                    return actions.join('');
+    	                }
+    	            }]
+    	        };
+   	         $.table.init(options);
+    }
+    //任务签收
+    function taskSign(taskId) {
+    	var url=prefix + "/claim?taskId=" + taskId;
+    	$.modal.confirm("确定签收？", function () {
+            $.operate.get(url);
+            $.refresh("#bootstrap-table");
+        });
+
+    }
+    //任务办理
+    function taskTodo(taskId,taskName,taskDefKey,procDefId,procInsId,status) {
+    		var btn=['<i class="fa fa-close"></i> 关闭'];
+    		var url=encodeURI(prefix + "/form?taskId=" + taskId+"&taskName="+taskName+"&taskDefKey="+taskDefKey+"&procDefId="+procDefId+"&procInsId="+procInsId+"&status="+status);
+    		var options = {
+    				title: '任务办理',
+    				url:url,
+    				btn: btn,
+    				yes:function(index, layero){
+    				    layer.close(index);
+    				}
+    			};
+		$.modal.openOptions(options);
+    }
+    //任务跟踪
+    function taskTracking(processDefinitionId,processInstanceId) {
+		var options = {
+			title: '任务跟踪',
+			width:1050,
+			url: ctx +"diagram-viewer/index.html?processDefinitionId=" + processDefinitionId+"&processInstanceId="+processInstanceId,
+			btn: ['<i class="fa fa-close"></i> 关闭'],
+			yes:function(index, layero){
+			    layer.close(index);
+			}
+		};
+		$.modal.openOptions(options);
+    }
+
+
+
+</script>
+</body>
+</html>

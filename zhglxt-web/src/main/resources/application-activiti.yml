@@ -1,0 +1,6 @@
+#activity工作流配置
+activiti:
+  #activiti数据库类型
+  dataType: mysql
+  #activiti外部表单根地址配置
+  formServerUrl:

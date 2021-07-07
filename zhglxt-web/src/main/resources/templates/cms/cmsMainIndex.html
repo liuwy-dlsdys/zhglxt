@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" th:content="${site.description}">
+    <meta name="keywords" th:content="${site.keywords}">
+    <meta name="author" th:content="${site.name}">
+    <link th:href="@{/favicon.png}" rel="shortcut icon"/>
+
+    <title>企业官网</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/cms/bootstrap-v3/css/bootstrap.min.css}" rel="stylesheet"/>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link th:href="@{/cms/bootstrap-v3/css/ie10-viewport-bug-workaround.css}" rel="stylesheet"/>
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/cms/bootstrap-v3/docs/assets/js/ie8-responsive-file-warning.js}"></script><![endif]-->
+    <script th:src="@{/cms/bootstrap-v3/docs/assets/js/ie-emulation-modes-warning.js}"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/cms/css/carousel.css}" rel="stylesheet">
+    <!--时间轴-->
+    <link th:href="@{/cms/css/timeline.css}" rel="stylesheet">
+</head>
+<style>
+    /*导航栏居中*/
+    .navbar-nav {
+        float: none;
+        text-align: center;
+    }
+
+    ul.nav.navbar-nav li {
+        float: none;
+        display: inline-block;
+        margin: 0em;
+    }
+
+    /*导航栏字体*/
+    #navbar > ul > li > a {
+        font-size: 17px;
+    }
+
+    #navbar > ul > li.dropdown > ul > li > a {
+        font-size: 16px;
+    }
+
+    /*鼠标悬停展开下拉菜单*/
+    @media screen and (min-width: 768px) {
+        .navbar .nav > li .dropdown-menu {
+            margin: 0;
+        }
+
+        .navbar .nav > li:hover .dropdown-menu {
+            display: block;
+        }
+    }
+
+    /*调整固定导航-顶部遮挡*/
+    .loock {
+        padding-top: 3.6em;
+    }
+
+    .text-line {
+        position: relative;
+        padding: 30px 0;
+        text-align: center;
+    }
+
+    .text-line > h2 > span {
+        font-size: 35px;
+    }
+
+    /*查看详情*/
+    .modal {
+        padding-top: 3.6em;
+    }
+</style>
+<!-- NAVBAR
+================================================== -->
+<body>
+<div class="navbar-wrapper">
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a th:if="${site != null }" class="navbar-brand" th:href="@{/cms/index.html}"
+                       th:text="${site.name}"></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" th:if="${not #lists.isEmpty(columns)}">
+                        <li><a th:href="@{/cms/index.html}">首页</a></li>
+                        <li th:each="column : ${columns}"
+                            th:class="${not #lists.isEmpty(column.columnChilds) ? 'dropdown':''}">
+                            <!--不存在子栏目并且不是外链接-->
+                            <a th:if="${#lists.isEmpty(column.columnChilds) && column.outLink eq '1'}"
+                               th:href="${column.columnFlag+'.html'}" th:name="${column.columnFlag}"
+                               th:text="${column.name}"></a>
+                            <!--不存在子栏目并且是外部链接-->
+                            <a th:if="${#lists.isEmpty(column.columnChilds) && column.outLink eq '0'}"
+                               th:href="${column.href}" th:text="${column.name}" th:target="_blank"></a>
+                            <!--存在子栏目-->
+                            <a th:if="${not #lists.isEmpty(column.columnChilds)}" class="dropdown-toggle"
+                               data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                [[${column.name}]]<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" th:if="${not #lists.isEmpty(column.columnChilds)}">
+                                <li th:each="child : ${column.columnChilds}">
+                                    <!--非外部链接-->
+                                    <a th:if="${child.outLink eq '1'}" th:name="${child.columnFlag}"
+                                       th:href="${child.columnFlag+'.html'}"
+                                       th:text="${child.name}"></a>
+                                    <!--外部链接-->
+                                    <a th:if="${child.outLink eq '0'}" th:href="${child.href}" th:text="${child.name}"
+                                       th:target="_blank"></a>
+                                </li>
+                                <!--
+                                 <li role="separator" class="divider"></li>
+                                 <li class="dropdown-header">Nav header</li>
+                                 -->
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div class="loock">
+    <!-- Carousel ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" th:if="${not #lists.isEmpty(advertisings)}">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" th:data-slide-to="${advertisingStat.index}"
+                th:each="advertising,advertisingStat : ${advertisings}"
+                th:class="${advertisingStat.index == 0 ?'active':''}"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div th:class="${advertisingStat.index == 0? 'item active ':'item'}"
+                 th:each="advertising,advertisingStat : ${advertisings}">
+                <img class="first-slide" th:src="${advertising.imageUrl}" th:alt="${advertising.name}">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1 th:if="${not #strings.isEmpty(advertising.title)}" th:text="${advertising.title}"></h1>
+                        <p th:if="${not #strings.isEmpty(advertising.content)}" th:text="${advertising.content}"></p>
+                        <p th:if="${not #strings.isEmpty(advertising.jumpUrl)}">
+                            <a class="btn btn-lg btn-primary" th:href="${advertising.jumpUrl}" th:target="_blank"
+                               role="button">查看</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">上一页</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">下一页</span>
+        </a>
+    </div><!-- /.carousel -->
+
+
+    <!-- Marketing messaging and featurettes ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+        <!-- Three columns of text below the carousel -->
+        <div th:if="${not #lists.isEmpty(solutions)}">
+            <div class="row">
+                <div class="text-line">
+                    <h2>
+                        <span><b th:text="${solutions.get(0).columnName}"></b></span>
+                    </h2>
+                </div>
+                <hr>
+                <div class="col-lg-4" th:each="solution,solutionsStat : ${solutions}">
+                    <img class="img-circle" th:if="${not #strings.isEmpty(solution.image)}"
+                         th:src="${solution.image}"
+                         alt="Generic placeholder image" width="140" height="140">
+                    <h2 th:if="${not #strings.isEmpty(solution.title)}" th:text="${solution.title}"></h2>
+                    <p th:if="${not #strings.isEmpty(solution.description)}"
+                       th:text="${#strings.abbreviate(solution.description,98)}"></p>
+                    <p><a class="btn btn-primary btn-lg" data-toggle="modal" th:data-target="${'#'+solution.id}">查看详情
+                        &raquo;</a></p>
+                    <!-- 模态框（Modal） -->
+                    <div class="modal fade" th:id="${solution.id}" th:tabindex="${solutionsStat.index}" role="dialog"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p th:utext="${solution.content}"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+            <hr class="featurette-divider">
+        </div>
+
+        <!-- START THE FEATURETTES -->
+        <div th:if="${not #lists.isEmpty(newss)}">
+            <div class="text-line">
+                <h2>
+                    <span><b th:text="${newss.get(0).columnName}"></b></span>
+                </h2>
+            </div>
+            <hr>
+            <div th:each="news,newsStat : ${newss}">
+                <div class="row featurette">
+                    <div th:class="${newsStat.index%2 == 0? 'col-md-7 col-md-push-5': 'col-md-7'}">
+                        <h2 class="featurette-heading" th:if="${not #strings.isEmpty(news.title)}"
+                            th:text="${news.title}">
+                            <span class="text-muted">It'll blow your mind.</span>
+                        </h2>
+                        <a style="color: #0f74a8;cursor: pointer" class="lead" data-toggle="modal"
+                           th:data-target="${'#'+news.id}" th:if="${not #strings.isEmpty(news.description)}"
+                           th:text="${#strings.abbreviate(news.description,180)}"></a>
+                    </div>
+                    <div th:class="${newsStat.index%2 == 0? 'col-md-5 col-md-pull-7': 'col-md-5'}">
+                        <img class="featurette-image img-responsive center-block"
+                             th:if="${not #strings.isEmpty(news.image)}" th:src="${news.image}"
+                             alt="Generic placeholder image">
+                    </div>
+                    <!-- 模态框（Modal） -->
+                    <div class="modal fade" th:id="${news.id}" th:tabindex="${newsStat.index}" role="dialog"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p th:utext="${news.content}"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+                </div>
+                <hr class="featurette-divider">
+            </div>
+        </div>
+        <!-- /END THE FEATURETTES -->
+
+        <div class="container" th:if="${not #lists.isEmpty(contacts)}">
+            <hr>
+            <div class="row">
+                <div class="container col-sm-12" th:each="contact,contactStat : ${contacts}">
+                    <img th:if="${contactStat.index==0}" th:src="${contact.image}"
+                         class="img-responsive center-block" alt="Cinque Terre">
+                    <p th:if="${contactStat.index==0 && not #strings.isEmpty(contact.content)}"
+                       th:utext="${contact.content}"></p>
+                </div>
+            </div>
+            <hr class="featurette-divider">
+        </div>
+
+        <div class="container" th:if="${not #lists.isEmpty(abouts)}">
+            <hr>
+            <div class="row">
+                <div class="container col-sm-12" th:each="about,abouttStat : ${abouts}">
+                    <img th:if="${abouttStat.index==0}" th:src="${about.image}"
+                         class="img-responsive center-block" alt="Cinque Terre">
+                    <p th:if="${abouttStat.index==0 && not #strings.isEmpty(about.content)}"
+                       th:utext="${about.content}"></p>
+                </div>
+            </div>
+            <hr class="featurette-divider">
+        </div>
+        <div class="container" th:if="${not #lists.isEmpty(developHistorys)}">
+            <div class="row">
+                <div class="text-line">
+                    <h2>
+                        <span><b th:text="${developHistorys.get(0).columnName}"></b></span>
+                    </h2>
+                </div>
+                <hr>
+                <div class="col-sm-12 timeline timeline-line-dotted">
+                    <div th:each="developHistory,developHistoryStat : ${developHistorys}">
+                        <span class="timeline-label">
+                            <span class="label label-primary" th:if="${not #strings.isEmpty(developHistory.title)}"
+                                  th:text="${developHistory.title}"></span>
+                        </span>
+                        <div class="timeline-item">
+                            <div class="timeline-point timeline-point-success">
+                                <i class="fa fa-money"></i>
+                            </div>
+                            <div class="timeline-event">
+                                <div class="timeline-heading">
+                                    <h4 th:if="${not #strings.isEmpty(developHistory.description)}"
+                                        th:text="${developHistory.description}"></h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p th:if="${not #strings.isEmpty(developHistory.content)}"
+                                       th:utext="${developHistory.content}"></p>
+                                </div>
+                                <div class="timeline-footer">
+                                    <p class="text-right" th:if="${not #strings.isEmpty(developHistory.title)}"
+                                       th:text="${developHistory.title}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="featurette-divider">
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="navbar-fixed-bottom" style="background-color: #edebef">
+            <p class="pull-right" style=""><a href="#">回到顶部</a></p>
+            <div style="text-align: center">
+                <p th:if="${site != null && not #strings.isEmpty(site.copyright)}" th:utext="${site.copyright}"></p>
+            </div>
+        </footer>
+
+    </div><!-- /.container -->
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script>window.jQuery || document.write('<script th:src="@{/js/jquery.min.js}"><\/script>')</script>
+<script th:src="@{/cms/bootstrap-v3/dist/js/bootstrap.min.js}"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script th:src="@{/cms/bootstrap-v3/docs/assets/js/vendor/holder.min.js}"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script th:src="@{/cms/bootstrap-v3/docs/assets/js/ie10-viewport-bug-workaround.js}"></script>
+<div style="display:none">
+    <audio id="au" autoplay="autoplay">
+        <source th:src="${site.bgMusic}" type="audio/mp3"></audio>
+    </audio>
+</div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        window.onload = function(){
+            setInterval("toggleSound()",100)
+        };
+    });
+
+    function toggleSound() {
+        var music = document.getElementById("au");//获取ID
+        if (music.paused) { //判读是否播放
+            music.paused=false;
+            music.play(); //没有就播放
+        }
+    }
+</script>
+</html>

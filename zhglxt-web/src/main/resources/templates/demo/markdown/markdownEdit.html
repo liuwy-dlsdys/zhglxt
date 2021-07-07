@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MarkDown在线编辑器editor.md</title>
+    <th:block th:include="include :: header('MarkDown在线编辑器editor.md')"/>
+    <th:block th:include="include :: editorMd-css"/>
+</head>
+<body>
+<div>
+    <header>
+        <h1>MarkDown在线编辑器editor.md</h1>
+        <b>github地址：https://github.com/pandao/editor.md</b><br>
+        <b>文档地址：http://editor.md.ipandao.com/</b>
+    </header>
+    <form name="mdEditorForm">
+        <div id="editormd">
+            <textarea style="display:none;" name="content"></textarea>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<div th:include="include :: editorMd-js"></div>
+<script type="text/javascript">
+    var prefix = ctx + "demo/markdown";
+    var testEditor;
+
+    $(function() {
+        init()
+    });
+
+    function init(){
+        testEditor = editormd("editormd", {
+            width: "95%",
+            height: 700,
+            syncScrolling : "single",
+            path: ctx +"/editormd/lib/",
+            // 启用上传图片
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp","pdf"],
+            // 上传图片的请求接口
+            imageUploadURL : ctx + "common/markdown/upload",
+            /*工具栏置顶*/
+            toolbarAutoFixed: true,
+            /*工具栏标题*/
+            tocTitle: "使用教程",
+            // 开启流程图
+            flowChart : true,
+            // 启用栏目下拉
+            tocDropdown: true,
+            // 开启表情符号
+            emoji : true,
+            // 工具栏图标的设置
+            toolbarIcons : function () {
+                return ["undo","redo","|","bold","del","italic","quote","ucwords","uppercase","lowercase","|",
+                    "h1","h2","h3","h4","h5","h6","|","list-ul","list-ol","hr","|",
+                    "link","reference-link","image","code","preformatted-text","code-block","table","datetime","emoji","html-entities","pagebreak","|",
+                    "goto-line","watch","preview","fullscreen","clear","search","|",
+                    "help", "||", "publish"];
+            },
+            // 自定义图标后，定义图标对应的文字
+            toolbarIconTexts: {
+                publish: "<span bgcolor='gray' style='color: #ff6996'><b>查看预览</b></span>"
+            },
+            // 自定义图标的触发
+            toolbarHandlers : {
+                publish: function (cm, icon, cursor, selection) {
+                    mdEditorForm.method = "post";
+                    mdEditorForm.action = prefix+"/publish";//提交至服务器的路径
+                    mdEditorForm.submit();
+                }
+            }
+        }).imagePaste();
+    }
+</script>
+</body>
+</html>

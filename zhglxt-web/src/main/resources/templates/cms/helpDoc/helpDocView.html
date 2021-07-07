@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${helpDoc.name}"></title>
+    <th:block th:include="include :: header('查看文档')"/>
+    <th:block th:include="include :: editorMd-preview-css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <input hidden th:value="${helpDoc.name}" id="tocTitle">
+        <div class="col-md-12 column">
+            <div id="editormd">
+                <textarea style="display:none;" th:utext="${helpDoc.content}"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<div th:include="include :: editorMd-preview-js"></div>
+<script type="text/javascript">
+    var testEditor;
+
+    $(function () {
+        testEditor = editormd.markdownToHTML("editormd", {
+            width: "95%",
+            height: 700,
+            path: ctx +"/editormd/lib/",
+            tocDropdown:true,
+            tocTitle: $("#tocTitle").val(),
+            preview: true,
+            watch: true,
+            emoji : true,
+            editor: false,
+            flowChart : true,
+        })
+    })
+
+</script>
+</body>
+</html>

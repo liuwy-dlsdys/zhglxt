@@ -1,0 +1,34 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.zhglxt</groupId>
+        <artifactId>zhglxt</artifactId>
+        <version>4.6.2</version>
+    </parent>
+    <artifactId>zhglxt-quartz</artifactId>
+    <description>
+        quartz定时任务
+    </description>
+
+    <dependencies>
+
+        <!-- 定时任务 -->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mchange</groupId>
+                    <artifactId>c3p0</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 通用工具 -->
+        <dependency>
+            <groupId>com.zhglxt</groupId>
+            <artifactId>zhglxt-common</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>

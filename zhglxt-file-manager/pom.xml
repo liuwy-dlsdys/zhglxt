@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>zhglxt</artifactId>
+        <groupId>com.zhglxt</groupId>
+        <version>4.6.2</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>zhglxt-file-manager</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>zhglxt-file-CKFinder</module>
+        <module>zhglxt-file-CKFinderPlugin-FileEditor</module>
+        <module>zhglxt-file-CKFinderPlugin-ImageResize</module>
+        <module>zhglxt-file-CKFinderPlugin-Watermark</module>
+    </modules>
+
+    <properties>
+        <servlet.version>2.5</servlet.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet.version}</version>
+        </dependency>
+    </dependencies>
+</project>

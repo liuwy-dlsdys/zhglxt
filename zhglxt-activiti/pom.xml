@@ -1,0 +1,67 @@
+<project
+>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.zhglxt</groupId>
+        <artifactId>zhglxt</artifactId>
+        <version>4.6.2</version>
+    </parent>
+    <artifactId>zhglxt-activiti</artifactId>
+
+    <description>
+        工作流程模块
+    </description>
+
+    <dependencies>
+        <!-- SpringBoot集成thymeleaf模板 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- activiti -->
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-engine</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mybatis</artifactId>
+                    <groupId>org.mybatis</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-modeler</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-diagram-rest</artifactId>
+        </dependency>
+
+        <!-- 系统模块 -->
+        <dependency>
+            <groupId>com.zhglxt</groupId>
+            <artifactId>zhglxt-system</artifactId>
+        </dependency>
+        <!-- framework模块 -->
+        <dependency>
+            <groupId>com.zhglxt</groupId>
+            <artifactId>zhglxt-framework</artifactId>
+        </dependency>
+
+        <!--shiro核心包-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>

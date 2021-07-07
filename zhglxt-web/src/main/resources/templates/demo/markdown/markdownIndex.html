@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>查看预览</title>
+    <th:block th:include="include :: header('查看预览')"/>
+    <th:block th:include="include :: editorMd-preview-css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <header>
+                <h1>MarkDown在线编辑器editor.md</h1>
+                <b>github地址：https://github.com/pandao/editor.md</b><br>
+                <b>文档地址：http://editor.md.ipandao.com/</b>
+            </header>
+            <div id="editormd">
+                <textarea style="display:none;" th:utext="${content}"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<div th:include="include :: editorMd-preview-js"></div>
+<script type="text/javascript">
+    var prefix = ctx + "demo/markdown";
+    var testEditor;
+
+    $(function () {
+        testEditor = editormd.markdownToHTML("editormd", {
+            width: "95%",
+            height: 700,
+            path: ctx +"/editormd/lib/",
+            tocDropdown:true,
+            tocTitle:"使用教程",
+            preview: true,
+            watch: true,
+            emoji : true,
+            editor: false,
+            flowChart : true,
+        })
+
+    })
+
+</script>
+</body>
+</html>
