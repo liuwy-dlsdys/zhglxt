@@ -83,3 +83,38 @@
 ## Client specification
 1.  支持大部分主流浏览器（如：IE9+浏览器、Google Chrome、火狐浏览器、360浏览器等等。。。)
 2.  支持手机、平板等主流设备
+
+
+## instructions
+1. 安装好系统所需的运行、开发环境（JDK1.8+、MySQL5.7+、maven3.6+、Git环境等...）
+2. 使用IntelliJ IDEA拉取并打开项目
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/1.jpg?versionId=CAEQDRiBgICrx._C0xciIGY5YjU5ZjI3ZmY4NDQxMjRhZjRjMmE0YmQxNDM5Y2E0)
+
+3. 复制项目Git地址
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/2.jpg?versionId=CAEQDRiBgMC26veB1BciIGQ5MzJhMDdkZTFlNjRjYjE5Y2VhZmVjZjBjNGQ0M2Q4)
+
+4. 接着填入IDEA
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/3.jpg?versionId=CAEQDRiBgMD8t._C0xciIGJlNzQwY2Y2ZGRmZjQ0ZjI4YzVhMzU2YmIxMzNkYjE3)
+
+5. 拉取完毕后，Maven就会自动下载项目所有依赖包到本地中央仓库。目录结构如下
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/4.jpg?versionId=CAEQDRiBgIC2wO_C0xciIDVjOTk0YmJjYzZiNDQzOTI5M2ExM2QyMTRiZWU5MGY2)
+
+6. 第一次需要install安装到本地仓库
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/5.jpg?versionId=CAEQDRiBgMCkxu_C0xciIDI5MDQ3ZTE2YzIxYTRjN2NiZDA1YTI4NzIxMzE2OWI2)
+
+7. 导入数据文件的数据到本地数据库
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/11.jpg?versionId=CAEQDRiBgMCNooSC1BciIGUzNTVlZGUxNTQ3ZDRiNTdiMDQyMDExNDNhNWUyNTVl)
+
+8. 修改MySQL数据库账号密码为自己本地的数据库的账号密码
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/6.jpg?versionId=CAEQDRiBgMDi2O_C0xciIDUxMzY3ZTBmNTljZjQ3YTY5OTAwNDcyMjJiODhmZGQx)
+
+9. 所有步骤没问题之后，就可以直接运行项目了，启动文件
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/7.jpg?versionId=CAEQDRiBgMDm2._C0xciIGZjNzdjNzlkNzZkYzQ5ZDViNzU5ZGU4YTNmNzM5YjE5)
+
+10. 打包部署（本项目是打成war包的方式进行部署的）
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/8.jpg?versionId=CAEQDRiBgICn1O_C0xciIGFjY2NmNmE2NTRhYzQzNjliYjk1ZTQ2NTY1YWM0OGM5)
+
+11. 打包完成后，到项目的目录下找到zhglxt\zhglxt-web\target\zhglxt-web.war包，重命名为zhglxt.war，然后直接放到Tomcat的webapps目录下，就可以运行起来了
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/9.jpg?versionId=CAEQDRiBgICwze_C0xciIGUwOTYwNmE2ZWM2ODQzODZiZjZmYmRlYzI0ZTA0Mjg3)
+
+12. 本项目不需要修改过多的配置信息，即可打包、部署、运行
