@@ -110,7 +110,7 @@
 9. 所有步骤没问题之后，就可以直接运行项目了，启动文件
 ![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/7.jpg?versionId=CAEQDRiBgMDm2._C0xciIGZjNzdjNzlkNzZkYzQ5ZDViNzU5ZGU4YTNmNzM5YjE5)
 
-10. 访问路径：localhost:8888/zhglxt  登录账号密码：system/system
+10. 访问路径：localhost:8888/zhglxt  登录账号密码：system/system【提示：系统中的所有用户的密码与该登录名一致。如 test1密码为test1；test2密码为test2】
 
 11. 打包部署（本项目是打成war包的方式进行部署的）
 ![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/8.jpg?versionId=CAEQDRiBgICn1O_C0xciIGFjY2NmNmE2NTRhYzQzNjliYjk1ZTQ2NTY1YWM0OGM5)
@@ -119,3 +119,22 @@
 ![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/9.jpg?versionId=CAEQDRiBgICwze_C0xciIGUwOTYwNmE2ZWM2ODQzODZiZjZmYmRlYzI0ZTA0Mjg3)
 
 13. 本项目不需要修改过多的配置信息，即可打包、部署、运行
+
+## 系统截图
+1. 后台登录页面
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/12.jpg?versionId=CAEQDRiBgMCMmpHl1BciIGI2ZTFlOTI3MjQ3NzRmMjA4YjQ1ZjM5ZjE0YTgxODBl)
+
+2. 后台首页
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/13.jpg?versionId=CAEQDRiBgIDRtJHl1BciIDlkZWM4YzlmNzQxNjRmNzdiODEwNWE0OGVmNzUyZmY1)
+
+3. CMS首页
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/14.jpg?versionId=CAEQDRiBgIDPr5Hl1BciIGZkNTdhMTBiN2ZkZjRiNzM4ZGVlYjc4YmYzZTQzYjBm)
+
+4. 工作流
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/15.jpg?versionId=CAEQDRiBgMDUppHl1BciIDIwZGE2Y2U0OWZhZjRkMWFhNzAzNzc1NGUwZGZmMzA3)
+
+5. 文件管理器
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/16.jpg?versionId=CAEQDRiBgMCVoJHl1BciIGFlNWU3M2E4ZmExMjRjZGU4YzM4ZWMyOTRmNzE2YjVk)
+
+6. 通知通告
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/17.jpg?versionId=CAEQDRiBgMD_sJHl1BciIDEzMDJlN2I3ZTJiNTQwMjdiZDJiYTlkZjAyOGMxNDI2)
