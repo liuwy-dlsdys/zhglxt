@@ -472,7 +472,7 @@ $(function () {
         $('.page-tabs-content').find('.active i').trigger("click");
     }
 
-    //关闭其他选项卡
+    //关闭其它选项卡
     function tabCloseOther() {
         $('.page-tabs-content').children("[data-id]").not(":first").not(".active").each(function () {
             $('.zhglxt_iframe[data-id="' + $(this).data('id') + '"]').remove();
@@ -525,7 +525,7 @@ $(function () {
     // 关闭当前
     $('.tabCloseCurrent').on('click', tabCloseCurrent);
 
-    // 关闭其他
+    // 关闭其它
     $('.tabCloseOther').on('click', tabCloseOther);
 
     // 关闭全部
@@ -575,7 +575,7 @@ $(function () {
                 }
             },
             "close_other": {
-                name: "关闭其他",
+                name: "关闭其它",
                 icon: "fa-window-close-o",
                 callback: function (key, opt) {
                     setActiveTab(this);

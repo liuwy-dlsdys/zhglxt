@@ -129,6 +129,7 @@
 
 3. CMS首页
 ![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/14.jpg?versionId=CAEQDRiBgIDPr5Hl1BciIGZkNTdhMTBiN2ZkZjRiNzM4ZGVlYjc4YmYzZTQzYjBm)
+如需CMS官网资源文件（图片、音频），下载地址：https://pan.baidu.com/s/1t10HdP7w6QA-KukDF1av3A  提取码：asdf 解压后整个文件夹复制到系统D盘即可
 
 4. 工作流
 ![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/15.jpg?versionId=CAEQDRiBgMDUppHl1BciIDIwZGE2Y2U0OWZhZjRkMWFhNzAzNzc1NGUwZGZmMzA3)

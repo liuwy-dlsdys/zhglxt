@@ -22,6 +22,7 @@ public class ZhglxtApplication extends SpringBootServletInitializer {
         System.out.println("系统启动成功。。。");
         Environment env = run.getEnvironment();
         System.out.println("系统访问地址:http://localhost:" + env.getProperty("server.port") + env.getProperty("server.servlet.context-path"));
+        System.out.println("CMS官网访问地址:http://localhost:" + env.getProperty("server.port") + env.getProperty("server.servlet.context-path")+"/cms/index.html");
         System.out.println("系统接口文档（swagger3）:http://localhost:" + env.getProperty("server.port") + env.getProperty("server.servlet.context-path") + "/swagger-ui/index.html（登录后访问）");
         System.out.println("系统接口文档（swagger3+knife4j）:http://localhost:" + env.getProperty("server.port") + env.getProperty("server.servlet.context-path") + "/doc.html（登录后访问）");
     }

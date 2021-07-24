@@ -36,14 +36,16 @@
             <artifactId>activiti-spring</artifactId>
         </dependency>
 
+        <!--activiti在线建模器依赖-->
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-modeler</artifactId>
+            <version>5.23.0</version>
         </dependency>
-
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-diagram-rest</artifactId>
+            <version>5.23.0</version>
         </dependency>
 
         <!-- 系统模块 -->
