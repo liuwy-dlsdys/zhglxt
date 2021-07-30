@@ -2,6 +2,8 @@ package com.zhglxt.framework.config;
 
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.xss.XssFilter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -17,12 +19,13 @@ import java.util.Map;
  * @author ruoyi
  */
 @Component
-@ConfigurationProperties(prefix = "xss")
+@ConditionalOnProperty(value = "xss.enabled", havingValue = "true")
 public class FilterConfig {
-    private String enabled;
 
+    @Value("${xss.excludes}")
     private String excludes;
 
+    @Value("${xss.urlPatterns}")
     private String urlPatterns;
 
     @Bean
@@ -32,35 +35,10 @@ public class FilterConfig {
         registration.setFilter(new XssFilter());
         registration.addUrlPatterns(StringUtils.split(urlPatterns, ","));
         registration.setName("xssFilter");
-        registration.setOrder(Integer.MAX_VALUE);
+        registration.setOrder(FilterRegistrationBean.HIGHEST_PRECEDENCE);
         Map<String, String> initParameters = new HashMap<String, String>();
         initParameters.put("excludes", excludes);
-        initParameters.put("enabled", enabled);
         registration.setInitParameters(initParameters);
         return registration;
-    }
-
-    public String getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(String enabled) {
-        this.enabled = enabled;
-    }
-
-    public String getExcludes() {
-        return excludes;
-    }
-
-    public void setExcludes(String excludes) {
-        this.excludes = excludes;
-    }
-
-    public String getUrlPatterns() {
-        return urlPatterns;
-    }
-
-    public void setUrlPatterns(String urlPatterns) {
-        this.urlPatterns = urlPatterns;
     }
 }

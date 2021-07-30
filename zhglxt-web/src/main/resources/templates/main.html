@@ -44,14 +44,35 @@
                 <div class="ibox-content no-padding">
                     <div class="panel-body">
                         <div class="panel-group" id="version">
+                            <!--9.3.0-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#version" href="#v93">v9.3.0</a><code class="pull-right">2021.07.30-now</code>
+                                    </h5>
+                                </div>
+                                <div id="v93" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <ol>
+                                            <li>启用父部门状态排除顶级节点</li>
+                                            <li>定时任务屏蔽http(s)远程调用</li>
+                                            <li>查询表格指定列值增加deDuplication是否去重属性</li>
+                                            <li>代码生成富文本默认dialogsInBody属性</li>
+                                            <li>修改部门顶级节点报错问题</li>
+                                            <li>优化XSS跨站脚本过滤</li>
+                                            <li>去除默认分页合理化参数</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
                             <!--9.2.0-->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#version" href="#v92">v9.2.0</a><code class="pull-right">2021.06.16-now</code>
+                                        <a data-toggle="collapse" data-parent="#version" href="#v92">v9.2.0</a><code class="pull-right">2021.06.16-2021.07.30</code>
                                     </h5>
                                 </div>
-                                <div id="v92" class="panel-collapse collapse in">
+                                <div id="v92" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ol>
                                             <li>修复示例演示-部分报表示例无法显示问题</li>
@@ -1639,24 +1660,6 @@
                         <br>
                         <b>苦心人，天不负，卧薪尝胆，三千越甲可吞吴</b>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-4">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>请小哥喝杯咖啡</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="alert alert-warning">
-                        请小哥喝杯咖啡（点击图片放大）
-                    </div>
-                    <p id="pay-qrcode">
-                        <a href="javascript:;">
-                            <img th:src="@{/img/pay.png}" width="100%" alt="请使用手机支付宝或者微信扫码支付">
-                        </a>
-                    </p>
                 </div>
             </div>
         </div>

@@ -477,20 +477,21 @@ var table = {
                 var currentId = $.common.isEmpty(tableId) ? table.options.id : tableId;
                 $("#" + currentId).bootstrapTable('refreshOptions', options);
             },
-            // 查询表格指定列值
-            selectColumns: function (column) {
+            // 查询表格指定列值 deDuplication（ true去重、false不去重）
+            selectColumns: function(column, deDuplication) {
+                var distinct = $.common.isEmpty(deDuplication) ? true : deDuplication;
                 var rows = $.map($("#" + table.options.id).bootstrapTable('getSelections'), function (row) {
                     return $.common.getItemField(row, column);
                 });
                 if ($.common.isNotEmpty(table.options.rememberSelected) && table.options.rememberSelected) {
                     var selectedRows = table.rememberSelecteds[table.options.id];
-                    if ($.common.isNotEmpty(selectedRows)) {
+                    if($.common.isNotEmpty(selectedRows)) {
                         rows = $.map(table.rememberSelecteds[table.options.id], function (row) {
                             return $.common.getItemField(row, column);
                         });
                     }
                 }
-                return $.common.uniqueFn(rows);
+                return distinct ? $.common.uniqueFn(rows) : rows;
             },
             // 获取当前页选中或者取消的行ID
             affectedRowIds: function (rows) {
