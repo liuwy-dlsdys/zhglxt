@@ -6,7 +6,6 @@ import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.enums.BusinessType;
-import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.system.entity.SysNotice;
 import com.zhglxt.system.service.ISysNoticeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -78,7 +77,7 @@ public class SysNoticeController extends BaseController {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
-        notice.setCreateBy(ShiroUtils.getLoginName());
+        notice.setCreateBy(getLoginName());
         return toAjax(noticeService.insertNotice(notice));
     }
 
@@ -102,7 +101,7 @@ public class SysNoticeController extends BaseController {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
-        notice.setUpdateBy(ShiroUtils.getLoginName());
+        notice.setUpdateBy(getLoginName());
         return toAjax(noticeService.updateNotice(notice));
     }
 

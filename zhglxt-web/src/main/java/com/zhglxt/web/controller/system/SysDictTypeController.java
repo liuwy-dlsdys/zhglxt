@@ -9,7 +9,6 @@ import com.zhglxt.common.core.entity.Ztree;
 import com.zhglxt.common.core.entity.sys.SysDictType;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.enums.BusinessType;
-import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.poi.ExcelUtil;
 import com.zhglxt.system.service.ISysDictTypeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -82,7 +81,7 @@ public class SysDictTypeController extends BaseController {
         if (UserConstants.DICT_TYPE_NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict))) {
             return error("新增字典'" + dict.getDictName() + "'失败，字典类型已存在");
         }
-        dict.setCreateBy(ShiroUtils.getLoginName());
+        dict.setCreateBy(getLoginName());
         return toAjax(dictTypeService.insertDictType(dict));
     }
 
@@ -109,7 +108,7 @@ public class SysDictTypeController extends BaseController {
         if (UserConstants.DICT_TYPE_NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict))) {
             return error("修改字典'" + dict.getDictName() + "'失败，字典类型已存在");
         }
-        dict.setUpdateBy(ShiroUtils.getLoginName());
+        dict.setUpdateBy(getLoginName());
         return toAjax(dictTypeService.updateDictType(dict));
     }
 

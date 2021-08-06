@@ -7,7 +7,6 @@ import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.enums.BusinessType;
-import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.poi.ExcelUtil;
 import com.zhglxt.system.entity.SysPost;
 import com.zhglxt.system.service.ISysPostService;
@@ -97,7 +96,7 @@ public class SysPostController extends BaseController {
         } else if (UserConstants.POST_CODE_NOT_UNIQUE.equals(postService.checkPostCodeUnique(post))) {
             return error("新增岗位'" + post.getPostName() + "'失败，岗位编码已存在");
         }
-        post.setCreateBy(ShiroUtils.getLoginName());
+        post.setCreateBy(getLoginName());
         return toAjax(postService.insertPost(post));
     }
 
@@ -126,7 +125,7 @@ public class SysPostController extends BaseController {
         } else if (UserConstants.POST_CODE_NOT_UNIQUE.equals(postService.checkPostCodeUnique(post))) {
             return error("修改岗位'" + post.getPostName() + "'失败，岗位编码已存在");
         }
-        post.setUpdateBy(ShiroUtils.getLoginName());
+        post.setUpdateBy(getLoginName());
         return toAjax(postService.updatePost(post));
     }
 

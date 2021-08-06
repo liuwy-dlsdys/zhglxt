@@ -1,32 +1,28 @@
-package ${packageName}import com.zhglxt.common.core.domain.Ztree;
-import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.util.DateUtils;
-import com.zhglxt.common.util.StringUtils;
+package ${packageName}.service.impl;
+
+import java.util.List;
+#if($table.tree)
+import java.util.ArrayList;
+import com.zhgxlt.common.core.entity.Ztree;
+#end
+#foreach ($column in $columns)
+#if($column.javaField == 'createTime' || $column.javaField == 'updateTime')
+import com.zhgxlt.common.utils.DateUtils;
+#break
+#end
+#end
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
+#if($table.sub)
 import java.util.ArrayList;
-import java.util.List;
-
-.service.impl;
-    #if($table.tree)
-    #end
-    #foreach($column in $columns)
-        #if($column.javaField=='createTime'||$column.javaField=='updateTime')
-            #break
-        #end
-    #end
-    #if($table.sub)
-        ${packageName}
-            .domain.${subClassName};
-    #end
-    ${packageName}
-        .mapper.${ClassName}Mapper;
-    ${packageName}
-        .domain.${ClassName};
-    ${packageName}
-        .service.I${ClassName}Service;
+import com.zhgxlt.common.utils.StringUtils;
+import org.springframework.transaction.annotation.Transactional;
+import ${packageName}.entity.${subClassName};
+#end
+import ${packageName}.mapper.${ClassName}Mapper;
+import ${packageName}.entity.${ClassName};
+import ${packageName}.service.I${ClassName}Service;
+import com.zhgxlt.common.core.text.Convert;
 
 /**
  * ${functionName}Service业务层处理
@@ -43,13 +39,13 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
     /**
      * 查询${functionName}
      * 
-     * @param ${pkColumn.javaField} ${functionName}ID
+     * @param ${pkColumn.javaField} ${functionName}主键
      * @return ${functionName}
      */
     @Override
-    public ${ClassName} select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField})
+    public ${ClassName} select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaType} ${pkColumn.javaField})
     {
-        return ${className}Mapper.select${ClassName}ById(${pkColumn.javaField});
+        return ${className}Mapper.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField});
     }
 
     /**
@@ -71,7 +67,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
      * @return 结果
      */
 #if($table.sub)
-@Transactional
+    @Transactional
 #end
     @Override
     public int insert${ClassName}(${ClassName} ${className})
@@ -82,9 +78,9 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 #end
 #end
 #if($table.sub)
-    int rows = ${className}Mapper.insert${ClassName}(${className});
-    insert${subClassName}(${className});
-    return rows;
+        int rows = ${className}Mapper.insert${ClassName}(${className});
+        insert${subClassName}(${className});
+        return rows;
 #else
         return ${className}Mapper.insert${ClassName}(${className});
 #end
@@ -97,7 +93,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
      * @return 结果
      */
 #if($table.sub)
-@Transactional
+    @Transactional
 #end
     @Override
     public int update${ClassName}(${ClassName} ${className})
@@ -109,42 +105,42 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 #end
 #if($table.sub)
         ${className}Mapper.delete${subClassName}By${subTableFkClassName}(${className}.get${pkColumn.capJavaField}());
-    insert${subClassName}(${className});
+        insert${subClassName}(${className});
 #end
         return ${className}Mapper.update${ClassName}(${className});
     }
 
     /**
-     * 删除${functionName}对象
+     * 批量删除${functionName}
      * 
-     * @param ids 需要删除的数据ID
+     * @param ${pkColumn.javaField}s 需要删除的${functionName}主键
      * @return 结果
      */
 #if($table.sub)
-@Transactional
+    @Transactional
 #end
     @Override
-    public int delete${ClassName}ByIds(String ids)
+    public int delete${ClassName}By${pkColumn.capJavaField}s(String ${pkColumn.javaField}s)
     {
 #if($table.sub)
-        ${className}Mapper.delete${subClassName}By${subTableFkClassName}s(Convert.toStrArray(ids));
+        ${className}Mapper.delete${subClassName}By${subTableFkClassName}s(Convert.toStrArray(${pkColumn.javaField}s));
 #end
-        return ${className}Mapper.delete${ClassName}ByIds(Convert.toStrArray(ids));
+        return ${className}Mapper.delete${ClassName}By${pkColumn.capJavaField}s(Convert.toStrArray(${pkColumn.javaField}s));
     }
 
     /**
      * 删除${functionName}信息
      * 
-     * @param ${pkColumn.javaField} ${functionName}ID
+     * @param ${pkColumn.javaField} ${functionName}主键
      * @return 结果
      */
     @Override
-    public int delete${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField})
+    public int delete${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaType} ${pkColumn.javaField})
     {
 #if($table.sub)
         ${className}Mapper.delete${subClassName}By${subTableFkClassName}(${pkColumn.javaField});
 #end
-        return ${className}Mapper.delete${ClassName}ById(${pkColumn.javaField});
+        return ${className}Mapper.delete${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField});
     }
 #if($table.tree)
 
@@ -177,13 +173,13 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 
     /**
      * 新增${subTable.functionName}信息
-     *
+     * 
      * @param ${className} ${functionName}对象
      */
     public void insert${subClassName}(${ClassName} ${className})
     {
         List<${subClassName}> ${subclassName}List = ${className}.get${subClassName}List();
-        Long ${pkColumn.javaField} = ${className}.get${pkColumn.capJavaField}();
+        ${pkColumn.javaType} ${pkColumn.javaField} = ${className}.get${pkColumn.capJavaField}();
         if (StringUtils.isNotNull(${subclassName}List))
         {
             List<${subClassName}> list = new ArrayList<${subClassName}>();
@@ -194,7 +190,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
             }
             if (list.size() > 0)
             {
-                    ${className}Mapper.batch${subClassName}(list);
+                ${className}Mapper.batch${subClassName}(list);
             }
         }
     }

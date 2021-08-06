@@ -4,11 +4,13 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.entity.AjaxResult.Type;
+import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.page.PageDomain;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.core.page.TableSupport;
 import com.zhglxt.common.util.DateUtils;
 import com.zhglxt.common.util.ServletUtils;
+import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.util.sql.SqlUtil;
 import org.slf4j.Logger;
@@ -162,5 +164,37 @@ public class BaseController {
      */
     public String redirect(String url) {
         return StringUtils.format("redirect:{}", url);
+    }
+
+    /**
+     * 获取用户缓存信息
+     */
+    public SysUser getSysUser()
+    {
+        return ShiroUtils.getSysUser();
+    }
+
+    /**
+     * 设置用户缓存信息
+     */
+    public void setSysUser(SysUser user)
+    {
+        ShiroUtils.setSysUser(user);
+    }
+
+    /**
+     * 获取登录用户id
+     */
+    public String getUserId()
+    {
+        return getSysUser().getUserId();
+    }
+
+    /**
+     * 获取登录用户名
+     */
+    public String getLoginName()
+    {
+        return getSysUser().getLoginName();
     }
 }

@@ -49,7 +49,7 @@ public class SysIndexController extends BaseController {
     @GetMapping("/index")
     public String index(ModelMap mmap) {
         // 取身份信息
-        SysUser user = ShiroUtils.getSysUser();
+        SysUser user = getSysUser();
         // 根据用户id取出菜单
         List<SysMenu> menus = menuService.selectMenusByUser(user);
         mmap.put("menus", menus);
@@ -87,7 +87,7 @@ public class SysIndexController extends BaseController {
     // 锁定屏幕
     @GetMapping("/lockscreen")
     public String lockscreen(ModelMap mmap) {
-        mmap.put("user", ShiroUtils.getSysUser());
+        mmap.put("user", getSysUser());
         ServletUtils.getSession().setAttribute(ShiroConstants.LOCK_SCREEN, true);
         return "lock";
     }
@@ -96,7 +96,7 @@ public class SysIndexController extends BaseController {
     @PostMapping("/unlockscreen")
     @ResponseBody
     public AjaxResult unlockscreen(String password) {
-        SysUser user = ShiroUtils.getSysUser();
+        SysUser user = getSysUser();
         if (StringUtils.isNull(user)) {
             return AjaxResult.error("服务器超时，请重新登陆");
         }

@@ -9,7 +9,6 @@ import com.zhglxt.common.core.entity.Ztree;
 import com.zhglxt.common.core.entity.sys.SysDept;
 import com.zhglxt.common.core.entity.sys.SysRole;
 import com.zhglxt.common.enums.BusinessType;
-import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.system.service.ISysDeptService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -53,9 +52,9 @@ public class SysDeptController extends BaseController {
      */
     @GetMapping("/add/{parentId}")
     public String add(@PathVariable("parentId") String parentId, ModelMap mmap) {
-        if (!ShiroUtils.getSysUser().isAdmin())
+        if (!getSysUser().isAdmin())
         {
-            parentId = ShiroUtils.getSysUser().getDeptId();
+            parentId = getSysUser().getDeptId();
         }
         mmap.put("dept", deptService.selectDeptById(parentId));
         return prefix + "/add";
@@ -75,7 +74,7 @@ public class SysDeptController extends BaseController {
         if (UserConstants.DEPT_NAME_NOT_UNIQUE.equals(deptService.checkDeptNameUnique(dept))) {
             return error("新增部门'" + dept.getDeptName() + "'失败，部门名称已存在");
         }
-        dept.setCreateBy(ShiroUtils.getLoginName());
+        dept.setCreateBy(getLoginName());
         return toAjax(deptService.insertDept(dept));
     }
 
@@ -111,7 +110,7 @@ public class SysDeptController extends BaseController {
                 && deptService.selectNormalChildrenDeptById(dept.getDeptId()) > 0) {
             return AjaxResult.error("该部门包含未停用的子部门！");
         }
-        dept.setUpdateBy(ShiroUtils.getLoginName());
+        dept.setUpdateBy(getLoginName());
         return toAjax(deptService.updateDept(dept));
     }
 

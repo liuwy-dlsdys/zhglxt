@@ -7,7 +7,6 @@ import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.enums.BusinessType;
-import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.poi.ExcelUtil;
 import com.zhglxt.system.entity.SysConfig;
 import com.zhglxt.system.service.ISysConfigService;
@@ -83,7 +82,7 @@ public class SysConfigController extends BaseController {
         if (UserConstants.CONFIG_KEY_NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
             return error("新增参数'" + config.getConfigName() + "'失败，参数键名已存在");
         }
-        config.setCreateBy(ShiroUtils.getLoginName());
+        config.setCreateBy(getLoginName());
         return toAjax(configService.insertConfig(config));
     }
 
@@ -110,7 +109,7 @@ public class SysConfigController extends BaseController {
         if (UserConstants.CONFIG_KEY_NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
             return error("修改参数'" + config.getConfigName() + "'失败，参数键名已存在");
         }
-        config.setUpdateBy(ShiroUtils.getLoginName());
+        config.setUpdateBy(getLoginName());
         return toAjax(configService.updateConfig(config));
     }
 

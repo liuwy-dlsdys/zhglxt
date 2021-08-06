@@ -9,7 +9,6 @@ import com.zhglxt.common.core.entity.sys.SysRole;
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.enums.BusinessType;
-import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.poi.ExcelUtil;
 import com.zhglxt.framework.shiro.util.AuthorizationUtils;
 import com.zhglxt.system.entity.SysUserRole;
@@ -89,7 +88,7 @@ public class SysRoleController extends BaseController {
         } else if (UserConstants.ROLE_KEY_NOT_UNIQUE.equals(roleService.checkRoleKeyUnique(role))) {
             return error("新增角色'" + role.getRoleName() + "'失败，角色权限已存在");
         }
-        role.setCreateBy(ShiroUtils.getLoginName());
+        role.setCreateBy(getLoginName());
         AuthorizationUtils.clearAllCachedAuthorizationInfo();
         return toAjax(roleService.insertRole(role));
 
@@ -125,7 +124,7 @@ public class SysRoleController extends BaseController {
 //        {
 //            return error("修改角色'" + role.getRoleName() + "'失败，角色权限已存在");
 //        }
-        role.setUpdateBy(ShiroUtils.getLoginName());
+        role.setUpdateBy(getLoginName());
         AuthorizationUtils.clearAllCachedAuthorizationInfo();
         return toAjax(roleService.updateRole(role));
     }
@@ -152,9 +151,9 @@ public class SysRoleController extends BaseController {
         }
         //管理员用户&角色不允许操作
 //    	roleService.checkRoleAllowed(role);
-        role.setUpdateBy(ShiroUtils.getLoginName());
+        role.setUpdateBy(getLoginName());
         if (roleService.authDataScope(role) > 0) {
-            ShiroUtils.setSysUser(userService.selectUserById(ShiroUtils.getSysUser().getUserId()));
+            setSysUser(userService.selectUserById(getUserId()));
             return success();
         }
         return error();

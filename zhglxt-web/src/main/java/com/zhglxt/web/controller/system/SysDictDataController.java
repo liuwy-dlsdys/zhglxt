@@ -7,7 +7,6 @@ import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.entity.sys.SysDictData;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.enums.BusinessType;
-import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.poi.ExcelUtil;
 import com.zhglxt.system.service.ISysDictDataService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -77,7 +76,7 @@ public class SysDictDataController extends BaseController {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
-        dict.setCreateBy(ShiroUtils.getLoginName());
+        dict.setCreateBy(getLoginName());
         return toAjax(dictDataService.insertDictData(dict));
     }
 
@@ -101,7 +100,7 @@ public class SysDictDataController extends BaseController {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
-        dict.setUpdateBy(ShiroUtils.getLoginName());
+        dict.setUpdateBy(getLoginName());
         return toAjax(dictDataService.updateDictData(dict));
     }
 

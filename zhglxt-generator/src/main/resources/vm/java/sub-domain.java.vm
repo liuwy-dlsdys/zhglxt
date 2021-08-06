@@ -1,5 +1,5 @@
 package ${packageName}import com.zhglxt.common.annotation.Excel;
-import com.zhglxt.common.core.domain.BaseEntity;
+import com.zhglxt.common.core.entity.BaseEntity;
 
         .domain;
     #foreach($import in $subImportList)

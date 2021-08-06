@@ -8,6 +8,7 @@ import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.entity.sys.SysRole;
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.page.TableDataInfo;
+import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.enums.BusinessType;
 import com.zhglxt.common.util.IDCardUtils;
 import com.zhglxt.common.util.ShiroUtils;
@@ -19,6 +20,7 @@ import com.zhglxt.system.service.ISysRoleService;
 import com.zhglxt.system.service.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -92,8 +94,7 @@ public class SysUserController extends BaseController {
         }
         ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
         List<SysUser> userList = util.importExcel(file.getInputStream());
-        String operName = ShiroUtils.getSysUser().getLoginName();
-        String message = userService.importUser(userList, updateSupport, operName);
+        String message = userService.importUser(userList, updateSupport, getLoginName());
         return AjaxResult.success(message);
     }
 
@@ -139,7 +140,7 @@ public class SysUserController extends BaseController {
         }
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
-        user.setCreateBy(ShiroUtils.getLoginName());
+        user.setCreateBy(getLoginName());
         return toAjax(userService.insertUser(user));
     }
 
@@ -184,7 +185,7 @@ public class SysUserController extends BaseController {
             return error("修改用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
         }
 
-        user.setUpdateBy(ShiroUtils.getLoginName());
+        user.setUpdateBy(getLoginName());
         return toAjax(userService.updateUser(user));
     }
 
@@ -210,7 +211,7 @@ public class SysUserController extends BaseController {
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         if (userService.resetUserPwd(user) > 0) {
             if (ShiroUtils.getUserId().equals(user.getUserId())) {
-                ShiroUtils.setSysUser(userService.selectUserById(user.getUserId()));
+                setSysUser(userService.selectUserById(user.getUserId()));
             }
             return success();
         }
@@ -254,6 +255,10 @@ public class SysUserController extends BaseController {
     public AjaxResult remove(String ids) {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式，不允许操作");
+        }
+        if (ArrayUtils.contains(Convert.toLongArray(ids), getUserId()))
+        {
+            return error("当前用户不能删除");
         }
         return toAjax(userService.deleteUserByIds(ids));
     }
