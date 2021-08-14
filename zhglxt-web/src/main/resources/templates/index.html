@@ -18,7 +18,7 @@
     <link th:href="@{/css/skins.css}" rel="stylesheet"/>
     <link th:href="@{/zhglxt/css/zhglxt-ui.css}" rel="stylesheet"/>
 </head>
-<body class="fixed-sidebar full-height-layout gray-bg" style="overflow: hidden">
+<body class="fixed-sidebar full-height-layout gray-bg" th:classappend="${isMobile} ? 'canvas-menu'" style="overflow: hidden">
 <div id="wrapper">
 
     <!--左侧导航开始-->

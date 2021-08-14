@@ -1,9 +1,14 @@
 package com.zhglxt.quartz.util;
 
+import com.zhglxt.common.util.DateUtils;
 import org.quartz.CronExpression;
+import org.quartz.TriggerUtils;
+import org.quartz.impl.triggers.CronTriggerImpl;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * cron表达式工具类
@@ -49,5 +54,31 @@ public class CronUtils {
         } catch (ParseException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
+    }
+
+    /**
+     * 通过表达式获取近10次的执行时间
+     *
+     * @param cron 表达式
+     * @return 时间列表
+     */
+    public static List<String> getRecentTriggerTime(String cron)
+    {
+        List<String> list = new ArrayList<String>();
+        try
+        {
+            CronTriggerImpl cronTriggerImpl = new CronTriggerImpl();
+            cronTriggerImpl.setCronExpression(cron);
+            List<Date> dates = TriggerUtils.computeFireTimes(cronTriggerImpl, null, 10);
+            for (Date date : dates)
+            {
+                list.add(DateUtils.parseDateToStr(DateUtils.YYYY_MM_DD_HH_MM_SS, date));
+            }
+        }
+        catch (ParseException e)
+        {
+            return null;
+        }
+        return list;
     }
 }

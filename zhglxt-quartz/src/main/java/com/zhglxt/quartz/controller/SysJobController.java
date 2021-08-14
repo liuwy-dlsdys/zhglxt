@@ -171,4 +171,31 @@ public class SysJobController extends BaseController {
     public boolean checkCronExpressionIsValid(SysJob job) {
         return jobService.checkCronExpressionIsValid(job.getCronExpression());
     }
+
+    /**
+     * Cron表达式在线生成
+     */
+    @GetMapping("/cron")
+    public String cron()
+    {
+        return prefix + "/cron";
+    }
+
+    /**
+     * 查询cron表达式近5次的执行时间
+     */
+    @GetMapping("/queryCronExpression")
+    @ResponseBody
+    public AjaxResult queryCronExpression(@RequestParam(value = "cronExpression", required = false) String cronExpression)
+    {
+        if (jobService.checkCronExpressionIsValid(cronExpression))
+        {
+            List<String> dateList = CronUtils.getRecentTriggerTime(cronExpression);
+            return success(dateList);
+        }
+        else
+        {
+            return error("表达式无效");
+        }
+    }
 }

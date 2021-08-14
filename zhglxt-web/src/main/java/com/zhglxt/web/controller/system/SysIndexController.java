@@ -61,6 +61,8 @@ public class SysIndexController extends BaseController {
         mmap.put("demoEnabled", GlobalConfig.isDemoEnabled());
         mmap.put("isDefaultModifyPwd", initPasswordIsModify(user.getPwdUpdateDate()));
         mmap.put("isPasswordExpired", passwordIsExpiration(user.getPwdUpdateDate()));
+        mmap.put("isMobile", ServletUtils.checkAgentIsMobile(ServletUtils.getRequest().getHeader("User-Agent")));
+
         //通知通告消息数
         NotifyRecord notifyRecord = new NotifyRecord();
         notifyRecord.setUserId(ShiroUtils.getUserId());

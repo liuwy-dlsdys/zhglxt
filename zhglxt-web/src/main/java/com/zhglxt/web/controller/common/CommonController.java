@@ -4,7 +4,6 @@ import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.config.ServerConfig;
 import com.zhglxt.common.constant.Constants;
 import com.zhglxt.common.core.entity.AjaxResult;
-import com.zhglxt.common.core.entity.FileInfo;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.util.file.FileUploadUtils;
 import com.zhglxt.common.util.file.FileUtils;
@@ -22,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +38,8 @@ public class CommonController {
 
     @Value("${server.servlet.context-path}")
     private String contextPath;
+
+    private static final String FILE_DELIMETER = ",";
 
     /**
      * 通用下载请求
@@ -104,7 +105,8 @@ public class CommonController {
         {
             // 上传文件路径
             String filePath = GlobalConfig.getUploadPath();
-            List<FileInfo> fileInfos = new LinkedList<FileInfo>();
+            List<String> fileNames = new ArrayList<String>();
+            List<String> urls = new ArrayList<String>();
             for (MultipartFile file : files)
             {
                 // 上传并返回新文件名称
@@ -115,10 +117,13 @@ public class CommonController {
                         url=url.substring(url.indexOf(contextPath));
                     }
                 }
-
-                fileInfos.add(new FileInfo(fileName, url));
+                fileNames.add(fileName);
+                urls.add(url);
             }
-            return AjaxResult.success(fileInfos);
+            AjaxResult ajax = AjaxResult.success();
+            ajax.put("fileNames", StringUtils.join(fileNames, FILE_DELIMETER));
+            ajax.put("urls", StringUtils.join(urls, FILE_DELIMETER));
+            return ajax;
         }
         catch (Exception e)
         {
