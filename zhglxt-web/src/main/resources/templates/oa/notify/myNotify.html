@@ -53,11 +53,13 @@
             },
                 {
                     field: 'id',
-                    title: '序号'
+                    title: '序号',
+                    visible: false
                 },
                 {
                     field: 'notifyTitle',
                     title: '公告标题',
+                    align: 'center',
                     formatter: function (value, row, index) {
                         return '<a onclick="$.operate.editFullS(\'' + row.id + '\')">' + row.notifyTitle + '</a>';
                     }

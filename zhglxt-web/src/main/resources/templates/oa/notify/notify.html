@@ -73,11 +73,13 @@
             },
                 {
                     field: 'id',
-                    title: '序号'
+                    title: '序号',
+                    visible: false
                 },
                 {
                     field: 'notifyTitle',
                     title: '公告标题',
+                    align: 'center',
                     formatter: function (value, row, index) {
                         //发布状态不允许操作
                         if (row.status == '1') {

@@ -1636,10 +1636,10 @@ INSERT INTO `sys_dict_data` VALUES ('35', '100', '其他', '0', 'sys_oper_type',
 INSERT INTO `sys_dict_data` VALUES ('36', '10', '会议通告', '1', 'oa_notify_type', null, 'default', 'Y', '0', 'system', '2020-12-19 14:07:13', '', null, '会议通告');
 INSERT INTO `sys_dict_data` VALUES ('37', '20', '奖惩通告', '2', 'oa_notify_type', '', 'default', 'N', '0', 'system', '2020-12-19 14:07:40', 'system', '2020-12-19 15:29:16', '奖惩通告');
 INSERT INTO `sys_dict_data` VALUES ('38', '30', '活动通告', '3', 'oa_notify_type', '', 'default', 'N', '0', 'system', '2020-12-19 14:08:05', 'system', '2020-12-19 15:29:19', '活动通告');
-INSERT INTO `sys_dict_data` VALUES ('39', '10', '草稿', '0', 'oa_notify_status', null, 'default', 'Y', '0', 'system', '2020-12-19 14:12:33', '', null, '草稿');
-INSERT INTO `sys_dict_data` VALUES ('40', '20', '发布', '1', 'oa_notify_status', '', 'default', 'N', '0', 'system', '2020-12-19 14:12:48', 'system', '2020-12-19 15:28:43', '发布');
-INSERT INTO `sys_dict_data` VALUES ('41', '10', '未读', '0', 'oa_notify_read', null, 'default', 'Y', '0', 'system', '2020-12-19 22:06:12', '', null, '未读');
-INSERT INTO `sys_dict_data` VALUES ('42', '20', '已读', '1', 'oa_notify_read', null, 'default', 'N', '0', 'system', '2020-12-19 22:06:32', '', null, '已读');
+INSERT INTO `sys_dict_data` VALUES ('39', '10', '草稿', '0', 'oa_notify_status', null, 'success', 'Y', '0', 'system', '2020-12-19 14:12:33', '', null, '草稿');
+INSERT INTO `sys_dict_data` VALUES ('40', '20', '发布', '1', 'oa_notify_status', '', 'info', 'N', '0', 'system', '2020-12-19 14:12:48', 'system', '2020-12-19 15:28:43', '发布');
+INSERT INTO `sys_dict_data` VALUES ('41', '10', '未读', '0', 'oa_notify_read', null, 'danger', 'Y', '0', 'system', '2020-12-19 22:06:12', '', null, '未读');
+INSERT INTO `sys_dict_data` VALUES ('42', '20', '已读', '1', 'oa_notify_read', null, 'primary', 'N', '0', 'system', '2020-12-19 22:06:32', '', null, '已读');
 INSERT INTO `sys_dict_data` VALUES ('43', '40', '系统通告', '4', 'oa_notify_type', null, 'default', 'N', '0', 'system', '2020-12-19 23:59:07', '', null, '系统通告');
 INSERT INTO `sys_dict_data` VALUES ('44', '50', '放假通告', '5', 'oa_notify_type', '', 'default', 'N', '0', 'system', '2020-12-20 19:43:30', 'system', '2020-12-20 19:55:00', '放假通知');
 INSERT INTO `sys_dict_data` VALUES ('45', '10', '请假审批流程', 'leave', 'act_type', '', 'info', 'N', '0', 'system', '2021-06-14 17:22:46', 'system', '2021-06-14 17:26:53', '请假流程');
