@@ -7,7 +7,7 @@ import com.zhglxt.common.annotation.Excels;
 import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.exception.BusinessException;
+import com.zhglxt.common.exception.UtilException;
 import com.zhglxt.common.util.DateUtils;
 import com.zhglxt.common.util.DictUtils;
 import com.zhglxt.common.util.StringUtils;
@@ -156,11 +156,11 @@ public class ExcelUtil<T>
         Map<String, PictureData> pictures;
         if (isXSSFWorkbook)
         {
-            pictures = getSheetPictrues07((XSSFSheet) sheet, (XSSFWorkbook) wb);
+            pictures = getSheetPictures07((XSSFSheet) sheet, (XSSFWorkbook) wb);
         }
         else
         {
-            pictures = getSheetPictrues03((HSSFSheet) sheet, (HSSFWorkbook) wb);
+            pictures = getSheetPictures03((HSSFSheet) sheet, (HSSFWorkbook) wb);
         }
         // 获取最后一个非空行的行下标，比如总行数为n，则返回的为n-1
         int rows = sheet.getLastRowNum();
@@ -411,7 +411,7 @@ public class ExcelUtil<T>
         catch (Exception e)
         {
             log.error("导出Excel异常{}", e.getMessage());
-            throw new BusinessException("导出Excel失败，请联系网站管理员！");
+            throw new UtilException("导出Excel失败，请联系网站管理员！");
         }
         finally
         {
@@ -1157,7 +1157,7 @@ public class ExcelUtil<T>
      * @param workbook 工作簿对象
      * @return Map key:图片单元格索引（1_1）String，value:图片流PictureData
      */
-    public static Map<String, PictureData> getSheetPictrues03(HSSFSheet sheet, HSSFWorkbook workbook)
+    public static Map<String, PictureData> getSheetPictures03(HSSFSheet sheet, HSSFWorkbook workbook)
     {
         Map<String, PictureData> sheetIndexPicMap = new HashMap<String, PictureData>();
         List<HSSFPictureData> pictures = workbook.getAllPictures();
@@ -1190,7 +1190,7 @@ public class ExcelUtil<T>
      * @param workbook 工作簿对象
      * @return Map key:图片单元格索引（1_1）String，value:图片流PictureData
      */
-    public static Map<String, PictureData> getSheetPictrues07(XSSFSheet sheet, XSSFWorkbook workbook)
+    public static Map<String, PictureData> getSheetPictures07(XSSFSheet sheet, XSSFWorkbook workbook)
     {
         Map<String, PictureData> sheetIndexPicMap = new HashMap<String, PictureData>();
         for (POIXMLDocumentPart dr : sheet.getRelations())

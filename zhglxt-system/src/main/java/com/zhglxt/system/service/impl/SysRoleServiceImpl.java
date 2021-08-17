@@ -4,7 +4,7 @@ import com.zhglxt.common.annotation.DataScope;
 import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.entity.sys.SysRole;
 import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.exception.BusinessException;
+import com.zhglxt.common.exception.ServiceException;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.util.spring.SpringUtils;
 import com.zhglxt.system.entity.SysRoleDept;
@@ -143,7 +143,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
             checkRoleAllowed(new SysRole(roleId));
             SysRole role = selectRoleById(roleId);
             if (countUserRoleByRoleId(roleId) > 0) {
-                throw new BusinessException(String.format("%1$s已分配,不能删除", role.getRoleName()));
+                throw new ServiceException(String.format("%1$s已分配,不能删除", role.getRoleName()));
             }
         }
         // 删除角色与菜单关联
@@ -282,7 +282,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
     @Override
     public void checkRoleAllowed(SysRole role) {
         if (StringUtils.isNotNull(role.getRoleId()) && role.isAdmin()) {
-            throw new BusinessException("不允许操作超级管理员角色");
+            throw new ServiceException("不允许操作超级管理员角色");
         }
     }
 

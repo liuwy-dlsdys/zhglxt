@@ -3,7 +3,7 @@ package com.zhglxt.system.service.impl;
 import com.zhglxt.common.constant.Constants;
 import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.exception.BusinessException;
+import com.zhglxt.common.exception.ServiceException;
 import com.zhglxt.common.util.CacheUtils;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.system.entity.SysConfig;
@@ -121,7 +121,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
         for (String configId : configIds) {
             SysConfig config = selectConfigById(configId);
             if (StringUtils.equals(UserConstants.YES, config.getConfigType())) {
-                throw new BusinessException(String.format("内置参数【%1$s】不能删除 ", config.getConfigKey()));
+                throw new ServiceException(String.format("内置参数【%1$s】不能删除 ", config.getConfigKey()));
             }
             configMapper.deleteConfigById(configId);
             CacheUtils.remove(getCacheName(), getCacheKey(config.getConfigKey()));

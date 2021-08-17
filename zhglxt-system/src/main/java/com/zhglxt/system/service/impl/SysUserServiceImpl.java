@@ -5,7 +5,7 @@ import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.entity.sys.SysRole;
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.exception.BusinessException;
+import com.zhglxt.common.exception.ServiceException;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.util.security.Md5Utils;
 import com.zhglxt.system.entity.SysPost;
@@ -370,7 +370,7 @@ public class SysUserServiceImpl implements ISysUserService {
     @Override
     public void checkUserAllowed(SysUser user) {
         if (StringUtils.isNotNull(user.getUserId()) && user.isAdmin()) {
-            throw new BusinessException("不允许操作超级管理员用户");
+            throw new ServiceException("不允许操作超级管理员用户");
         }
     }
 
@@ -424,7 +424,7 @@ public class SysUserServiceImpl implements ISysUserService {
     @Transactional
     public String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName) {
         if (CollectionUtils.isEmpty(userList)) {
-            throw new BusinessException("导入用户数据不能为空！");
+            throw new ServiceException("导入用户数据不能为空！");
         }
         int successNum = 0;
         int failureNum = 0;
@@ -459,7 +459,7 @@ public class SysUserServiceImpl implements ISysUserService {
         }
         if (failureNum > 0) {
             failureMsg.insert(0, "很抱歉，导入失败！共 " + failureNum + " 条数据格式不正确，错误如下：");
-            throw new BusinessException(failureMsg.toString());
+            throw new ServiceException(failureMsg.toString());
         } else {
             //successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
             successMsg.append("恭喜您，成功导入"+ successNum + "条");

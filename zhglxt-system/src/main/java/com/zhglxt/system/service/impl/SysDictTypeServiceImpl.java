@@ -5,7 +5,7 @@ import com.zhglxt.common.core.entity.Ztree;
 import com.zhglxt.common.core.entity.sys.SysDictData;
 import com.zhglxt.common.core.entity.sys.SysDictType;
 import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.exception.BusinessException;
+import com.zhglxt.common.exception.ServiceException;
 import com.zhglxt.common.util.DictUtils;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.system.mapper.SysDictDataMapper;
@@ -115,7 +115,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
         for (String dictId : dictIds) {
             SysDictType dictType = selectDictTypeById(dictId);
             if (dictDataMapper.countDictDataByType(dictType.getDictType()) > 0) {
-                throw new BusinessException(String.format("%1$s已分配,不能删除", dictType.getDictName()));
+                throw new ServiceException(String.format("%1$s已分配,不能删除", dictType.getDictName()));
             }
             dictTypeMapper.deleteDictTypeById(dictId);
             DictUtils.removeDictCache(dictType.getDictType());

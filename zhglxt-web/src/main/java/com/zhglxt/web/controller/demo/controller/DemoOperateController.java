@@ -7,7 +7,7 @@ import com.zhglxt.common.core.page.PageDomain;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.core.page.TableSupport;
 import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.exception.BusinessException;
+import com.zhglxt.common.exception.ServiceException;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.util.poi.ExcelUtil;
 import com.zhglxt.demo.entity.CustomerModel;
@@ -246,7 +246,7 @@ public class DemoOperateController extends BaseController {
      */
     public String importUser(List<UserOperateModel> userList, Boolean isUpdateSupport) {
         if (StringUtils.isNull(userList) || userList.size() == 0) {
-            throw new BusinessException("导入用户数据不能为空！");
+            throw new ServiceException("导入用户数据不能为空！");
         }
         int successNum = 0;
         int failureNum = 0;
@@ -284,7 +284,7 @@ public class DemoOperateController extends BaseController {
         }
         if (failureNum > 0) {
             failureMsg.insert(0, "很抱歉，导入失败！共 " + failureNum + " 条数据格式不正确，错误如下：");
-            throw new BusinessException(failureMsg.toString());
+            throw new ServiceException(failureMsg.toString());
         } else {
             successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
         }

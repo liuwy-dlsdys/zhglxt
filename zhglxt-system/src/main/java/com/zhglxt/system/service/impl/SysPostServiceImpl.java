@@ -2,7 +2,7 @@ package com.zhglxt.system.service.impl;
 
 import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.exception.BusinessException;
+import com.zhglxt.common.exception.ServiceException;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.system.entity.SysPost;
 import com.zhglxt.system.mapper.SysPostMapper;
@@ -86,12 +86,12 @@ public class SysPostServiceImpl implements ISysPostService {
      * @throws Exception
      */
     @Override
-    public int deletePostByIds(String ids) throws BusinessException {
+    public int deletePostByIds(String ids) throws ServiceException {
         String[] postIds = Convert.toStringArray(ids);
         for (String postId : postIds) {
             SysPost post = selectPostById(postId);
             if (countUserPostById(postId) > 0) {
-                throw new BusinessException(String.format("%1$s已分配,不能删除", post.getPostName()));
+                throw new ServiceException(String.format("%1$s已分配,不能删除", post.getPostName()));
             }
         }
         return postMapper.deletePostByIds(postIds);
