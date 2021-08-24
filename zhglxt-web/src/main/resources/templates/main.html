@@ -39,7 +39,7 @@
         <div class="col-sm-4">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>更新日志<i style="color: #ca4440">单击版本号进行 （展开 / 收起） </i></h5>
+                    <h5><i style="color: #ca4440"> 更新日志</i>&nbsp;<i>单击标题进行 （展开 / 收起）</i></h5>
                 </div>
                 <div class="ibox-content no-padding">
                     <div class="panel-body">
@@ -881,21 +881,449 @@
         <div class="col-sm-4">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5><i style="color: #ca4440">开发工具 </i>&<i style="color: #ca4440"> 技术选型</i><i>单击标题进行 （展开 / 收起）</i></h5>
+                    <h5><i style="color: #ca4440"> 技术选型</i>&nbsp;<i>单击标题进行 （展开 / 收起）</i></h5>
                 </div>
                 <div class="ibox-content no-padding">
                     <div class="panel-body">
-                        <div class="panel-group" id="coreTechnology">
+                        <div class="panel-group" id="choosingTechnology">
 
+                            <!--主框架-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#SpringBoot">主框架：SpringBoot 2.2.13</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="SpringBoot" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        Spring Boot：是一款开箱即用框架，提供各种默认配置来简化项目配置。让我们的Spring应用变的更轻量化、更快的入门。
+                                        在主程序执行main函数就可以运行。你也可以打包你的应用为jar并通过使用java -jar来运行你的Web应用。它遵循"约定优先于配置"的原则，
+                                        使用SpringBoot只需很少的配置，大部分的时候直接使用默认的配置即可。可以与Spring Cloud的微服务无缝结合。
+                                        <br>Spring Boot2.0 环境要求必须是jdk8或以上版本，Tomcat8或以上版本。
+                                        <br><br>优点：
+                                        <lo>
+                                            <li>使编码变得简单： 推荐使用注解。</li>
+                                            <li>使配置变得简单： 自动配置、快速构建项目、快速集成新技术能力 没有冗余代码生成和XML配置的要求</li>
+                                            <li>使部署变得简单： 内嵌Tomcat、Jetty、Undertow等web容器，无需以war包形式部署</li>
+                                            <li>使监控变得简单： 自带项目监控</li>
+                                        </lo>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--持久层-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#MyBatis">持久层：Apache MyBatis 3.5.6</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="MyBatis" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs(Plain Ordinary Java Object,普通的 Java对象)映射成数据库中的记录。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Shiro安全控制-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#Shiro">安全框架：Apache Shiro 1.7.1</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Shiro" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Apache Shiro是Java的一个安全框架。Shiro可以帮助我们完成：认证、授权、加密、会话管理、与Web集成、缓存等。
+                                        其不仅可以用在 JavaSE环境，也可以用在 JavaEE 环境。
+                                        <br><br>优点：
+                                        <lo>
+                                            <li>简单的身份认证，支持多种数据源</li>
+                                            <li>对角色的简单的授权，支持细粒度的授权</li>
+                                            <li>不跟任何的框架或者容器捆绑，可以独立运行</li>
+                                        </lo>
+
+                                        <br>特性：
+                                        <lo>
+                                            <li>Authentication身份认证/登录，验证用户是不是拥有相应的身份</li>
+                                            <li>
+                                                Authorization授权，即验证权限，验证某个已认证的用户是否拥有某个权限，即判断用户是否能做事情SessionManagement会话管理，即用户登录后就是一次会话，在没有退出之前，它的所有信息都在会话中
+                                            </li>
+                                            <li>Cryptography加密，保护数据的安全性，如密码加密存储到数据库，而不是明文存储</li>
+                                            <li>Caching缓存，比如用户登录后，其用户信息，拥有的角色/权限不必每次去查，提高效率</li>
+                                            <li>ConcurrencyShiro支持多线程应用的并发验证，即如在一个线程中开启另一个线程，能把权限自动传播过去</li>
+                                            <li>Testing提供测试支持</li>
+                                            <li>RunAs允许一个用户假装为另一个用户（如果他们允许）的身份进行访问</li>
+                                            <li>RememberMe记住我，这是非常常见的功能，即一次登录后，下次再来的话不用登录了</li>
+                                        </lo>
+
+                                        <br>架构：
+                                        <lo>
+                                            <li>Subject主体，代表了当前的“用户”，这个用户不一定是一个具体的人，与当前应用交互的任何东西都是Subject，如网络爬虫，
+                                                机器人等；即一个抽象概念；所有Subject都绑定到SercurityManager，与Subject的所有交互都会委托给SecurityManager；可以把Subject认为是一个门面；SecurityManager才是实际的执行者
+                                            </li>
+                                            <li>SecurityManage安全管理器；即所有与安全有关的操作都会与SecurityManager交互；且它管理着所有Subject；
+                                                可以看出它是Shiro的核心，它负责与后边介绍的其他组件进行交互
+                                            </li>
+                                            <li>Realm域，Shiro从Realm获取安全数据（如用户，角色，权限），就是说SecurityManager要验证用户身份，
+                                                那么它需要从Realm获取相应的用户进行比较以确定用户身份是否合法；也需要从Realm得到用户相应的角色/权限进行验证用户是否能进行操作；可以有1个或多个Realm，我们一般在应用中都需要实现自己的Realm
+                                            </li>
+                                            <li>
+                                                SessionManager如果写过Servlet就应该知道Session的概念，Session需要有人去管理它的生命周期，这个组件就是SessionManager
+                                            </li>
+                                            <li>
+                                                SessionDAODAO大家都用过，数据库访问对象，用于会话的CRUD，比如我们想把Session保存到数据库，那么可以实现自己的SessionDAO，也可以写入缓存，以提高性能
+                                            </li>
+                                            <li>CacheManager缓存控制器，来管理如用户，角色，权限等的缓存的；因为这些数据基本上很少去改变，放到缓存中后可以提高访问的性能</li>
+                                        </lo>
+                                        <br>应用代码通过Subject来进行认证和授权，而Subject又委托给SecurityManager；
+                                        我们需要给Shrio的SecurityManager注入Realm，从而让SecurityManager能得到合法的用户及其权限进行判断，
+                                        Shiro不提供维护用户/权限，而是通过Realm让开发人员自己注入。
+                                        <br>Shiro不会去维护用户，维护权限；这些需要自己去设计/提供；然后通过响应的接口注入给Shiro即可
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--前端框架-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#Bootstrap">前端框架：Bootstrap 3.3</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Bootstrap" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Bootstrap是美国Twitter公司的设计师Mark Otto和Jacob Thornton合作基于HTML、CSS、JavaScript 开发的简洁、直观、强悍的前端开发框架，使得 Web 开发更加快捷。Bootstrap提供了优雅的HTML和CSS规范，它即是由动态CSS语言Less写成。Bootstrap一经推出后颇受欢迎，一直是GitHub上的热门开源项目，包括NASA的MSNBC（微软全国广播公司）的Breaking News都使用了该项目。国内一些移动开发者较为熟悉的框架，如WeX5前端开源框架等，也是基于Bootstrap源码进行性能优化而来。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--前端模板引擎-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#Thymeleaf">前端模板引擎：Thymeleaf 3.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Thymeleaf" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Thymeleaf是一个用于Web和独立Java环境的模板引擎，能够处理HTML、XML、JavaScript、CSS甚至纯文本。能轻易的与Spring
+                                        MVC等
+                                        Web框架进行集成作为Web应用的模板引擎。
+                                        与其它模板引擎（比如FreeMaker）相比，Thymeleaf最大的特点是能够直接在浏览器中打开并正确显示模板页面，
+                                        而不需要启动整个Web应用（更加方便前后端分离，比如方便类似VUE前端设计页面），抛弃JSP吧。Thymeleaf 3.0是一个完全彻底重构的模板引擎，
+                                        极大的减少内存占用和提升性能和并发性，避免v2.1版因大量的输出标记的集合产生的资源占用。Thymeleaf 3.0放弃了大多数面向DOM的处理机制，
+                                        变成了一个基于事件的模板处理器，它通过处理模板标记或文本并立即生成其输出，甚至在新事件之前响应模板解析器/缓存事件。
+                                        Thymeleaf是Spring Boot官方推荐使用的模板。
+                                        <br><br>优点：
+                                        <lo>
+                                            <li>国际化支持非常简单</li>
+                                            <li>语法简单，功能强大。内置大量常用功能，使用非常方便</li>
+                                            <li>可以很好的和Spring集成</li>
+                                            <li>静态html嵌入标签属性，浏览器可以直接打开模板文件，便于前后端联调</li>
+                                            <li>Spring Boot 官方推荐，用户群广</li>
+                                        </lo>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--任务调度框架-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#Quartz">任务调度框架：Quartz 2.3.2</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Quartz" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Quartz是一个完全由java编写的开源作业调度框架。是一个任务调度框架(库)，它几乎可以集成到任何应用系统中。术语”job schedule”似乎为不同的人提供了不同的想法。总之，作业调度是负责执行（或通知）其他软件组件在预定时间执行的服务组件。虽然通过schedule可以简单实现一些系统任务定时执行，当您学习如何使用它来驱动应用程序的业务流程的流程时，Quartz的全部潜力是可以实现的。
+                                        <br><br>Quartz的一些特点 ：
+                                        <lo>
+                                            <li>非常灵活的，并包含多个使用范例，它们可以单独或一起使用，以实现您所期望的行为，并使您能够以最“自然”的方式来编写您的项目的代码</li>
+                                            <li>非常轻量级的，只需要非常少的配置 —— 它实际上可以被跳出框架来使用，如果你的需求是一些相对基本的简单的需求的话</li>
+                                            <li>具有容错机制，并且可以在重启服务的时候持久化你的定时任务，你的任务也不会丢失</li>
+                                            <li>不是一个任务队列——虽然它确实可以在一些小规模应用中合理的作为一个任务队列来使用</li>
+                                            <li>不是一个网格计算引擎——虽然在某些小规模应用中，这样做确实可以达到应用的要求（定时计算、统计一些数据）</li>
+                                            <li>不是一个提供给业务人员的执行服务——它是一个库，很容易集成到应用程序中去做一些未来某时刻可能会一直循环执行的相关的任务</li>
+                                        </lo>
+
+                                        <br><br>Quartz 基础结构 ：
+                                        <br>
+                                        Quartz 对任务调度的领域问题进行了高度抽象，提出了调度器、任务和触发器 3 个核心概念，并在 org.quartz 中通过接口和类对核心概念进行描述。
+                                        <br><br>
+                                        <lo>
+                                            <li>Job：接口。开发者通过实现该接口定义需要执行的任务</li>
+                                            <li>JobDetail：Quartz 在每次执行 Job 时，都重新创建一个 Job 实例，所以它不是直接接受一个 Job 的实例，而是接受一个 Job 实现类，以便运行时通过反射机制实例化 Job。因此需要一个类来描述 Job 的实现类及其他相关的静态信息，如 Job 名称、描述、关联的监听器等，JobDetail 承担了这一角色</li>
+                                            <li>Trigger：描述触发 Job 执行的时间触发规则。主要有SimpleTrigger、CronTrigger 两个实现类</li>
+                                            <li>SimpleTrigger：当仅需要触发一次或者以固定间隔周期执行时</li>
+                                            <li>CronTrigger：可以通过 Cron 表达式定义出各种复杂的调度方案</li>
+                                            <li>Calendar：一些日历特定时间点的集合（可以简单的理解为 java.util.Calendar 的集合：java.util.Calendar ）。一个 Trigger 可以和多个 Calendar 关联，以便包含或排除某些时间点</li>
+                                            <li>Scheduler：一个 Quartz 的独立运行容器，Trigger 和 JobDetail 可以注册到 Scheduler 中，两者在 Scheduler 中拥有各自的组及名称。组及名称是 Scheduler 查找容器中某一对象的依据，Trigger 和 JobDetail 的组及名称的组合都必须唯一（但 Scheduler 和 Trigger 的组合名称可以相同，因为他们是不同的类型，处于不同的容器中）。Scheduler 可以将 Trigger 绑定到某一个 JobDetails 中，这样当 Trigger 被触发时，对应的 Job 就被执行。一个 Job 可以对应多个 Trigger，但一个 Trigger 只能对应一个 Job</li>
+                                        </lo>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--业务流程管理（BPM）框架-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#Activiti">业务流程管理（BPM）框架：Activiti 5.23.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Activiti" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Activiti是一个独立运作和经营的开源项目品牌，并将独立于Alfresco开源ECM系统运行。Activiti是一种轻量级，可嵌入的BPM引擎，而且还设计适用于可扩展的云架构。 Activiti将提供宽松的Apache许可2.0，以便这个项目可以广泛被使用，同时促进Activiti BPM引擎和BPMN 2.0的匹配，该项目现正由OMG通过标准审定。 加入Alfresco Activiti项目的是VMware的SpringSource分支，Alfresco的计划把该项目提交给Apache基础架构，希望吸引更多方面的BPM专家和促进BPM的创新
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--文件管理器-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#CKFinder">文件管理器：CKFinder 2.6.3</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="CKFinder" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        CKFinder是一个强大而易于使用的Web浏览器的Ajax文件管理器。 其简单的界面使得它直观，快速学习的各类用户，从高级人才到互联网初学者
+                                        <br><br>特点 ：
+                                        <lo>
+                                            <li>文件夹树导航 ：用户直观的。质量 缩略图 ，使很快找到的东西。多语言 支持，自动用户语言检测。敏感的 上下文菜单 的文件和文 件夹。</li>
+                                            <li>用户可完全控制 ：创建，重命名，复制，移动和删除文件夹和文件</li>
+                                            <li>全部开发人员的控制 ：所有功能都可以精确地配置了强大的ACL和用户角色的系统。轻量级 接口。</li>
+                                            <li>没有页面刷新： 快速反应</li>
+                                            <li>安全的文件上传 ：所有上传的文件是根据发展商签的规则。完整 的源代码 ，包括服务器端的集成。整合即时fckeditor和 CKEditor</li>
+                                        </lo>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--服务端验证-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#Hibernate-Validation">服务端验证：Hibernate Validation 6.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Hibernate-Validation" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Hibernate Validator 是 Bean Validation 的实现，Hibernate Validator 内置了 JSR303/JSR380 中所有的 constraint 的实现，还额外提供了很多自定义的 constraint。
+                                        <br><br>使用方式 ：
+                                        <lo>
+                                            <li>在要校验的Bean的字段上添加注解</li>
+                                            <li>校验方式有两种：
+                                                1、在要校验的Bean前添加@Valid或者@Validated注解；
+                                                2、通过Validation.buildDefaultValidatorFactory()；
+                                            </li>
+                                        </lo>
+                                        <br><br>通用约束 ：
+                                        <lo>
+                                            <li>Bean Validation 中内置的 constraint</li>
+                                            <li>Hibernate Validator 附加的 constraint</li>
+                                        </lo>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--客户端验证-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#jQuery-Validation-Plugin">客户端验证：jQuery Validation Plugin 1.13.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="jQuery-Validation-Plugin" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        jQuery Validation Plugin 这个 jQuery 插件使简单的客户端表单验证变得容易，同时仍然提供大量的自定义选项。如果您要从头开始构建新的东西，或者当您尝试将某些东西集成到具有大量现有标记的现有应用程序中时，它都是一个不错的选择。该插件捆绑了一组有用的验证方法，包括URL和电子邮件验证，同时提供了编写自己的方法的API。所有捆绑的方法都带有英语的默认错误消息和其他 37 种语言的翻译
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--树型插件-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#jQuery-zTree">树型插件：jQuery zTree 3.5.12</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="jQuery-zTree" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        zTree 是一个依靠 jQuery 实现的多功能 “树插件”。优异的性能、灵活的配置、多种功能的组合是 zTree 最大优点。
+                                        <br>
+                                        jQuery zTree 是开源免费的软件（MIT 许可证）。在开源的作用下，zTree 越来越完善。
+                                        <br><br>
+                                        主要特性：
+                                        <ol>
+                                            <li>zTree v3.0 将核心代码按照功能进行了分割，不需要的代码可以不用加载</li>
+                                            <li>采用了 延迟加载 技术，上万节点轻松加载，即使在 IE6 下也能基本做到秒杀</li>
+                                            <li>兼容 IE、FireFox、Chrome、Opera、Safari 等浏览器</li>
+                                            <li>支持 JSON 数据</li>
+                                            <li>支持静态 和 Ajax 异步加载节点数据</li>
+                                            <li>支持任意更换皮肤 / 自定义图标（依靠css）</li>
+                                            <li>支持极其灵活的 checkbox 或 radio 选择功能</li>
+                                            <li>提供多种事件响应回调</li>
+                                            <li>灵活的编辑（增/删/改/查）功能，可随意拖拽节点，还可以多节点拖拽哟</li>
+                                            <li>在一个页面内可同时生成多个 Tree 实例</li>
+                                            <li>简单的参数配置实现 灵活多变的功能</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--JSON解析器-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#FastJSON">JSON解析器：FastJSON 1.2.76</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="FastJSON" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        fastjson是阿里巴巴的开源JSON解析库，它可以解析JSON格式的字符串，支持将Java Bean序列化为JSON字符串，也可以从JSON字符串反序列化到JavaBean。其目前已经被广泛应用在各种场景中，包括cache存储、RPC通讯、MQ通讯、网络协议通讯、Android客户端、Ajax服务器处理程序等等。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--富文本编辑器-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#summernote">富文本编辑器：summernote 0.8.18</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="summernote" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        bootstrap插件summernote富文本编辑器
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--MarkDown在线编辑器-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#editormd">MarkDown在线编辑器：editor.md 1.5.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="editormd" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Editor.md 是一款开源的、可嵌入的 Markdown 在线编辑器（组件），基于 CodeMirror、jQuery 和 Marked 构建。
+                                        <br><br>
+                                        主要特性：
+                                        <ol>
+                                            <li>支持通用 Markdown / CommonMark 和 GFM (GitHub Flavored Markdown) 风格的语法，也可变身为代码编辑器；</li>
+                                            <li>支持实时预览、图片（跨域）上传、预格式文本/代码/表格插入、代码折叠、跳转到行、搜索替换、只读模式、自定义样式主题和多语言语法高亮等功能；</li>
+                                            <li>支持 ToC（Table of Contents）、Emoji表情、Task lists、@链接等 Markdown 扩展语法；</li>
+                                            <li>支持 TeX 科学公式（基于 KaTeX）、流程图 Flowchart 和 时序图 Sequence Diagram;</li>
+                                            <li>支持识别和解析 HTML 标签，并且支持自定义过滤标签及属性解析，具有可靠的安全性和几乎无限的扩展性；</li>
+                                            <li>支持 AMD / CMD 模块化加载（支持 Require.js & Sea.js），并且支持自定义扩展插件；</li>
+                                            <li>兼容主流的浏览器（IE8+）和 Zepto.js，且支持 iPad 等平板设备；</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--系统接口文档框架-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#Swagger">系统接口文档框架：Swagger 3.0.0</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Swagger" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Swagger 是一个规范且完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。
+                                        <br>
+                                        Swagger 的目标是对 REST API 定义一个标准且和语言无关的接口，可以让人和计算机拥有无须访问源码、文档或网络流量监测就可以发现和理解服务的能力。当通过 Swagger 进行正确定义，用户可以理解远程服务并使用最少实现逻辑与远程服务进行交互。与为底层编程所实现的接口类似，Swagger 消除了调用服务时可能会有的猜测。
+                                        <br><br>
+                                        <ol>
+                                            Swagger 的优势
+                                            <li>支持 API 自动生成同步的在线文档：使用 Swagger 后可以直接通过代码生成文档，不再需要自己手动编写接口文档了，对程序员来说非常方便，可以节约写文档的时间去学习新技术</li>
+                                            <li>提供 Web 页面在线测试 API：光有文档还不够，Swagger 生成的文档还支持在线测试。参数和格式都定好了，直接在界面上输入参数对应的值即可在线测试接口</li>
+                                        </ol>
+                                        <br>
+                                        Swagger常用注解
+                                        <br>
+                                        <p>
+                                            @Api：用在请求的类上，表示对类的说明
+                                            tags="说明该类的作用，可以在UI界面上看到的注解"
+                                            value="该参数没什么意义，在UI界面上也看到，所以不需要配置"
+                                            <br><br>
+                                            @ApiOperation：用在请求的方法上，说明方法的用途、作用
+                                            value="说明方法的用途、作用"
+                                            notes="方法的备注说明"
+                                            <br><br>
+                                            @ApiImplicitParams：用在请求的方法上，表示一组参数说明
+                                            <br><br>
+                                            @ApiImplicitParam：用在@ApiImplicitParams注解中，指定一个请求参数的各个方面
+                                            name：参数名
+                                            value：参数的汉字说明、解释
+                                            required：参数是否必须传
+                                            paramType：参数放在哪个地方
+                                            · header --> 请求参数的获取：@RequestHeader
+                                            · query --> 请求参数的获取：@RequestParam
+                                            · path（用于restful接口）--> 请求参数的获取：@PathVariable
+                                            · div（不常用）
+                                            · form（不常用）
+                                            dataType：参数类型，默认String，其它值dataType="Integer"
+                                            defaultValue：参数的默认值
+                                            <br><br>
+                                            @ApiResponses：用在请求的方法上，表示一组响应
+                                            @ApiResponse：用在@ApiResponses中，一般用于表达一个错误的响应信息
+                                            code：数字，例如400
+                                            message：信息，例如"请求参数没填好"
+                                            response：抛出异常的类
+                                            <br><br>
+                                            @ApiModel：用于响应类上，表示一个返回响应数据的信息
+                                            （这种一般用在post创建的时候，使用@RequestBody这样的场景，
+                                            请求参数无法使用@ApiImplicitParam注解进行描述的时候）
+                                            @ApiModelProperty：用在属性上，描述响应类的属性
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5><i style="color: #ca4440"> 开发工具&集成环境</i>&nbsp;<i>单击标题进行 （展开 / 收起）</i></h5>
+                </div>
+                <div class="ibox-content no-padding">
+                    <div class="panel-body">
+                        <div class="panel-group" id="developerKits">
                             <!--系统运行部署环境-->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#JDK-Tomcat">系统运行部署环境：JDK 1.8+ 、MySQL5.7+、Tomcat 8+</a>
+                                        <a data-toggle="collapse" data-parent="#developerKits" href="#JDK-Tomcat">系统运行部署环境：JDK 1.8+ 、MySQL5.7+、Tomcat 8+</a>
                                         <code class="pull-right">..</code>
                                     </h5>
                                 </div>
-                                <div id="JDK-Tomcat" class="panel-collapse collapse in">
+                                <div id="JDK-Tomcat" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         JDK是 Java 语言的软件开发工具包，主要用于移动设备、嵌入式设备上的java应用程序。JDK是整个java开发的核心，它包含了JAVA的运行环境（JVM+Java系统类库）和JAVA工具。
                                         <br><br>
@@ -914,7 +1342,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#IntelliJ-IDEA">开发集成环境：IntelliJ IDEA 2019.2</a>
+                                        <a data-toggle="collapse" data-parent="#developerKits" href="#IntelliJ-IDEA">开发集成环境：IntelliJ IDEA</a>
                                         <code class="pull-right">..</code>
                                     </h5>
                                 </div>
@@ -1013,11 +1441,30 @@
                                 </div>
                             </div>
 
+                            <!--项目管理工具-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#developerKits" href="#Apache-Maven">项目管理工具：Apache Maven</a>
+                                        <code class="pull-right">..</code>
+                                    </h5>
+                                </div>
+                                <div id="Apache-Maven" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Maven是一个项目管理工具，它包含了一个项目对象模型 (Project Object Model)，一组标准集合，一个项目生命周期(Project Lifecycle)，一个依赖管理系统(Dependency Management System)，和用来运行定义在生命周期阶段(phase)中插件(plugin)目标(goal)的逻辑。当你使用Maven的时候，你用一个明确定义的项目对象模型来描述你的项目，然后Maven可以应用横切的逻辑，这些逻辑来自一组共享的（或者自定义的）插件。
+                                        <br> <br>
+                                        Maven 有一个生命周期，当你运行 mvn install 的时候被调用。这条命令告诉 Maven 执行一系列的有序的步骤，直到到达你指定的生命周期。遍历生命周期旅途中的一个影响就是，Maven 运行了许多默认的插件目标，这些目标完成了像编译和创建一个 JAR 文件这样的工作。
+                                        <br> <br>
+                                        此外，Maven能够很方便的帮你管理项目报告，生成站点，管理JAR文件，等等。
+                                    </div>
+                                </div>
+                            </div>
+
                             <!--项目版本控制-->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Git">项目版本控制：Git</a>
+                                        <a data-toggle="collapse" data-parent="#developerKits" href="#Git">项目版本控制：Git</a>
                                         <code class="pull-right">..</code>
                                     </h5>
                                 </div>
@@ -1047,30 +1494,11 @@
                                 </div>
                             </div>
 
-                            <!--项目管理工具-->
+                            <!--项目持续集成工具-->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Apache-Maven">项目管理工具：Apache Maven 3.8.1</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="Apache-Maven" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Maven是一个项目管理工具，它包含了一个项目对象模型 (Project Object Model)，一组标准集合，一个项目生命周期(Project Lifecycle)，一个依赖管理系统(Dependency Management System)，和用来运行定义在生命周期阶段(phase)中插件(plugin)目标(goal)的逻辑。当你使用Maven的时候，你用一个明确定义的项目对象模型来描述你的项目，然后Maven可以应用横切的逻辑，这些逻辑来自一组共享的（或者自定义的）插件。
-                                        <br> <br>
-                                        Maven 有一个生命周期，当你运行 mvn install 的时候被调用。这条命令告诉 Maven 执行一系列的有序的步骤，直到到达你指定的生命周期。遍历生命周期旅途中的一个影响就是，Maven 运行了许多默认的插件目标，这些目标完成了像编译和创建一个 JAR 文件这样的工作。
-                                        <br> <br>
-                                        此外，Maven能够很方便的帮你管理项目报告，生成站点，管理JAR文件，等等。
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--持续集成工具-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Jenkins">持续集成工具：Jenkins2.295</a>
+                                        <a data-toggle="collapse" data-parent="#developerKits" href="#Jenkins">项目持续集成工具：Jenkins</a>
                                         <code class="pull-right">..</code>
                                     </h5>
                                 </div>
@@ -1085,597 +1513,17 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!--SpringBoot框架-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#SpringBoot">主框架：SpringBoot 2.2.13</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="SpringBoot" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Spring Boot：是一款开箱即用框架，提供各种默认配置来简化项目配置。让我们的Spring应用变的更轻量化、更快的入门。
-                                        在主程序执行main函数就可以运行。你也可以打包你的应用为jar并通过使用java -jar来运行你的Web应用。它遵循"约定优先于配置"的原则，
-                                        使用SpringBoot只需很少的配置，大部分的时候直接使用默认的配置即可。可以与Spring Cloud的微服务无缝结合。
-                                        <br>Spring Boot2.0 环境要求必须是jdk8或以上版本，Tomcat8或以上版本。
-                                        <br><br>优点：
-                                        <lo>
-                                            <li>使编码变得简单： 推荐使用注解。</li>
-                                            <li>使配置变得简单： 自动配置、快速构建项目、快速集成新技术能力 没有冗余代码生成和XML配置的要求</li>
-                                            <li>使部署变得简单： 内嵌Tomcat、Jetty、Undertow等web容器，无需以war包形式部署</li>
-                                            <li>使监控变得简单： 自带项目监控</li>
-                                        </lo>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--持久层-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#MyBatis">持久层：Apache MyBatis 3.5.6</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="MyBatis" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs(Plain Ordinary Java Object,普通的 Java对象)映射成数据库中的记录。
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--数据库连接池-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Druid">数据库连接池：Alibaba Druid 1.2.6</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="Druid" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Druid是一个数据库连接池。Druid是目前最好的数据库连接池，在功能、性能、扩展性方面，都超过其他数据库连接池，包括DBCP、C3P0、BoneCP、Proxool、JBoss DataSource。Druid已经在阿里巴巴部署了超过600个应用，经过一年多生产环境大规模部署的严苛考验。
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--前端视图层-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Bootstrap">前端视图层：Bootstrap 3.3</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="Bootstrap" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Bootstrap是美国Twitter公司的设计师Mark Otto和Jacob Thornton合作基于HTML、CSS、JavaScript 开发的简洁、直观、强悍的前端开发框架，使得 Web 开发更加快捷。Bootstrap提供了优雅的HTML和CSS规范，它即是由动态CSS语言Less写成。Bootstrap一经推出后颇受欢迎，一直是GitHub上的热门开源项目，包括NASA的MSNBC（微软全国广播公司）的Breaking News都使用了该项目。 国内一些移动开发者较为熟悉的框架，如WeX5前端开源框架等，也是基于Bootstrap源码进行性能优化而来。
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--前端模板引擎-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Thymeleaf">前端模板引擎：Thymeleaf 3.0</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="Thymeleaf" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Thymeleaf是一个用于Web和独立Java环境的模板引擎，能够处理HTML、XML、JavaScript、CSS甚至纯文本。能轻易的与Spring
-                                        MVC等
-                                        Web框架进行集成作为Web应用的模板引擎。
-                                        与其它模板引擎（比如FreeMaker）相比，Thymeleaf最大的特点是能够直接在浏览器中打开并正确显示模板页面，
-                                        而不需要启动整个Web应用（更加方便前后端分离，比如方便类似VUE前端设计页面），抛弃JSP吧。Thymeleaf 3.0是一个完全彻底重构的模板引擎，
-                                        极大的减少内存占用和提升性能和并发性，避免v2.1版因大量的输出标记的集合产生的资源占用。Thymeleaf 3.0放弃了大多数面向DOM的处理机制，
-                                        变成了一个基于事件的模板处理器，它通过处理模板标记或文本并立即生成其输出，甚至在新事件之前响应模板解析器/缓存事件。
-                                        Thymeleaf是Spring Boot官方推荐使用的模板。
-                                        <br><br>优点：
-                                        <lo>
-                                            <li>国际化支持非常简单</li>
-                                            <li>语法简单，功能强大。内置大量常用功能，使用非常方便</li>
-                                            <li>可以很好的和Spring集成</li>
-                                            <li>静态html嵌入标签属性，浏览器可以直接打开模板文件，便于前后端联调</li>
-                                            <li>Spring Boot 官方推荐，用户群广</li>
-                                        </lo>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--Shiro安全控制-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Shiro">安全框架：Apache Shiro 1.7.1</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="Shiro" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Apache Shiro是Java的一个安全框架。Shiro可以帮助我们完成：认证、授权、加密、会话管理、与Web集成、缓存等。
-                                        其不仅可以用在 JavaSE环境，也可以用在 JavaEE 环境。
-                                        <br><br>优点：
-                                        <lo>
-                                            <li>简单的身份认证，支持多种数据源</li>
-                                            <li>对角色的简单的授权，支持细粒度的授权</li>
-                                            <li>不跟任何的框架或者容器捆绑，可以独立运行</li>
-                                        </lo>
-
-                                        <br>特性：
-                                        <lo>
-                                            <li>Authentication身份认证/登录，验证用户是不是拥有相应的身份</li>
-                                            <li>
-                                                Authorization授权，即验证权限，验证某个已认证的用户是否拥有某个权限，即判断用户是否能做事情SessionManagement会话管理，即用户登录后就是一次会话，在没有退出之前，它的所有信息都在会话中
-                                            </li>
-                                            <li>Cryptography加密，保护数据的安全性，如密码加密存储到数据库，而不是明文存储</li>
-                                            <li>Caching缓存，比如用户登录后，其用户信息，拥有的角色/权限不必每次去查，提高效率</li>
-                                            <li>ConcurrencyShiro支持多线程应用的并发验证，即如在一个线程中开启另一个线程，能把权限自动传播过去</li>
-                                            <li>Testing提供测试支持</li>
-                                            <li>RunAs允许一个用户假装为另一个用户（如果他们允许）的身份进行访问</li>
-                                            <li>RememberMe记住我，这是非常常见的功能，即一次登录后，下次再来的话不用登录了</li>
-                                        </lo>
-
-                                        <br>架构：
-                                        <lo>
-                                            <li>Subject主体，代表了当前的“用户”，这个用户不一定是一个具体的人，与当前应用交互的任何东西都是Subject，如网络爬虫，
-                                                机器人等；即一个抽象概念；所有Subject都绑定到SercurityManager，与Subject的所有交互都会委托给SecurityManager；可以把Subject认为是一个门面；SecurityManager才是实际的执行者
-                                            </li>
-                                            <li>SecurityManage安全管理器；即所有与安全有关的操作都会与SecurityManager交互；且它管理着所有Subject；
-                                                可以看出它是Shiro的核心，它负责与后边介绍的其他组件进行交互
-                                            </li>
-                                            <li>Realm域，Shiro从Realm获取安全数据（如用户，角色，权限），就是说SecurityManager要验证用户身份，
-                                                那么它需要从Realm获取相应的用户进行比较以确定用户身份是否合法；也需要从Realm得到用户相应的角色/权限进行验证用户是否能进行操作；可以有1个或多个Realm，我们一般在应用中都需要实现自己的Realm
-                                            </li>
-                                            <li>
-                                                SessionManager如果写过Servlet就应该知道Session的概念，Session需要有人去管理它的生命周期，这个组件就是SessionManager
-                                            </li>
-                                            <li>
-                                                SessionDAODAO大家都用过，数据库访问对象，用于会话的CRUD，比如我们想把Session保存到数据库，那么可以实现自己的SessionDAO，也可以写入缓存，以提高性能
-                                            </li>
-                                            <li>CacheManager缓存控制器，来管理如用户，角色，权限等的缓存的；因为这些数据基本上很少去改变，放到缓存中后可以提高访问的性能</li>
-                                        </lo>
-                                        <br>应用代码通过Subject来进行认证和授权，而Subject又委托给SecurityManager；
-                                        我们需要给Shrio的SecurityManager注入Realm，从而让SecurityManager能得到合法的用户及其权限进行判断，
-                                        Shiro不提供维护用户/权限，而是通过Realm让开发人员自己注入。
-                                        <br>Shiro不会去维护用户，维护权限；这些需要自己去设计/提供；然后通过响应的接口注入给Shiro即可
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--缓存框架-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#ehcache">缓存框架：ehcache 1.7.1</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="ehcache" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Ehcache是一种广泛使用的开源Java分布式缓存。主要面向通用缓存,Java EE和轻量级容器。它具有内存和磁盘存储，缓存加载器,缓存扩展,缓存异常处理程序,一个gzip缓存servlet过滤器,支持REST和SOAP api等特点。
-                                        <br><br>
-                                        Ehcache最初是由Greg Luck于2003年开始开发。2009年,该项目被Terracotta购买。软件仍然是开源,但一些新的主要功能(例如，快速可重启性之间的一致性的)只能在商业产品中使用，例如Enterprise EHCache and BigMemory。维基媒体Foundationannounced目前使用的就是Ehcache技术。
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--日志框架-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#slf4j-logback">日志框架：slf4j 1.2.3日志接口 + Logback 1.2.3日志的实现</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="slf4j-logback" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        SLF4J，即简单日志门面（Simple Logging Facade for Java），不是具体的日志解决方案，它只服务于各种各样的日志系统,他主要解决的问题场景如下，假如系统今天采用了A日志框架，过了2天由于特殊原因，需要切换到B日志框架，那如果没有这个门面，则需要更改所有的日志代码，而有了这个门面，项目中直接使用门面来输入日志，则切换时没有影响，不需要改变任何代码，只需要引入新的依赖，做一个配置即可。
-                                        <br><br>
-                                        Logback是由log4j创始人设计的又一个开源日志组件。logback当前分成三个模块：logback-core,logback- classic和logback-access。logback-core是其它两个模块的基础模块。logback-classic是log4j的一个 改良版本。此外logback-classic完整实现SLF4J API使你可以很方便地更换成其它日志系统如log4j或JDK14 Logging。logback-access访问模块与Servlet容器集成提供通过Http来访问日志的功能
-                                        <br><br>
-                                        SLF4J和Logback取代Commons Logging和Log4j；始终使用SLF4J的接口写入日志，使用Logback只需要配置，不需要修改代码
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--任务调度框架-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Quartz">任务调度框架：Quartz 2.3.2</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="Quartz" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Quartz是一个完全由java编写的开源作业调度框架。是一个任务调度框架(库)，它几乎可以集成到任何应用系统中。术语”job schedule”似乎为不同的人提供了不同的想法。总之，作业调度是负责执行（或通知）其他软件组件在预定时间执行的服务组件。虽然通过schedule可以简单实现一些系统任务定时执行，当您学习如何使用它来驱动应用程序的业务流程的流程时，Quartz的全部潜力是可以实现的。
-                                        <br><br>Quartz的一些特点 ：
-                                        <lo>
-                                            <li>非常灵活的，并包含多个使用范例，它们可以单独或一起使用，以实现您所期望的行为，并使您能够以最“自然”的方式来编写您的项目的代码</li>
-                                            <li>非常轻量级的，只需要非常少的配置 —— 它实际上可以被跳出框架来使用，如果你的需求是一些相对基本的简单的需求的话</li>
-                                            <li>具有容错机制，并且可以在重启服务的时候持久化你的定时任务，你的任务也不会丢失</li>
-                                            <li>不是一个任务队列——虽然它确实可以在一些小规模应用中合理的作为一个任务队列来使用</li>
-                                            <li>不是一个网格计算引擎——虽然在某些小规模应用中，这样做确实可以达到应用的要求（定时计算、统计一些数据）</li>
-                                            <li>不是一个提供给业务人员的执行服务——它是一个库，很容易集成到应用程序中去做一些未来某时刻可能会一直循环执行的相关的任务</li>
-                                        </lo>
-
-                                        <br><br>Quartz 基础结构 ：
-                                        <br>
-                                        Quartz 对任务调度的领域问题进行了高度抽象，提出了调度器、任务和触发器 3 个核心概念，并在 org.quartz 中通过接口和类对核心概念进行描述。
-                                        <br><br>
-                                        <lo>
-                                            <li>Job：接口。开发者通过实现该接口定义需要执行的任务</li>
-                                            <li>JobDetail：Quartz 在每次执行 Job 时，都重新创建一个 Job 实例，所以它不是直接接受一个 Job 的实例，而是接受一个 Job 实现类，以便运行时通过反射机制实例化 Job。因此需要一个类来描述 Job 的实现类及其他相关的静态信息，如 Job 名称、描述、关联的监听器等，JobDetail 承担了这一角色</li>
-                                            <li>Trigger：描述触发 Job 执行的时间触发规则。主要有SimpleTrigger、CronTrigger 两个实现类</li>
-                                            <li>SimpleTrigger：当仅需要触发一次或者以固定间隔周期执行时</li>
-                                            <li>CronTrigger：可以通过 Cron 表达式定义出各种复杂的调度方案</li>
-                                            <li>Calendar：一些日历特定时间点的集合（可以简单的理解为 java.util.Calendar 的集合：java.util.Calendar ）。一个 Trigger 可以和多个 Calendar 关联，以便包含或排除某些时间点</li>
-                                            <li>Scheduler：一个 Quartz 的独立运行容器，Trigger 和 JobDetail 可以注册到 Scheduler 中，两者在 Scheduler 中拥有各自的组及名称。组及名称是 Scheduler 查找容器中某一对象的依据，Trigger 和 JobDetail 的组及名称的组合都必须唯一（但 Scheduler 和 Trigger 的组合名称可以相同，因为他们是不同的类型，处于不同的容器中）。Scheduler 可以将 Trigger 绑定到某一个 JobDetails 中，这样当 Trigger 被触发时，对应的 Job 就被执行。一个 Job 可以对应多个 Trigger，但一个 Trigger 只能对应一个 Job</li>
-                                        </lo>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--业务流程管理（BPM）框架-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Activiti">业务流程管理（BPM）框架：Activiti 5.23.0</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="Activiti" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Activiti是一个独立运作和经营的开源项目品牌，并将独立于Alfresco开源ECM系统运行。Activiti是一种轻量级，可嵌入的BPM引擎，而且还设计适用于可扩展的云架构。 Activiti将提供宽松的Apache许可2.0，以便这个项目可以广泛被使用，同时促进Activiti BPM引擎和BPMN 2.0的匹配，该项目现正由OMG通过标准审定。 加入Alfresco Activiti项目的是VMware的SpringSource分支，Alfresco的计划把该项目提交给Apache基础架构，希望吸引更多方面的BPM专家和促进BPM的创新
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--文件管理器-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#CKFinder">文件管理器：CKFinder 2.6.3</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="CKFinder" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        CKFinder是一个强大而易于使用的Web浏览器的Ajax文件管理器。 其简单的界面使得它直观，快速学习的各类用户，从高级人才到互联网初学者
-                                        <br><br>特点 ：
-                                        <lo>
-                                            <li>文件夹树导航 ：用户直观的。质量 缩略图 ，使很快找到的东西。多语言 支持，自动用户语言检测。敏感的 上下文菜单 的文件和文 件夹。</li>
-                                            <li>用户可完全控制 ：创建，重命名，复制，移动和删除文件夹和文件</li>
-                                            <li>全部开发人员的控制 ：所有功能都可以精确地配置了强大的ACL和用户角色的系统。轻量级 接口。</li>
-                                            <li>没有页面刷新： 快速反应</li>
-                                            <li>安全的文件上传 ：所有上传的文件是根据发展商签的规则。完整 的源代码 ，包括服务器端的集成。整合即时fckeditor和 CKEditor</li>
-                                        </lo>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--服务端验证-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Hibernate-Validation">服务端验证：Hibernate Validation 6.0</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="Hibernate-Validation" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Hibernate Validator 是 Bean Validation 的实现，Hibernate Validator 内置了 JSR303/JSR380 中所有的 constraint 的实现，还额外提供了很多自定义的 constraint。
-                                        <br><br>使用方式 ：
-                                        <lo>
-                                            <li>在要校验的Bean的字段上添加注解</li>
-                                            <li>校验方式有两种：
-                                                1、在要校验的Bean前添加@Valid或者@Validated注解；
-                                                2、通过Validation.buildDefaultValidatorFactory()；
-                                            </li>
-                                        </lo>
-                                        <br><br>通用约束 ：
-                                        <lo>
-                                            <li>Bean Validation 中内置的 constraint</li>
-                                            <li>Hibernate Validator 附加的 constraint</li>
-                                        </lo>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--客户端验证-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#jQuery-Validation-Plugin">客户端验证：jQuery Validation Plugin 1.13.0</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="jQuery-Validation-Plugin" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        jQuery Validation Plugin 这个 jQuery 插件使简单的客户端表单验证变得容易，同时仍然提供大量的自定义选项。如果您要从头开始构建新的东西，或者当您尝试将某些东西集成到具有大量现有标记的现有应用程序中时，它都是一个不错的选择。该插件捆绑了一组有用的验证方法，包括URL和电子邮件验证，同时提供了编写自己的方法的API。所有捆绑的方法都带有英语的默认错误消息和其他 37 种语言的翻译
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--树型插件-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#jQuery-zTree">树型插件：jQuery zTree 3.5.12</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="jQuery-zTree" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        zTree 是一个依靠 jQuery 实现的多功能 “树插件”。优异的性能、灵活的配置、多种功能的组合是 zTree 最大优点。
-                                        <br>
-                                        jQuery zTree 是开源免费的软件（MIT 许可证）。在开源的作用下，zTree 越来越完善。
-                                        <br><br>
-                                        主要特性：
-                                        <ol>
-                                            <li>zTree v3.0 将核心代码按照功能进行了分割，不需要的代码可以不用加载</li>
-                                            <li>采用了 延迟加载 技术，上万节点轻松加载，即使在 IE6 下也能基本做到秒杀</li>
-                                            <li>兼容 IE、FireFox、Chrome、Opera、Safari 等浏览器</li>
-                                            <li>支持 JSON 数据</li>
-                                            <li>支持静态 和 Ajax 异步加载节点数据</li>
-                                            <li>支持任意更换皮肤 / 自定义图标（依靠css）</li>
-                                            <li>支持极其灵活的 checkbox 或 radio 选择功能</li>
-                                            <li>提供多种事件响应回调</li>
-                                            <li>灵活的编辑（增/删/改/查）功能，可随意拖拽节点，还可以多节点拖拽哟</li>
-                                            <li>在一个页面内可同时生成多个 Tree 实例</li>
-                                            <li>简单的参数配置实现 灵活多变的功能</li>
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--JSON解析器-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#FastJSON">JSON解析器：FastJSON 1.2.76</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="FastJSON" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        fastjson是阿里巴巴的开源JSON解析库，它可以解析JSON格式的字符串，支持将Java Bean序列化为JSON字符串，也可以从JSON字符串反序列化到JavaBean。其目前已经被广泛应用在各种场景中，包括cache存储、RPC通讯、MQ通讯、网络协议通讯、Android客户端、Ajax服务器处理程序等等。
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--弹出层组件-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#layer">弹出层组件：layer 3.5.0</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="layer" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        layer，一个可以让你想到即可做到的web弹窗（层）解决方案（js组件），作者贤心（前端开发工程师）。layer侧重于用户灵活的自定义，为不同人的使用习惯提供动力。其意义在于，可以让您的页面拥有更丰富与便捷的操作体验，而您只需在调用时简单地配置相关参数，即可轻松实现。
-                                        <br> <br>
-                                        与同类弹出层组件相比，layer的优势明显，她尽可能地在以更少的代码展现出更强健的功能。layer格外注重性能的提升，在多层模式的回调处理中，具备其它多数层组件所没有的“独立不冲突”（截至到2013年10月23，已有115859人次关注新版layer）。您完全可以大可放心地在页面弹出任意数量的层，她们彼此不妨碍。当你问及她的兼容时，layer必须告诉你，她兼容了一切浏览器，包括古老的ie6。
-                                        <br> <br>
-                                        layer公开了如此多的接口（api），这使得您可以DIY太多您需要的风格，尤其是页面层模式，意味着必要时您可以完全抛弃layer的现有皮肤，并用你的思维去勾勒她的衣着。而问题在于，我必须中止“王婆卖瓜”的陈述。因为一切的不足或友好，都需要您在使用过程中去发现。
-                                        <br> <br>
-                                        据不完全统计，截至到2013年8月30号，layer已服务于6000多家web平台。layer作为layUI库的成员，将一直致力于为web开发提供动力。
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--日期与时间组件-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#layDate">日期与时间组件：layDate 5.3.0</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="layDate" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        layDate是一个JS日期与时间的组件，是 layui 独立维护的三大组件之一。不依赖第三方库，同时兼容所有的浏览器。使用方法也比较简单，拓展功能很方便。
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--获取系统信息组件-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#oshi">获取系统信息组件：oshi 5.6.0</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="oshi" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        OSHI是一个基于JNA的免费的本地操作系统和Java的硬件信息库。它不需要安装任何额外的本机库，旨在提供跨平台的实现来检索系统信息，如操作系统版本、进程、内存和CPU使用情况、磁盘和分区、设备、传感器等。
-                                        <br> <br>
-                                        兼容系统： Linux, Windows, Solaris, AIX, HP-UX, FreeBSD and Mac OSX
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--表格组件-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#BootstrapTable">表格组件：BootstrapTable 1.18.3</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="BootstrapTable" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Bootstrap Table与一些最广泛使用的CSS框架集成的扩展表。（支持Bootstrap，语义UI，Bulma，Material Design，Foundation）
-                                        <br><br>
-                                        Bootstrap Table旨在减少开发时间，并且不需要开发人员的特定知识。它既轻量级又功能丰富。
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--获取浏览器名称及版本号组件-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#bitwalker">获取浏览器名称及版本号组件：bitwalker 1.21</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="bitwalker" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        bitwalker一个获取浏览器名称及版本号的组件
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--导入导出组件-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Apache-POI">导入导出组件：Apache POI 4.1.2</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="Apache-POI" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Apache POI是Apache软件基金会的开放源码函式库，POI提供API给Java程序对Microsoft Office格式档案读和写的功能
-                                        <br><br>基本功能 ：
-                                        <lo>
-                                            <li>HSSF － 提供读写Microsoft Excel格式档案的功能</li>
-                                            <li>XSSF － 提供读写Microsoft Excel OOXML格式档案的功能</li>
-                                            <li>HWPF － 提供读写Microsoft Word格式档案的功能</li>
-                                            <li>HSLF － 提供读写Microsoft PowerPoint格式档案的功能</li>
-                                            <li>HDGF － 提供读写Microsoft Visio格式档案的功能</li>
-                                        </lo>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--富文本编辑器-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#summernote">富文本编辑器：summernote 0.8.18</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="summernote" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        bootstrap插件summernote富文本编辑器
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--系统接口文档框架-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#Swagger">系统接口文档框架：Swagger 3.0.0</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="Swagger" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Swagger 是一个规范且完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。
-                                        <br>
-                                        Swagger 的目标是对 REST API 定义一个标准且和语言无关的接口，可以让人和计算机拥有无须访问源码、文档或网络流量监测就可以发现和理解服务的能力。当通过 Swagger 进行正确定义，用户可以理解远程服务并使用最少实现逻辑与远程服务进行交互。与为底层编程所实现的接口类似，Swagger 消除了调用服务时可能会有的猜测。
-                                        <br><br>
-                                        <ol>
-                                            Swagger 的优势
-                                            <li>支持 API 自动生成同步的在线文档：使用 Swagger 后可以直接通过代码生成文档，不再需要自己手动编写接口文档了，对程序员来说非常方便，可以节约写文档的时间去学习新技术</li>
-                                            <li>提供 Web 页面在线测试 API：光有文档还不够，Swagger 生成的文档还支持在线测试。参数和格式都定好了，直接在界面上输入参数对应的值即可在线测试接口</li>
-                                        </ol>
-                                        <br>
-                                        Swagger常用注解
-                                        <br>
-                                        <p>
-                                            @Api：用在请求的类上，表示对类的说明
-                                            tags="说明该类的作用，可以在UI界面上看到的注解"
-                                            value="该参数没什么意义，在UI界面上也看到，所以不需要配置"
-                                            <br><br>
-                                            @ApiOperation：用在请求的方法上，说明方法的用途、作用
-                                            value="说明方法的用途、作用"
-                                            notes="方法的备注说明"
-                                            <br><br>
-                                            @ApiImplicitParams：用在请求的方法上，表示一组参数说明
-                                            <br><br>
-                                            @ApiImplicitParam：用在@ApiImplicitParams注解中，指定一个请求参数的各个方面
-                                            name：参数名
-                                            value：参数的汉字说明、解释
-                                            required：参数是否必须传
-                                            paramType：参数放在哪个地方
-                                            · header --> 请求参数的获取：@RequestHeader
-                                            · query --> 请求参数的获取：@RequestParam
-                                            · path（用于restful接口）--> 请求参数的获取：@PathVariable
-                                            · div（不常用）
-                                            · form（不常用）
-                                            dataType：参数类型，默认String，其它值dataType="Integer"
-                                            defaultValue：参数的默认值
-                                            <br><br>
-                                            @ApiResponses：用在请求的方法上，表示一组响应
-                                            @ApiResponse：用在@ApiResponses中，一般用于表达一个错误的响应信息
-                                            code：数字，例如400
-                                            message：信息，例如"请求参数没填好"
-                                            response：抛出异常的类
-                                            <br><br>
-                                            @ApiModel：用于响应类上，表示一个返回响应数据的信息
-                                            （这种一般用在post创建的时候，使用@RequestBody这样的场景，
-                                            请求参数无法使用@ApiImplicitParam注解进行描述的时候）
-                                            @ApiModelProperty：用在属性上，描述响应类的属性
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--MarkDown在线编辑器-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#coreTechnology" href="#editormd">MarkDown在线编辑器：editor.md 1.5.0</a>
-                                        <code class="pull-right">..</code>
-                                    </h5>
-                                </div>
-                                <div id="editormd" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Editor.md 是一款开源的、可嵌入的 Markdown 在线编辑器（组件），基于 CodeMirror、jQuery 和 Marked 构建。
-                                        <br><br>
-                                        主要特性：
-                                        <ol>
-                                            <li>支持通用 Markdown / CommonMark 和 GFM (GitHub Flavored Markdown) 风格的语法，也可变身为代码编辑器；</li>
-                                            <li>支持实时预览、图片（跨域）上传、预格式文本/代码/表格插入、代码折叠、跳转到行、搜索替换、只读模式、自定义样式主题和多语言语法高亮等功能；</li>
-                                            <li>支持 ToC（Table of Contents）、Emoji表情、Task lists、@链接等 Markdown 扩展语法；</li>
-                                            <li>支持 TeX 科学公式（基于 KaTeX）、流程图 Flowchart 和 时序图 Sequence Diagram;</li>
-                                            <li>支持识别和解析 HTML 标签，并且支持自定义过滤标签及属性解析，具有可靠的安全性和几乎无限的扩展性；</li>
-                                            <li>支持 AMD / CMD 模块化加载（支持 Require.js & Sea.js），并且支持自定义扩展插件；</li>
-                                            <li>兼容主流的浏览器（IE8+）和 Zepto.js，且支持 iPad 等平板设备；</li>
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-sm-4">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5><b>其它：</b></h5>
-                </div>
-                <div class="ibox-content">
-                    <div style="text-align: center">
-                        <b>有志者，事竟成，破釜沉舟，百二秦关终属楚</b>
-                        <br>
-                        <b>苦心人，天不负，卧薪尝胆，三千越甲可吞吴</b>
+
+                        <div style="text-align: center">
+                            <b>有志者，事竟成，破釜沉舟，百二秦关终属楚</b>
+                            <br>
+                            <b>苦心人，天不负，卧薪尝胆，三千越甲可吞吴</b>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
         </div>
