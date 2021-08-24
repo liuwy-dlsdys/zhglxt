@@ -5,9 +5,12 @@ import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.entity.Ztree;
 import com.zhglxt.common.core.entity.sys.SysDept;
 import com.zhglxt.common.core.entity.sys.SysRole;
+import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.exception.ServiceException;
+import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.util.spring.SpringUtils;
 import com.zhglxt.system.mapper.SysDeptMapper;
 import com.zhglxt.system.service.ISysDeptService;
 import org.apache.commons.lang3.ArrayUtils;
@@ -279,5 +282,25 @@ public class SysDeptServiceImpl implements ISysDeptService {
             return UserConstants.DEPT_NAME_NOT_UNIQUE;
         }
         return UserConstants.DEPT_NAME_UNIQUE;
+    }
+
+    /**
+     * 校验部门是否有数据权限
+     *
+     * @param deptId 部门id
+     */
+    @Override
+    public void checkDeptDataScope(String deptId)
+    {
+        if (!SysUser.isAdmin(ShiroUtils.getUserId()))
+        {
+            SysDept dept = new SysDept();
+            dept.setDeptId(deptId);
+            List<SysDept> depts = SpringUtils.getAopProxy(this).selectDeptList(dept);
+            if (StringUtils.isEmpty(depts))
+            {
+                throw new ServiceException("没有权限访问部门数据！");
+            }
+        }
     }
 }

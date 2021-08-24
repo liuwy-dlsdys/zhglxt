@@ -99,6 +99,7 @@ public class SysRoleController extends BaseController {
      */
     @GetMapping("/edit/{roleId}")
     public String edit(@PathVariable("roleId") String roleId, ModelMap mmap) {
+        roleService.checkRoleDataScope(roleId);
         mmap.put("role", roleService.selectRoleById(roleId));
         return prefix + "/edit";
     }

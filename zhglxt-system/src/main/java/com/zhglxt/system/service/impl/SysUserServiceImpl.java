@@ -6,8 +6,10 @@ import com.zhglxt.common.core.entity.sys.SysRole;
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.exception.ServiceException;
+import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.util.security.Md5Utils;
+import com.zhglxt.common.util.spring.SpringUtils;
 import com.zhglxt.system.entity.SysPost;
 import com.zhglxt.system.entity.SysUserPost;
 import com.zhglxt.system.entity.SysUserRole;
@@ -371,6 +373,26 @@ public class SysUserServiceImpl implements ISysUserService {
     public void checkUserAllowed(SysUser user) {
         if (StringUtils.isNotNull(user.getUserId()) && user.isAdmin()) {
             throw new ServiceException("不允许操作超级管理员用户");
+        }
+    }
+
+    /**
+     * 校验用户是否有数据权限
+     *
+     * @param userId 用户id
+     */
+    @Override
+    public void checkUserDataScope(String userId)
+    {
+        if (!SysUser.isAdmin(ShiroUtils.getUserId()))
+        {
+            SysUser user = new SysUser();
+            user.setUserId(userId);
+            List<SysUser> users = SpringUtils.getAopProxy(this).selectUserList(user);
+            if (StringUtils.isEmpty(users))
+            {
+                throw new ServiceException("没有权限访问用户数据！");
+            }
         }
     }
 
