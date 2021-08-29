@@ -148,15 +148,11 @@
     }
     //任务办理
     function taskTodo(taskId,taskName,taskDefKey,procDefId,procInsId,status) {
-    		var btn=['<i class="fa fa-close"></i> 关闭'];
     		var url=encodeURI(prefix + "/form?taskId=" + taskId+"&taskName="+taskName+"&taskDefKey="+taskDefKey+"&procDefId="+procDefId+"&procInsId="+procInsId+"&status="+status);
     		var options = {
     				title: '任务办理',
     				url:url,
-    				btn: btn,
-    				yes:function(index, layero){
-    				    layer.close(index);
-    				}
+    				btn: 0
     			};
 		$.modal.openOptions(options);
     }
@@ -166,10 +162,7 @@
 			title: '任务跟踪',
 			width:1050,
 			url: ctx +"diagram-viewer/index.html?processDefinitionId=" + processDefinitionId+"&processInstanceId="+processInstanceId,
-			btn: ['<i class="fa fa-close"></i> 关闭'],
-			yes:function(index, layero){
-			    layer.close(index);
-			}
+			btn: 0
 		};
 		$.modal.openOptions(options);
     }

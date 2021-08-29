@@ -108,10 +108,8 @@
         var options = {
             title: '请假详情',
             url: prefix + "/form?id=" + id,
-            btn: ['<i class="fa fa-close"></i> 关闭'],
-            yes: function (index, layero) {
-                layer.close(index);
-            }
+            //不显示按钮
+            btn: 0
         };
         $.modal.openOptions(options);
     }
