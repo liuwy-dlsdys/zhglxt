@@ -164,25 +164,7 @@
         rules: {
             sort: {
                 digits: true
-            },
-            /*name:{
-                remote: {
-                    url: prefix + "/checkcColumnNameUnique",
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        "pId": function() {
-                            return $("input[name='pId']").val();
-                        },
-                        "name" : function() {
-                            return $.common.trim($("#name").val());
-                        }
-                    },
-                    dataFilter: function(data, type) {
-                        return $.validate.unique(data);
-                    }
-                }
-            }*/
+            }
         },
         messages: {
             "name": {
@@ -199,8 +181,8 @@
     }
 
     function doSubmit(index, layero) {
-        var body = layer.getChildFrame('body', index);
-        layer.close(index);
+        var body = $.modal.getChildFrame(index);
+        $.modal.close(index);
     }
 </script>
 </body>

@@ -21,9 +21,8 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">图片：</label>
             <div class="col-sm-3">
-                <div id="thumbnails">
-                    <input class="form-control" id="imageUrl" type="hidden" name="imageUrl"/>
-                </div>
+                <div id="thumbnails"></div>
+                <input class="form-control" id="imageUrl" type="hidden" name="imageUrl"/>
             </div>
             <div class="col-sm-5">
                 <a class="btn btn-success" onclick="BrowseServer('Images:/', 'imageUrl');">
@@ -154,8 +153,8 @@
     }
 
     function doSubmit(index, layero) {
-        var body = layer.getChildFrame('body', index);
-        layer.close(index);
+        var body = $.modal.getChildFrame(index);
+        $.modal.close(index);
     }
 </script>
 </body>

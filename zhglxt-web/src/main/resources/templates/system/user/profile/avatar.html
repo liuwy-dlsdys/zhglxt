@@ -178,7 +178,7 @@
 <script type="text/javascript">
     var cropper;
     var croppable = false;
-    $(window).load(function () {
+    $(window).on('load', function() {
         var image = document.getElementById('avatar');
         cropper = new Cropper(image, {
 
@@ -253,7 +253,7 @@
                 processData: false,
                 contentType: false,
                 success: function (result) {
-                    $.operate.saveSuccess(result);
+                    $.operate.saveReload(result);
                 }
             })
         });

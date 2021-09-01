@@ -183,7 +183,7 @@
                     $.modal.msg(result.msg);
                     $("input[name='password']").val("");
                 }
-                layer.close(index);
+                $.modal.close(index);
             }
         };
         $.ajax(config);

@@ -31,30 +31,22 @@
 21. 丰富的演示示例，帮助开发者快速集成到项目中
 
 ## 技术选型
-1. 系统环境【JDK 1.8、Tomcat 8】
-2. 主框架【Spring Boot 2.2.13、Spring Framework 5.0.x(支持JDK8-10)】
+1. 系统环境【JDK 1.8、MySQL5.7、Tomcat 8】
+2. 主框架【Spring Boot 2.2.13】
 3. 持久层【Apache MyBatis 3.5.6】
 4. 视图层【Bootstrap 3.3、Thymeleaf 3.0】
-5. 安全框架【Apache Shiro 1.7.1】
+5. 安全框架【Apache Shiro 1.8.0】
 6. 缓存框架【shiro-ehcache 1.7.1】
-7. 日志框架【slf4j日志接口+Logback日志的实现（SLF4J和Logback取代Commons Logging和Log4j；始终使用SLF4J的接口写入日志，使用Logback只需要配置，不需要修改代码）】
-8. 任务调度框架【Quartz 2.3.2】（Quartz是一个功能强大的开源作业调度库，几乎可以集成到任何Java应用程序中-从最小的独立应用程序到最大的电子商务系统。可用于创建简单或复杂的计划，以执行数以万计的工作。任务定义为标准Java组件的作业，它可以执行您对其执行的任何编程操作。Quartz Scheduler包含许多企业级功能，例如对JTA事务和集群的支持。）
-9. 业务流程管理（BPM）框架【Activiti 5.23.0】
-10. 文件管理器【CKFinder2.6.3】
-11. 服务端验证【Hibernate Validation 6.0】
-12. 客户端验证【jQuery Validation Plugin 1.13.0】
-13. 树型插件 【jQuery zTree 3.5.12】
-14. 项目版本控制【Git(一个免费开源的分布式版本控制系统，旨在快速高效地处理从小型到大型项目的所有内容)】
-15. 项目管理工具【Apache Maven 3.8.1】
-16. JSON解析器【FastJSON 1.2.76】
-17. 弹出层组件【layer 3.5.0】
-18. 日期与时间组件【layDate 5.3.0】
-19. 获取系统信息组件【oshi 5.6.0】，兼容系统： Linux, Windows, Solaris, AIX, HP-UX, FreeBSD and Mac OSX
-20. 表格组件【BootstrapTable 1.18.2】
-21. 获取浏览器名称及版本号组件【bitwalker 1.21】
-22. 导入导出组件【Apache POI 4.1.2】
-23. 富文本编辑器【summernote 0.8.18】
-24. MarkDown在线编辑器【editor.md 1.5.0 】
+7. 任务调度框架【Quartz 2.3.2】
+8. 业务流程管理（BPM）框架【Activiti 5.23.0】
+9. 文件管理器【CKFinder2.6.3】
+10. 服务端验证【Hibernate Validation 6.0】
+11. 客户端验证【jQuery Validation 1.19.3】
+12. 树型插件 【jQuery zTree 3.5.12】
+13. 项目版本控制【Git】
+14. 项目管理工具【Apache Maven 3.8.1】
+15. 富文本编辑器【summernote 0.8.18】
+16. MarkDown在线编辑器【editor.md 1.5.0 】
 
 ## 内置功能
 1.  用户管理：用户是系统操作者，该功能主要完成系统用户配置
