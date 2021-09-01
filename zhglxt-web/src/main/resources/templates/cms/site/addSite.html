@@ -130,8 +130,8 @@
     }
 
     function doSubmit(index, layero) {
-        var body = layer.getChildFrame('body', index);
-        layer.close(index);
+        var body = $.modal.getChildFrame(index);
+        $.modal.close(index);
     }
 </script>
 </body>

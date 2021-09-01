@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.zhglxt</groupId>
         <artifactId>zhglxt</artifactId>
-        <version>4.6.2</version>
+        <version>4.7.0</version>
     </parent>
     <artifactId>zhglxt-framework</artifactId>
     <description>

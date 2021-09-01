@@ -31,15 +31,15 @@
     <script th:src="@{/ajax/libs/bootstrap-table/extensions/mobile/bootstrap-table-mobile.js}"></script>
     <!-- jquery-validate 表单验证插件 -->
     <script th:src="@{/ajax/libs/validate/jquery.validate.min.js}"></script>
-    <script th:src="@{/ajax/libs/validate/messages_zh.min.js}"></script>
     <script th:src="@{/ajax/libs/validate/jquery.validate.extend.js}"></script>
+    <script th:src="@{/ajax/libs/validate/messages_zh.js}"></script>
     <!-- jquery-validate 表单树插件 -->
     <script th:src="@{/ajax/libs/bootstrap-table/extensions/tree/bootstrap-table-tree.min.js}"></script>
     <!-- 遮罩层 -->
     <script th:src="@{/ajax/libs/blockUI/jquery.blockUI.js}"></script>
     <script th:src="@{/ajax/libs/iCheck/icheck.min.js}"></script>
     <script th:src="@{/ajax/libs/layer/layer.min.js}"></script>
-    <script th:src="@{/ajax/libs/layui/layui.js}"></script>
+    <script th:src="@{/ajax/libs/layui/layui.min.js}"></script>
     <script th:src="@{/zhglxt/js/common.js}"></script>
     <script th:src="@{/zhglxt/js/zhglxt-ui.js}"></script>
     <!--
@@ -71,7 +71,7 @@
 <!-- select2下拉框插件 （官网：https://select2.org/）-->
 <div th:fragment="select2-css">
     <link th:href="@{/ajax/libs/select2/select2.min.css}" rel="stylesheet"/>
-    <link th:href="@{/ajax/libs/select2/select2-bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/ajax/libs/select2/select2-bootstrap.min.css}" rel="stylesheet"/>
 </div>
 <div th:fragment="select2-js">
     <script th:src="@{/ajax/libs/select2/select2.min.js}"></script>
@@ -79,10 +79,10 @@
 
 <!-- bootstrap-select下拉框插件 -->
 <div th:fragment="bootstrap-select-css">
-    <link th:href="@{/ajax/libs/bootstrap-select/bootstrap-select.css}" rel="stylesheet"/>
+    <link th:href="@{/ajax/libs/bootstrap-select/bootstrap-select.min.css}" rel="stylesheet"/>
 </div>
 <div th:fragment="bootstrap-select-js">
-    <script th:src="@{/ajax/libs/bootstrap-select/bootstrap-select.js}"></script>
+    <script th:src="@{/ajax/libs/bootstrap-select/bootstrap-select.min.js}"></script>
 </div>
 
 <!-- datetimepicker日期和时间插件 -->
@@ -162,7 +162,7 @@
 
 <!-- typeahead搜索自动补全 -->
 <div th:fragment="bootstrap-typeahead-js">
-    <script th:src="@{/ajax/libs/typeahead/bootstrap3-typeahead.min.js}"></script>
+    <script th:src="@{/ajax/libs/typeahead/bootstrap-typeahead.min.js}"></script>
 </div>
 
 <!-- 多级联动下拉 -->
