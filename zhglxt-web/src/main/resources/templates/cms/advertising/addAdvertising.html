@@ -77,16 +77,11 @@
     function BrowseServer(startupPath, functionData) {
         //使用“CKFinder”类在页面中呈现CKFinder
         var finder = new CKFinder();
-        //语言
-        // finder.language='zh-cn';
-        // finder.width='777';
-        // finder.height='557';
         //CKFinder的安装路径 (default = "/ckfinder/").
         finder.basePath = ctx + 'ckfinder/ckfinder.html?Type=Images';
         //打开的路径: "Type:/path/to/directory/"
         finder.startupPath = startupPath;
-        //要在第二个参数中传递给selectActionFunction的其他数据。
-        //要更新的字段的Id。
+        //要更新的字段的Id
         finder.selectActionData = functionData;
         //选择文件时调用的函数的名称
         finder.selectActionFunction = SetFileField;
@@ -110,7 +105,6 @@
             '</div>' +
             '</div>';
         //更新表单imageUrl的值
-        // document.getElementById(data["selectActionData"]).value = fileUrl;
         $("#imageUrl").val(data["fileUrl"]);
         //自动填充图片名称
         $("#name").val(sFileName);

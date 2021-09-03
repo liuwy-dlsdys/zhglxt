@@ -93,20 +93,15 @@
         finder.startupPath = startupPath;
         //选择文件时调用的函数的名称
         finder.selectActionFunction = SetFileField;
-        // 要在第二个参数中传递给selectActionFunction的其他数据。
         //使用这个特性来传递将要更新的字段的Id。
         finder.selectActionData = functionData;
         //选择缩略图时调用的函数的名称
         finder.selectThumbnailActionFunction = ShowThumbnails;
-        // Launch CKFinder
-        //params: (basePath, width, height, selectActionFunction, callback)
         finder.popup({
             basePath: ctx + '/ckfinder/ckfinder.html',
             width: 777,
             height: 557,
             popupTitle: '上传广告图片',
-            // Default Value: 'location=no,menubar=no,toolbar=no,dependent=yes,minimizable=no,modal=yes,alwaysRaised=yes,resizable=yes'
-            // popupFeatures : 'location=yes,menubar=yes,modal=yes,toolbar=yes'
         });
     }
 
@@ -123,7 +118,6 @@
             '</div>' +
             '</div>';
         //更新表单imageUrl的值
-        // document.getElementById(data["selectActionData"]).value = fileUrl;
         $("#imageUrl").val(data["fileUrl"]);
         //自动填充图片名称
         $("#name").val(sFileName);
@@ -164,7 +158,7 @@
         rules: {
             sort: {
                 digits: true
-            }
+            },
         },
         messages: {
             "name": {

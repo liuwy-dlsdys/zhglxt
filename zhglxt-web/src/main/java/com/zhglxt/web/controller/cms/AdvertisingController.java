@@ -48,8 +48,8 @@ public class AdvertisingController extends BaseController {
     @ResponseBody
     public TableDataInfo selectAdvertisingList(HttpServletRequest request) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
-        startPage();
         paramMap.put("siteId", siteService.selectOneSite().getId());
+        startPage();
         List<Advertising> advertisingList = advertisingService.selectAdvertisingList(paramMap);
         return getDataTable(advertisingList);
     }

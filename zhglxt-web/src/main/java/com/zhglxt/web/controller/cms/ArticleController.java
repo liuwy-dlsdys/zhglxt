@@ -55,8 +55,8 @@ public class ArticleController extends BaseController {
     @ResponseBody
     public TableDataInfo selectArticleList(HttpServletRequest request) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
-        startPage();
         paramMap.put("siteId", siteService.selectOneSite().getId());
+        startPage();
         List<Article> list = articleService.selectArticleList(paramMap);
         return getDataTable(list);
     }
