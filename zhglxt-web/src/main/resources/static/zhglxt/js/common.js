@@ -222,7 +222,7 @@ $(function() {
 var refreshItem = function(){
     var topWindow = $(window.parent.document);
     var currentId = $('.page-tabs-content', topWindow).find('.active').attr('data-id');
-    var target = $('.RuoYi_iframe[data-id="' + currentId + '"]', topWindow);
+    var target = $('.zhglxt_iframe[data-id="' + currentId + '"]', topWindow);
     var url = target.attr('src');
     target.attr('src', url).ready();
 }
@@ -488,6 +488,39 @@ function loadJs(file, headElem) {
     script.type = 'text/javascript';
     if (headElem) headElem.appendChild(script);
     else document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+// 禁止后退键（Backspace）
+window.onload = function() {
+    document.getElementsByTagName("body")[0].onkeydown = function() {
+        // 获取事件对象
+        var elem = event.relatedTarget || event.srcElement || event.target || event.currentTarget;
+        // 判断按键为backSpace键
+        if (event.keyCode == 8) {
+            // 判断是否需要阻止按下键盘的事件默认传递
+            var name = elem.nodeName;
+            if (name != 'INPUT' && name != 'TEXTAREA') {
+                return _stopIt(event);
+            }
+            var type_e = elem.type.toUpperCase();
+            if (name == 'INPUT' && (type_e != 'TEXT' && type_e != 'TEXTAREA' && type_e != 'PASSWORD' && type_e != 'FILE')) {
+                return _stopIt(event);
+            }
+            if (name == 'INPUT' && (elem.readOnly == true || elem.disabled == true)) {
+                return _stopIt(event);
+            }
+        }
+    };
+}
+
+function _stopIt(e) {
+    if (e.returnValue) {
+        e.returnValue = false;
+    }
+    if (e.preventDefault) {
+        e.preventDefault();
+    }
+    return false;
 }
 
 /** 设置全局ajax处理 */

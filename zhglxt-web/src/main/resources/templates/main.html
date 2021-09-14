@@ -21,21 +21,17 @@
                 <b>可用于开发所有企业级WEB应用系统（如:各种后台管理系统、CRM、ERP、CMS、OA、博客、论坛等...）。</b>
             </p>
             <p style="color: #ca4440;">
-                <b>响应式布局，支持大部分主流浏览器（如：IE9+浏览器、Google Chrome、火狐浏览器、360浏览器等...)</b>
+                <b>响应式布局，支持大部分浏览器（如：IE9+浏览器、Google Chrome、火狐浏览器、360浏览器...)、平板、手机等主流设备</b>
             </p>
         </div>
     </div>
     <div style="float:left;margin-top: 8px;width: 1px;height: 220px;background: darkgray;margin-left: 5px;"></div>
-    <div class="col-sm-5" style="font-size: 18px;">
+    <div class="col-sm-5">
         <h2><b>温馨提示：</b></h2>
-        <p style="text-indent: 2em">
-            本系统工作流程引擎使用的是Activiti5，部署到Tomcat服务器时，流转信息-提交意见-会出现乱码。
+        <p style="text-indent: 2em;font-size: 16px" >
+            部署到Tomcat服务器时，在线办公-个人办公-（我的任务、请假申请）-（任务办理、详情）-流转信息-提交意见，如果出现乱码
         </p>
-        <p>解决方案：</p>
-        <p style="text-indent: 2em;">
-            修改Tomcat的catalina.bat参数：找到Tomcat的bin目录下的catalina.bat文件进行修改。在@echo off的下面添加以下命令即可。<br>
-            <p style="color: #ca4440;text-indent: 2em;">set "JAVA_OPTS=%JAVA_OPTS% %JSSE_OPTS% -Dfile.encoding=UTF-8"</p>
-        </p>
+        解决方案：修改Tomcat的catalina.bat参数：找到Tomcat的bin目录下的catalina.bat文件进行修改。在@echo off的下面添加：<i style="color: #ca4440">set "JAVA_OPTS=%JAVA_OPTS% %JSSE_OPTS% -Dfile.encoding=UTF-8"</i>
     </div>
 </div>
 <div class="wrapper wrapper-content">
@@ -58,6 +54,8 @@
                                 <div id="v94" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                         <ol>
+                                            <li>修复在平板、手机等移动端的编辑、查看问题</li>
+                                            <li>禁止后退键（Backspace）</li>
                                             <li>升级bootstrap-fileinput到最新版本v5.2.4</li>
                                             <li>实例演示中增加多层窗口获取值</li>
                                             <li>弹出层openOptions增加动画属性</li>

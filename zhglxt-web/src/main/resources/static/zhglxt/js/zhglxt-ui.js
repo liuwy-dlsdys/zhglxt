@@ -952,7 +952,7 @@ var table = {
                 });
                 top.layer.full(index);
             },
-            // 弹出层全屏 去除按钮
+            // 弹出层全屏 去除确定按钮
             openFullS: function (title, url, width, height) {
                 // 如果是移动端，就使用自适应大小弹窗
                 if ($.common.isMobile()) {
@@ -980,9 +980,15 @@ var table = {
                     shade: 0.3,
                     title: title,
                     content: url,
-                    btn: 0,
+                    btn: ['关闭'],
+                    yes: function (index, layero) {
+                        $.modal.close(index);
+                    },
                     // 弹层外区域关闭
-                    shadeClose: true
+                    shadeClose: true,
+                    cancel: function(index) {
+                        return true;
+                    }
                 });
                 top.layer.full(index);
             },

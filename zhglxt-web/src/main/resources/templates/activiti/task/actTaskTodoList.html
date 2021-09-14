@@ -148,26 +148,23 @@
     }
     //任务办理
     function taskTodo(taskId,taskName,taskDefKey,procDefId,procInsId,status) {
-    		var url=encodeURI(prefix + "/form?taskId=" + taskId+"&taskName="+taskName+"&taskDefKey="+taskDefKey+"&procDefId="+procDefId+"&procInsId="+procInsId+"&status="+status);
-    		var options = {
-    				title: '任务办理',
-    				url:url,
-    				btn: 0
-    			};
-		$.modal.openOptions(options);
+		var url=encodeURI(prefix + "/form?taskId=" + taskId+"&taskName="+taskName+"&taskDefKey="+taskDefKey+"&procDefId="+procDefId+"&procInsId="+procInsId+"&status="+status);
+		$.modal.openFullS('任务办理',url);
     }
     //任务跟踪
     function taskTracking(processDefinitionId,processInstanceId) {
+		var url= ctx +"diagram-viewer/index.html?processDefinitionId=" + processDefinitionId+"&processInstanceId="+processInstanceId;
 		var options = {
 			title: '任务跟踪',
 			width:1050,
-			url: ctx +"diagram-viewer/index.html?processDefinitionId=" + processDefinitionId+"&processInstanceId="+processInstanceId,
-			btn: 0
+			url: url,
+			btn:['关闭'],
+			yes:function (index) {
+				$.modal.close(index);
+			}
 		};
 		$.modal.openOptions(options);
     }
-
-
 
 </script>
 </body>

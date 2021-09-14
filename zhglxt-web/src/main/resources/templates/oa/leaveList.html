@@ -105,13 +105,8 @@
 
     //详情
     function leaveDetail(id) {
-        var options = {
-            title: '请假详情',
-            url: prefix + "/form?id=" + id,
-            //不显示按钮
-            btn: 0
-        };
-        $.modal.openOptions(options);
+        var url= prefix + "/form?id=" + id;
+        $.modal.openFullS('请假详情',url);
     }
 </script>
 </body>
