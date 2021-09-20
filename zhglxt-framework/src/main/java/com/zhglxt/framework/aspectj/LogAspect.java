@@ -13,12 +13,10 @@ import com.zhglxt.framework.manager.AsyncManager;
 import com.zhglxt.framework.manager.factory.AsyncFactory;
 import com.zhglxt.system.entity.SysOperLog;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -27,9 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Method;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -57,9 +53,9 @@ public class LogAspect {
      *
      * @param joinPoint 切点
      */
-    @AfterReturning(pointcut = "logPointCut()", returning = "jsonResult")
-    public void doAfterReturning(JoinPoint joinPoint, Object jsonResult) {
-        handleLog(joinPoint, null, jsonResult);
+    @AfterReturning(pointcut = "@annotation(controllerLog)", returning = "jsonResult")
+    public void doAfterReturning(JoinPoint joinPoint, Log controllerLog, Object jsonResult) {
+        handleLog(joinPoint, controllerLog, null, jsonResult);
     }
 
     /**
@@ -68,19 +64,13 @@ public class LogAspect {
      * @param joinPoint 切点
      * @param e         异常
      */
-    @AfterThrowing(value = "logPointCut()", throwing = "e")
-    public void doAfterThrowing(JoinPoint joinPoint, Exception e) {
-        handleLog(joinPoint, e, null);
+    @AfterThrowing(value = "@annotation(controllerLog)", throwing = "e")
+    public void doAfterThrowing(JoinPoint joinPoint, Log controllerLog, Exception e) {
+        handleLog(joinPoint, controllerLog, e, null);
     }
 
-    protected void handleLog(final JoinPoint joinPoint, final Exception e, Object jsonResult) {
+    protected void handleLog(final JoinPoint joinPoint, Log controllerLog, final Exception e, Object jsonResult) {
         try {
-            // 获得注解
-            Log controllerLog = getAnnotationLog(joinPoint);
-            if (controllerLog == null) {
-                return;
-            }
-
             // 获取当前的用户
             SysUser currentUser = ShiroUtils.getSysUser();
 
@@ -113,7 +103,7 @@ public class LogAspect {
             String methodName = joinPoint.getSignature().getName();
             operLog.setMethod(className + "." + methodName + "()");
             // 处理设置注解上的参数
-            getControllerMethodDescription(joinPoint, controllerLog, operLog);
+            getControllerMethodDescription(joinPoint, controllerLog, operLog, jsonResult);
             // 保存数据库
             AsyncManager.me().execute(AsyncFactory.recordOper(operLog));
         } catch (Exception exp) {
@@ -131,7 +121,7 @@ public class LogAspect {
      * @param operLog 操作日志
      * @throws Exception
      */
-    public void getControllerMethodDescription(JoinPoint joinPoint, Log log, SysOperLog operLog) throws Exception
+    public void getControllerMethodDescription(JoinPoint joinPoint, Log log, SysOperLog operLog, Object jsonResult) throws Exception
     {
         // 设置action动作
         operLog.setBusinessType(log.businessType().ordinal());
@@ -143,6 +133,11 @@ public class LogAspect {
         if (log.isSaveRequestData()) {
             // 获取参数的信息，传入到数据库中。
             setRequestValue(joinPoint, operLog);
+        }
+        // 是否需要保存response，参数和值
+        if (log.isSaveResponseData() && StringUtils.isNotNull(jsonResult))
+        {
+            operLog.setJsonResult(StringUtils.substring(JSONObject.toJSONString(jsonResult), 0, 2000));
         }
     }
 
@@ -169,20 +164,6 @@ public class LogAspect {
     }
 
     /**
-     * 是否存在注解，如果存在就获取
-     */
-    private Log getAnnotationLog(JoinPoint joinPoint) throws Exception {
-        Signature signature = joinPoint.getSignature();
-        MethodSignature methodSignature = (MethodSignature) signature;
-        Method method = methodSignature.getMethod();
-
-        if (method != null) {
-            return method.getAnnotation(Log.class);
-        }
-        return null;
-    }
-
-    /**
      * 忽略敏感属性
      */
     public PropertyPreFilters.MySimplePropertyPreFilter excludePropertyPreFilter()
@@ -198,12 +179,19 @@ public class LogAspect {
         String params = "";
         if (paramsArray != null && paramsArray.length > 0)
         {
-            for (int i = 0; i < paramsArray.length; i++)
+            for (Object o : paramsArray)
             {
-                if (StringUtils.isNotNull(paramsArray[i]) && !isFilterObject(paramsArray[i]))
+                if (StringUtils.isNotNull(o) && !isFilterObject(o))
                 {
-                    Object jsonObj = JSONObject.toJSONString(paramsArray[i], excludePropertyPreFilter());
-                    params += jsonObj.toString() + " ";
+                    try
+                    {
+                        Object jsonObj = JSONObject.toJSONString(o, excludePropertyPreFilter());
+                        params += jsonObj.toString() + " ";
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
                 }
             }
         }
@@ -227,17 +215,17 @@ public class LogAspect {
         else if (Collection.class.isAssignableFrom(clazz))
         {
             Collection collection = (Collection) o;
-            for (Iterator iter = collection.iterator(); iter.hasNext();)
+            for (Object value : collection)
             {
-                return iter.next() instanceof MultipartFile;
+                return value instanceof MultipartFile;
             }
         }
         else if (Map.class.isAssignableFrom(clazz))
         {
             Map map = (Map) o;
-            for (Iterator iter = map.entrySet().iterator(); iter.hasNext();)
+            for (Object value : map.entrySet())
             {
-                Map.Entry entry = (Map.Entry) iter.next();
+                Map.Entry entry = (Map.Entry) value;
                 return entry.getValue() instanceof MultipartFile;
             }
         }
