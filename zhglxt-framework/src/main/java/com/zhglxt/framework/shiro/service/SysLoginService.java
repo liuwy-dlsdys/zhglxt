@@ -90,7 +90,7 @@ public class SysLoginService {
         passwordService.validate(user, password);
 
         AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_SUCCESS, MessageUtils.message("user.login.success")));
-        recordLoginInfo(user);
+        recordLoginInfo(user.getUserId());
         return user;
     }
 /**
@@ -115,7 +115,9 @@ public class SysLoginService {
     /**
      * 记录登录信息
      */
-    public void recordLoginInfo(SysUser user) {
+    public void recordLoginInfo(String userId) {
+        SysUser user = new SysUser();
+        user.setUserId(userId);
         user.setLoginIp(ShiroUtils.getIp());
         user.setLoginDate(DateUtils.getNowDate());
         userService.updateUserInfo(user);

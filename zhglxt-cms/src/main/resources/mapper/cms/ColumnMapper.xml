@@ -108,7 +108,7 @@
     </insert>
 
     <delete id="deleteColumn" parameterType="map">
-        DELETE FROM cms_column WHERE column_id=#{columnId}
+        DELETE FROM cms_column WHERE column_id = #{columnId}
     </delete>
 
     <update id="updateColumn" parameterType="map">

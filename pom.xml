@@ -21,17 +21,16 @@
         <java.version>1.8</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
         <shiro.version>1.8.0</shiro.version>
-        <thymeleaf.extras.shiro.version>2.0.0</thymeleaf.extras.shiro.version>
+        <thymeleaf.extras.shiro.version>2.1.0</thymeleaf.extras.shiro.version>
         <mybatis.boot.version>1.3.2</mybatis.boot.version>
         <druid.version>1.2.6</druid.version>
         <bitwalker.version>1.21</bitwalker.version>
         <kaptcha.version>2.3.2</kaptcha.version>
         <swagger.version>3.0.0</swagger.version>
+        <knife4j.version>3.0.3</knife4j.version>
         <mybatis-spring-boot.version>2.1.4</mybatis-spring-boot.version>
-        <knife4j.version>2.0.6</knife4j.version>
-        <swagger.bootstrap.ui.version>1.9.6</swagger.bootstrap.ui.version>
         <pagehelper.boot.version>1.3.1</pagehelper.boot.version>
-        <fastjson.version>1.2.76</fastjson.version>
+        <fastjson.version>1.2.78</fastjson.version>
         <oshi.version>5.8.0</oshi.version>
         <jna.version>5.8.0</jna.version>
         <commons.io.version>2.11.0</commons.io.version>
@@ -149,7 +148,7 @@
                 <version>${jna.version}</version>
             </dependency>
 
-            <!-- Swagger3 -->
+            <!-- Swagger3依赖 -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
@@ -161,18 +160,22 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
             <!--knife4j -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <!--在引用时请在maven中央仓库搜索最新版本号-->
                 <version>${knife4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>swagger-bootstrap-ui</artifactId>
-                <version>${swagger.bootstrap.ui.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-models</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-annotations</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!--io常用工具类 -->

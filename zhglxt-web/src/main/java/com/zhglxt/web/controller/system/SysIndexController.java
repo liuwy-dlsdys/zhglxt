@@ -56,7 +56,11 @@ public class SysIndexController extends BaseController {
         mmap.put("user", user);
         mmap.put("sideTheme", configService.selectConfigByKey("sys.index.sideTheme"));
         mmap.put("skinName", configService.selectConfigByKey("sys.index.skinName"));
-        mmap.put("ignoreFooter", configService.selectConfigByKey("sys.index.ignoreFooter"));
+        Boolean footer = Convert.toBool(configService.selectConfigByKey("sys.index.footer"), true);
+        Boolean tagsView = Convert.toBool(configService.selectConfigByKey("sys.index.tagsView"), true);
+        mmap.put("footer", footer);
+        mmap.put("tagsView", tagsView);
+        mmap.put("mainClass", contentMainClass(footer, tagsView));
         mmap.put("copyrightYear", GlobalConfig.getCopyrightYear());
         mmap.put("demoEnabled", GlobalConfig.isDemoEnabled());
         mmap.put("isDefaultModifyPwd", initPasswordIsModify(user.getPwdUpdateDate()));
@@ -127,6 +131,24 @@ public class SysIndexController extends BaseController {
     public String main(ModelMap mmap) {
         mmap.put("version", GlobalConfig.getVersion());
         return "main";
+    }
+
+    // content-main class
+    public String contentMainClass(Boolean footer, Boolean tagsView)
+    {
+        if (!footer && !tagsView)
+        {
+            return "tagsview-footer-hide";
+        }
+        else if (!footer)
+        {
+            return "footer-hide";
+        }
+        else if (!tagsView)
+        {
+            return "tagsview-hide";
+        }
+        return StringUtils.EMPTY;
     }
 
     // 检查初始密码是否提醒修改

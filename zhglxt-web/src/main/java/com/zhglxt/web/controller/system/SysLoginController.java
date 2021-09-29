@@ -3,6 +3,7 @@ package com.zhglxt.web.controller.system;
 import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
+import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.util.ServletUtils;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.framework.web.service.ConfigService;
@@ -48,7 +49,7 @@ public class SysLoginController extends BaseController {
         // 是否开启记住我
         mmap.put("isRemembered", rememberMe);
         // 是否开启用户注册
-        mmap.put("isAllowRegister", configService.getKey("sys.account.registerUser"));
+        mmap.put("isAllowRegister", Convert.toBool(configService.getKey("sys.account.registerUser"), false));
         return "login";
     }
 

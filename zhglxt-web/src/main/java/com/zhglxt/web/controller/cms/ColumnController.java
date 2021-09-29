@@ -14,13 +14,15 @@ import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.util.WebUtil;
 import com.zhglxt.common.util.uuid.IdUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -31,6 +33,7 @@ import java.util.Map;
  * @author liuwy
  * @date 2019/12/3
  */
+@Api(tags ="企业官网-栏目管理")
 @Controller
 @RequestMapping("/cms/column")
 public class ColumnController extends BaseController {
@@ -50,7 +53,12 @@ public class ColumnController extends BaseController {
         return prefix + "/columnIndex";
     }
 
-    @RequestMapping("/columnList")
+    @ApiOperation(value = "栏目列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "columnId", value = "栏目id", dataType = "String"),
+            @ApiImplicitParam(name = "columnName", value = "栏目名称", dataType = "String")
+    })
+    @PostMapping("/columnList")
     @ResponseBody
     public List<Column> columnList(HttpServletRequest request) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
@@ -142,8 +150,12 @@ public class ColumnController extends BaseController {
     /**
      * 删除菜单
      */
+    @ApiOperation(value = "删除栏目")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "columnId", value = "栏目id", required = true, dataType = "String")
+    })
     @Log(title = "CMS-栏目菜单管理-删除", businessType = BusinessType.DELETE)
-    @RequestMapping("/remove")
+    @DeleteMapping("/remove")
     @ResponseBody
     public AjaxResult deleteColumn(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {

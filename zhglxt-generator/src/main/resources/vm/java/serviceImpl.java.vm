@@ -3,11 +3,11 @@ package ${packageName}.service.impl;
 import java.util.List;
 #if($table.tree)
 import java.util.ArrayList;
-import com.zhgxlt.common.core.entity.Ztree;
+import com.zhglxt.common.core.entity.Ztree;
 #end
 #foreach ($column in $columns)
 #if($column.javaField == 'createTime' || $column.javaField == 'updateTime')
-import com.zhgxlt.common.utils.DateUtils;
+import com.zhglxt.common.utils.DateUtils;
 #break
 #end
 #end
@@ -15,14 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 #if($table.sub)
 import java.util.ArrayList;
-import com.zhgxlt.common.utils.StringUtils;
+import com.zhglxt.common.util.StringUtils;
 import org.springframework.transaction.annotation.Transactional;
 import ${packageName}.entity.${subClassName};
 #end
 import ${packageName}.mapper.${ClassName}Mapper;
 import ${packageName}.entity.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
-import com.zhgxlt.common.core.text.Convert;
+import com.zhglxt.common.core.text.Convert;
 
 /**
  * ${functionName}Service业务层处理
@@ -157,9 +157,21 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
         for (${ClassName} ${className} : ${className}List)
         {
             Ztree ztree = new Ztree();
-#set($TreeCode=$treeCode.substring(0,1).toUpperCase() + ${treeCode.substring(1)})
-#set($TreeParentCode=$treeParentCode.substring(0,1).toUpperCase() + ${treeParentCode.substring(1)})
-#set($TreeName=$treeName.substring(0,1).toUpperCase() + ${treeName.substring(1)})
+#if($treeCode.length() > 2 && $treeCode.substring(1,2).matches("[A-Z]"))
+    #set($TreeCode=$treeCode)
+#else
+    #set($TreeCode=$treeCode.substring(0,1).toUpperCase() + ${treeCode.substring(1)})
+#end
+#if($treeParentCode.length() > 2 && $treeParentCode.substring(1,2).matches("[A-Z]"))
+    #set($TreeParentCode=$treeParentCode)
+#else
+    #set($TreeParentCode=$treeParentCode.substring(0,1).toUpperCase() + ${treeParentCode.substring(1)})
+#end
+#if($treeName.length() > 2 && $treeName.substring(1,2).matches("[A-Z]"))
+    #set($TreeName=$treeName)
+#else
+    #set($TreeName=$treeName.substring(0,1).toUpperCase() + ${treeName.substring(1)})
+#end
             ztree.setId(${className}.get${TreeCode}());
             ztree.setpId(${className}.get${TreeParentCode}());
             ztree.setName(${className}.get${TreeName}());

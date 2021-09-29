@@ -36,7 +36,7 @@
 3. 持久层【Apache MyBatis 3.5.6】
 4. 视图层【Bootstrap 3.3、Thymeleaf 3.0】
 5. 安全框架【Apache Shiro 1.8.0】
-6. 缓存框架【shiro-ehcache 1.7.1】
+6. 缓存框架【shiro-ehcache 1.8.0】
 7. 任务调度框架【Quartz 2.3.2】
 8. 业务流程管理（BPM）框架【Activiti 5.23.0】
 9. 文件管理器【CKFinder2.6.3】

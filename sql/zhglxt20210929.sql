@@ -1535,7 +1535,8 @@ INSERT INTO `sys_config` VALUES ('5', '用户管理-密码字符范围', 'sys.ac
 INSERT INTO `sys_config` VALUES ('6', '用户管理-初始密码修改策略', 'sys.account.initPasswordModify', '0', 'Y', 'system', '2020-10-16 15:35:20', '', null, '0：初始密码修改策略关闭，没有任何提示，1：提醒用户，如果未修改初始密码，则在登录时就会提醒修改密码对话框');
 INSERT INTO `sys_config` VALUES ('7', '用户管理-账号密码更新周期', 'sys.account.passwordValidateDays', '0', 'Y', 'system', '2020-10-16 15:35:20', '', null, '密码更新周期（填写数字，数据初始化值为0不限制，若修改必须为大于0小于365的正整数），如果超过这个周期登录系统时，则在登录时就会提醒修改密码对话框');
 INSERT INTO `sys_config` VALUES ('8', '主框架页-菜单导航显示风格', 'sys.index.menuStyle', 'topnav', 'Y', 'system', '2020-10-16 15:35:20', 'system', '2021-05-31 22:23:00', '菜单导航显示风格（default为左侧导航菜单，topnav为顶部导航菜单）');
-INSERT INTO `sys_config` VALUES ('9', '主框架页-是否开启页脚', 'sys.index.ignoreFooter', 'true', 'Y', 'system', '2020-10-16 15:35:20', 'system', '2020-12-12 19:02:45', '是否开启底部页脚显示（true显示，false隐藏）');
+INSERT INTO `sys_config` VALUES ('9', '主框架页-是否开启页脚', 'sys.index.footer', 'true', 'Y', 'system', '2020-10-16 15:35:20', 'system', '2020-12-12 19:02:45', '是否开启底部页脚显示（true显示，false隐藏）');
+INSERT INTO `sys_config` VALUES ('10', '主框架页-是否开启页签', 'sys.index.tagsView', 'true', 'Y', 'system', '2021-09-24 12:50:25', 'system', null, '是否开启菜单多页签显示（true显示，false隐藏）');
 
 -- ----------------------------
 -- Table structure for sys_dept

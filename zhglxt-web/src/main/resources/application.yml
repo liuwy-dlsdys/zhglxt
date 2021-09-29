@@ -106,5 +106,65 @@ xss:
 swagger:
   # 是否开启swagger
   enabled: true
-  #屏蔽所有资源（当我们部署系统到生产系统,为了接口安全,需要屏蔽所有Swagger的相关资源）
+
+# knife4j配置
+knife4j:
+  # 是否开启Knife4j增强模式
+  enable: true
+  # 是否开启一个默认的跨域配置,该功能配合自定义Host使用
+  cors: false
+  # 是否开启生产环境保护策略
   production: false
+  # 自定义文档集合，该属性是数组。支持多级目录（2.0.7版本开始支持）
+  documents:
+    - # 所属分组
+      group: WEB应用系统
+      # 类似于接口中的tag,对于自定义文档的分组
+      name: 自定义文档
+      # markdown文件路径,可以是一个文件夹(classpath:markdowns/*)，也可以是单个文件(classpath:markdowns/knife4j.md)
+      locations: classpath:markdown/*
+  # 前端Ui的个性化配置属性
+  setting:
+    # Ui默认显示语言,目前主要有两种:中文(zh-CN)、英文(en-US)
+    language: zh-CN
+    # 是否显示界面中SwaggerModel功能
+    enableSwaggerModels: true
+    # 是否显示界面中"文档管理"功能
+    enableDocumentManage: true
+    # 自定义SwaggerModel名称,默认 (2.0.7版本开始支持)
+    # swaggerModelName: 实体类列表
+    # 是否开启界面中对某接口的版本控制,如果开启，后端变化后Ui界面会存在小蓝点
+    enableVersion: true
+    # 是否在每个Debug调试栏后显示“刷新变量”按钮,默认不显示
+    enableReloadCacheParameter: false
+    # 调试Tab是否显示AfterScript功能,默认开启
+    enableAfterScript: true
+    # 具体接口的过滤类型
+    enableFilterMultipartApiMethodType: POST
+    # 针对RequestMapping的接口请求类型,在不指定参数类型的情况下,如果不过滤,默认会显示7个类型的接口地址参数,如果开启此配置,默认展示一个Post类型的接口地址
+    enableFilterMultipartApis: false
+    # 是否开启请求参数缓存
+    enableRequestCache: false
+    # 是否启用Host
+    enableHost: false
+    enableHostText: ""
+    # 是否开启自定义主页内容（配合homeCustomLocation使用）
+    # enableHomeCustom: true
+    # 主页内容Markdown文件路径
+    # homeCustomLocation: classpath:markdown/home.md
+    # 是否禁用Ui界面中的搜索框
+    enableSearch: true
+    # 是否显示Footer
+    enableFooter: false
+    # 是否开启自定义Footer
+    enableFooterCustom: true
+    # 自定义Footer内容
+    footerCustomContent: Copyright 2019-now [WEB应用系统](http://zhglxt.dlsdys.com/)
+    # 是否开启动态参数调试功能
+    enableDynamicParameter: true
+    # 是否启用调试
+    enableDebug: true
+    # 是否显示OpenAPI规范（2.0.8版本开始支持）
+    enableOpenApi: false
+    # 显示服务分组
+    enableGroup: true

@@ -1486,7 +1486,6 @@ var table = {
             },
             // 隐藏所有节点
             hideAllNode: function(nodes) {
-                var tree = $.fn.zTree.getZTreeObj("tree");
                 var nodes = $._tree.transformToArray(nodes);
                 for (var i = nodes.length - 1; i >= 0; i--) {
                     $._tree.hideNode(nodes[i]);

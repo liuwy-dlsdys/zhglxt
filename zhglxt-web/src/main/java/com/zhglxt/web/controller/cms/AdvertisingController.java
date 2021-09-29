@@ -13,9 +13,15 @@ import com.zhglxt.common.enums.BusinessType;
 import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.WebUtil;
 import com.zhglxt.common.util.uuid.IdUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,6 +34,7 @@ import java.util.Map;
  * @author liuwy
  * @date 2019/12/15
  */
+@Api(tags = "企业官网-广告管理")
 @Controller
 @RequestMapping("/cms/advertising")
 public class AdvertisingController extends BaseController {
@@ -44,7 +51,12 @@ public class AdvertisingController extends BaseController {
         return prefix + "/advertisingIndex";
     }
 
-    @RequestMapping("/list")
+    @ApiOperation(value = "广告列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "广告id",dataType = "String"),
+            @ApiImplicitParam(name = "title", value = "广告标题",dataType = "String")
+    })
+    @PostMapping("/list")
     @ResponseBody
     public TableDataInfo selectAdvertisingList(HttpServletRequest request) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
@@ -100,10 +112,14 @@ public class AdvertisingController extends BaseController {
     }
 
     /**
-     * 删除菜单
+     * 删除广告
      */
+    @ApiOperation(value = "删除广告")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "ids", value = "广告id列表（如：1,2,3,4）", required = true, dataType = "String")
+    })
     @Log(title = "CMS-广告管理-删除", businessType = BusinessType.DELETE)
-    @RequestMapping("/remove")
+    @DeleteMapping("/remove")
     @ResponseBody
     public AjaxResult deleteAdvertising(String ids) {
         if (GlobalConfig.isDemoEnabled()) {

@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
@@ -35,7 +34,6 @@ import java.util.List;
  * @author ruoyi
  */
 @Configuration
-@EnableOpenApi //swagger3用EnableOpenApi注解 ； swagger2用EnableSwagger2注解
 public class SwaggerConfig {
     /**
      * 是否开启swagger
@@ -51,15 +49,12 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.OAS_30)
                 // 是否启用Swagger
                 .enable(enabled)
-                // 用来创建该API的基本信息，展示在文档的页面中（自定义展示的信息）
+                // 展示在文档首页中的基本信息
                 .apiInfo(apiInfo())
                 // 设置哪些接口暴露给Swagger展示
                 .select()
                 // 扫描所有有注解的api，用这种方式更灵活
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-                // 扫描指定包中的swagger注解
-                //.apis(RequestHandlerSelectors.basePackage("com.zhglxt.project.tool.swagger"))
-                // 扫描所有 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
                 .securitySchemes(securitySchemes())
@@ -75,7 +70,7 @@ public class SwaggerConfig {
         // 用ApiInfoBuilder进行定制
         return new ApiInfoBuilder()
                 // 设置标题
-                .title("标题："+GlobalConfig.getName()+"_接口文档")
+                .title("标题："+ GlobalConfig.getName()+"_接口文档")
                 // 描述
                 .description("描述：Swagger是一款让你更好的书写API文档的规范且完整框架；提供描述、生产、消费和可视化RESTful Web Service；" +
                         "庞大工具集合支撑的形式化规范。这个集合涵盖了从终端用户接口、底层代码库到商业API管理的方方面面。")

@@ -37,11 +37,13 @@
             <groupId>com.zhglxt</groupId>
             <artifactId>zhglxt-framework</artifactId>
         </dependency>
+
         <!-- 定时任务 -->
         <dependency>
             <groupId>com.zhglxt</groupId>
             <artifactId>zhglxt-quartz</artifactId>
         </dependency>
+
         <!-- 代码生成 -->
         <dependency>
             <groupId>com.zhglxt</groupId>
