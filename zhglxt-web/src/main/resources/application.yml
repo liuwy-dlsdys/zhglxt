@@ -121,7 +121,7 @@ knife4j:
       group: WEB应用系统
       # 类似于接口中的tag,对于自定义文档的分组
       name: 自定义文档
-      # markdown文件路径,可以是一个文件夹(classpath:markdowns/*)，也可以是单个文件(classpath:markdowns/knife4j.md)
+      # markdown文件路径,可以是一个文件夹(classpath:markdowns/*)，也可以是单个文件(classpath:markdowns/helpDoc.md)
       locations: classpath:markdown/*
   # 前端Ui的个性化配置属性
   setting:

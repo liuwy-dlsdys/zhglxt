@@ -36,7 +36,7 @@ public class TestController extends BaseController {
     }
 
     @ApiOperation("获取用户详细")
-    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "int", paramType = "path")
+    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "Integer", paramType = "path", dataTypeClass = Integer.class)
     @GetMapping("/{userId}")
     public AjaxResult getUser(@PathVariable Integer userId) {
         if (!users.isEmpty() && users.containsKey(userId)) {
@@ -48,10 +48,10 @@ public class TestController extends BaseController {
 
     @ApiOperation("新增用户")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "userId", value = "用户id", dataType = "Integer"),
-            @ApiImplicitParam(name = "username", value = "用户名称", dataType = "String"),
-            @ApiImplicitParam(name = "password", value = "用户密码", dataType = "String"),
-            @ApiImplicitParam(name = "mobile", value = "用户手机", dataType = "String")
+            @ApiImplicitParam(name = "userId", value = "用户id", dataType = "Integer", paramType = "path", dataTypeClass = Integer.class),
+            @ApiImplicitParam(name = "username", value = "用户名称", dataType = "String", paramType = "path", dataTypeClass = String.class),
+            @ApiImplicitParam(name = "password", value = "用户密码", dataType = "String", paramType = "path", dataTypeClass = String.class),
+            @ApiImplicitParam(name = "mobile", value = "用户手机", dataType = "String", paramType = "path", dataTypeClass = String.class)
     })
     @PostMapping("/save")
     public AjaxResult save(UserEntity user) {
@@ -65,7 +65,7 @@ public class TestController extends BaseController {
     }
 
     @ApiOperation("更新用户")
-    @ApiImplicitParam(name = "userEntity", value = "新增用户信息", dataType = "UserEntity")
+    @ApiImplicitParam(name = "userEntity", value = "新增用户信息", dataType = "UserEntity", dataTypeClass = UserEntity.class)
     @PutMapping("/update")
     public AjaxResult update(@RequestBody UserEntity user) {
         if (GlobalConfig.isDemoEnabled()) {
@@ -82,7 +82,7 @@ public class TestController extends BaseController {
     }
 
     @ApiOperation("删除用户信息")
-    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "int", paramType = "path")
+    @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "Integer", paramType = "path", dataTypeClass = Integer.class)
     @DeleteMapping("/{userId}")
     public AjaxResult delete(@PathVariable Integer userId) {
         if (GlobalConfig.isDemoEnabled()) {

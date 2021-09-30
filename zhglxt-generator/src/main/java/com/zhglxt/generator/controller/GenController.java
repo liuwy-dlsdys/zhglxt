@@ -1,5 +1,9 @@
 package com.zhglxt.generator.controller;
 
+import com.alibaba.druid.DbType;
+import com.alibaba.druid.sql.SQLUtils;
+import com.alibaba.druid.sql.ast.SQLStatement;
+import com.alibaba.druid.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement;
 import com.alibaba.fastjson.JSON;
 import com.zhglxt.common.annotation.Log;
 import com.zhglxt.common.config.GlobalConfig;
@@ -17,6 +21,7 @@ import com.zhglxt.generator.service.IGenTableColumnService;
 import com.zhglxt.generator.service.IGenTableService;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -99,6 +104,14 @@ public class GenController extends BaseController {
     }
 
     /**
+     * 创建表结构
+     */
+    @GetMapping("/createTable")
+    public String createTable() {
+        return prefix + "/createTable";
+    }
+
+    /**
      * 导入表结构（保存）
      */
     @RequiresPermissions("tool:gen:list")
@@ -112,7 +125,7 @@ public class GenController extends BaseController {
         String[] tableNames = Convert.toStrArray(tables);
         // 查询表信息
         List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
-        String operName = (String) PermissionUtils.getPrincipalProperty("loginName");
+        String operName = Convert.toStr(PermissionUtils.getPrincipalProperty("loginName"));
         genTableService.importGenTable(tableList, operName);
         return AjaxResult.success();
     }
@@ -166,6 +179,38 @@ public class GenController extends BaseController {
             return error("演示模式不允许本操作");
         }
         genTableService.deleteGenTableByIds(ids);
+        return AjaxResult.success();
+    }
+
+    @RequiresRoles("admin")
+    @Log(title = "创建表", businessType = BusinessType.OTHER)
+    @PostMapping("/createTable")
+    @ResponseBody
+    public AjaxResult create(String sql) {
+        List<SQLStatement> sqlStatements = SQLUtils.parseStatements(sql, DbType.mysql);
+        List<String> tableNames = new ArrayList<>();
+        for (SQLStatement sqlStatement : sqlStatements)
+        {
+            if (sqlStatement instanceof MySqlCreateTableStatement)
+            {
+                MySqlCreateTableStatement createTableStatement = (MySqlCreateTableStatement) sqlStatement;
+                String tableName = createTableStatement.getTableName();
+                tableName = tableName.replaceAll("`", "");
+
+                int msg = genTableService.createTable(createTableStatement.toString());
+                if (msg == 0)
+                {
+                    tableNames.add(tableName);
+                }
+            }
+            else
+            {
+                return AjaxResult.error("请输入建表语句");
+            }
+        }
+        List<GenTable> tableList = genTableService.selectDbTableListByNames((tableNames.toArray(new String[tableNames.size()])));
+        String operName = Convert.toStr(PermissionUtils.getPrincipalProperty("loginName"));
+        genTableService.importGenTable(tableList, operName);
         return AjaxResult.success();
     }
 

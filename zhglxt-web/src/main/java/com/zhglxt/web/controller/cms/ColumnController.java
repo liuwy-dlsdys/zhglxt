@@ -55,8 +55,8 @@ public class ColumnController extends BaseController {
 
     @ApiOperation(value = "栏目列表")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "columnId", value = "栏目id", dataType = "String"),
-            @ApiImplicitParam(name = "columnName", value = "栏目名称", dataType = "String")
+            @ApiImplicitParam(name = "columnId", value = "栏目id", dataType = "String", paramType = "query", dataTypeClass = String.class),
+            @ApiImplicitParam(name = "columnName", value = "栏目名称", dataType = "String", paramType = "query", dataTypeClass = String.class)
     })
     @PostMapping("/columnList")
     @ResponseBody
@@ -152,7 +152,7 @@ public class ColumnController extends BaseController {
      */
     @ApiOperation(value = "删除栏目")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "columnId", value = "栏目id", required = true, dataType = "String")
+            @ApiImplicitParam(name = "columnId", value = "栏目id", required = true, dataType = "String", paramType = "query", dataTypeClass = String.class)
     })
     @Log(title = "CMS-栏目菜单管理-删除", businessType = BusinessType.DELETE)
     @DeleteMapping("/remove")

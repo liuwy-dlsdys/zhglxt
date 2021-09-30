@@ -142,12 +142,24 @@ public class GenTableServiceImpl implements IGenTableService {
     }
 
     /**
+     * 创建表
+     *
+     * @param sql 创建表语句
+     * @return 结果
+     */
+    @Override
+    public int createTable(String sql) {
+        return genTableMapper.createTable(sql);
+    }
+
+    /**
      * 导入表结构
      *
      * @param tableList 导入表列表
      * @param operName  操作人员
      */
     @Override
+    @Transactional
     public void importGenTable(List<GenTable> tableList, String operName) {
         try {
             for (GenTable table : tableList) {
@@ -362,6 +374,8 @@ public class GenTableServiceImpl implements IGenTableService {
 
     /**
      * 设置主键列信息
+     *
+     * @param table 业务表信息
      */
     public void setPkColumn(GenTable table) {
         for (GenTableColumn column : table.getColumns()) {

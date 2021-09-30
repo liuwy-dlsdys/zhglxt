@@ -81,6 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="tableComment != null and tableComment != ''">
 			AND lower(table_name) like lower(concat('%', #{tableName}, '%'))
 		</if>
+		order by create_time desc
 	</select>
 	
 	<select id="selectDbTableListByNames" resultMap="GenTableResult">
@@ -186,5 +187,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{tableId}
         </foreach>
     </delete>
+
+	<update id="createTable">
+		${sql}
+	</update>
 
 </mapper> 

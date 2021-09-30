@@ -53,8 +53,8 @@ public class AdvertisingController extends BaseController {
 
     @ApiOperation(value = "广告列表")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "广告id",dataType = "String"),
-            @ApiImplicitParam(name = "title", value = "广告标题",dataType = "String")
+            @ApiImplicitParam(name = "id", value = "广告id",dataType = "String", paramType = "query", dataTypeClass = String.class),
+            @ApiImplicitParam(name = "title", value = "广告标题",dataType = "String", paramType = "query", dataTypeClass = String.class)
     })
     @PostMapping("/list")
     @ResponseBody
@@ -116,7 +116,7 @@ public class AdvertisingController extends BaseController {
      */
     @ApiOperation(value = "删除广告")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "ids", value = "广告id列表（如：1,2,3,4）", required = true, dataType = "String")
+            @ApiImplicitParam(name = "ids", value = "广告id列表（如：1,2,3,4）", required = true, dataType = "String", paramType = "query", dataTypeClass = String.class)
     })
     @Log(title = "CMS-广告管理-删除", businessType = BusinessType.DELETE)
     @DeleteMapping("/remove")

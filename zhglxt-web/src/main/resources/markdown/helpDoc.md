@@ -1,4 +1,4 @@
-# knife4j介绍、使用教程
+# 使用文档
 
 ## 使用教程
 1. 选择需要调试的API接口
@@ -8,7 +8,79 @@
 5. 如果接口请求前，需要添加请求头参数，在`文档管理`中的`全局参数设置`,单击`添加参数`，输入需要的`参数名称`、`参数值`、`参数类型`。保存后刷新下页面，之后的所有请求接口都会包含该请求参数，不需要时删除即可
 6. 常用的操作就上面这些，如需了解尝试更多其它功能，可自行研究
 
-## 介绍
+## 常用注解
+     @Api：用在controller类，描述API接口
+     @ApiOperation：描述接口方法
+     @ApiModel：描述对象
+     @ApiModelProperty：描述对象属性
+     @ApiImplicitParams：描述接口参数
+       @ApiImplicitParam：(用在@ApiImplicitParams注解中，指定一个请求参数的信息)
+         可用参数：
+         name：参数名
+         value：参数的汉字说明、解释
+         required：参数是否必须传
+         dataType：参数类型，默认String，其它值dataType="Integer"
+         defaultValue：参数的默认值
+         paramType ：参数放在哪个地方
+            header：请求参数的获取@RequestHeader
+            query：请求参数的获取@RequestParam
+            path：请求参数的获取@PathVariable
+            body：请求参数的获取@RequestBody
+            form：普通表单提交
+     @ApiResponses：描述接口响应
+     @ApiIgnore：忽略接口方法
+     
+
+## 自定义（动态）请求参数
+代码示例如下：
+
+Controller`类`上添加 `@Api`注解
+```java
+    @Api(tags ="企业官网-栏目管理")
+```
+
+Controller`方法`上添加 `@ApiOperation、@ApiImplicitParams、@ApiImplicitParam`注解
+```java
+    @ApiOperation(value = "广告列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "广告id",dataType = "String", paramType = "query", dataTypeClass = String.class),
+            @ApiImplicitParam(name = "title", value = "广告标题",dataType = "String", paramType = "query", dataTypeClass = String.class)
+    })
+    @PostMapping("/list")
+    @ResponseBody
+    public TableDataInfo selectAdvertisingList(HttpServletRequest request) {
+        Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
+        paramMap.put("siteId", siteService.selectOneSite().getId());
+        startPage();
+        List<Advertising> advertisingList = advertisingService.selectAdvertisingList(paramMap);
+        return getDataTable(advertisingList);
+    }
+```
+
+## 自定义文档配置
+```yaml
+knife4j:
+ enable: true
+ documents:
+    -
+       group: default
+       name: default自定义标题分组
+       # 某个文件夹下所有的.md文件
+       locations: classpath:markdown/*
+     -
+       group: WEB应用系统
+       name: WEB应用系统自定义标题分组
+       # 某个文件夹下单个.md文件
+       locations: classpath:markdown/helpDoc.md
+```
+
+| 属性名称 | 是否必须 | 说明 |
+| :-----| :----: | :---- |
+| group | true | 逻辑分组名称,最终在逻辑分组时该属性需要传入 |
+| name | true | 自定义文档的分组名称，可以理解为开发者存在多个自定义文档，最终在Ui界面呈现时的一个分组名称 |
+| location | true | 提供自定义.md文件的路径或者文件 |
+
+## knife4j介绍
 Knife4j的前身是swagger-bootstrap-ui,前身swagger-bootstrap-ui是一个纯swagger-ui的ui项目
 
 Knife4j与swagger-bootstrap-ui是两种不一样风格的Ui,对比情况如下：
@@ -90,60 +162,3 @@ Knife4j自2.0.6版本开始,将目前在Ui界面中一些个性化配置剥离,�
 | knife4j.setting.enableDebug | true | 启用调试 |
 | knife4j.setting.enableOpenApi | true | 显示OpenAPI规范 |
 | knife4j.setting.enableGroup | true | 显示服务分组 |
-
-## 自定义（动态）请求参数
-增强功能需要通过配置yml配置文件开启增强,自2.0.6开始
-```yaml
-knife4j:
-  enable: true
-```
-在开发接口的时候使用的传递参数都是Map或者JSONObject这类参数。这类参数对于Swagger这种预先定义再渲染的框架来说是无法满足要求的,即接口文档中是无任何参数注释的。
-
-Knife4j提供了的对于动态参数的注释,使用增强注解@ApiImplicitParams进行说明,代码示例如下：
-
-Controller`类`上添加 `@Api`注解
-```java
-    @Api(tags ="企业官网-栏目管理")
-```
-
-Controller`方法`上添加 `@ApiOperation、@ApiImplicitParams`注解
-```java
-   @ApiOperation(value = "广告列表")
-   @ApiImplicitParams({
-           @ApiImplicitParam(name = "id", value = "广告id",dataType = "String"),
-           @ApiImplicitParam(name = "title", value = "广告标题",dataType = "String")
-   })
-   @PostMapping("/list")
-   @ResponseBody
-   public TableDataInfo selectAdvertisingList(HttpServletRequest request) {
-       Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
-       paramMap.put("siteId", siteService.selectOneSite().getId());
-       startPage();
-       List<Advertising> advertisingList = advertisingService.selectAdvertisingList(paramMap);
-       return getDataTable(advertisingList);
-   }
-```
-
-
-## 自定义文档配置
-```yaml
-knife4j:
- enable: true
- documents:
-    -
-       group: default
-       name: default自定义标题分组
-       # 某个文件夹下所有的.md文件
-       locations: classpath:markdown/*
-     -
-       group: WEB应用系统
-       name: WEB应用系统自定义标题分组
-       # 某个文件夹下单个.md文件
-       locations: classpath:markdown/knife4j.md
-```
-
-| 属性名称 | 是否必须 | 说明 |
-| :-----| :----: | :---- |
-| group | true | 逻辑分组名称,最终在逻辑分组时该属性需要传入 |
-| name | true | 自定义文档的分组名称，可以理解为开发者存在多个自定义文档，最终在Ui界面呈现时的一个分组名称 |
-| location | true | 提供自定义.md文件的路径或者文件 |
