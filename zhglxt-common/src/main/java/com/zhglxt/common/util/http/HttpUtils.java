@@ -1,6 +1,7 @@
 package com.zhglxt.common.util.http;
 
 import com.zhglxt.common.constant.Constants;
+import com.zhglxt.common.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +44,7 @@ public class HttpUtils {
         StringBuilder result = new StringBuilder();
         BufferedReader in = null;
         try {
-            String urlNameString = url + "?" + param;
+            String urlNameString = StringUtils.isNotBlank(param) ? url + "?" + param : url;
             log.info("sendGet - {}", urlNameString);
             URL realUrl = new URL(urlNameString);
             URLConnection connection = realUrl.openConnection();

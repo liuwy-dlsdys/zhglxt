@@ -447,6 +447,9 @@ var table = {
                                     $.modal.enable();
                                     $.modal.alertError(result.msg);
                                 }
+                            },
+                            complete: function () {
+                                layero.find('#file').val('');
                             }
                         });
                     }
@@ -1644,7 +1647,7 @@ var table = {
                 if (!format) format = "yyyy-MM-dd";
                 switch (typeof date) {
                     case "string":
-                        date = new Date(date.replace(/-/, "/"));
+                        date = new Date(date.replace(/-/g, "/"));
                         break;
                     case "number":
                         date = new Date(date);

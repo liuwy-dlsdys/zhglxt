@@ -18,8 +18,6 @@ import com.zhglxt.framework.shiro.service.SysPasswordService;
 import com.zhglxt.system.service.ISysPostService;
 import com.zhglxt.system.service.ISysRoleService;
 import com.zhglxt.system.service.ISysUserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +36,6 @@ import java.util.stream.Collectors;
  * @author ruoyi
  */
 @Controller
-@Api(tags = "用户信息")
 @RequestMapping("/system/user")
 public class SysUserController extends BaseController {
 
@@ -62,7 +59,6 @@ public class SysUserController extends BaseController {
         return prefix + "/user";
     }
 
-    @ApiOperation(value = "用户列表查询")
     @RequiresPermissions("system:user:list")
     @PostMapping("/list")
     @ResponseBody
@@ -72,7 +68,6 @@ public class SysUserController extends BaseController {
         return getDataTable(list);
     }
 
-    @ApiOperation("用户导出")
     @Log(title = "用户管理", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:user:export")
     @PostMapping("/export")
@@ -83,7 +78,6 @@ public class SysUserController extends BaseController {
         return util.exportExcel(list, "用户数据");
     }
 
-    @ApiOperation("用户导入")
     @Log(title = "用户管理", businessType = BusinessType.IMPORT)
     @RequiresPermissions("system:user:import")
     @PostMapping("/importData")
@@ -98,7 +92,6 @@ public class SysUserController extends BaseController {
         return AjaxResult.success(message);
     }
 
-    @ApiOperation("导出用户模板")
     @RequiresPermissions("system:user:view")
     @GetMapping("/importTemplate")
     @ResponseBody
@@ -120,7 +113,6 @@ public class SysUserController extends BaseController {
     /**
      * 新增保存用户
      */
-    @ApiOperation("新增保存用户")
     @RequiresPermissions("system:user:add")
     @Log(title = "用户管理", businessType = BusinessType.INSERT)
     @PostMapping("/add")
@@ -160,7 +152,6 @@ public class SysUserController extends BaseController {
     /**
      * 修改保存用户
      */
-    @ApiOperation("修改保存用户")
     @RequiresPermissions("system:user:edit")
     @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
@@ -197,7 +188,6 @@ public class SysUserController extends BaseController {
         return prefix + "/resetPwd";
     }
 
-    @ApiOperation("重置密码")
     @RequiresPermissions("system:user:resetPwd")
     @Log(title = "重置密码", businessType = BusinessType.UPDATE)
     @PostMapping("/resetPwd")
@@ -235,7 +225,6 @@ public class SysUserController extends BaseController {
     /**
      * 用户授权角色
      */
-    @ApiOperation("用户授权角色")
     @RequiresPermissions("system:user:edit")
     @Log(title = "用户管理", businessType = BusinessType.GRANT)
     @PostMapping("/authRole/insertAuthRole")
@@ -248,7 +237,6 @@ public class SysUserController extends BaseController {
         return success();
     }
 
-    @ApiOperation("删除用户")
     @RequiresPermissions("system:user:remove")
     @Log(title = "用户管理", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
@@ -294,7 +282,6 @@ public class SysUserController extends BaseController {
     /**
      * 用户状态修改
      */
-    @ApiOperation("用户状态修改")
     @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:user:edit")
     @PostMapping("/changeStatus")

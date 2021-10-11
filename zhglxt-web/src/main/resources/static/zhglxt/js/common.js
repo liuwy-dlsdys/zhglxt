@@ -351,8 +351,10 @@ function calSumWidth(elements) {
 function activeWindow() {
     var topWindow = $(window.parent.document);
     var currentId = $('.page-tabs-content', topWindow).find('.active').attr('data-id');
-    var activeWindow = $('.zhglxt_iframe[data-id="' + currentId + '"]', topWindow)[0].contentWindow;
-    return activeWindow;
+    if (!currentId) {
+        return window.parent;
+    }
+    return $('.zhglxt_iframe[data-id="' + currentId + '"]', topWindow)[0].contentWindow;
 }
 
 /** 密码规则范围验证 */
@@ -509,7 +511,7 @@ window.onload = function() {
                 return _stopIt(event);
             }
             var type_e = elem.type.toUpperCase();
-            if (name == 'INPUT' && (type_e != 'TEXT' && type_e != 'TEXTAREA' && type_e != 'PASSWORD' && type_e != 'FILE')) {
+            if (name == 'INPUT' && (type_e != 'TEXT' && type_e != 'TEXTAREA' && type_e != 'PASSWORD' && type_e != 'FILE' && type_e != 'SEARCH')) {
                 return _stopIt(event);
             }
             if (name == 'INPUT' && (elem.readOnly == true || elem.disabled == true)) {

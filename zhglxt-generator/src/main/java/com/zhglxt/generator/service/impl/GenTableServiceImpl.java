@@ -295,7 +295,7 @@ public class GenTableServiceImpl implements IGenTableService {
     }
 
     /**
-     * 批量生成代码
+     * 批量生成代码（下载方式）
      *
      * @param tableNames 表数组
      * @return 数据
