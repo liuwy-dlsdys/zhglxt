@@ -6,16 +6,12 @@ import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.enums.UserStatus;
 import com.zhglxt.common.exception.user.*;
-import com.zhglxt.common.util.DateUtils;
-import com.zhglxt.common.util.MessageUtils;
-import com.zhglxt.common.util.ServletUtils;
-import com.zhglxt.common.util.ShiroUtils;
+import com.zhglxt.common.util.*;
 import com.zhglxt.framework.manager.AsyncManager;
 import com.zhglxt.framework.manager.factory.AsyncFactory;
 import com.zhglxt.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 /**
  * 登录校验方法

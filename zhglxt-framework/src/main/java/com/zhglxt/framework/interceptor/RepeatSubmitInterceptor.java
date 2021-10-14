@@ -6,7 +6,7 @@ import com.zhglxt.common.json.JSON;
 import com.zhglxt.common.util.ServletUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
  * @author ruoyi
  */
 @Component
-public abstract class RepeatSubmitInterceptor extends HandlerInterceptorAdapter {
+public abstract class RepeatSubmitInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (handler instanceof HandlerMethod) {
@@ -34,16 +34,16 @@ public abstract class RepeatSubmitInterceptor extends HandlerInterceptorAdapter 
             }
             return true;
         } else {
-            return super.preHandle(request, response, handler);
+            return true;
         }
     }
 
     /**
      * 验证是否重复提交由子类实现具体的防重复提交的规则
      *
-     * @param request
-     * @return
-     * @throws Exception
+     * @param request 请求对象
+     * @param annotation 防复注解
+     * @return 结果
      */
     public abstract boolean isRepeatSubmit(HttpServletRequest request, RepeatSubmit annotation) throws Exception;
 }

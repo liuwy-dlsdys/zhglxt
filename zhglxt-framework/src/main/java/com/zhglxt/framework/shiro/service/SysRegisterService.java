@@ -4,16 +4,12 @@ import com.zhglxt.common.constant.Constants;
 import com.zhglxt.common.constant.ShiroConstants;
 import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.entity.sys.SysUser;
-import com.zhglxt.common.util.IDCardUtils;
-import com.zhglxt.common.util.MessageUtils;
-import com.zhglxt.common.util.ServletUtils;
-import com.zhglxt.common.util.ShiroUtils;
+import com.zhglxt.common.util.*;
 import com.zhglxt.framework.manager.AsyncManager;
 import com.zhglxt.framework.manager.factory.AsyncFactory;
 import com.zhglxt.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 /**
  * 注册校验方法
@@ -39,7 +35,7 @@ public class SysRegisterService {
                 msg = IDCardUtils.IDCardValidate(idCard);
             }
         }
-        if (!StringUtils.isEmpty(ServletUtils.getRequest().getAttribute(ShiroConstants.CURRENT_CAPTCHA))) {
+        if (ShiroConstants.CAPTCHA_ERROR.equals(ServletUtils.getRequest().getAttribute(ShiroConstants.CURRENT_CAPTCHA))) {
             msg = "验证码错误";
         } else if (StringUtils.isEmpty(loginName)) {
             msg = "用户名不能为空";
