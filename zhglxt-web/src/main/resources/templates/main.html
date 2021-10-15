@@ -28,10 +28,13 @@
     <div style="float:left;margin-top: 8px;width: 1px;height: 220px;background: darkgray;margin-left: 5px;"></div>
     <div class="col-sm-5">
         <h2><b>温馨提示：</b></h2>
-        <p style="text-indent: 2em;font-size: 16px" >
-            部署到Tomcat服务器时，在线办公-个人办公-（我的任务、请假申请）-（任务办理、详情）-流转信息-提交意见，如果出现乱码
+        <p style="text-indent: 2em;font-size: 18px">
+            部署到Tomcat服务器时，在线办公-个人办公-（我的任务、请假申请）-（任务办理、详情）-流转信息-提交意见，如果出现乱码？
         </p>
-        解决方案：修改Tomcat的catalina.bat参数：找到Tomcat的bin目录下的catalina.bat文件进行修改。在@echo off的下面添加：<i style="color: #ca4440">set "JAVA_OPTS=%JAVA_OPTS% %JSSE_OPTS% -Dfile.encoding=UTF-8"</i>
+        <p style="text-indent: 2em;font-size: 18px">
+            解决方案：修改Tomcat的catalina.bat参数：找到Tomcat的bin目录下的catalina.bat文件进行修改。在@echo off的下面添加：
+            <i style="color: #ca4440">set "JAVA_OPTS=%JAVA_OPTS% %JSSE_OPTS% -Dfile.encoding=UTF-8"</i>
+        </p>
     </div>
 </div>
 <div class="wrapper wrapper-content">
@@ -54,6 +57,7 @@
                                 <div id="v94" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                         <ol>
+                                            <li>优化演示模式时的定时任务、注册、操作日志逻辑</li>
                                             <li>升级oshi到最新版本v5.8.2</li>
                                             <li>升级spring-boot-mybatis到最新版2.2.0</li>
                                             <li>升级pagehelper到最新版1.4.0</li>
@@ -966,7 +970,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#SpringBoot">主框架：SpringBoot 2.2.13</a>
+                                        <a data-toggle="collapse" data-parent="#choosingTechnology" href="#SpringBoot">主框架：SpringBoot 2.5.5</a>
                                         <code class="pull-right">..</code>
                                     </h5>
                                 </div>

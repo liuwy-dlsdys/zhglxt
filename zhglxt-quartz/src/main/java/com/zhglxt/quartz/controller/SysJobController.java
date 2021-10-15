@@ -1,6 +1,7 @@
 package com.zhglxt.quartz.controller;
 
 import com.zhglxt.common.annotation.Log;
+import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.constant.Constants;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
@@ -65,6 +66,9 @@ public class SysJobController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) throws SchedulerException {
+        if (GlobalConfig.isDemoEnabled()) {
+            return error("演示模式不允许本操作");
+        }
         jobService.deleteJobByIds(ids);
         return success();
     }
@@ -85,6 +89,9 @@ public class SysJobController extends BaseController {
     @PostMapping("/changeStatus")
     @ResponseBody
     public AjaxResult changeStatus(SysJob job) throws SchedulerException {
+        if (GlobalConfig.isDemoEnabled()) {
+            return error("演示模式不允许本操作");
+        }
         SysJob newJob = jobService.selectJobById(job.getJobId());
         newJob.setStatus(job.getStatus());
         return toAjax(jobService.changeStatus(newJob));
@@ -118,6 +125,9 @@ public class SysJobController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysJob job) throws SchedulerException, TaskException {
+        if (GlobalConfig.isDemoEnabled()) {
+            return error("演示模式不允许本操作");
+        }
         if (!CronUtils.isValid(job.getCronExpression())) {
             return error("新增任务'" + job.getJobName() + "'失败，Cron表达式不正确");
         }
@@ -153,6 +163,9 @@ public class SysJobController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysJob job) throws SchedulerException, TaskException {
+        if (GlobalConfig.isDemoEnabled()) {
+            return error("演示模式不允许本操作");
+        }
         if (!CronUtils.isValid(job.getCronExpression())) {
             return error("修改任务'" + job.getJobName() + "'失败，Cron表达式不正确");
         }

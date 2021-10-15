@@ -36,6 +36,9 @@ public class SysRegisterController extends BaseController {
     @PostMapping("/register")
     @ResponseBody
     public AjaxResult ajaxRegister(SysUser user) {
+        if (GlobalConfig.isDemoEnabled()) {
+            return error("演示模式不允许本操作");
+        }
         if (!("true".equals(configService.selectConfigByKey("sys.account.registerUser")))) {
             return error("当前系统没有开启注册功能！");
         }

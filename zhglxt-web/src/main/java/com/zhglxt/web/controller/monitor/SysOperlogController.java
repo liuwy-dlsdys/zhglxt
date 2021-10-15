@@ -78,6 +78,9 @@ public class SysOperlogController extends BaseController {
     @PostMapping("/clean")
     @ResponseBody
     public AjaxResult clean() {
+        if (GlobalConfig.isDemoEnabled()) {
+            return error("演示模式不允许本操作");
+        }
         operLogService.cleanOperLog();
         return success();
     }
