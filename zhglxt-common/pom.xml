@@ -135,23 +135,5 @@
             <artifactId>knife4j-spring-boot-starter</artifactId>
         </dependency>
 
-        <!-- Guava是一套核心库和扩展库，包括实用程序类、谷歌集合、io类等等 https://mvnrepository.com/artifact/com.google.guava/guava-->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- SpringBoot集成mybatis框架 -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-        </dependency>
-
     </dependencies>
 </project>

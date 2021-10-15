@@ -40,8 +40,6 @@
 
         <activiti.version>5.23.0</activiti.version>
         <aop.version>2.5.1</aop.version>
-        <guava.version>30.1.1-jre</guava.version>
-        <redis.version>3.6.0</redis.version>
         <easyexcel.version>2.2.10</easyexcel.version>
     </properties>
 
@@ -231,25 +229,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-aop</artifactId>
                 <version>${aop.version}</version>
-            </dependency>
-
-            <!--提供用于集合，缓存，支持原语，并发性，常见注解，字符串处理，I/O和验证的实用方法-->
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-
-            <!-- 引入 redis 依赖 -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>2.1.3.RELEASE</version>
-            </dependency>
-            <dependency>
-                <groupId>redis.clients</groupId>
-                <artifactId>jedis</artifactId>
-                <version>${redis.version}</version>
             </dependency>
 
             <!-- activiti工作流 -->
