@@ -155,7 +155,7 @@ public class ColumnController extends BaseController {
             @ApiImplicitParam(name = "columnId", value = "栏目id", required = true, dataType = "String", paramType = "query", dataTypeClass = String.class)
     })
     @Log(title = "CMS-栏目菜单管理-删除", businessType = BusinessType.DELETE)
-    @DeleteMapping("/remove")
+    @PostMapping("/remove")
     @ResponseBody
     public AjaxResult deleteColumn(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {

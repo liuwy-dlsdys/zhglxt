@@ -119,7 +119,7 @@ public class AdvertisingController extends BaseController {
             @ApiImplicitParam(name = "ids", value = "广告id列表（如：1,2,3,4）", required = true, dataType = "String", paramType = "query", dataTypeClass = String.class)
     })
     @Log(title = "CMS-广告管理-删除", businessType = BusinessType.DELETE)
-    @DeleteMapping("/remove")
+    @PostMapping("/remove")
     @ResponseBody
     public AjaxResult deleteAdvertising(String ids) {
         if (GlobalConfig.isDemoEnabled()) {
