@@ -20,29 +20,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 /**
- * @Description swagger Knife4j
- *
- * 一些常用注解说明
- * @Api：用在controller类，描述API接口
- * @ApiOperation：描述接口方法
- * @ApiModel：描述对象
- * @ApiModelProperty：描述对象属性
- * @ApiImplicitParams：描述接口参数
- *   @ApiImplicitParam：(用在@ApiImplicitParams注解中，指定一个请求参数的信息)
- *     可用参数：
- *     name：参数名
- *     value：参数的汉字说明、解释
- *     required：参数是否必须传
- *     dataType：参数类型，默认String，其它值dataType="Integer"
- *     defaultValue：参数的默认值
- *     paramType ：参数放在哪个地方
- *        header：请求参数的获取@RequestHeader
- *        query：请求参数的获取@RequestParam
- *        path：请求参数的获取@PathVariable
- *        body：请求参数的获取@RequestBody
- *        form：普通表单提交
- * @ApiResponses：描述接口响应
- * @ApiIgnore：忽略接口方法
+ * @Description swagger接口配置
  *
  * @Author liuwy
  * @Date 2020/9/27

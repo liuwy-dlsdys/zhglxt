@@ -163,6 +163,7 @@ var table = {
             },
             // 查询条件
             queryParams: function(params) {
+                table.set();
                 var curParams = {
                     // 传递参数查询参数
                     pageSize:       params.limit,
@@ -911,7 +912,7 @@ var table = {
                     }
                 }, btnCallback));
                 if ($.common.isNotEmpty(options.full) && options.full === true) {
-                    layer.full(index);
+                    top.layer.full(index);
                 }
             },
             // 弹出层全屏

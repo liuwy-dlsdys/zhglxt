@@ -143,6 +143,11 @@ public class SysJobController extends BaseController {
         {
             return error("新增任务'" + job.getJobName() + "'失败，目标字符串不允许'http(s)//'调用");
         }
+        else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), Constants.JOB_ERROR_STR))
+        {
+            return error("新增任务'" + job.getJobName() + "'失败，目标字符串存在违规");
+        }
+        job.setCreateBy(getLoginName());
         return toAjax(jobService.insertJob(job));
     }
 

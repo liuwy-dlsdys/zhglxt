@@ -32,7 +32,7 @@
 
 ## 技术选型
 1. 系统环境【JDK 1.8、MySQL5.7、Tomcat 8】
-2. 主框架【Spring Boot 2.5.5】
+2. 主框架【Spring Boot 2.5.6】
 3. 持久层【Apache MyBatis 3.5.6】
 4. 视图层【Bootstrap 3.3、Thymeleaf 3.0】
 5. 安全框架【Apache Shiro 1.8.0】
@@ -100,7 +100,7 @@
 7. 导入数据文件的数据到本地数据库  
 ![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/11.jpg?versionId=CAEQDRiBgMCNooSC1BciIGUzNTVlZGUxNTQ3ZDRiNTdiMDQyMDExNDNhNWUyNTVl)
 
-8. 修改MySQL数据库账号密码为自己本地的数据库的账号密码
+8. 修改MySQL数据库的端口、用户名、密码为自己本地的数据库信息
 ![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/6.jpg?versionId=CAEQDRiBgMDi2O_C0xciIDUxMzY3ZTBmNTljZjQ3YTY5OTAwNDcyMjJiODhmZGQx)
 
 9. 所有步骤没问题之后，就可以直接运行项目了，启动文件
