@@ -1,0 +1,10 @@
+# zhglxt-docs #
+'node_modules'
+'.temp' 
+'.cache'
+'dist'
+
+*.cache
+*.temp
+
+package-lock.json

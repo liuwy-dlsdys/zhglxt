@@ -1,0 +1,17 @@
+{
+  "name": "zhglxt",
+  "version": "1.0.0",
+  "description": "WEB应用系统",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "keywords": [],
+  "author": "liuwy",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "vuepress": "^2.0.0-beta.27"
+  }
+}

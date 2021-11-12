@@ -28,7 +28,8 @@
 18. 支持多数据源，简单配置即可实现切换
 19. 集成在线表单构建器，拖拽表单元素即可生成相应的HTML代码、表单代码
 20. 集成swagger3.0（swagger3 + knife4j）系统接口、UI框架
-21. 丰富的演示示例，帮助开发者快速集成到项目中
+21. 集成VuePress2.x文档系统
+22. 丰富的演示示例，帮助开发者快速集成到项目中
 
 ## 技术选型
 1. 系统环境【JDK 1.8、MySQL5.7、Tomcat 8】
@@ -75,6 +76,7 @@
 ## 演示地址
 1. 演示地址：[zhglxt](http://1.117.224.178:8080/zhglxt "WEB应用系统") 用户名/密码：system / system
 2. 演示地址（企业官网）：[zhglxt-cms](http://1.117.224.178:8080/zhglxt/cms/index.html "企业官网")
+3. 演示地址（文档系统）：[zhglxt-docs](http://1.117.224.178:88 "文档系统")
 
 ## 客户端说明
 1.  支持大部分主流浏览器（如：IE9+浏览器、Google Chrome、火狐浏览器、360浏览器等等。。。)
@@ -135,3 +137,6 @@
 
 6. 通知通告
 ![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/17.jpg?versionId=CAEQDRiBgMD_sJHl1BciIDEzMDJlN2I3ZTJiNTQwMjdiZDJiYTlkZjAyOGMxNDI2)
+
+7. 文档系统首页
+![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/18.jpg?versionId=CAEQEBiBgIC4rOPK6BciIDE1MmZmMTkwY2IyMDQ5YWE5OTc0MTQ4ZTdkZDM4ZGNi)
