@@ -3,72 +3,72 @@
 ### 开发环境、部署
 1. 安装好系统所需的运行、开发环境（JDK1.8+、MySQL5.7+、maven3.6+、Git环境等...）
 2. 使用IntelliJ IDEA拉取并打开项目
-![](zhglxt/userfiles/system/images/helpImages/sys/1.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/sys/1.jpg)
 
 3. 复制项目Git地址
-![](zhglxt/userfiles/system/images/helpImages/sys/2.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/sys/2.jpg)
 
 4. 接着填入IDEA
-![](zhglxt/userfiles/system/images/helpImages/sys/3.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/sys/3.jpg)
 
 5. 拉取完毕后，Maven就会自动下载项目所有依赖包到本地中央仓库。目录结构如下
-![](zhglxt/userfiles/system/images/helpImages/sys/4.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/sys/4.jpg)
 
 6. 第一次需要install安装到本地仓库
-![](zhglxt/userfiles/system/images/helpImages/sys/5.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/sys/5.jpg)
 
 7. 导入数据文件的数据到本地数据库  
-![](zhglxt/userfiles/system/images/helpImages/sys/6.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/sys/6.jpg)
 
 8. 修改MySQL数据库的端口、用户名、密码为自己本地的数据库信息
-![](zhglxt/userfiles/system/images/helpImages/sys/7.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/sys/7.jpg)
 
 9. 所有步骤没问题之后，就可以直接运行项目了，启动文件
-![](zhglxt/userfiles/system/images/helpImages/sys/8.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/sys/8.jpg)
 
 10. 访问路径：localhost:8888/zhglxt  登录账号密码：system/system【提示：系统中的所有用户的密码与该登录名一致。如 test1密码为test1；test2密码为test2】
 
 11. 打包部署（本项目是打成war包的方式进行部署的）
-![](zhglxt/userfiles/system/images/helpImages/sys/9.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/sys/9.jpg)
 
 12. 打包完成后，到项目的目录下找到zhglxt\zhglxt-web\target\zhglxt-web.war包，重命名为zhglxt.war，然后直接放到Tomcat的webapps目录下，就可以运行起来了
-![](zhglxt/userfiles/system/images/helpImages/sys/10.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/sys/10.jpg)
 
 13. 本项目不需要修改过多的配置信息，即可打包、部署、运行
 
 ## Activiti工作流
 ### 新增流程模型
 工作流程管理-模型-模型管理-添加模型
-![](zhglxt/userfiles/system/images/helpImages/activiti/1.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/activiti/1.jpg)
 
-![](zhglxt/userfiles/system/images/helpImages/activiti/2.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/activiti/2.jpg)
 
-![](zhglxt/userfiles/system/images/helpImages/activiti/3.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/activiti/3.jpg)
 
 ### 设计好流程图后，进行部署
-![](zhglxt/userfiles/system/images/helpImages/activiti/4.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/activiti/4.jpg)
 
 ### 查看成功部署的流程
-![](zhglxt/userfiles/system/images/helpImages/activiti/5.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/activiti/5.jpg)
 
 ### 流程管理
-![](zhglxt/userfiles/system/images/helpImages/activiti/6.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/activiti/6.jpg)
 其中 转为模型 操作：
 如果 模型-模型管理 中已经存在需要转换的（流程标识、流程版本）时，会在原有的版本基础上升1级（比如 版本号为1 升级后为 2），再次部署后就会以升级后的版本为基准进行任务流转。
 如果 模型-模型管理 中不存在需要转换的（流程标识、流程版本）时，转换模型后，就新增一个模型，且版本号为1，成功部署后就可以进行任务流转了。
 
-![](zhglxt/userfiles/system/images/helpImages/activiti/7.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/activiti/7.jpg)
 
-![](zhglxt/userfiles/system/images/helpImages/activiti/8.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/activiti/8.jpg)
 
 下面进行部署新版本的模型：
-![](zhglxt/userfiles/system/images/helpImages/activiti/9.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/activiti/9.jpg)
 
-![](zhglxt/userfiles/system/images/helpImages/activiti/10.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/activiti/10.jpg)
 流程列表中 的 转为模型 和 流程管理 中的 转为模型 是一样的，流程标识、流程版本存在就升级版本，不存在就新增一个模型。删除后 流程管理 中的也会进行同步删除。
 
 ### 查看运行中的流程
-![](zhglxt/userfiles/system/images/helpImages/activiti/11.jpg)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/activiti/11.jpg)
 
 ## DOCS文档系统
 ### 安装、运行
@@ -87,8 +87,8 @@ npm install -D vuepress@next
 # 启动
 npm run dev
 ```
-![](zhglxt/userfiles/system/images/helpImages/docs/1.png)
-![](zhglxt/userfiles/system/images/helpImages/docs/2.png)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/docs/1.png)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/docs/2.png)
 
 启动成功后，访问：`http://127.0.0.1:80`
 
@@ -98,7 +98,7 @@ npm run dev
 # 构建静态文件(构建完毕后会在zhglxt-docs\docs\.vuepress目录下生成dist文件夹)
 npm run build
 ```
-![](zhglxt/userfiles/system/images/helpImages/docs/3.png)
+![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/docs/3.png)
 build完成后，修改nginx（下载好nginx：`http://nginx.org/en/download.html`）conf目录下的nginx.conf文件，找到里面的'server'节点的（主要修改 `listen` 端口和新增`location /zhglxt-docs`节点，其中`alias`后面为需要部署的`dist`路径）
 ```
     server {
