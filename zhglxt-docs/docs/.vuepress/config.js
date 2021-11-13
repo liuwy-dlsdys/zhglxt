@@ -5,13 +5,14 @@ module.exports = {
   // 访问端口
   port: '80',
   // 基础访问路径
-  base:'/',
+  base:'/zhglxt-docs/',
   // 网站的标题（左上角）
   title: 'WEB应用系统',
   // 网站的描述，它将会以 <meta> 标签渲染到当前页面的 HTML 中
   description: 'WEB应用系统',
   head: [
-    ['link', { rel: 'icon', href: '/images/favicon.png' }] // 需要被注入到当前页面的 HTML <head> 中的标签
+    // 左上角图标
+    ['link', { rel: 'icon', href: '/images/favicon.png'}] // 需要被注入到当前页面的 HTML <head> 中的标签
   ],
   // 语言
   //lang: 'zh-CN',
@@ -115,45 +116,32 @@ module.exports = {
 
     // 侧边栏数组
     // 所有页面会使用相同的侧边栏
-    /*sidebar: [
-      // SidebarItem
+    sidebar: [
       {
-        text: 'Foo',
-        link: '/foo/',
+        text: '系统|文档',
+        link: '/guide/',
         children: [
-          // SidebarItem
           {
-            text: 'github',
-            link: 'https://github.com',
-            children: [],
+            text: '指南',
+            link: '/guide/',
+            children: [
+              '/guide/README.md','/guide/getting-started.md','/guide/updateLog.md'
+            ],
+          },
+          {
+            text: '其它',
+            link: '/other/',
+            children: [
+              '/other/README.md'
+            ],
           },
           // 字符串 - 页面文件路径
-          '/foo/bar.md',
+          //'/foo/bar.md',
         ],
       },
       // 字符串 - 页面文件路径
-      '/bar/README.md',
-    ],*/
-
-    // 侧边栏对象
-    // 不同子路径下的页面会使用不同的侧边栏
-    sidebar: {
-      '/guide/': [
-        {
-          text: '系统文档',
-          children: ['/guide/README.md','/guide/getting-started.md'],
-        }
-      ],
-      '/other/': [
-        {
-          text: '其它',
-          children: ['/other/README.md','/other/donateSupport.md'],
-        }
-      ],
-      // fallback 侧边栏被最后定义。
-      // 官网提示：不能放在数组第一个位置，否则会混乱
-      '/':['']
-    },
+      //'/bar/README.md',
+    ],
 
     // 项目仓库的 URL。它将被用作 仓库链接 的链接。仓库链接 将会显示为导航栏的最后一个元素
     // 如果你按照 `organization/repository` 的格式设置它
@@ -243,7 +231,7 @@ module.exports = {
     lastUpdated: true,
 
     // 最近更新时间戳 标签的文字（默认值： 'Last Updated'）
-    lastUpdatedText: 'Last Updated',
+    lastUpdatedText: '最后更新日期',
 
     // 是否启用 贡献者列表 （默认值： true）
     /*
@@ -253,32 +241,32 @@ module.exports = {
     contributors: true,
 
     // 贡献者列表 标签的文字（默认值： 'Contributors'）
-    contributorsText: 'Contributors',
+    contributorsText: '贡献者',
 
     //Tip 自定义容器 的默认标题（默认值： 'TIP'）
-    tip: 'TIP',
+    tip: '提示',
 
     // Warning 自定义容器 的默认标题（默认值： 'WARNING'）
-    warning: 'WARNING',
+    warning: '警告',
 
     // Danger 自定义容器 的默认标题（默认值： 'DANGER'）
-    danger: 'DANGER',
+    danger: '危险警告',
 
     // 404 页面的提示信息（默认值： ['Not Found']）
     // 当用户进入 404 页面时，会从数组中随机选取一条信息进行展示
-    notFound: ['Not Found'],
+    notFound: ['找不到页面'],
 
     // 404 页面中 返回首页 链接的文字（默认值： 'Back to home'）
-    backToHome: 'Back to home',
+    backToHome: '回到主页',
 
     // OutboundLink 链接内的 sr-only 文字。它主要是为了站点的可访问性 （默认值： 'open in new window'）
-    openInNewWindow: 'open in new window',
+    openInNewWindow: '在新窗口中打开',
 
     // 切换夜间模式按钮的标题文字。它主要是为了站点的可访问性（默认值： 'toggle dark mode'）
-    toggleDarkMode: 'toggle dark mode',
+    toggleDarkMode: '夜间模式',
 
     // 切换侧边栏按钮的标题文字。它主要是为了站点的可访问性（默认值： 'toggle sidebar'）
-    toggleSidebar: 'toggle sidebar',
+    toggleSidebar: '显示侧边栏',
 
   },
   // 主题配置 end

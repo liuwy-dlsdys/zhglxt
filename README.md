@@ -76,7 +76,7 @@
 ## 演示地址
 1. 演示地址：[zhglxt](http://1.117.224.178:8080/zhglxt "WEB应用系统") 用户名/密码：system / system
 2. 演示地址（企业官网）：[zhglxt-cms](http://1.117.224.178:8080/zhglxt/cms/index.html "企业官网")
-3. 演示地址（文档系统）：[zhglxt-docs](http://1.117.224.178:88 "文档系统")
+3. 演示地址（文档系统）：[zhglxt-docs](http://1.117.224.178:88/zhglxt-docs "文档系统")
 
 ## 客户端说明
 1.  支持大部分主流浏览器（如：IE9+浏览器、Google Chrome、火狐浏览器、360浏览器等等。。。)
