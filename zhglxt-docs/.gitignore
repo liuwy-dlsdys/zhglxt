@@ -1,10 +1,9 @@
 # zhglxt-docs #
-'node_modules'
-'.temp' 
-'.cache'
-'dist'
+docs/.vuepress/.temp/
+docs/.vuepress/.cache/
+docs/.vuepress/dist/
 
-*.cache
-*.temp
+# Node modules
+node_modules/
 
 package-lock.json
