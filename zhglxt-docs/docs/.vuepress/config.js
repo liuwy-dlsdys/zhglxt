@@ -334,6 +334,12 @@ module.exports = {
         [
             '@vuepress/plugin-search',
             {
+                // 指定热键的 event.key（默认值： ['s', '/']）
+                // 当按下热键时，搜索框会被聚焦。
+                // 将该配置项设为空数组可以禁用热键功能
+                hotKeys:  ['s', '/'],
+                // 指定搜索结果的最大条数（默认5）
+                maxSuggestions: 10,
                 locales: {
                     '/': {
                         placeholder: '搜索',
