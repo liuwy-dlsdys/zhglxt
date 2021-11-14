@@ -1,9 +1,16 @@
 ---
 home: true
 heroImage: /images/favicon.png
-heroAlt: WEB应用系统
+heroAlt: WEB应用系统logo
 heroText: WEB应用系统
 tagline: 系统文档
+head:
+  - - meta
+    - name: logo
+      content: 网页标签logo
+  - - link
+    - rel: icon
+      href: /zhglxt-docs/images/favicon.png
 actions:
   - text: 快速开始
     link: /guide/getting-started.md
@@ -28,4 +35,4 @@ footer: MIT Licensed | Copyright © 2019-2021 liuwy All Rights Reserved.
 footerHtml: true
 ---
 
-# 首页
+# 文档首页

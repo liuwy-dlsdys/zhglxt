@@ -90,7 +90,43 @@ npm run dev
 ![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/docs/1.png)
 ![](/zhglxt-docs/zhglxt/userfiles/system/images/helpImages/docs/2.png)
 
-启动成功后，访问：`http://127.0.0.1:80`
+启动成功后，访问：`http://127.0.0.1:80/zhglxt-docs`
+
+### 添加搜索功能
+为你的文档网站提供本地搜索能力。
+::: tip
+当你正确配置该插件后，默认主题会把搜索框添加到导航栏。
+
+该插件不一定能在其他主题中直接使用，因此你应参考主题本身的文档来获取更多信息
+:::
+
+#### 安装
+```
+npm i -D @vuepress/plugin-search@next
+```
+该插件会根据你的页面，在本地生成搜索索引，然后在用户访问站点时加载搜索索引文件。换句话说，这是一个轻量级的内置搜索能力，不会进行任何外部请求。
+
+#### 使用
+在 `docs\.vuepress\config.js` 中添加以下插件代码：
+```js
+// .vuepress/config.js
+module.exports = {
+    // 插件
+    plugins: [
+        [
+            '@vuepress/plugin-search',
+            {
+                locales: {
+                    '/': {
+                        placeholder: '搜索',
+                    }
+                },
+            },
+        ],
+    ],
+}
+```
+重新启动运行后，访问系统页面，右上角就会显示出 `搜索` 功能了。
 
 ### 部署到nginx
 此教程是部署到windows的，linux的就不赘述了（基本差不多）。
@@ -158,7 +194,6 @@ build完成后，修改nginx（下载好nginx：`http://nginx.org/en/download.ht
 start nginx
 ```
 执行完毕之后是一闪而过的，查看下`任务管理器`,看后台进程那里，往下拉看到`nginx.exe(32位)`，说明启动nginx成功，访问路径：`localhost:88`
-
 
 ### 配置(`此后步骤了解即可`)
 如果没有任何配置，你的 VuePress 站点仅有一些最基础的功能。为了更好地自定义你的网站，让我们首先在你的文档目录下创建一个 .vuepress 目录，所有 VuePress 相关的文件都将会被放在这里。你的项目结构可能是这样：

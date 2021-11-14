@@ -1,9 +1,8 @@
 # WEB应用系统
 
 ## 介绍
-&emsp;&emsp;本系统（基于SpringBoot+MyBatis+Apache Shiro+Bootstrap+Thymeleaf）可用于开发所有的WEB应用系统。
-可进行深度定制开发，做出更强的企业级WEB应用系统。支持大部分主流浏览器（IE9+浏览器、Google Chrome、火狐浏览器、360浏览器等...)。  
-&emsp;&emsp;让开发者专于注业务逻辑的实现，从而缩短项目周期，节省开发成本，提高软件安全、质量。
+&emsp;&emsp;本系统（基于SpringBoot+MyBatis+Apache Shiro+Bootstrap+Thymeleaf） 可用于开发所有企业级WEB应用系统（如:各种后台管理系统、CRM、ERP、CMS、OA、博客、论坛等...）。
+响应式布局，支持大部分浏览器（如：IE9+浏览器、Google Chrome、火狐浏览器、360浏览器...)、平板、手机等主流设备
 
 - 感谢[RuoYi](https://gitee.com/y_project/RuoYi "若依")提供的框架
 
