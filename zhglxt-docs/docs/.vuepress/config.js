@@ -185,7 +185,7 @@ module.exports = {
         editLink: true,
 
         // 编辑此页 链接的文字（默认值： 'Edit this page'）
-        editLinkText: 'Edit this page',
+        editLinkText: '编辑此页',
 
         /*
           文档源文件的仓库 URL 。它将会用于生成 编辑此页 的链接

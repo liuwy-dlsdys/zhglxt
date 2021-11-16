@@ -1,5 +1,6 @@
 ---
 home: true
+title: 文档首页
 heroImage: /images/favicon.png
 heroAlt: WEB应用系统logo
 heroText: WEB应用系统
@@ -34,5 +35,3 @@ features:
 footer: MIT Licensed | Copyright © 2019-2021 liuwy All Rights Reserved.
 footerHtml: true
 ---
-
-# 文档首页
