@@ -83,6 +83,7 @@ public class SysDictDataController extends BaseController {
     /**
      * 修改字典类型
      */
+    @RequiresPermissions("system:dict:edit")
     @GetMapping("/edit/{dictCode}")
     public String edit(@PathVariable("dictCode") String dictCode, ModelMap mmap) {
         mmap.put("dict", dictDataService.selectDictDataById(dictCode));

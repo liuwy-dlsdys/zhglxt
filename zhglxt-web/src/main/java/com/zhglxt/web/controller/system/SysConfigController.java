@@ -89,6 +89,7 @@ public class SysConfigController extends BaseController {
     /**
      * 修改参数配置
      */
+    @RequiresPermissions("system:config:edit")
     @GetMapping("/edit/{configId}")
     public String edit(@PathVariable("configId") String configId, ModelMap mmap) {
         mmap.put("config", configService.selectConfigById(configId));

@@ -3,6 +3,7 @@ package com.zhglxt.web.controller.monitor;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.framework.web.service.CacheService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,18 +25,21 @@ public class CacheController extends BaseController {
     @Autowired
     private CacheService cacheService;
 
+    @RequiresPermissions("monitor:cache:view")
     @GetMapping()
     public String cache(ModelMap mmap) {
         mmap.put("cacheNames", cacheService.getCacheNames());
         return prefix + "/cache";
     }
 
+    @RequiresPermissions("monitor:cache:view")
     @PostMapping("/getNames")
     public String getCacheNames(String fragment, ModelMap mmap) {
         mmap.put("cacheNames", cacheService.getCacheNames());
         return prefix + "/cache::" + fragment;
     }
 
+    @RequiresPermissions("monitor:cache:view")
     @PostMapping("/getKeys")
     public String getCacheKeys(String fragment, String cacheName, ModelMap mmap) {
         mmap.put("cacheName", cacheName);
@@ -43,6 +47,7 @@ public class CacheController extends BaseController {
         return prefix + "/cache::" + fragment;
     }
 
+    @RequiresPermissions("monitor:cache:view")
     @PostMapping("/getValue")
     public String getCacheValue(String fragment, String cacheName, String cacheKey, ModelMap mmap) {
         mmap.put("cacheName", cacheName);
@@ -51,6 +56,7 @@ public class CacheController extends BaseController {
         return prefix + "/cache::" + fragment;
     }
 
+    @RequiresPermissions("monitor:cache:view")
     @PostMapping("/clearCacheName")
     @ResponseBody
     public AjaxResult clearCacheName(String cacheName, ModelMap mmap) {
@@ -58,6 +64,7 @@ public class CacheController extends BaseController {
         return AjaxResult.success();
     }
 
+    @RequiresPermissions("monitor:cache:view")
     @PostMapping("/clearCacheKey")
     @ResponseBody
     public AjaxResult clearCacheKey(String cacheName, String cacheKey, ModelMap mmap) {
@@ -65,6 +72,7 @@ public class CacheController extends BaseController {
         return AjaxResult.success();
     }
 
+    @RequiresPermissions("monitor:cache:view")
     @GetMapping("/clearAll")
     @ResponseBody
     public AjaxResult clearAll(ModelMap mmap) {

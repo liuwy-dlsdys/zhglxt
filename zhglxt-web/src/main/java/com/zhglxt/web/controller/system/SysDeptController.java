@@ -79,8 +79,9 @@ public class SysDeptController extends BaseController {
     }
 
     /**
-     * 修改
+     * 修改部门
      */
+    @RequiresPermissions("system:dept:edit")
     @GetMapping("/edit/{deptId}")
     public String edit(@PathVariable("deptId") String deptId, ModelMap mmap) {
         deptService.checkDeptDataScope(deptId);
@@ -93,7 +94,7 @@ public class SysDeptController extends BaseController {
     }
 
     /**
-     * 保存
+     * 修改保存部门
      */
     @Log(title = "部门管理", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dept:edit")

@@ -360,6 +360,8 @@
 <script th:src="@{/cms/bootstrap-v3/docs/assets/js/vendor/holder.min.js}"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script th:src="@{/cms/bootstrap-v3/docs/assets/js/ie10-viewport-bug-workaround.js}"></script>
+<!--网页精灵插件-->
+<script th:src="@{/cms/chuncai.js}"></script>
 <div style="display:none">
     <audio id="au" autoplay="autoplay">
         <source th:src="${site.bgMusic}" type="audio/mp3"></audio>
@@ -368,6 +370,9 @@
 </body>
 <script type="text/javascript">
     $(function(){
+
+        $.chuncai();
+
         window.onload = function(){
             setInterval("toggleSound()",100)
         };

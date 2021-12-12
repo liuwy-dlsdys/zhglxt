@@ -109,6 +109,7 @@ public class SysMenuController extends BaseController {
     /**
      * 修改菜单
      */
+    @RequiresPermissions("system:menu:edit")
     @GetMapping("/edit/{menuId}")
     public String edit(@PathVariable("menuId") String menuId, ModelMap mmap) {
         mmap.put("menu", menuService.selectMenuById(menuId));

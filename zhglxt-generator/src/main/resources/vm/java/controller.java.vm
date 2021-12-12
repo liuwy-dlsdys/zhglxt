@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.zhgxlt.common.annotation.Log;
-import com.zhgxlt.common.enums.BusinessType;
+import com.zhglxt.common.annotation.Log;
+import com.zhglxt.common.enums.BusinessType;
 import ${packageName}.entity.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
-import com.zhgxlt.common.core.controller.BaseController;
-import com.zhgxlt.common.core.entity.AjaxResult;
-import com.zhgxlt.common.utils.poi.ExcelUtil;
+import com.zhglxt.common.core.controller.BaseController;
+import com.zhglxt.common.core.entity.AjaxResult;
+import com.zhglxt.common.utils.poi.ExcelUtil;
 #if($table.crud || $table.sub)
-import com.zhgxlt.common.core.page.TableDataInfo;
+import com.zhglxt.common.core.page.TableDataInfo;
 #elseif($table.tree)
-import com.zhgxlt.common.utils.StringUtils;
-import com.zhgxlt.common.core.entity.Ztree;
+import com.zhglxt.common.utils.StringUtils;
+import com.zhglxt.common.core.entity.Ztree;
 #end
 
 /**
@@ -126,6 +126,7 @@ public class ${ClassName}Controller extends BaseController
     /**
      * 修改${functionName}
      */
+    @RequiresPermissions("${permissionPrefix}:edit")
     @GetMapping("/edit/{${pkColumn.javaField}}")
     public String edit(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}, ModelMap mmap)
     {

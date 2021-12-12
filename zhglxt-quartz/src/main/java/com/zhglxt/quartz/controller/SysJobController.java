@@ -154,6 +154,7 @@ public class SysJobController extends BaseController {
     /**
      * 修改调度
      */
+    @RequiresPermissions("monitor:job:edit")
     @GetMapping("/edit/{jobId}")
     public String edit(@PathVariable("jobId") String jobId, ModelMap mmap) {
         mmap.put("job", jobService.selectJobById(jobId));
@@ -185,6 +186,10 @@ public class SysJobController extends BaseController {
         else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), new String[] { Constants.HTTP, Constants.HTTPS }))
         {
             return error("修改任务'" + job.getJobName() + "'失败，目标字符串不允许'http(s)//'调用");
+        }
+        else if (StringUtils.containsAnyIgnoreCase(job.getInvokeTarget(), Constants.JOB_ERROR_STR))
+        {
+            return error("修改任务'" + job.getJobName() + "'失败，目标字符串存在违规");
         }
         return toAjax(jobService.updateJob(job));
     }

@@ -97,6 +97,7 @@ public class SysRoleController extends BaseController {
     /**
      * 修改角色
      */
+    @RequiresPermissions("system:role:edit")
     @GetMapping("/edit/{roleId}")
     public String edit(@PathVariable("roleId") String roleId, ModelMap mmap) {
         roleService.checkRoleDataScope(roleId);

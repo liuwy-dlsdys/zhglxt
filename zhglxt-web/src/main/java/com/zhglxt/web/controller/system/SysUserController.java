@@ -15,6 +15,7 @@ import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.util.poi.ExcelUtil;
 import com.zhglxt.framework.shiro.service.SysPasswordService;
+import com.zhglxt.framework.shiro.util.AuthorizationUtils;
 import com.zhglxt.system.service.ISysPostService;
 import com.zhglxt.system.service.ISysRoleService;
 import com.zhglxt.system.service.ISysUserService;
@@ -139,6 +140,7 @@ public class SysUserController extends BaseController {
     /**
      * 修改用户
      */
+    @RequiresPermissions("system:user:edit")
     @GetMapping("/edit/{userId}")
     public String edit(@PathVariable("userId") String userId, ModelMap mmap) {
         userService.checkUserDataScope(userId);
@@ -178,6 +180,7 @@ public class SysUserController extends BaseController {
         }
 
         user.setUpdateBy(getLoginName());
+        AuthorizationUtils.clearAllCachedAuthorizationInfo();
         return toAjax(userService.updateUser(user));
     }
 
@@ -234,6 +237,7 @@ public class SysUserController extends BaseController {
             return error("演示模式，不允许操作");
         }
         userService.insertUserAuth(userId, roleIds);
+        AuthorizationUtils.clearAllCachedAuthorizationInfo();
         return success();
     }
 

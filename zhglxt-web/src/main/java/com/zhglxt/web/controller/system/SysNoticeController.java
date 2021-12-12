@@ -84,6 +84,7 @@ public class SysNoticeController extends BaseController {
     /**
      * 修改公告
      */
+    @RequiresPermissions("system:notice:edit")
     @GetMapping("/edit/{noticeId}")
     public String edit(@PathVariable("noticeId") String noticeId, ModelMap mmap) {
         mmap.put("notice", noticeService.selectNoticeById(noticeId));
