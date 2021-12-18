@@ -8,10 +8,7 @@ import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.page.PageDomain;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.core.page.TableSupport;
-import com.zhglxt.common.util.DateUtils;
-import com.zhglxt.common.util.ServletUtils;
-import com.zhglxt.common.util.ShiroUtils;
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.util.*;
 import com.zhglxt.common.util.sql.SqlUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,13 +48,7 @@ public class BaseController {
      * 设置请求分页数据
      */
     protected void startPage() {
-        PageDomain pageDomain = TableSupport.buildPageRequest();
-        Integer pageNum = pageDomain.getPageNum();
-        Integer pageSize = pageDomain.getPageSize();
-        if (StringUtils.isNotNull(pageNum) && StringUtils.isNotNull(pageSize)) {
-            String orderBy = SqlUtil.escapeOrderBySql(pageDomain.getOrderBy());
-            PageHelper.startPage(pageNum, pageSize, orderBy);
-        }
+        PageUtils.startPage();
     }
 
     /**
