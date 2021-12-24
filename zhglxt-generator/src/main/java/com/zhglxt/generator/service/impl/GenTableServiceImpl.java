@@ -148,8 +148,8 @@ public class GenTableServiceImpl implements IGenTableService {
      * @return 结果
      */
     @Override
-    public int createTable(String sql) {
-        return genTableMapper.createTable(sql);
+    public boolean createTable(String sql) {
+        return genTableMapper.createTable(sql) == 0;
     }
 
     /**
