@@ -34,6 +34,7 @@ import java.io.StringWriter;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -272,7 +273,7 @@ public class GenTableServiceImpl implements IGenTableService {
     public void synchDb(String tableName) {
         GenTable table = genTableMapper.selectGenTableByName(tableName);
         List<GenTableColumn> tableColumns = table.getColumns();
-        List<String> tableColumnNames = tableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
+        Map<String, GenTableColumn> tableColumnMap = tableColumns.stream().collect(Collectors.toMap(GenTableColumn::getColumnName, Function.identity()));
 
         List<GenTableColumn> dbTableColumns = genTableColumnMapper.selectDbTableColumnsByName(tableName);
         if (StringUtils.isEmpty(dbTableColumns)) {
@@ -281,14 +282,23 @@ public class GenTableServiceImpl implements IGenTableService {
         List<String> dbTableColumnNames = dbTableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
 
         dbTableColumns.forEach(column -> {
-            if (!tableColumnNames.contains(column.getColumnName())) {
-                GenUtils.initColumnField(column, table);
+            GenUtils.initColumnField(column, table);
+            if (tableColumnMap.containsKey(column.getColumnName()))
+            {
+                GenTableColumn prevColumn = tableColumnMap.get(column.getColumnName());
+                column.setColumnId(prevColumn.getColumnId());
+                if (column.isList())
+                {
+                    // 如果是列表，继续保留字典类型
+                    column.setDictType(prevColumn.getDictType());
+                }
+                genTableColumnMapper.updateGenTableColumn(column);
+            }
+            else {
                 genTableColumnMapper.insertGenTableColumn(column);
             }
         });
-
-        List<GenTableColumn> delColumns = tableColumns.stream()
-                .filter(column -> !dbTableColumnNames.contains(column.getColumnName())).collect(Collectors.toList());
+        List<GenTableColumn> delColumns = tableColumns.stream().filter(column -> !dbTableColumnNames.contains(column.getColumnName())).collect(Collectors.toList());
         if (StringUtils.isNotEmpty(delColumns)) {
             genTableColumnMapper.deleteGenTableColumns(delColumns);
         }

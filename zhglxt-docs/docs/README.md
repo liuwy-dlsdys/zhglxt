@@ -32,6 +32,6 @@ features:
   details: 支持在线设计、部署、查看、编辑流程图。
 - title: 完善的XSS防范
   details: 完善的XSS防范及脚本过滤，彻底杜绝XSS攻击。
-footer: MIT Licensed | Copyright © 2019-2021 liuwy All Rights Reserved.
+footer: MIT Licensed | Copyright © 2019-2022 liuwy All Rights Reserved.
 footerHtml: true
 ---

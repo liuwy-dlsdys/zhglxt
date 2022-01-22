@@ -5,7 +5,7 @@ zhglxt:
   # 版本
   version: 4.7.2
   # 版权年份
-  copyrightYear: 2019-2021
+  copyrightYear: 2019-2022
   # 实例演示开关
   demoEnabled: false
   # 文件路径 （ Windows配置:  D:/zhglxt_userfiles   ;Linux配置:   /usr/projects/zhglxt/zhglxt_userfiles ）

@@ -1,8 +1,10 @@
 package com.zhglxt.quartz.util;
 
+import com.zhglxt.common.constant.Constants;
 import com.zhglxt.common.constant.ScheduleConstants;
 import com.zhglxt.common.exception.job.TaskException;
 import com.zhglxt.common.exception.job.TaskException.Code;
+import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.quartz.entity.SysJob;
 import org.quartz.*;
 
@@ -91,4 +93,24 @@ public class ScheduleUtils {
                         + "' cannot be used in cron schedule tasks", Code.CONFIG_ERROR);
         }
     }
+    /**
+     * 检查包名是否为白名单配置
+     *
+     * @param invokeTarget 目标字符串
+     * @return 结果
+     */
+    public static boolean whiteList(String invokeTarget)
+    {
+        String packageName = StringUtils.substringBefore(invokeTarget, "(");
+        int count = StringUtils.countMatches(packageName, ".");
+        if (count > 1)
+        {
+            if (!StringUtils.containsAnyIgnoreCase(invokeTarget, Constants.JOB_WHITELIST_STR))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
