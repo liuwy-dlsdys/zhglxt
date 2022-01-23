@@ -1,7 +1,7 @@
 {
-  "name": "zhglxt",
+  "name": "zhglxt-docs",
   "version": "4.7.2",
-  "description": "WEB应用系统",
+  "description": "文档系统",
   "main": "index.js",
   "scripts": {
     "dev": "vuepress dev docs",
@@ -10,9 +10,8 @@
   "keywords": [],
   "author": "liuwy",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
-    "@vuepress/plugin-search": "^2.0.0-beta.27",
-    "vuepress": "^2.0.0-beta.27"
+    "@vuepress/plugin-search": "^2.0.0-beta.34",
+    "vuepress": "^2.0.0-beta.34"
   }
 }
