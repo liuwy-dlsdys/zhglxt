@@ -117,6 +117,13 @@ npm run dev
 
 ### 部署到nginx
 此教程是部署到windows的，linux的就不赘述了（基本差不多）。
+在使用 vuepress 包时，会自动安装和使用 Vite 打包工具。
+此项目改为使用 Webpack 打包工具，所以切换为 vuepress-webpack 包：
+```
+yarn remove vuepress
+yarn add -D vuepress-webpack@next
+```
+然后继续运行以下命令即可完成打包
 ```
 # 构建静态文件(构建完毕后会在zhglxt-docs\docs\.vuepress目录下生成dist文件夹)
 # 方式一：yarn 
