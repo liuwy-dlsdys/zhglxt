@@ -104,12 +104,15 @@ public class SysDeptController extends BaseController {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
+
+        String deptId = dept.getDeptId();
+        deptService.checkDeptDataScope(deptId);
+
         if (UserConstants.DEPT_NAME_NOT_UNIQUE.equals(deptService.checkDeptNameUnique(dept))) {
             return error("修改部门'" + dept.getDeptName() + "'失败，部门名称已存在");
-        } else if (dept.getParentId().equals(dept.getDeptId())) {
+        } else if (dept.getParentId().equals(deptId)) {
             return error("修改部门'" + dept.getDeptName() + "'失败，上级部门不能是自己");
-        } else if (StringUtils.equals(UserConstants.DEPT_DISABLE, dept.getStatus())
-                && deptService.selectNormalChildrenDeptById(dept.getDeptId()) > 0) {
+        } else if (StringUtils.equals(UserConstants.DEPT_DISABLE, dept.getStatus()) && deptService.selectNormalChildrenDeptById(deptId) > 0){
             return AjaxResult.error("该部门包含未停用的子部门！");
         }
         dept.setUpdateBy(getLoginName());
@@ -133,6 +136,7 @@ public class SysDeptController extends BaseController {
         if (deptService.checkDeptExistUser(deptId)) {
             return AjaxResult.warn("部门存在用户,不允许删除");
         }
+        deptService.checkDeptDataScope(deptId);
         return toAjax(deptService.deleteDeptById(deptId));
     }
 

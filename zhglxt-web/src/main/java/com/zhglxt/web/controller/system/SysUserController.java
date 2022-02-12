@@ -164,6 +164,7 @@ public class SysUserController extends BaseController {
         }
         //超级系统管理员&角色不允许操作
         userService.checkUserAllowed(user);
+        userService.checkUserDataScope(user.getUserId());
 
         //数据校验
         IDCardUtils ic = new IDCardUtils();
@@ -201,6 +202,7 @@ public class SysUserController extends BaseController {
         }
         //管理员用户&角色不允许操作
         userService.checkUserAllowed(user);
+        userService.checkUserDataScope(user.getUserId());
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         if (userService.resetUserPwd(user) > 0) {
@@ -236,6 +238,7 @@ public class SysUserController extends BaseController {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式，不允许操作");
         }
+        userService.checkUserDataScope(userId);
         userService.insertUserAuth(userId, roleIds);
         AuthorizationUtils.clearAllCachedAuthorizationInfo();
         return success();
@@ -296,6 +299,7 @@ public class SysUserController extends BaseController {
         }
         //管理员用户&角色不允许操作
         userService.checkUserAllowed(user);
+        userService.checkUserDataScope(user.getUserId());
         return toAjax(userService.changeStatus(user));
     }
 }

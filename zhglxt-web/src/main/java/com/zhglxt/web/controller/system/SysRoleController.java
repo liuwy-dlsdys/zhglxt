@@ -117,7 +117,8 @@ public class SysRoleController extends BaseController {
             return error("演示模式不允许本操作");
         }
         //管理员用户&角色不允许操作
-//    	roleService.checkRoleAllowed(role);
+//    	  roleService.checkRoleAllowed(role);
+//        roleService.checkRoleDataScope(role.getRoleId());
 //        if (UserConstants.ROLE_NAME_NOT_UNIQUE.equals(roleService.checkRoleNameUnique(role)))
 //        {
 //            return error("修改角色'" + role.getRoleName() + "'失败，角色名称已存在");
@@ -153,6 +154,7 @@ public class SysRoleController extends BaseController {
         }
         //管理员用户&角色不允许操作
 //    	roleService.checkRoleAllowed(role);
+        roleService.checkRoleDataScope(role.getRoleId());
         role.setUpdateBy(getLoginName());
         if (roleService.authDataScope(role) > 0) {
             setSysUser(userService.selectUserById(getUserId()));
@@ -211,6 +213,7 @@ public class SysRoleController extends BaseController {
         }
         //管理员用户&角色不允许操作
         roleService.checkRoleAllowed(role);
+        roleService.checkRoleDataScope(role.getRoleId());
         return toAjax(roleService.changeStatus(role));
     }
 
@@ -310,6 +313,7 @@ public class SysRoleController extends BaseController {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
+        roleService.checkRoleDataScope(roleId);
         return toAjax(roleService.insertAuthUsers(roleId, userIds));
     }
 }

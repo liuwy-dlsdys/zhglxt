@@ -143,6 +143,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
         for (String roleId : roleIds) {
             //管理员用户&角色不允许操作
             checkRoleAllowed(new SysRole(roleId));
+            checkRoleDataScope(roleId);
             SysRole role = selectRoleById(roleId);
             if (countUserRoleByRoleId(roleId) > 0) {
                 throw new ServiceException(String.format("%1$s已分配,不能删除", role.getRoleName()));

@@ -178,6 +178,7 @@ public class SysUserServiceImpl implements ISysUserService {
         String[] userIds = Convert.toStringArray(ids);
         for (String userId : userIds) {
             checkUserAllowed(new SysUser(userId));
+            checkUserDataScope(userId);
         }
         // 删除用户与角色关联
         userRoleMapper.deleteUserRole(userIds);
