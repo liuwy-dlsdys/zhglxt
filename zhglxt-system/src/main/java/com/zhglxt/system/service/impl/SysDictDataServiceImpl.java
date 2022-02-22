@@ -58,7 +58,6 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
      * 批量删除字典数据
      *
      * @param ids 需要删除的数据
-     * @return 结果
      */
     @Override
     public void  deleteDictDataByIds(String ids) {

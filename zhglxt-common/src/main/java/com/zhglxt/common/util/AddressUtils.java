@@ -22,8 +22,6 @@ public class AddressUtils {
     public static final String UNKNOWN = "XX XX";
 
     public static String getRealAddressByIP(String ip) {
-        String address = UNKNOWN;
-
         // 内网不查询
         if (IpUtils.internalIp(ip)) {
             return "内网IP";
@@ -43,6 +41,6 @@ public class AddressUtils {
                 log.error("获取地理位置异常 {}", e);
             }
         }
-        return address;
+        return UNKNOWN;
     }
 }

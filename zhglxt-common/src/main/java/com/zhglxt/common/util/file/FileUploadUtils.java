@@ -1,6 +1,7 @@
 package com.zhglxt.common.util.file;
 
 import com.zhglxt.common.config.GlobalConfig;
+import com.zhglxt.common.constant.Constants;
 import com.zhglxt.common.exception.file.FileNameLengthLimitExceededException;
 import com.zhglxt.common.exception.file.FileSizeLimitExceededException;
 import com.zhglxt.common.exception.file.InvalidExtensionException;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * 文件上传工具类
@@ -88,7 +90,7 @@ public class FileUploadUtils {
     public static final String upload(String baseDir, MultipartFile file, String[] allowedExtension)
             throws FileSizeLimitExceededException, IOException, FileNameLengthLimitExceededException,
             InvalidExtensionException {
-        int fileNamelength = file.getOriginalFilename().length();
+        int fileNamelength = Objects.requireNonNull(file.getOriginalFilename()).length();
         if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH) {
             throw new FileNameLengthLimitExceededException(FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
         }
@@ -99,19 +101,14 @@ public class FileUploadUtils {
 
         File desc = getAbsoluteFile(baseDir, fileName);
         file.transferTo(desc);
-        String pathFileName = getPathFileName(baseDir, fileName);
-        return pathFileName;
+        return getPathFileName(baseDir, fileName);
     }
 
     /**
      * 编码文件名
      */
     public static final String extractFilename(MultipartFile file) {
-        String fileName = file.getOriginalFilename();
-        String extension = getExtension(file);
-        fileName = DateUtils.datePath() + "/" + IdUtils.fastSimpleUUID() + "." + extension;
-
-        return fileName;
+        return DateUtils.datePath() + "/" + IdUtils.fastUUID() + "." + getExtension(file);
     }
 
     public static final File getAbsoluteFile(String uploadDir, String fileName) throws IOException {
@@ -128,8 +125,7 @@ public class FileUploadUtils {
     public static final String getPathFileName(String uploadDir, String fileName) throws IOException {
         int dirLastIndex = GlobalConfig.getProfile().length() + 1;
         String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
-        String pathFileName = "/profile/" + currentDir + "/" + fileName;
-        return pathFileName;
+        return Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
     }
 
     /**
@@ -143,7 +139,7 @@ public class FileUploadUtils {
     public static final void assertAllowed(MultipartFile file, String[] allowedExtension)
             throws FileSizeLimitExceededException, InvalidExtensionException {
         long size = file.getSize();
-        if (DEFAULT_MAX_SIZE != -1 && size > DEFAULT_MAX_SIZE) {
+        if (size > DEFAULT_MAX_SIZE) {
             throw new FileSizeLimitExceededException(DEFAULT_MAX_SIZE / 1024 / 1024);
         }
 
@@ -194,7 +190,7 @@ public class FileUploadUtils {
     public static final String getExtension(MultipartFile file) {
         String extension = FilenameUtils.getExtension(file.getOriginalFilename());
         if (StringUtils.isEmpty(extension)) {
-            extension = MimeTypeUtils.getExtension(file.getContentType());
+            extension = MimeTypeUtils.getExtension(Objects.requireNonNull(file.getContentType()));
         }
         return extension;
     }

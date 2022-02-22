@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
@@ -55,7 +54,6 @@ public class ImageUtils {
      */
     public static byte[] readFile(String url) {
         InputStream in = null;
-        ByteArrayOutputStream baos = null;
         try {
             if (url.startsWith("http")) {
                 // 网络地址
@@ -76,7 +74,7 @@ public class ImageUtils {
             log.error("获取文件路径异常 {}", e);
             return null;
         } finally {
-            IOUtils.closeQuietly(baos);
+            IOUtils.closeQuietly(in);
         }
     }
 }

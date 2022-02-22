@@ -169,6 +169,9 @@ public class GenConstants {
      */
     public static final String QUERY_LIKE = "LIKE";
 
+    /** 相等查询 */
+    public static final String QUERY_EQ = "EQ";
+
     /**
      * 需要
      */

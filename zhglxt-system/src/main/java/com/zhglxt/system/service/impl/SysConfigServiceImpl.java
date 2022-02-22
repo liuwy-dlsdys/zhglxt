@@ -113,7 +113,6 @@ public class SysConfigServiceImpl implements ISysConfigService {
      * 批量删除参数配置对象
      *
      * @param ids 需要删除的数据ID
-     * @return 结果
      */
     @Override
     public void deleteConfigByIds(String ids) {
