@@ -7,7 +7,7 @@ import com.zhglxt.common.exception.file.FileSizeLimitExceededException;
 import com.zhglxt.common.exception.file.InvalidExtensionException;
 import com.zhglxt.common.util.DateUtils;
 import com.zhglxt.common.util.StringUtils;
-import com.zhglxt.common.util.uuid.IdUtils;
+import com.zhglxt.common.util.uuid.Seq;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -108,7 +108,8 @@ public class FileUploadUtils {
      * 编码文件名
      */
     public static final String extractFilename(MultipartFile file) {
-        return DateUtils.datePath() + "/" + IdUtils.fastUUID() + "." + getExtension(file);
+        return StringUtils.format("{}/{}_{}.{}", DateUtils.datePath(),
+                FilenameUtils.getBaseName(file.getOriginalFilename()), Seq.getId(Seq.uploadSeqType), getExtension(file));
     }
 
     public static final File getAbsoluteFile(String uploadDir, String fileName) throws IOException {

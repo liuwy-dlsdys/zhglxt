@@ -51,12 +51,21 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#version" href="#v96">v9.6.0</a><code class="pull-right">2021.12.25-2022.02.22</code>
+                                        <a data-toggle="collapse" data-parent="#version" href="#v96">v9.6.0</a><code class="pull-right">2021.12.25-2022.03.05</code>
                                     </h5>
                                 </div>
                                 <div id="v96" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                         <ol>
+                                            <li>系统版本升级到v4.7.3</li>
+                                            <li>修复导入Excel时字典字段类型为Long转义为空问题</li>
+                                            <li>修复表格打印组件不识别多层对象属性值问题(I4V7YV)</li>
+                                            <li>优化Excel格式化不同类型的日期对象</li>
+                                            <li>优化上传文件名称命名规则</li>
+                                            <li>文件上传接口新增原/新文件名返回参数</li>
+                                            <li>代码生成预览隐藏临时的文本域</li>
+                                            <li>页面若未匹配到字典标签则返回原字典值</li>
+                                            <li>代码生成预览支持复制内容</li>
                                             <li>优化国际化配置多余的zh请求问题</li>
                                             <li>定时任务默认保存到内存中更高效</li>
                                             <li>表格树支持分页/异步加载</li>
