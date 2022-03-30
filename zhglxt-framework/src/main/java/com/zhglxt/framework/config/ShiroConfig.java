@@ -15,6 +15,7 @@ import com.zhglxt.framework.shiro.web.filter.online.OnlineSessionFilter;
 import com.zhglxt.framework.shiro.web.filter.sync.SyncOnlineSessionFilter;
 import com.zhglxt.framework.shiro.web.session.OnlineWebSessionManager;
 import com.zhglxt.framework.shiro.web.session.SpringSessionValidationScheduler;
+import com.zhglxt.framework.web.CustomShiroFilterFactoryBean;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
@@ -23,8 +24,6 @@ import org.apache.shiro.io.ResourceUtils;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.filter.InvalidRequestFilter;
-import org.apache.shiro.web.filter.mgt.DefaultFilter;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
@@ -251,7 +250,7 @@ public class ShiroConfig {
      */
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        CustomShiroFilterFactoryBean shiroFilterFactoryBean = new CustomShiroFilterFactoryBean();
         // Shiro的核心安全接口,这个属性是必须的
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 身份认证失败，则跳转到登录页面的配置
@@ -306,11 +305,6 @@ public class ShiroConfig {
         // 所有请求需要认证
         filterChainDefinitionMap.put("/**", "user,kickout,onlineSession,syncOnlineSession");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-
-        //关闭 中文路径 校验
-        InvalidRequestFilter invalidRequestFilter = new InvalidRequestFilter();
-        invalidRequestFilter.setBlockNonAscii(false);
-        shiroFilterFactoryBean.getFilters().put(DefaultFilter.invalidRequest.name(), invalidRequestFilter);
 
         return shiroFilterFactoryBean;
     }
