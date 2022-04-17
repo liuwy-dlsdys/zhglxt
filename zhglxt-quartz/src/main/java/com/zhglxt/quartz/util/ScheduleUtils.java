@@ -5,6 +5,7 @@ import com.zhglxt.common.constant.ScheduleConstants;
 import com.zhglxt.common.exception.job.TaskException;
 import com.zhglxt.common.exception.job.TaskException.Code;
 import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.util.spring.SpringUtils;
 import com.zhglxt.quartz.entity.SysJob;
 import org.quartz.*;
 
@@ -107,7 +108,8 @@ public class ScheduleUtils {
         {
             return StringUtils.containsAnyIgnoreCase(invokeTarget, Constants.JOB_WHITELIST_STR);
         }
-        return true;
+        Object obj = SpringUtils.getBean(StringUtils.split(invokeTarget, ".")[0]);
+        return StringUtils.containsAnyIgnoreCase(obj.getClass().getPackage().getName(), Constants.JOB_WHITELIST_STR);
     }
 
 }

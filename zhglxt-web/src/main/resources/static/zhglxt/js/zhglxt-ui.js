@@ -1598,7 +1598,7 @@ var table = {
         common: {
             // 判断字符串是否为空
             isEmpty: function (value) {
-                if (value == null || this.trim(value) == "") {
+                if (value == null || this.trim(value) == "" || value == undefined || value == "undefined") {
                     return true;
                 }
                 return false;

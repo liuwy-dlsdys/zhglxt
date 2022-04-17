@@ -4,6 +4,7 @@ import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.util.DateUtils;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.util.uuid.IdUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
@@ -277,7 +278,7 @@ public class FileUtils{
     }
 
     /**
-     * 获取名称
+     * 获取带后缀的文件名称
      *
      * @param fileName 路径名称
      * @return 没有文件路径的名称
@@ -292,6 +293,22 @@ public class FileUtils{
         int lastWindowsPos = fileName.lastIndexOf('\\');
         int index = Math.max(lastUnixPos, lastWindowsPos);
         return fileName.substring(index + 1);
+    }
+
+    /**
+     * 获取不带后缀的文件名称
+     *
+     * @param fileName 路径名称
+     * @return 没有文件路径和后缀的名称
+     */
+    public static String getNameNotSuffix(String fileName)
+    {
+        if (fileName == null)
+        {
+            return null;
+        }
+        String baseName = FilenameUtils.getBaseName(fileName);
+        return baseName;
     }
 
 }
