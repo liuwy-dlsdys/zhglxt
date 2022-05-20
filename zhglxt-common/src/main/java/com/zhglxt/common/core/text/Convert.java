@@ -538,17 +538,12 @@ public class Convert {
         valueStr = valueStr.trim().toLowerCase();
         switch (valueStr) {
             case "true":
-                return true;
-            case "false":
-                return false;
             case "yes":
-                return true;
             case "ok":
-                return true;
-            case "no":
-                return false;
             case "1":
                 return true;
+            case "false":
+            case "no":
             case "0":
                 return false;
             default:

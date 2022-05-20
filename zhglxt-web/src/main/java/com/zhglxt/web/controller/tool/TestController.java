@@ -2,7 +2,7 @@ package com.zhglxt.web.controller.tool;
 
 import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.controller.BaseController;
-import com.zhglxt.common.core.entity.AjaxResult;
+import com.zhglxt.common.core.entity.R;
 import com.zhglxt.common.util.StringUtils;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
@@ -30,19 +30,19 @@ public class TestController extends BaseController {
 
     @ApiOperation("获取用户列表")
     @GetMapping("/list")
-    public AjaxResult userList() {
+    public R<List<UserEntity>> userList() {
         List<UserEntity> userList = new ArrayList<UserEntity>(users.values());
-        return AjaxResult.success(userList);
+        return R.ok(userList);
     }
 
     @ApiOperation("获取用户详细")
     @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "Integer", paramType = "path", dataTypeClass = Integer.class)
     @GetMapping("/{userId}")
-    public AjaxResult getUser(@PathVariable Integer userId) {
+    public R<UserEntity> getUser(@PathVariable Integer userId) {
         if (!users.isEmpty() && users.containsKey(userId)) {
-            return AjaxResult.success(users.get(userId));
+            return R.ok(users.get(userId));
         } else {
-            return error("用户不存在");
+            return R.fail("用户不存在");
         }
     }
 
@@ -54,45 +54,47 @@ public class TestController extends BaseController {
             @ApiImplicitParam(name = "mobile", value = "用户手机", dataType = "String", paramType = "path", dataTypeClass = String.class)
     })
     @PostMapping("/save")
-    public AjaxResult save(UserEntity user) {
+    public R<String> save(UserEntity user) {
         if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
+            return R.fail("演示模式不允许本操作");
         }
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId())) {
-            return error("用户ID不能为空");
+            return R.fail("用户ID不能为空");
         }
-        return AjaxResult.success(users.put(user.getUserId(), user));
+        users.put(user.getUserId(), user);
+        return R.ok();
     }
 
     @ApiOperation("更新用户")
     @ApiImplicitParam(name = "userEntity", value = "新增用户信息", dataType = "UserEntity", dataTypeClass = UserEntity.class)
     @PutMapping("/update")
-    public AjaxResult update(@RequestBody UserEntity user) {
+    public R<String> update(@RequestBody UserEntity user) {
         if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
+            return R.fail("演示模式不允许本操作");
         }
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId())) {
-            return error("用户ID不能为空");
+            return R.fail("用户ID不能为空");
         }
         if (users.isEmpty() || !users.containsKey(user.getUserId())) {
-            return error("用户不存在");
+            return R.fail("用户不存在");
         }
         users.remove(user.getUserId());
-        return AjaxResult.success(users.put(user.getUserId(), user));
+        users.put(user.getUserId(), user);
+        return R.ok();
     }
 
     @ApiOperation("删除用户信息")
     @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "Integer", paramType = "path", dataTypeClass = Integer.class)
     @DeleteMapping("/{userId}")
-    public AjaxResult delete(@PathVariable Integer userId) {
+    public R<String> delete(@PathVariable Integer userId) {
         if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
+            return R.fail("演示模式不允许本操作");
         }
         if (!users.isEmpty() && users.containsKey(userId)) {
             users.remove(userId);
-            return success();
+            return R.ok();
         } else {
-            return error("用户不存在");
+            return R.fail("用户不存在");
         }
     }
 }
