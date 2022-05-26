@@ -30,7 +30,7 @@
         <knife4j.version>3.0.3</knife4j.version>
         <mybatis-spring-boot.version>2.2.0</mybatis-spring-boot.version>
         <pagehelper.boot.version>1.4.1</pagehelper.boot.version>
-        <fastjson.version>1.2.80</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <oshi.version>6.1.6</oshi.version>
         <jna.version>5.10.0</jna.version>
         <commons.io.version>2.11.0</commons.io.version>

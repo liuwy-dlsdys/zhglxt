@@ -9,6 +9,7 @@ import com.zhglxt.common.enums.BusinessType;
 import com.zhglxt.common.util.DateUtils;
 import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.file.FileUploadUtils;
+import com.zhglxt.common.util.file.MimeTypeUtils;
 import com.zhglxt.framework.shiro.service.SysPasswordService;
 import com.zhglxt.system.service.ISysUserService;
 import org.slf4j.Logger;
@@ -161,7 +162,7 @@ public class SysProfileController extends BaseController {
         SysUser currentUser = getSysUser();
         try {
             if (!file.isEmpty()) {
-                String avatar = FileUploadUtils.upload(GlobalConfig.getAvatarPath(), file);
+                String avatar = FileUploadUtils.upload(GlobalConfig.getAvatarPath(), file, MimeTypeUtils.IMAGE_EXTENSION);
                 currentUser.setAvatar(avatar);
                 if (userService.updateUserInfo(currentUser) > 0) {
                     setSysUser(userService.selectUserById(currentUser.getUserId()));
