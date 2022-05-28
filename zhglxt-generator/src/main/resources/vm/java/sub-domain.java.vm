@@ -1,11 +1,12 @@
-package ${packageName}import com.zhglxt.common.annotation.Excel;
-import com.zhglxt.common.core.entity.BaseEntity;
+package ${packageName}.entity;
 
-        .domain;
-    #foreach($import in $subImportList)
-        ${import}
-            ;
-    #end
+#foreach ($import in $subImportList)
+import ${import};
+#end
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import com.zhglxt.common.annotation.Excel;
+import com.zhglxt.common.core.entity.BaseEntity;
 
 /**
  * ${subTable.functionName}对象 ${subTableName}
