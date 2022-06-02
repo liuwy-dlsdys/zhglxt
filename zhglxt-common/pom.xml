@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.zhglxt</groupId>
         <artifactId>zhglxt</artifactId>
-        <version>4.7.3</version>
+        <version>4.7.4</version>
     </parent>
 
     <artifactId>zhglxt-common</artifactId>
