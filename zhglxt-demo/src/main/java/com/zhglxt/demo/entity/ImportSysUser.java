@@ -68,7 +68,7 @@ public class ImportSysUser extends BaseEntity {
      * 手机号码
      */
     @Excel(name = "手机号码")
-    private String phonenumber;
+    private String phoneNumber;
 
     /**
      * 用户性别
@@ -224,12 +224,12 @@ public class ImportSysUser extends BaseEntity {
     }
 
     @Size(min = 0, max = 11, message = "手机号码长度不能超过11个字符")
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getSex() {
@@ -359,7 +359,7 @@ public class ImportSysUser extends BaseEntity {
                 .append("idCard", getIdCard())
                 .append("userType", getUserType())
                 .append("email", getEmail())
-                .append("phonenumber", getPhonenumber())
+                .append("phoneNumber", getPhoneNumber())
                 .append("sex", getSex())
                 .append("avatar", getAvatar())
                 .append("password", getPassword())

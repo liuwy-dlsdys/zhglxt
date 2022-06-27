@@ -56,8 +56,8 @@
                                 <th>操作</th>
                             </tr>
                             </thead>
-                            <tbody id="cacheKyes">
-                            <tr th:fragment="fragment-cache-kyes" th:each="cacheKey, stat : ${cacheKyes}">
+                            <tbody id="cacheKeys">
+                            <tr th:fragment="fragment-cache-kyes" th:each="cacheKey, stat : ${cacheKeys}">
                                 <td>[[${stat.index + 1}]]</td>
                                 <td style="word-wrap:break-word;word-break:break-all;"
                                     th:onclick="getCacheValue([[${cacheName}]], [[${cacheKey}]])">[[${cacheKey}]]
@@ -131,7 +131,7 @@
                 "fragment": 'fragment-cache-kyes'
             },
             success: function (data) {
-                $("#cacheKyes").html(data);
+                $("#cacheKeys").html(data);
                 $("#cacheName").val(_cacheName);
                 if (isMsg) {
                     $.modal.msgSuccess("刷新键名列表成功");
@@ -180,7 +180,7 @@
     function clearAll() {
         $.get(prefix + "/clearAll", function (result) {
             if (result.code == web_status.SUCCESS) {
-                $.modal.msgSuccess("清理缓存成功")
+                $.modal.msgSuccess("清理全部缓存成功")
             } else {
                 $.modal.msgError(result.msg);
             }

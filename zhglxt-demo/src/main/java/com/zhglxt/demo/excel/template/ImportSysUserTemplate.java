@@ -46,7 +46,7 @@ public class ImportSysUserTemplate extends BaseEntity {
      * 手机号码
      */
     @ExcelProperty(value ="手机号码")
-    private String phonenumber;
+    private String phoneNumber;
 
     /**
      * 用户性别
@@ -124,12 +124,12 @@ public class ImportSysUserTemplate extends BaseEntity {
         this.email = email;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getSex() {

@@ -76,7 +76,7 @@ public class DictUtils {
         StringBuilder propertyString = new StringBuilder();
         List<SysDictData> datas = getDictCache(dictType);
 
-        if (StringUtils.containsAny(separator, dictValue) && StringUtils.isNotEmpty(datas)) {
+        if (StringUtils.containsAny(dictValue, separator) && StringUtils.isNotEmpty(datas)) {
             for (SysDictData dict : datas) {
                 for (String value : dictValue.split(separator)) {
                     if (value.equals(dict.getDictValue())) {
@@ -107,7 +107,7 @@ public class DictUtils {
         StringBuilder propertyString = new StringBuilder();
         List<SysDictData> datas = getDictCache(dictType);
 
-        if (StringUtils.containsAny(separator, dictLabel) && StringUtils.isNotEmpty(datas)) {
+        if (StringUtils.containsAny(dictLabel, separator) && StringUtils.isNotEmpty(datas)) {
             for (SysDictData dict : datas) {
                 for (String label : dictLabel.split(separator)) {
                     if (label.equals(dict.getDictLabel())) {
