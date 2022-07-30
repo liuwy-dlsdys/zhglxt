@@ -15,6 +15,7 @@ import com.zhglxt.common.util.file.FileTypeUtils;
 import com.zhglxt.common.util.file.FileUtils;
 import com.zhglxt.common.util.file.ImageUtils;
 import com.zhglxt.common.util.reflect.ReflectUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.RegExUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ooxml.POIXMLDocumentPart;
@@ -122,10 +123,27 @@ public class ExcelUtil<T>
      */
     public Class<T> clazz;
 
+    /**
+     * 需要排除列属性
+     */
+    public String[] excludeFields;
+
     public ExcelUtil(Class<T> clazz)
     {
         this.clazz = clazz;
     }
+
+    /**
+     * 隐藏Excel中列属性
+     *
+     * @param fields 列属性名 示例[单个"name"/多个"id","name"]
+     * @throws Exception
+     */
+    public void hideColumn(String... fields)
+    {
+        this.excludeFields = fields;
+    }
+
 
     public void init(List<T> list, String sheetName, String title, Type type)
     {
@@ -1165,28 +1183,31 @@ public class ExcelUtil<T>
         tempFields.addAll(Arrays.asList(clazz.getDeclaredFields()));
         for (Field field : tempFields)
         {
-            // 单注解
-            if (field.isAnnotationPresent(Excel.class))
+            if (!ArrayUtils.contains(this.excludeFields, field.getName()))
             {
-                Excel attr = field.getAnnotation(Excel.class);
-                if (attr != null && (attr.type() == Type.ALL || attr.type() == type))
+                // 单注解
+                if (field.isAnnotationPresent(Excel.class))
                 {
-                    field.setAccessible(true);
-                    fields.add(new Object[] { field, attr });
-                }
-            }
-
-            // 多注解
-            if (field.isAnnotationPresent(Excels.class))
-            {
-                Excels attrs = field.getAnnotation(Excels.class);
-                Excel[] excels = attrs.value();
-                for (Excel attr : excels)
-                {
+                    Excel attr = field.getAnnotation(Excel.class);
                     if (attr != null && (attr.type() == Type.ALL || attr.type() == type))
                     {
                         field.setAccessible(true);
                         fields.add(new Object[] { field, attr });
+                    }
+                }
+
+                // 多注解
+                if (field.isAnnotationPresent(Excels.class))
+                {
+                    Excels attrs = field.getAnnotation(Excels.class);
+                    Excel[] excels = attrs.value();
+                    for (Excel attr : excels)
+                    {
+                        if (attr != null && (attr.type() == Type.ALL || attr.type() == type))
+                        {
+                            field.setAccessible(true);
+                            fields.add(new Object[] { field, attr });
+                        }
                     }
                 }
             }
