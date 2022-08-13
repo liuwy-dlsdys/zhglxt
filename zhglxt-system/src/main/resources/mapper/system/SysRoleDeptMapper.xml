@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhglxt.system.mapper.SysRoleDeptMapper">
 
-    <resultMap type="SysRoleDept" id="SysRoleDeptResult">
+    <resultMap type="com.zhglxt.system.entity.SysRoleDept" id="SysRoleDeptResult">
         <result property="roleId" column="role_id"/>
         <result property="deptId" column="dept_id"/>
     </resultMap>

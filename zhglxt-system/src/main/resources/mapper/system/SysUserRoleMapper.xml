@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhglxt.system.mapper.SysUserRoleMapper">
 
-    <resultMap type="SysUserRole" id="SysUserRoleResult">
+    <resultMap type="com.zhglxt.system.entity.SysUserRole" id="SysUserRoleResult">
         <result property="userId" column="user_id"/>
         <result property="roleId" column="role_id"/>
     </resultMap>
@@ -35,7 +35,7 @@
         </foreach>
     </insert>
 
-    <delete id="deleteUserRoleInfo" parameterType="SysUserRole">
+    <delete id="deleteUserRoleInfo" parameterType="com.zhglxt.system.entity.SysUserRole">
 		delete from sys_user_role where user_id=#{userId} and role_id=#{roleId}
 	</delete>
 

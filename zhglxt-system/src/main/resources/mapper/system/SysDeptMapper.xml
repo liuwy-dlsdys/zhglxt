@@ -35,7 +35,7 @@
 		order by d.parent_id, d.order_num
 	</select>
 
-    <select id="selectDeptList" parameterType="SysDept" resultMap="SysDeptResult">
+    <select id="selectDeptList" parameterType="com.zhglxt.common.core.entity.sys.SysDept" resultMap="SysDeptResult">
         <include refid="selectDeptVo"/>
         where d.del_flag = '0'
         <if test="deptId != null and deptId != 0">
@@ -59,7 +59,7 @@
 		select count(1) from sys_user where dept_id = #{deptId} and del_flag = '0'
 	</select>
 
-    <select id="selectDeptCount" parameterType="SysDept" resultType="int">
+    <select id="selectDeptCount" parameterType="com.zhglxt.common.core.entity.sys.SysDept" resultType="int">
         select count(1) from sys_dept
         where del_flag = '0'
         <if test="deptId != null and deptId != 0">and dept_id = #{deptId}</if>
@@ -86,7 +86,7 @@
 		select count(*) from sys_dept where status = 0 and del_flag = '0' and find_in_set(#{deptId}, ancestors)
 	</select>
 
-    <insert id="insertDept" parameterType="SysDept">
+    <insert id="insertDept" parameterType="com.zhglxt.common.core.entity.sys.SysDept">
         insert into sys_dept(
         <if test="deptId != null and deptId != 0">dept_id,</if>
         <if test="parentId != null and parentId != 0">parent_id,</if>
@@ -114,7 +114,7 @@
         )
     </insert>
 
-    <update id="updateDept" parameterType="SysDept">
+    <update id="updateDept" parameterType="com.zhglxt.common.core.entity.sys.SysDept">
         update sys_dept
         <set>
             <if test="parentId != null and parentId != 0">parent_id = #{parentId},</if>
