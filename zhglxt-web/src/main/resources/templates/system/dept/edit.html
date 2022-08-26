@@ -114,29 +114,22 @@
 
     /*部门管理-修改-选择部门树*/
     function selectDeptTree() {
-        var deptId = $("#treeId").val();
-        var excludeId = $("input[name='deptId']").val();
-        if (deptId > 0) {
-            var options = {
-                title: '部门选择',
-                width: "380",
-                url: prefix + "/selectDeptTree/" + $("#treeId").val() + "/" + excludeId,
-                callBack: doSubmit
-            };
-            $.modal.openOptions(options);
-        } else {
-            $.modal.alertError("父部门不能选择");
-        }
+        var deptId = $.common.isEmpty($("#treeId").val()) ? "100" : $("#treeId").val();
+        var url = ctx + "system/dept/selectDeptTree?deptId=" + deptId+"&excludeId=";
+        var options = {
+            title: '选择部门',
+            width: "380",
+            url: url,
+            callBack: doSubmit
+        };
+        $.modal.openOptions(options);
     }
 
     function doSubmit(index, layero) {
-        var tree = layero.find("iframe")[0].contentWindow.$._tree;
-// 			if ($.tree.notAllowLastLevel(tree)) { //不允许最后层级节点选择
         var body = $.modal.getChildFrame(index);
         $("#treeId").val(body.find('#treeId').val());
         $("#treeName").val(body.find('#treeName').val());
         $.modal.close(index);
-// 			}
     }
 </script>
 </body>

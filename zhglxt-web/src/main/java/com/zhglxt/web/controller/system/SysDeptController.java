@@ -10,6 +10,7 @@ import com.zhglxt.common.core.entity.sys.SysDept;
 import com.zhglxt.common.core.entity.sys.SysRole;
 import com.zhglxt.common.enums.BusinessType;
 import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.util.WebUtil;
 import com.zhglxt.system.service.ISysDeptService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 部门信息
@@ -161,6 +164,17 @@ public class SysDeptController extends BaseController {
         mmap.put("dept", deptService.selectDeptById(deptId));
         mmap.put("excludeId", excludeId);
         return prefix + "/tree";
+    }
+
+    /**
+     * 选择部门树2
+     */
+    @GetMapping("/selectDeptTree")
+    public String selectDeptTree2(HttpServletRequest request, ModelMap mmap) {
+        Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
+        mmap.put("dept", deptService.selectDeptById(paramMap.get("deptId").toString()));
+        mmap.put("excludeId", paramMap.get("excludeId").toString());
+        return prefix + "/tree2";
     }
 
     /**
