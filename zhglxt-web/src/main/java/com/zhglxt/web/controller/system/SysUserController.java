@@ -167,10 +167,9 @@ public class SysUserController extends BaseController {
         userService.checkUserDataScope(user.getUserId());
 
         //数据校验
-        IDCardUtils ic = new IDCardUtils();
         if(StringUtils.isNotEmpty(user.getIdCard())){
-            if(!"".equals(ic.IDCardValidate(user.getIdCard()))){
-                return error(ic.IDCardValidate(user.getIdCard()));
+            if(!"".equals(IDCardUtils.IDCardValidate(user.getIdCard()))){
+                return error(IDCardUtils.IDCardValidate(user.getIdCard()));
             }
         } else if  (StringUtils.isNotEmpty(user.getPhonenumber())
                 && UserConstants.USER_PHONE_NOT_UNIQUE.equals(userService.checkPhoneUnique(user))) {

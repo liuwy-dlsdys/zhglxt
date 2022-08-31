@@ -133,14 +133,16 @@ public final class ErrorUtils {
             } else if ("vfs".equalsIgnoreCase(protocol)) {//JBoss vfs
                 VirtualFile langDir = VFS.getChild(dirURL.getPath());
                 List<VirtualFile> langFilesList = langDir.getChildren();
-                if (langFilesList.size() > 0) { //This will work in JBOSS 7 with exploded and packed war.
+                if (langFilesList.size() > 0) {
+                    //This will work in JBOSS 7 with exploded and packed war.
                     for (VirtualFile vFile : langFilesList) {
                         File contentsFile = vFile.getPhysicalFile();
                         langFiles.add(contentsFile.getName().replaceAll(".xml", ""));
                     }
                 } else { //It's JBOSS 6.
                     VirtualFile jarFile = VFS.getChild(dirURL.getPath().substring(1, dirURL.getPath().indexOf(".jar") + 4));
-                    if (jarFile.exists()) { //war is exploded.
+                    if (jarFile.exists()) {
+                        //war is exploded.
                         TempFileProvider tempFileProvider = TempFileProvider.create("tmpjar", Executors.newScheduledThreadPool(2));
                         MountHandle jarHandle = (MountHandle) VFS.mountZip(jarFile, jarFile, tempFileProvider);
                         File mountJar = jarHandle.getMountSource();

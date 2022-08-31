@@ -295,6 +295,7 @@ public class TimeUtils {
                 + this.timeSeparator + "mm" + this.timeSeparator + "ss");
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(16);
         sb.append(fields[DAY]).append(',').append(' ');
@@ -311,6 +312,7 @@ public class TimeUtils {
         return sb.append(fields[field]);
     }
 
+    @Override
     public int hashCode() {
         final int PRIME = 31;
         int result = 1;
@@ -318,13 +320,17 @@ public class TimeUtils {
         return result;
     }
 
+    @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         final TimeUtils other = (TimeUtils) obj;
         if (!Arrays.equals(fields, other.fields)) {
             return false;

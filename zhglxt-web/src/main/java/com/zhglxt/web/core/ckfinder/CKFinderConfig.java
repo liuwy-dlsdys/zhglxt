@@ -88,11 +88,12 @@ public class CKFinderConfig extends Configuration {
                     this.baseURL = PathUtils.addSlashToEnd(this.baseURL);
                 }
 
-                //
-                if (childNode.getNodeName().equals("licenseName"))
+                if (childNode.getNodeName().equals("licenseName")) {
                     this.licenseName = childNode.getTextContent().trim();
-                if (childNode.getNodeName().equals("licenseKey"))
+                }
+                if (childNode.getNodeName().equals("licenseKey")) {
                     this.licenseKey = childNode.getTextContent().trim();
+                }
 
                 String value;
                 //设置上传图像的最大大小。如果上传的图像更大，它就会更大。按比例缩小。设置为0则禁用此功能
@@ -157,21 +158,25 @@ public class CKFinderConfig extends Configuration {
 
                 //如果启用了CheckDoubleExtension，则.后文件名的每个部分都进行检查，不仅仅是最后一部分。
                 // 比如，上传foo.php.rar就是拒绝的，因为“php”在拒绝的扩展列表中。
-                if (childNode.getNodeName().equals("checkDoubleExtension"))
+                if (childNode.getNodeName().equals("checkDoubleExtension")) {
                     this.doubleExtensions = Boolean.valueOf(childNode.getTextContent().trim()).booleanValue();
+                }
 
                 //增加IIS web服务器上的安全性。
                 //如果启用，CKFinder将不允许创建文件夹和上传名称包含特殊字符的文件
-                if (childNode.getNodeName().equals("disallowUnsafeCharacters"))
+                if (childNode.getNodeName().equals("disallowUnsafeCharacters")) {
                     this.disallowUnsafeCharacters = Boolean.valueOf(childNode.getTextContent().trim()).booleanValue();
+                }
 
                 //强制为文件和文件夹使用ASCII名称。如果启用，字符与diactric标记将自动转换为ASCII字母。
-                if (childNode.getNodeName().equals("forceASCII"))
+                if (childNode.getNodeName().equals("forceASCII")) {
                     this.forceASCII = Boolean.valueOf(childNode.getTextContent().trim()).booleanValue();
+                }
 
                 //是否检查缩放后文件大小。否则，会在上传后立即检查。
-                if (childNode.getNodeName().equals("checkSizeAfterScaling"))
+                if (childNode.getNodeName().equals("checkSizeAfterScaling")) {
                     this.checkSizeAfterScaling = Boolean.valueOf(childNode.getTextContent().trim()).booleanValue();
+                }
 
                 //为了安全起见,对于具有以下扩展名的文件，在第一个Kb的数据中允许使用HTML
                 Scanner sc;
@@ -180,29 +185,34 @@ public class CKFinderConfig extends Configuration {
                     sc = (new Scanner(value)).useDelimiter(",");
                     while (sc.hasNext()) {
                         String val = sc.next();
-                        if (val != null && !val.equals(""))
+                        if (val != null && !val.equals("")) {
                             this.htmlExtensions.add(val.trim().toLowerCase());
+                        }
                     }
                 }
 
                 //对图像文件执行其他检查.如果设置为true，则验证图像大小
-                if (childNode.getNodeName().equals("secureImageUploads"))
+                if (childNode.getNodeName().equals("secureImageUploads")) {
                     this.secureImageUploads = Boolean.valueOf(childNode.getTextContent().trim()).booleanValue();
+                }
 
                 //设置编码
-                if (childNode.getNodeName().equals("uriEncoding"))
+                if (childNode.getNodeName().equals("uriEncoding")) {
                     this.uriEncoding = childNode.getTextContent().trim();
+                }
 
                 //设置CKFinder检索时必须使用的会话变量名. 当前用户的“role”,可以在“accessControls”中使用设置
-                if (childNode.getNodeName().equals("userRoleSessionVar"))
+                if (childNode.getNodeName().equals("userRoleSessionVar")) {
                     this.userRoleSessionVar = childNode.getTextContent().trim();
+                }
 
                 //默认的资源类型
                 if (childNode.getNodeName().equals("defaultResourceTypes")) {
                     value = childNode.getTextContent().trim();
                     sc = (new Scanner(value)).useDelimiter(",");
-                    while (sc.hasNext())
+                    while (sc.hasNext()) {
                         this.defaultResourceTypes.add(sc.next());
+                    }
                 }
 
                 //插件

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
 
 
 /**
@@ -78,7 +77,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
                     + "m/hm.gi" + "f?si=ad7f9a2714114a9aa3f3dadc6945c159&et=0&ep="
                     + "&nv=0&st=4&se=&sw=&lt=&su=&u=ht" + "tp:/" + "/sta" + "rtup.jee"
                     + "si" + "te.co" + "m/version/" + GlobalConfig.getVersion() + "&v=wap-"
-                    + "2-0.3&rnd=" + new Date().getTime());
+                    + "2-0.3&rnd=" + System.currentTimeMillis());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.connect();
             connection.getInputStream();

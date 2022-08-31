@@ -27,6 +27,7 @@ public class DateConverter implements Converter {
 
     private static final String MONTH_PATTERN = "yyyy-MM";
 
+    @Override
     public Object convert(Class type, Object value) {
         Object result = null;
         if (type == Date.class) {
