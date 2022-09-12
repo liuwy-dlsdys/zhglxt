@@ -100,4 +100,14 @@ public class R<T> implements Serializable {
     {
         this.data = data;
     }
+
+    public Boolean isError()
+    {
+        return !isSuccess();
+    }
+
+    public Boolean isSuccess()
+    {
+        return R.SUCCESS == getCode();
+    }
 }

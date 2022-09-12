@@ -85,7 +85,7 @@ public class LogAspect {
                 operLog.setJsonResult(StringUtils.substring(JSON.marshal(jsonResult), 0, 2000));
             }
 
-            operLog.setOperUrl(ServletUtils.getRequest().getRequestURI());
+            operLog.setOperUrl(StringUtils.substring(ServletUtils.getRequest().getRequestURI(), 0, 255));
             if (currentUser != null) {
                 operLog.setOperName(currentUser.getLoginName());
                 if (StringUtils.isNotNull(currentUser.getDept())

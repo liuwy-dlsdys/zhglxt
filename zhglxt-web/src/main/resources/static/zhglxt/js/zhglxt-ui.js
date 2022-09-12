@@ -1386,15 +1386,20 @@ var table = {
                 if (result.code == web_status.SUCCESS) {
                     var topWindow = $(window.parent.document);
                     var currentId = $('.page-tabs-content', topWindow).find('.active').attr('data-panel');
-                    var $contentWindow = $('.zhglxt_iframe[data-id="' + currentId + '"]', topWindow)[0].contentWindow;
-                    $.modal.close();
-                    $contentWindow.$.modal.msgSuccess(result.msg);
-                    $contentWindow.$(".layui-layer-padding").removeAttr("style");
-                    if ($contentWindow.table.options.type == table_type.bootstrapTable) {
-                        $contentWindow.$.table.refresh();
-                    } else if ($contentWindow.table.options.type == table_type.bootstrapTreeTable) {
-                        $contentWindow.$.treeTable.refresh();
+                    var newTopWindow = $('.zhglxt_iframe[data-id="' + currentId + '"]', topWindow)[0];
+                    if ($.common.isNotEmpty(newTopWindow) && $.common.isNotEmpty(currentId)) {
+                        var $contentWindow = newTopWindow.contentWindow;
+                        $contentWindow.$.modal.msgSuccess(result.msg);
+                        $contentWindow.$(".layui-layer-padding").removeAttr("style");
+                        if ($contentWindow.table.options.type == table_type.bootstrapTable) {
+                            $contentWindow.$.table.refresh();
+                        } else if ($contentWindow.table.options.type == table_type.bootstrapTreeTable) {
+                            $contentWindow.$.treeTable.refresh();
+                        }
+                    }else {
+                        $.modal.msgSuccess(result.msg);
                     }
+                    $.modal.close();
                     $.modal.closeTab();
                 } else if (result.code == web_status.WARNING) {
                     $.modal.alertWarning(result.msg)

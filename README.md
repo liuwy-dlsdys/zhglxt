@@ -27,27 +27,26 @@
 17. Maven项目依赖管理，方便模块依赖版本升级、增减模块
 18. 支持多数据源，简单配置即可实现切换
 19. 集成在线表单构建器，拖拽表单元素即可生成相应的HTML代码、表单代码
-20. 集成swagger3.0（swagger3 + knife4j）系统接口、UI框架
-21. 集成VuePress2.x文档系统
-22. 丰富的演示示例，帮助开发者快速集成到项目中
+20. 集成swagger（swagger + knife4j）系统接口、UI框架
+21. 丰富的演示示例，帮助开发者快速集成到项目中
 
 ## 技术选型
 1. 系统环境【JDK 1.8、MySQL5.7、Tomcat 8】
-2. 主框架【Spring Boot 2.5.6】
-3. 持久层【Apache MyBatis 3.5.6】
-4. 视图层【Bootstrap 3.3、Thymeleaf 3.0】
-5. 安全框架【Apache Shiro 1.8.0】
-6. 缓存框架【shiro-ehcache 1.8.0】
-7. 任务调度框架【Quartz 2.3.2】
-8. 业务流程管理（BPM）框架【Activiti 5.23.0】
-9. 文件管理器【CKFinder2.6.3】
-10. 服务端验证【Hibernate Validation 6.0】
-11. 客户端验证【jQuery Validation 1.19.3】
-12. 树型插件 【jQuery zTree 3.5.12】
+2. 主框架【Spring Boot】
+3. 持久层【Apache MyBatis】
+4. 视图层【Bootstrap】
+5. 安全框架【Apache Shiro】
+6. 缓存框架【shiro-ehcache】
+7. 任务调度框架【Quartz】
+8. 业务流程管理（BPM）框架【Activiti】
+9. 文件管理器【CKFinder】
+10. 服务端验证【Hibernate Validation】
+11. 客户端验证【jQuery Validation】
+12. 树型插件 【jQuery zTree】
 13. 项目版本控制【Git】
-14. 项目管理工具【Apache Maven 3.8.1】
-15. 富文本编辑器【summernote 0.8.18】
-16. MarkDown在线编辑器【editor.md 1.5.0 】
+14. 项目管理工具【Apache Maven】
+15. 富文本编辑器【summernote】
+16. MarkDown在线编辑器【editor.md】
 
 ## 内置功能
 1.  用户管理：用户是系统操作者，该功能主要完成系统用户配置
@@ -137,6 +136,3 @@
 
 6. 通知通告
 ![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/17.jpg?versionId=CAEQDRiBgMD_sJHl1BciIDEzMDJlN2I3ZTJiNTQwMjdiZDJiYTlkZjAyOGMxNDI2)
-
-7. 文档系统首页
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/18.jpg?versionId=CAEQEBiBgIC4rOPK6BciIDE1MmZmMTkwY2IyMDQ5YWE5OTc0MTQ4ZTdkZDM4ZGNi)
