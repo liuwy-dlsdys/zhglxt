@@ -323,15 +323,16 @@ public class SysUserServiceImpl implements ISysUserService {
     }
 
     /**
-     * 校验登录名称是否唯一
+     * 校验用户名称是否唯一
      *
-     * @param loginName 用户名
+     * @param user 用户信息
      * @return
      */
     @Override
-    public String checkLoginNameUnique(String loginName) {
-        int count = userMapper.checkLoginNameUnique(loginName);
-        if (count > 0) {
+    public String checkLoginNameUnique(SysUser user) {
+        String userId = StringUtils.isEmpty(user.getUserId()) ? "" : user.getUserId();
+        SysUser info = userMapper.checkLoginNameUnique(user.getLoginName());
+        if (StringUtils.isNotNull(info) && (!info.getUserId().equals(userId))){
             return UserConstants.USER_NAME_NOT_UNIQUE;
         }
         return UserConstants.USER_NAME_UNIQUE;
