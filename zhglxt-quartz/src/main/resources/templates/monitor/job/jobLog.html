@@ -54,14 +54,14 @@
         </div>
 
         <div class="btn-group-sm" id="toolbar" role="group">
-            <a class="btn btn-success multiple disabled" onclick="$.operate.removeAll()"
+            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()"
                shiro:hasPermission="'monitor:job:remove'">
                 <i class="fa fa-remove"></i> 删除
             </a>
-            <a class="btn btn-success" onclick="$.operate.clean()" shiro:hasPermission="'monitor:job:remove'">
+            <a class="btn btn-danger" onclick="$.operate.clean()" shiro:hasPermission="'monitor:job:remove'">
                 <i class="fa fa-trash"></i> 清空
             </a>
-            <a class="btn btn-success" onclick="$.table.exportExcel()" shiro:hasPermission="'monitor:job:export'">
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="'monitor:job:export'">
                 <i class="fa fa-download"></i> 导出
             </a>
             <a class="btn btn-danger" onclick="closeItem()">

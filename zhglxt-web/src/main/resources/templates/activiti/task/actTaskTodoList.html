@@ -123,14 +123,14 @@
     	                formatter: function (value, row, index) {
     	                    var actions = [];
     	                    if(row.task.assignee==null){
-    	                    	actions.push('<a class="btn btn-success btn-xs" href="#" onclick="taskSign(\'' + row.task.id + '\')"><i class="fa fa-play-circle-o"></i>任务签收</a>');
+    	                    	actions.push('<a class="btn btn-primary btn-xs" href="#" onclick="taskSign(\'' + row.task.id + '\')"><i class="fa fa-play-circle-o"></i>任务签收</a>');
     	                    }else{
-    	                    	actions.push('<a class="btn btn-success btn-xs" href="#" onclick="taskTodo(\'' + row.task.id + '\',\'' + row.task.name + '\',\'' + row.task.taskDefinitionKey + '\',\'' + row.task.processDefinitionId + '\',\'' + row.task.processInstanceId + '\',\'' + row.status + '\')"><i class="fa fa-play-circle-o"></i>任务办理</a> ');
+    	                    	actions.push('<a class="btn btn-primary btn-xs" href="#" onclick="taskTodo(\'' + row.task.id + '\',\'' + row.task.name + '\',\'' + row.task.taskDefinitionKey + '\',\'' + row.task.processDefinitionId + '\',\'' + row.task.processInstanceId + '\',\'' + row.status + '\')"><i class="fa fa-play-circle-o"></i>任务办理</a> ');
     	                    }
     	                    if(row.task.executionId==null){
-    	                    	actions.push('<a class="btn btn-success btn-xs" href="#" onclick="$.operate.remove(\'' + row.task.id + '\')"><i class="fa fa-remove"></i>删除任务</a> ');
+    	                    	actions.push('<a class="btn btn-primary btn-xs" href="#" onclick="$.operate.remove(\'' + row.task.id + '\')"><i class="fa fa-remove"></i>删除任务</a> ');
     	                    }
-    	                    actions.push('<a class="btn btn-success btn-xs" href="#" onclick="taskTracking(\'' + row.task.processDefinitionId + '\',\'' + row.task.processInstanceId + '\')"><i class="fa fa-play-circle-o"></i>跟踪</a>');
+    	                    actions.push('<a class="btn btn-info btn-xs" href="#" onclick="taskTracking(\'' + row.task.processDefinitionId + '\',\'' + row.task.processInstanceId + '\')"><i class="fa fa-play-circle-o"></i>跟踪</a>');
     	                    return actions.join('');
     	                }
     	            }]

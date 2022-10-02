@@ -35,11 +35,11 @@
             <a class="btn btn-success" onclick="$.operate.addFull()" shiro:hasPermission="'cms:advertising:add'">
                 <i class="fa fa-plus"></i> 新增
             </a>
-            <a class="btn btn-success single disabled" onclick="$.operate.editFull()"
+            <a class="btn btn-primary single disabled" onclick="$.operate.editFull()"
                shiro:hasPermission="'cms:advertising:edit'">
                 <i class="fa fa-edit"></i> 修改
             </a>
-            <a class="btn btn-success multiple disabled" onclick="$.operate.removeAll()"
+            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()"
                shiro:hasPermission="'cms:advertising:remove'">
                 <i class="fa fa-remove"></i> 删除
             </a>
@@ -150,8 +150,8 @@
                     align: 'center',
                     formatter: function (value, row, index) {
                         var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.editFull(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                        actions.push('<a class="btn btn-success btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        actions.push('<a class="btn btn-primary btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.editFull(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
                         return actions.join('');
                     }
                 }]

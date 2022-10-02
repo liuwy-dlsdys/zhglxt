@@ -32,11 +32,11 @@
             <a class="btn btn-success" onclick="selectUser()" shiro:hasPermission="'system:role:add'">
                 <i class="fa fa-plus"></i> 添加用户
             </a>
-            <a class="btn btn-success multiple disabled" onclick="cancelAuthUserAll()"
+            <a class="btn btn-danger multiple disabled" onclick="cancelAuthUserAll()"
                shiro:hasPermission="'system:role:remove'">
                 <i class="fa fa-remove"></i> 批量取消授权
             </a>
-            <a class="btn btn-success" onclick="closeItem()">
+            <a class="btn btn-warning" onclick="closeItem()">
                 <i class="fa fa-reply-all"></i> 关闭
             </a>
         </div>
@@ -108,7 +108,7 @@
                     align: 'center',
                     formatter: function (value, row, index) {
                         var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="cancelAuthUser(\'' + row.userId + '\')"><i class="fa fa-remove"></i>取消授权</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="cancelAuthUser(\'' + row.userId + '\')"><i class="fa fa-remove"></i>取消授权</a> ');
                         return actions.join('');
                     }
                 }]
