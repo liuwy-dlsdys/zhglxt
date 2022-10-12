@@ -27,19 +27,19 @@ public class AdvertisingServiceImpl implements IAdvertisingService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int insertAdvertising(Map<String, Object> paramMap) {
         return advertisingMapper.insertAdvertising(paramMap);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateAdvertising(Map<String, Object> paramMap) {
         return advertisingMapper.updateAdvertising(paramMap);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int deleteAdvertising(String[] ids) {
         return advertisingMapper.deleteAdvertisingById(ids);
     }

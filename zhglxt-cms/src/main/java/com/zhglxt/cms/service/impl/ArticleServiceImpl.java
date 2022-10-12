@@ -35,7 +35,7 @@ public class ArticleServiceImpl implements IArticleService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int addArticle(Map<String, Object> paramMap) {
         String articleId = IdUtils.fastSimpleUUID();
         paramMap.put("id", articleId);
@@ -55,7 +55,7 @@ public class ArticleServiceImpl implements IArticleService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int deleteArticle(String[] ids) {
         //删除文章内容关联表数据
         articleMapper.deleteArticleContentByArticleIds(ids);
@@ -63,7 +63,7 @@ public class ArticleServiceImpl implements IArticleService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateArticle(Map<String, Object> paramMap) {
         //修改文章内容关联表数据
         Map<String, Object> contentParamMap = Maps.newHashMap();

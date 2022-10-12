@@ -152,7 +152,7 @@ public class NotifyServiceImpl implements INotifyService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int deleteNotifyByIds(String ids) {
         //删除通告记录表数据
         ntifyRecordMapper.deleteByNotifyId(Convert.toStrArray(ids));
@@ -160,7 +160,7 @@ public class NotifyServiceImpl implements INotifyService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void updateNotifyRecordByNotifyIdAndUserId(String notifyId, String userId) {
         NotifyRecord notifyRecord = new NotifyRecord();
         notifyRecord.setNotifyId(notifyId);

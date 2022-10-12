@@ -279,7 +279,7 @@ public class ActProcessServiceImpl implements ActProcessService {
     /**
      * 根据 流程实例ID 删除流程实例
      */
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean deleteProcIns(Map<String, Object> paramMap) {
         boolean result = true;
@@ -295,7 +295,7 @@ public class ActProcessServiceImpl implements ActProcessService {
     /**
      * 挂起、激活流程实例
      */
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateState(String state, Map<String, Object> paramMap) {
         boolean flag = false;

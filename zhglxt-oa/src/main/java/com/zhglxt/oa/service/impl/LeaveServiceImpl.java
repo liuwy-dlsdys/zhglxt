@@ -51,7 +51,7 @@ public class LeaveServiceImpl implements ILeaveService {
         return leaveMapper.getLeaveList(paramMap);
     }
 
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     public String save(Map<String, Object> paramMap) {
         String resoult = "0";
         //获取当前用户
@@ -90,7 +90,7 @@ public class LeaveServiceImpl implements ILeaveService {
      * 根据id 删除请假信息
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateLeaveInFoByIds(Map paramsToMap) {
         List<String> idList = Arrays.asList(paramsToMap.get("ids").toString().split(","));
         paramsToMap.put("ids",idList);
@@ -101,7 +101,7 @@ public class LeaveServiceImpl implements ILeaveService {
      * 根据id 删除请假信息
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateLeaveInFoToList(Map paramsToMap) {
         String[] ids = paramsToMap.get("ids").toString().split(",");
         List<String> idList = Arrays.asList(ids);
@@ -112,7 +112,7 @@ public class LeaveServiceImpl implements ILeaveService {
      * 根据id 删除请假信息
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateLeaveInFoToArray(Map paramsToMap) {
         String[] idArray = Convert.toStrArray(paramsToMap.get("ids").toString());
         return leaveMapper.updateLeaveInFoToArray(idArray);
@@ -133,7 +133,7 @@ public class LeaveServiceImpl implements ILeaveService {
      * @param leave
      * @return
      */
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     public int auditSave(Leave leave) {
         int i = 1;
         // 设置意见

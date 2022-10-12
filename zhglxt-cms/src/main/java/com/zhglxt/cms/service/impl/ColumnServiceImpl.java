@@ -107,19 +107,19 @@ public class ColumnServiceImpl implements IColumnService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int insertColumnMenu(Map<String, Object> paramMap) {
         return columnMapper.insertColumnMenu(paramMap);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int deleteColumn(Map<String, Object> paramMap) {
         return columnMapper.deleteColumn(paramMap);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateColumn(Map<String, Object> paramMap) {
         return columnMapper.updateColumn(paramMap);
     }

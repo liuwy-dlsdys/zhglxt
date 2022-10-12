@@ -46,7 +46,7 @@ public class SiteServiceImpl implements ISiteService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int insertSite(Map<String, Object> paramMap) {
         String siteId = IdUtils.fastSimpleUUID();
         paramMap.put("id", siteId);
@@ -73,14 +73,14 @@ public class SiteServiceImpl implements ISiteService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateSite(Map<String, Object> paramMap) {
         paramMap.put("updateBy", ShiroUtils.getLoginName());
         return siteMapper.updateSite(paramMap);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int deleteSite(String[] ids) {
         //1、删除站点之前，先删除该站点的所有栏目数据
         columnMapper.deleteColumnsBySiteIds(ids);

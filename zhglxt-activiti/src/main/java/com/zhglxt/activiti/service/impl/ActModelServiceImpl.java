@@ -207,7 +207,7 @@ public class ActModelServiceImpl implements ActModelService {
     /**
      * 我的部署流程
      */
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public AjaxResult myDeployProcess(Map<String, Object> paramMap) {
         try {
@@ -249,7 +249,7 @@ public class ActModelServiceImpl implements ActModelService {
      *
      * @throws UnsupportedEncodingException
      */
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Model create(Map<String, Object> paramMap) throws UnsupportedEncodingException {
         ObjectNode editorNode = objectMapper.createObjectNode();

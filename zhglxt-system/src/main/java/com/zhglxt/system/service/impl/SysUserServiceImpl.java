@@ -157,7 +157,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return 结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int deleteUserById(String userId) {
         // 删除用户与角色关联
         userRoleMapper.deleteUserRoleByUserId(userId);
@@ -173,7 +173,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return 结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int deleteUserByIds(String ids) {
         String[] userIds = Convert.toStringArray(ids);
         for (String userId : userIds) {
@@ -194,7 +194,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return 结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int insertUser(SysUser user) {
         // 新增用户信息
         int rows = userMapper.insertUser(user);
@@ -212,7 +212,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return 结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean registerUser(SysUser user) {
         user.setUserType(UserConstants.REGISTER_USER_TYPE);
         return userMapper.insertUser(user) > 0;
@@ -225,7 +225,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return 结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateUser(SysUser user) {
         String userId = user.getUserId();
         // 删除用户与角色关联
@@ -246,7 +246,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return 结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateUserInfo(SysUser user) {
         return userMapper.updateUser(user);
     }
@@ -258,7 +258,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @param roleIds 角色组
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void insertUserAuth(String userId, String[] roleIds) {
         userRoleMapper.deleteUserRoleByUserId(userId);
         insertUserRole(userId, roleIds);
@@ -271,7 +271,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return 结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int resetUserPwd(SysUser user) {
         return updateUserInfo(user);
     }
@@ -282,7 +282,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @param userId 用户ID
      * @param roleIds 角色组
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void insertUserRole(String userId, String[] roleIds) {
         if (StringUtils.isNotNull(roleIds)) {
             // 新增用户与角色管理
@@ -304,7 +304,7 @@ public class SysUserServiceImpl implements ISysUserService {
      *
      * @param user 用户对象
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void insertUserPost(SysUser user) {
         String[] posts = user.getPostIds();
         if (StringUtils.isNotNull(posts)) {
@@ -443,7 +443,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return 结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName) {
         if (CollectionUtils.isEmpty(userList)) {
             throw new ServiceException("导入用户数据不能为空！");
@@ -500,7 +500,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return 结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int changeStatus(SysUser user) {
         return userMapper.updateUser(user);
     }

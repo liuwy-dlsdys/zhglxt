@@ -30,7 +30,7 @@ public class HelpDocServiceImpl implements IHelpDocService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int addHelpDoc(Map<String, Object> paramMap) {
         paramMap.put("id", IdUtils.fastSimpleUUID());
         paramMap.put("createBy", ShiroUtils.getLoginName());
@@ -39,14 +39,14 @@ public class HelpDocServiceImpl implements IHelpDocService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateHelpDoc(Map<String, Object> paramMap) {
         paramMap.put("updateBy",ShiroUtils.getLoginName());
         return helpDocMapper.updateHelpDoc(paramMap);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int deleteHelpDoc(String[] toStrArray) {
         return helpDocMapper.deleteHelpDoc(toStrArray);
     }

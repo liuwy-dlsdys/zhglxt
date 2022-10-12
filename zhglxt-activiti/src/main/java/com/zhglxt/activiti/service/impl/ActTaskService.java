@@ -35,7 +35,6 @@ import java.util.*;
  * @version 2019/9/25
  */
 @Service
-@Transactional(readOnly = true)
 public class ActTaskService {
     protected final Logger logger = LoggerFactory.getLogger(ActTaskService.class);
 
@@ -69,7 +68,7 @@ public class ActTaskService {
      * @param title         流程标题，显示在待办任务标题
      * @return 流程实例ID
      */
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     public String startProcess(String procDefKey, String businessTable, String businessId, String title) {
         Map<String, Object> vars = Maps.newHashMap();
         return startProcess(procDefKey, businessTable, businessId, title, vars);
@@ -85,7 +84,7 @@ public class ActTaskService {
      * @param vars          流程变量
      * @return 流程实例ID
      */
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     public String startProcess(String procDefKey, String businessTable, String businessId, String title, Map<String, Object> vars) {
         //获取当前用户
         SysUser user = ShiroUtils.getSysUser();
@@ -107,8 +106,10 @@ public class ActTaskService {
 
         // 更新业务表流程实例ID
         Act act = new Act();
-        act.setBusinessTable(businessTable);// 业务表名
-        act.setBusinessId(businessId);    // 业务表ID
+        // 业务表名
+        act.setBusinessTable(businessTable);
+        // 业务ID
+        act.setBusinessId(businessId);
         act.setProcInsId(procIns.getId());
         actMapper.updateProcInsIdByBusinessId(act);
         return act.getProcInsId();
@@ -123,7 +124,7 @@ public class ActTaskService {
      * @param title     流程标题，显示在待办任务标题
      * @param vars      任务变量
      */
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     public void complete(String taskId, String procInsId, String comment, String title, Map<String, Object> vars) {
         // 添加意见
         if (StringUtils.isNotBlank(procInsId) && StringUtils.isNotBlank(comment)) {
@@ -272,9 +273,9 @@ public class ActTaskService {
         // 查询列表
         List<Task> todoList = todoTaskQuery.list();
         for (Task task : todoList) {
-            HashMap<String, Object> maps = Maps.newHashMap();
+            HashMap<String, Object> maps = new HashMap<>();
 
-            HashMap<String, Object> taskMap = Maps.newHashMap();
+            HashMap<String, Object> taskMap = new HashMap<>();
             taskMap.put("id", task.getId());
             taskMap.put("executionId", task.getExecutionId());
             taskMap.put("processInstanceId", task.getProcessInstanceId());
@@ -299,10 +300,6 @@ public class ActTaskService {
             maps.put("procDef", procDefMap);
             maps.put("status", "todo");
 
-//			map.put("taskVars", task.getTaskLocalVariables());
-//			map.put("procIns",runtimeService.createProcessInstanceQuery().processInstanceId(task.getProcessInstanceId()).singleResult());
-//			map.put("procExecUrl",ActUtils.getProcExeUrl(task.getProcessDefinitionId()));
-//			System.out.println(task.getId()+"  =  "+task.getProcessVariables() + "  ========== " + task.getTaskLocalVariables());
             resultList.add(maps);
         }
 
@@ -400,7 +397,7 @@ public class ActTaskService {
      * @param procInsId
      * @return
      */
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     public ProcessInstance getProcIns(String procInsId) {
         return runtimeService.createProcessInstanceQuery().processInstanceId(procInsId).singleResult();
     }
@@ -410,7 +407,7 @@ public class ActTaskService {
      *
      * @param paramMap
      */
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     public boolean claim(Map<String, Object> paramMap) {
         boolean flag = false;
         try {
@@ -428,7 +425,7 @@ public class ActTaskService {
      *
      * @param paramMap
      */
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     public boolean deleteTask(Map<String, Object> paramMap) {
         boolean flag = false;
         try {
@@ -448,7 +445,7 @@ public class ActTaskService {
      * @param comment   任务提交意见的内容
      * @param vars      任务变量
      */
-    @Transactional(readOnly = false)
+    @Transactional(rollbackFor = Exception.class)
     public void complete(String taskId, String procInsId, String comment, Map<String, Object> vars) {
         complete(taskId, procInsId, comment, "", vars);
     }
