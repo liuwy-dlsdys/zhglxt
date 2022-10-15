@@ -59,9 +59,9 @@ public class SiteController extends BaseController {
      * 新增站点
      */
     @Log(title = "CMS-站点管理-新增", businessType = BusinessType.INSERT)
-    @RequestMapping("/addSave")
+    @RequestMapping("/addSite")
     @ResponseBody
-    public AjaxResult addSave(HttpServletRequest request) {
+    public AjaxResult addSite(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
@@ -83,9 +83,9 @@ public class SiteController extends BaseController {
      * 修改站点
      */
     @Log(title = "CMS-站点管理--修改", businessType = BusinessType.UPDATE)
-    @PostMapping("/edit")
+    @PostMapping("/editSite")
     @ResponseBody
-    public AjaxResult editSave(HttpServletRequest request) {
+    public AjaxResult editSite(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }

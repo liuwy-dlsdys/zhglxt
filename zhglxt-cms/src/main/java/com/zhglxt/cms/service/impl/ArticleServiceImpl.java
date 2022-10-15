@@ -40,7 +40,6 @@ public class ArticleServiceImpl implements IArticleService {
         String articleId = IdUtils.fastSimpleUUID();
         paramMap.put("id", articleId);
         paramMap.put("siteId", siteService.selectOneSite().getId());
-        paramMap.put("status", "0");//0：正常  1：删除
         paramMap.put("createBy", ShiroUtils.getLoginName());
         paramMap.put("updateBy", ShiroUtils.getLoginName());
 

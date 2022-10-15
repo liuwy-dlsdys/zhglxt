@@ -30,14 +30,14 @@ public interface LeaveMapper {
      *
      * @param paramMap
      */
-    public void insert(Map<String, Object> paramMap);
+    public int insert(Map<String, Object> paramMap);
 
     /**
      * 更新编辑请假信息
      *
      * @param paramMap
      */
-    public void update(Map<String, Object> paramMap);
+    public int update(Map<String, Object> paramMap);
 
     /**
      * 根据id删除请假信息

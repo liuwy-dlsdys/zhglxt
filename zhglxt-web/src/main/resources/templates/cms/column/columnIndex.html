@@ -43,7 +43,6 @@
 </div>
 <th:block th:include="include :: footer"/>
 <script th:inline="javascript">
-    // var addFlag = [[${@permission.hasPermi('cms:column:add')}]];
     var editFlag = [[${@permission.hasPermi('cms:column:edit')}]];
     var removeFlag = [[${@permission.hasPermi('cms:column:remove')}]];
     var datas = [[${@dict.getType('cms_show_hide')}]];

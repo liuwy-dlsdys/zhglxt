@@ -58,9 +58,9 @@ public class HelpDocController extends BaseController {
      * 新增保存文档
      */
     @Log(title = "帮助文档-新增", businessType = BusinessType.INSERT)
-    @RequestMapping("/addSave")
+    @RequestMapping("/addHelpDoc")
     @ResponseBody
-    public AjaxResult addSave(HttpServletRequest request) {
+    public AjaxResult addHelpDoc(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
@@ -70,9 +70,6 @@ public class HelpDocController extends BaseController {
 
     /**
      * 跳转到编辑页面
-     * @param request
-     * @param model
-     * @return
      */
     @RequestMapping("/edit")
     public String editHelpDoc(HttpServletRequest request, Model model) {
@@ -85,12 +82,12 @@ public class HelpDocController extends BaseController {
     }
 
     /**
-     * 修改文章
+     * 修改帮助文档
      */
     @Log(title = "帮助文档-编辑", businessType = BusinessType.UPDATE)
-    @PostMapping("/edit")
+    @PostMapping("/editHelpDoc")
     @ResponseBody
-    public AjaxResult editSave(HttpServletRequest request) {
+    public AjaxResult editHelpDoc(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }

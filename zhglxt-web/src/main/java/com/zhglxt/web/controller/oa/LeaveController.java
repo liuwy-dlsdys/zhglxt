@@ -8,6 +8,7 @@ import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.enums.BusinessType;
+import com.zhglxt.common.exception.ServiceException;
 import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.util.WebUtil;
@@ -67,28 +68,32 @@ public class LeaveController extends BaseController {
     @RequestMapping("/add")
     public String add(ModelMap mmap) {
         SysUser user = ShiroUtils.getSysUser();
-//		mmap.put("roles", roleService.selectRoleAll());
         mmap.put("posts", postService.selectPostAll());
         mmap.put("user", user);
         return prefix + "leaveAdd";
     }
 
-    @Log(title = "请假申请管理", businessType = BusinessType.INSERT)
-    @RequestMapping("/save")
+    @Log(title = "请假申请管理-新增", businessType = BusinessType.INSERT)
+    @RequestMapping("/addLeave")
     @ResponseBody
-    public AjaxResult save(HttpServletRequest request) {
+    public AjaxResult addLeave(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
-        String flag = leaveService.save(paramMap);
-        if (flag.equals("1")) {
-            return AjaxResult.success(StringUtils.format("保存成功"));
-        } else if (flag.equals("2")) {
-            return AjaxResult.success(StringUtils.format("操作成功"));
-        } else {
-            return AjaxResult.error(StringUtils.format("保存失败"));
+        return toAjax(leaveService.addLeave(paramMap));
+
+    }
+
+    @Log(title = "请假申请管理-重新申请、销假", businessType = BusinessType.INSERT)
+    @RequestMapping("/editLeave")
+    @ResponseBody
+    public AjaxResult editLeave(HttpServletRequest request) {
+        if (GlobalConfig.isDemoEnabled()) {
+            return error("演示模式不允许本操作");
         }
+        Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
+        return toAjax(leaveService.editLeave(paramMap));
 
     }
 
@@ -125,8 +130,11 @@ public class LeaveController extends BaseController {
             String taskDefKey = leave.getAct().getTaskDefKey();
 
             lv = leaveService.getLeaveById(leave);
+            if(lv == null){
+                throw new ServiceException(String.format("请假id：%1$s 不存在或已删除，请联系管理员", leave.getId()));
+            }
 
-            //请假详情
+            // 请假详情
             if (leave.getAct().isFinishTask()) {
                 view = "leaveAuditView";
             }// 修改环节

@@ -231,7 +231,7 @@
     //销毁申请
     function destroy() {
         $("#flag").val('no');
-        var url = prefix2 + "/save";
+        var url = prefix2 + "/editLeave";
         if ($.validate.form()) {
             var data = $("#form-leave").serializeArray();
             $.operate.post(url, data, function (result) {
@@ -245,7 +245,7 @@
     //提交申请
     function submitApply() {
         $("#flag").val('yes');
-        var url = prefix2 + "/save";
+        var url = prefix2 + "/editLeave";
         if ($.validate.form()) {
             var data = $("#form-leave").serializeArray();
             $.operate.post(url, data, function (result) {
@@ -258,34 +258,6 @@
 
     $("#form-leave").validate({
         onkeyup: false,
-        rules: {
-            loginName: {
-                minlength: 2,
-                maxlength: 20,
-                remote: {
-                    url: prefix + "/checkLoginNameUnique",
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        name: function () {
-                            return $.common.trim($("#loginName").val());
-                        }
-                    },
-                    dataFilter: function (data, type) {
-                        return $.validate.unique(data);
-                    }
-                }
-            },
-            password: {
-                minlength: 3,
-                maxlength: 20
-            },
-        },
-        messages: {
-            "loginName": {
-                remote: "用户已经存在"
-            },
-        },
         focusCleanup: true
     });
 

@@ -41,49 +41,55 @@ public class LeaveServiceImpl implements ILeaveService {
         // 获取当前登录人所有角色列表
         Set<String> roles = new HashSet<String>();
         roles = roleService.selectRoleKeys(user.getUserId());
-        if (roles.contains("common")) {//普通用户
+        //普通用户
+        if (roles.contains("common")) {
             paramMap.put("userId", user.getUserId());
         }
-        if (roles.contains("deptAdmin")) {//部门经理
+        //部门经理
+        if (roles.contains("deptAdmin")) {
             paramMap.put("userId", null);
             paramMap.put("deptId", user.getDeptId());
         }
         return leaveMapper.getLeaveList(paramMap);
     }
 
+    /**
+     *  新增请假申请
+     **/
     @Transactional(rollbackFor = Exception.class)
-    public String save(Map<String, Object> paramMap) {
-        String resoult = "0";
+    public int addLeave(Map<String, Object> paramMap) {
         //获取当前用户
         SysUser user = ShiroUtils.getSysUser();
-        if (!paramMap.containsKey("id")) {
-            //新增保存
+        //新增保存
+        paramMap.put("id", IdUtils.fastSimpleUUID());
+        paramMap.put("createBy", user.getUserId());
+        paramMap.put("createDate", new Date());
+        paramMap.put("updateBy", user.getUserId());
+        paramMap.put("updateDate", new Date());
+        //插入数据库
+        int insert = leaveMapper.insert(paramMap);
 
-            paramMap.put("id", IdUtils.fastSimpleUUID());
-            paramMap.put("createBy", user.getUserId());
-            paramMap.put("createDate", new Date());
-            paramMap.put("updateBy", user.getUserId());
-            paramMap.put("updateDate", new Date());
-            paramMap.put("delFlag", 0);
-            //插入数据库
-            leaveMapper.insert(paramMap);
+        // 启动流程
+        actTaskService.startProcess(ActUtils.PD_LEAVE[0], ActUtils.PD_LEAVE[1], paramMap.get("id").toString(), paramMap.get("content").toString());
+        return insert;
+    }
 
-            // 启动流程
-            actTaskService.startProcess(ActUtils.PD_LEAVE[0], ActUtils.PD_LEAVE[1], paramMap.get("id").toString(), paramMap.get("content").toString());
-            resoult = "1";
-        } else {
-            //更新操作
-            paramMap.put("updateBy", user.getUserId());
-            paramMap.put("updateDate", new Date());
-            leaveMapper.update(paramMap);
-            paramMap.put("act.comment", "yes".equals(paramMap.get("act.flag").toString()) ? "[重申] " : "[销毁] ");
-            // 完成流程任务
-            Map<String, Object> vars = Maps.newHashMap();
-            vars.put("flag", "yes".equals(paramMap.get("act.flag").toString()) ? "1" : "0");
-            actTaskService.complete(paramMap.get("act.taskId").toString(), paramMap.get("act.procInsId").toString(), paramMap.get("act.comment").toString(), paramMap.get("content").toString(), vars);
-            resoult = "2";
-        }
-        return resoult;
+    /**
+     *  重新申请、销假
+     **/
+    @Transactional(rollbackFor = Exception.class)
+    public int editLeave(Map<String, Object> paramMap) {
+        paramMap.put("updateBy", ShiroUtils.getSysUser().getUserId());
+        paramMap.put("updateDate", new Date());
+        int update = leaveMapper.update(paramMap);
+
+        paramMap.put("act.comment", "yes".equals(paramMap.get("act.flag").toString()) ? "[重申] " : "[销毁] ");
+        // 完成流程任务
+        Map<String, Object> vars = Maps.newHashMap();
+        vars.put("flag", "yes".equals(paramMap.get("act.flag").toString()) ? "1" : "0");
+        actTaskService.complete(paramMap.get("act.taskId").toString(), paramMap.get("act.procInsId").toString(), paramMap.get("act.comment").toString(), paramMap.get("content").toString(), vars);
+
+        return update;
     }
 
     /**

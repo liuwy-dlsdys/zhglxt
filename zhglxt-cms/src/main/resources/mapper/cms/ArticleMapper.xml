@@ -59,67 +59,33 @@
 
     <insert id="addArticle">
         insert into cms_article (
-        <if test="id != null and id != ''">
             id,
-        </if>
-        <if test="siteId != null and siteId != ''">
             site_id,
-        </if>
-        <if test="columnId != null and columnId != ''">
             column_id,
-        </if>
-        <if test="title != null and title != ''">
             title,
-        </if>
-        <if test="image != null and image != ''">
             image,
-        </if>
-        <if test="description != null and description != ''">
             description,
-        </if>
-        <if test="sort != null and sort != ''">
             sort,
-        </if>
-        <if test="remark != null and remark != ''">
             remark,
-        </if>
-        `status`,
-        create_by,
-        create_time,
-        update_by,
-        update_time
+            `status`,
+            create_by,
+            create_time,
+            update_by,
+            update_time
         )values(
-        <if test="id != null and id != ''">
             #{id},
-        </if>
-        <if test="siteId != null and siteId != ''">
             #{siteId},
-        </if>
-        <if test="columnId != null and columnId != ''">
             #{columnId},
-        </if>
-        <if test="title != null and title != ''">
             #{title},
-        </if>
-        <if test="image != null and image != ''">
             #{image},
-        </if>
-        <if test="description != null and description != ''">
             #{description},
-        </if>
-        <if test="sort != null and sort != ''">
             #{sort},
-        </if>
-        <if test="remark != null and remark != ''">
             #{remark},
-        </if>
-        <if test="status != null and status != ''">
             #{status},
-        </if>
-        #{createBy},
-        sysdate(),
-        #{updateBy},
-        sysdate()
+            #{createBy},
+            sysdate(),
+            #{updateBy},
+            sysdate()
         )
     </insert>
 

@@ -61,16 +61,6 @@ public class ArticleController extends BaseController {
         return getDataTable(list);
     }
 
-    @GetMapping("/add")
-    public String addArticle(HttpServletRequest request, Model model) {
-        Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
-        paramMap.put("siteId", siteService.selectOneSite().getId());
-        paramMap.put("columnId", paramMap.get("id"));
-        List<Column> columns = columnService.selectColumnList(paramMap);
-        model.addAttribute("column", columns.get(0));
-        return prefix + "/addArticle";
-    }
-
     @GetMapping("/selectColumnTree")
     public String selectColumnTree(HttpServletRequest request, Model model) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
@@ -89,13 +79,23 @@ public class ArticleController extends BaseController {
         return columns;
     }
 
+    @GetMapping("/add")
+    public String add(HttpServletRequest request, Model model) {
+        Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
+        paramMap.put("siteId", siteService.selectOneSite().getId());
+        paramMap.put("columnId", paramMap.get("id"));
+        List<Column> columns = columnService.selectColumnList(paramMap);
+        model.addAttribute("column", columns.get(0));
+        return prefix + "/addArticle";
+    }
+
     /**
-     * 新增保存文章
+     * 新增文章
      */
     @Log(title = "CMS-文章管理-新增", businessType = BusinessType.INSERT)
-    @RequestMapping("/addSave")
+    @RequestMapping("/addArticle")
     @ResponseBody
-    public AjaxResult addSave(HttpServletRequest request) {
+    public AjaxResult addArticle(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
@@ -104,7 +104,7 @@ public class ArticleController extends BaseController {
     }
 
     @RequestMapping("/edit")
-    public String editArticle(HttpServletRequest request, Model model) {
+    public String edit(HttpServletRequest request, Model model) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
         List<Article> list = articleService.selectArticleList(paramMap);
         if (!CollectionUtils.isEmpty(list)) {
@@ -116,10 +116,10 @@ public class ArticleController extends BaseController {
     /**
      * 修改文章
      */
-    @Log(title = "文章管理", businessType = BusinessType.UPDATE)
-    @PostMapping("/edit")
+    @Log(title = "CMS-文章管理-编辑", businessType = BusinessType.UPDATE)
+    @PostMapping("/editArticle")
     @ResponseBody
-    public AjaxResult editSave(HttpServletRequest request) {
+    public AjaxResult editArticle(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }

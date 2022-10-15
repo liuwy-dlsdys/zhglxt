@@ -67,32 +67,6 @@ public class ColumnController extends BaseController {
         return columns;
     }
 
-    @RequestMapping("/add")
-    public String addcolumn(HttpServletRequest request, Model model) {
-        Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
-        paramMap.put("siteId", siteService.selectOneSite().getId());
-        if(paramMap.containsKey("id")){
-            if(StringUtils.isNotEmpty(paramMap.get("id").toString())){
-                if("0".equals(paramMap.get("id").toString())){
-                    paramMap.put("parentId", 0);
-                }else{
-                    paramMap.put("columnId", paramMap.get("id"));
-                }
-            }
-        }
-        List<Column> columns = columnService.selectColumnList(paramMap);
-        model.addAttribute("column", columns.get(0));
-        return prefix + "/addColumn";
-    }
-
-    @RequestMapping("/edit")
-    public String editcolumn(HttpServletRequest request, Model model) {
-        Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
-        List<Column> columns = columnService.selectColumnList(paramMap);
-        model.addAttribute("column", columns.get(0));
-        return prefix + "/editColumn";
-    }
-
     /**
      * 选择栏目树
      */
@@ -117,33 +91,68 @@ public class ColumnController extends BaseController {
         return columns;
     }
 
+    @RequestMapping("/add")
+    public String add(HttpServletRequest request, Model model) {
+        Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
+        paramMap.put("siteId", siteService.selectOneSite().getId());
+        if(paramMap.containsKey("id")){
+            if(StringUtils.isNotEmpty(paramMap.get("id").toString())){
+                if("0".equals(paramMap.get("id").toString())){
+                    paramMap.put("parentId", 0);
+                }else{
+                    paramMap.put("columnId", paramMap.get("id"));
+                }
+            }
+        }
+        List<Column> columns = columnService.selectColumnList(paramMap);
+        model.addAttribute("column", columns.get(0));
+        return prefix + "/addColumn";
+    }
+
+    @RequestMapping("/edit")
+    public String edit(HttpServletRequest request, Model model) {
+        Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
+        List<Column> columns = columnService.selectColumnList(paramMap);
+        model.addAttribute("column", columns.get(0));
+        return prefix + "/editColumn";
+    }
+
     /**
-     * 新增保存菜单
+     * 新增栏目菜单
      */
     @SuppressWarnings("unchecked")
-    @Log(title = "CMS-栏目菜单管理-新增or编辑", businessType = BusinessType.INSERT)
-    @RequestMapping("/addSave")
+    @Log(title = "CMS-栏目菜单管理-新增", businessType = BusinessType.INSERT)
+    @RequestMapping("/addColumn")
     @ResponseBody
-    public AjaxResult addSave(HttpServletRequest request) {
+    public AjaxResult addColumn(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
 
-        if (paramMap.get("id") == null) {
-            //新增
-            paramMap.put("id", IdUtils.fastSimpleUUID());
-            paramMap.put("siteId", siteService.selectOneSite().getId());//站点
-            paramMap.put("status", "0");//0：正常  1：删除
-            paramMap.put("createBy", ShiroUtils.getLoginName());
-            return toAjax(columnService.insertColumnMenu(paramMap));
-        } else {
-            //编辑
-            paramMap.put("siteId", siteService.selectOneSite().getId());//站点
-            paramMap.put("status", "0");//0：正常  1：删除
-            paramMap.put("updateBy", ShiroUtils.getLoginName());
-            return toAjax(columnService.updateColumn(paramMap));
+        paramMap.put("id", IdUtils.fastSimpleUUID());
+        paramMap.put("siteId", siteService.selectOneSite().getId());
+        paramMap.put("createBy", ShiroUtils.getLoginName());
+        return toAjax(columnService.insertColumnMenu(paramMap));
+
+    }
+
+    /**
+     * 编辑栏目菜单
+     */
+    @SuppressWarnings("unchecked")
+    @Log(title = "CMS-栏目菜单管理-编辑", businessType = BusinessType.INSERT)
+    @RequestMapping("/editColumn")
+    @ResponseBody
+    public AjaxResult editColumn(HttpServletRequest request) {
+        if (GlobalConfig.isDemoEnabled()) {
+            return error("演示模式不允许本操作");
         }
+        Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
+
+        paramMap.put("siteId", siteService.selectOneSite().getId());
+        paramMap.put("updateBy", ShiroUtils.getLoginName());
+        return toAjax(columnService.updateColumn(paramMap));
 
     }
 
@@ -155,7 +164,7 @@ public class ColumnController extends BaseController {
             @ApiImplicitParam(name = "columnId", value = "栏目id", required = true, dataType = "String", paramType = "query", dataTypeClass = String.class)
     })
     @Log(title = "CMS-栏目菜单管理-删除", businessType = BusinessType.DELETE)
-    @PostMapping("/remove")
+    @RequestMapping("/remove")
     @ResponseBody
     public AjaxResult deleteColumn(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {
@@ -166,7 +175,8 @@ public class ColumnController extends BaseController {
         List<Column> columns = columnService.selectColumnList(paramMap);
         if (!CollectionUtils.isEmpty(columns)) {
             Column column = columns.get(0);
-            if (column.getOutLink().equals("1")) {//非外部链接
+            //非外部链接
+            if (column.getOutLink().equals("1")) {
                 List<Article> articleList = articleService.selectArticleList(paramMap);
                 if (!CollectionUtils.isEmpty(articleList)) {
                     return error("如需删除本栏目，请先删除内容管理-文章列表中，对应本栏目的文章数据");

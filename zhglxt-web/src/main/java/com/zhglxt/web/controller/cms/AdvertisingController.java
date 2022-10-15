@@ -67,7 +67,7 @@ public class AdvertisingController extends BaseController {
     }
 
     @RequestMapping("/add")
-    public String addAdvertising(HttpServletRequest request, Model model) {
+    public String add(HttpServletRequest request, Model model) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
         List<Advertising> advertisings = advertisingService.selectAdvertisingList(paramMap);
         model.addAttribute("advertising", advertisings.get(0));
@@ -75,7 +75,7 @@ public class AdvertisingController extends BaseController {
     }
 
     @RequestMapping("/edit")
-    public String editAdvertising(HttpServletRequest request, Model model) {
+    public String edit(HttpServletRequest request, Model model) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
         List<Advertising> advertisings = advertisingService.selectAdvertisingList(paramMap);
         model.addAttribute("advertising", advertisings.get(0));
@@ -83,31 +83,40 @@ public class AdvertisingController extends BaseController {
     }
 
     /**
-     * 广告管理-新增保存
+     * 广告管理-新增
      */
-    @Log(title = "CMS-广告管理-新增编辑", businessType = BusinessType.INSERT)
-    @RequestMapping("/addSave")
+    @Log(title = "CMS-广告管理-新增", businessType = BusinessType.INSERT)
+    @RequestMapping("/addAdvertising")
     @ResponseBody
-    public AjaxResult addSave(HttpServletRequest request) {
+    public AjaxResult addAdvertising(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
 
-        if (paramMap.get("id") == null) {
-            //新增
             paramMap.put("id", IdUtils.fastSimpleUUID());
-            paramMap.put("siteId", siteService.selectOneSite().getId());//站点
-            paramMap.put("status", "0");//0：正常  1：删除
+            paramMap.put("siteId", siteService.selectOneSite().getId());
             paramMap.put("createBy", ShiroUtils.getLoginName());
             paramMap.put("updateBy", ShiroUtils.getLoginName());
             return toAjax(advertisingService.insertAdvertising(paramMap));
-        } else {
-            //编辑
-            paramMap.put("siteId", siteService.selectOneSite().getId());//站点
-            paramMap.put("updateBy", ShiroUtils.getLoginName());
-            return toAjax(advertisingService.updateAdvertising(paramMap));
+
+    }
+
+    /**
+     * 广告管理-编辑
+     */
+    @Log(title = "CMS-广告管理-编辑", businessType = BusinessType.INSERT)
+    @RequestMapping("/editAdvertising")
+    @ResponseBody
+    public AjaxResult editAdvertising(HttpServletRequest request) {
+        if (GlobalConfig.isDemoEnabled()) {
+            return error("演示模式不允许本操作");
         }
+        Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
+
+        paramMap.put("siteId", siteService.selectOneSite().getId());
+        paramMap.put("updateBy", ShiroUtils.getLoginName());
+        return toAjax(advertisingService.updateAdvertising(paramMap));
 
     }
 

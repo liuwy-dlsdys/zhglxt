@@ -160,7 +160,7 @@
         if ($.validate.form()) {
             var sHTML = $('.summernote').summernote('code');
             $("#content").val(sHTML);
-            $.operate.save(prefix + "/addSave", $('#form-article-add').serializeArray());
+            $.operate.save(prefix + "/addArticle", $('#form-article-add').serializeArray());
         }
     }
 

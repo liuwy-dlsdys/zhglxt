@@ -11,11 +11,36 @@ import java.util.Map;
  * @Date 2019/9/27
  **/
 public interface ILeaveService {
-    public List<Leave> getLeaveList(Map<String, Object> paramMap);
 
-    public int updateLeaveInFoByIds(Map paramsToMap);
+    /**
+     * 获取请假列表
+     *
+     * @param paramMap
+     * @return int
+     **/
+    List<Leave> getLeaveList(Map<String, Object> paramMap);
 
-    public int updateLeaveInFoToList(Map paramsToMap);
+    /**
+     * 更新请假信息-ids
+     *
+     * @param paramsToMap
+     * @return int
+     **/
+    int updateLeaveInFoByIds(Map paramsToMap);
 
-    public int updateLeaveInFoToArray(Map paramsToMap);
+    /**
+     * 更新请假信息-list
+     *
+     * @param paramsToMap
+     * @return int
+     **/
+    int updateLeaveInFoToList(Map paramsToMap);
+
+    /**
+     * 更新请假信息-array
+     *
+     * @param paramsToMap
+     * @return int
+     **/
+    int updateLeaveInFoToArray(Map paramsToMap);
 }

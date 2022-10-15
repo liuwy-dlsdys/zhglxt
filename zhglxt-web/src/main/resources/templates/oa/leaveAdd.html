@@ -123,34 +123,6 @@
 
     $("#form-user-add").validate({
         onkeyup: false,
-        rules: {
-            loginName: {
-                minlength: 2,
-                maxlength: 20,
-                remote: {
-                    url: prefix + "/checkLoginNameUnique",
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        name: function () {
-                            return $.common.trim($("#loginName").val());
-                        }
-                    },
-                    dataFilter: function (data, type) {
-                        return $.validate.unique(data);
-                    }
-                }
-            },
-            password: {
-                minlength: 3,
-                maxlength: 20
-            },
-        },
-        messages: {
-            "loginName": {
-                remote: "用户已经存在"
-            },
-        },
         focusCleanup: true
     });
 
@@ -158,14 +130,8 @@
         if ($.validate.form()) {
             var data = $("#form-user-add").serializeArray();
             var status = $("input[id='status']").is(':checked') == true ? 0 : 1;
-// 	        	var roleIds = $.form.selectCheckeds("role");
-// 	        	var postIds = $.form.selectSelects("post");
-// 	        	data.push({"name": "status", "value": status});
-// 	        	data.push({"name": "roleIds", "value": roleIds});
-// 	        	data.push({"name": "postIds", "value": postIds});
-// 	        	$.operate.saveTab(prefix + "/save", data);
             $.ajax({
-                url: prefix + "/save",
+                url: prefix + "/addLeave",
                 type: 'post',
                 cache: false,
                 data: data,

@@ -86,8 +86,7 @@
 			create_date, 
 			update_by, 
 			update_date, 
-			remarks, 
-			del_flag
+			remarks
 		) VALUES (
 			#{id}, 
 			#{userId}, 
@@ -100,8 +99,7 @@
 			#{createDate}, 
 			#{updateBy}, 
 			#{updateDate}, 
-			#{remarks}, 
-			#{delFlag}
+			#{remarks}
 		)
 	</insert>
 

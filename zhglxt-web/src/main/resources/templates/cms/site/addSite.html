@@ -125,7 +125,7 @@
         if ($.validate.form()) {
             var sHTML = $('.summernote').summernote('code');
             $("#copyright").val(sHTML);
-            $.operate.save(prefix + "/addSave", $('#form-site-add').serializeArray());
+            $.operate.save(prefix + "/addSite", $('#form-site-add').serializeArray());
         }
     }
 
