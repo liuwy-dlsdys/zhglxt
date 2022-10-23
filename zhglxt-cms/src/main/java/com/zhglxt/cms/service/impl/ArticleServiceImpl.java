@@ -7,8 +7,7 @@ import com.zhglxt.cms.mapper.ArticleMapper;
 import com.zhglxt.cms.service.IArticleService;
 import com.zhglxt.cms.service.ISiteService;
 import com.zhglxt.common.util.ShiroUtils;
-import com.zhglxt.common.util.StringUtils;
-import com.zhglxt.common.util.uuid.IdUtils;
+import com.zhglxt.common.util.uuid.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +36,7 @@ public class ArticleServiceImpl implements IArticleService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int addArticle(Map<String, Object> paramMap) {
-        String articleId = IdUtils.fastSimpleUUID();
+        String articleId = UUID.fastUUID().toString(true);
         paramMap.put("id", articleId);
         paramMap.put("siteId", siteService.selectOneSite().getId());
         paramMap.put("createBy", ShiroUtils.getLoginName());
@@ -45,7 +44,7 @@ public class ArticleServiceImpl implements IArticleService {
 
         //保存文章内容关联表数据
         Map<String, Object> contentParamMap = Maps.newHashMap();
-        contentParamMap.put("id", IdUtils.fastSimpleUUID());
+        contentParamMap.put("id", UUID.fastUUID().toString(true));
         contentParamMap.put("articleId", articleId);
         contentParamMap.put("content", paramMap.get("content"));
         articleMapper.addArticleContent(contentParamMap);

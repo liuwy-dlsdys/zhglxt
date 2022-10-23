@@ -13,7 +13,7 @@ import com.zhglxt.common.enums.BusinessType;
 import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.util.WebUtil;
-import com.zhglxt.common.util.uuid.IdUtils;
+import com.zhglxt.common.util.uuid.UUID;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -130,7 +130,7 @@ public class ColumnController extends BaseController {
         }
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
 
-        paramMap.put("id", IdUtils.fastSimpleUUID());
+        paramMap.put("id", UUID.fastUUID().toString(true));
         paramMap.put("siteId", siteService.selectOneSite().getId());
         paramMap.put("createBy", ShiroUtils.getLoginName());
         return toAjax(columnService.insertColumnMenu(paramMap));

@@ -1,6 +1,6 @@
 package com.zhglxt.common.util.random;
 
-import com.zhglxt.common.util.uuid.IdUtils;
+import com.zhglxt.common.util.uuid.UUID;
 
 import java.io.UnsupportedEncodingException;
 import java.util.*;
@@ -230,7 +230,7 @@ public class RandomNameUtil {
 
             /* 模拟数据 */
             Map map = new HashMap();
-            map.put("id", IdUtils.fastSimpleUUID());
+            map.put("id", UUID.fastUUID().toString(true));
             map.put("name", name);
 
             // 0：女  1：男

@@ -329,7 +329,7 @@ public class Convert {
         String[] arr = str.split(split);
         final String[] strings = new String[arr.length];
         for (int i = 0; i < arr.length; i++) {
-            final String v = toString(arr[i], null);
+            final String v = arr[i];
             strings[i] = v;
         }
         return strings;

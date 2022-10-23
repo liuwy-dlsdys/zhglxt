@@ -7,7 +7,7 @@ import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.util.DateUtils;
 import com.zhglxt.common.util.ShiroUtils;
-import com.zhglxt.common.util.uuid.IdUtils;
+import com.zhglxt.common.util.uuid.UUID;
 import com.zhglxt.oa.entity.Leave;
 import com.zhglxt.oa.mapper.LeaveMapper;
 import com.zhglxt.oa.service.ILeaveService;
@@ -61,7 +61,7 @@ public class LeaveServiceImpl implements ILeaveService {
         //获取当前用户
         SysUser user = ShiroUtils.getSysUser();
         //新增保存
-        paramMap.put("id", IdUtils.fastSimpleUUID());
+        paramMap.put("id", UUID.fastUUID().toString(true));
         paramMap.put("createBy", user.getUserId());
         paramMap.put("createDate", new Date());
         paramMap.put("updateBy", user.getUserId());

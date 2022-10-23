@@ -12,7 +12,7 @@ import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.enums.BusinessType;
 import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.WebUtil;
-import com.zhglxt.common.util.uuid.IdUtils;
+import com.zhglxt.common.util.uuid.UUID;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -20,7 +20,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -94,7 +93,7 @@ public class AdvertisingController extends BaseController {
         }
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
 
-            paramMap.put("id", IdUtils.fastSimpleUUID());
+            paramMap.put("id", UUID.fastUUID().toString(true));
             paramMap.put("siteId", siteService.selectOneSite().getId());
             paramMap.put("createBy", ShiroUtils.getLoginName());
             paramMap.put("updateBy", ShiroUtils.getLoginName());

@@ -3,7 +3,7 @@ package com.zhglxt.common.util.file;
 import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.util.DateUtils;
 import com.zhglxt.common.util.StringUtils;
-import com.zhglxt.common.util.uuid.IdUtils;
+import com.zhglxt.common.util.uuid.UUID;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -81,7 +81,7 @@ public class FileUtils{
         try
         {
             String extension = getFileExtendName(data);
-            pathName = DateUtils.datePath() + "/" + IdUtils.fastUUID() + "." + extension;
+            pathName = DateUtils.datePath() + "/" + UUID.fastUUID().toString(true) + "." + extension;
             File file = FileUploadUtils.getAbsoluteFile(uploadDir, pathName);
             fos = new FileOutputStream(file);
             fos.write(data);

@@ -8,7 +8,7 @@ import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.StringUtils;
-import com.zhglxt.common.util.uuid.IdUtils;
+import com.zhglxt.common.util.uuid.UUID;
 import com.zhglxt.oa.entity.Notify;
 import com.zhglxt.oa.entity.NotifyRecord;
 import com.zhglxt.oa.mapper.NotifyMapper;
@@ -53,7 +53,7 @@ public class NotifyServiceImpl implements INotifyService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int insertNotify(Notify notify) {
-        String uuid = IdUtils.fastSimpleUUID();
+        String uuid = UUID.fastUUID().toString(true);
         notify.setId(uuid);
         notify.setCreateBy(ShiroUtils.getLoginName());
         notify.setUpdateBy(ShiroUtils.getLoginName());
@@ -76,7 +76,7 @@ public class NotifyServiceImpl implements INotifyService {
                     //系统存在此用户id，才添加到通知列表
                     if(userIdList.contains(userId)){
                         NotifyRecord notifyRecord = new NotifyRecord();
-                        notifyRecord.setId(IdUtils.fastSimpleUUID());
+                        notifyRecord.setId(UUID.fastUUID().toString(true));
                         notifyRecord.setNotifyId(uuid);
                         notifyRecord.setUserId(userId);
                         list.add(notifyRecord);
@@ -135,7 +135,7 @@ public class NotifyServiceImpl implements INotifyService {
                     //系统存在此用户id，才添加到通知列表
                     if(userIdList.contains(userId)){
                         NotifyRecord notifyRecord = new NotifyRecord();
-                        notifyRecord.setId(IdUtils.fastSimpleUUID());
+                        notifyRecord.setId(UUID.fastUUID().toString(true));
                         notifyRecord.setNotifyId(notify.getId());
                         notifyRecord.setUserId(userId);
                         list.add(notifyRecord);

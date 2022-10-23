@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label is-required">身份证号码：</label>
                     <div class="col-sm-8">
-                        <input name="idCard" class="form-control" type="text" maxlength="18" placeholder="请输入身份证号码" th:field="*{idCard}" required>
+                        <input name="idCard" class="form-control" type="text" minlength="18" maxlength="19" placeholder="请输入身份证号码" th:field="*{idCard}" required>
                     </div>
                 </div>
             </div>

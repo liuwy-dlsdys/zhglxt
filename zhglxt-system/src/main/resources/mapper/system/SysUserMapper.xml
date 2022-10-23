@@ -210,9 +210,9 @@
         where user_id = #{userId}
     </update>
 
-    <insert id="insertUser" parameterType="com.zhglxt.common.core.entity.sys.SysUser" useGeneratedKeys="true" keyProperty="userId">
+    <insert id="insertUser" parameterType="com.zhglxt.common.core.entity.sys.SysUser">
         insert into sys_user(
-        <if test="userId != null and userId != 0">user_id,</if>
+        <if test="userId != null and userId != ''">user_id,</if>
         <if test="deptId != null and deptId != 0">dept_id,</if>
         <if test="loginName != null and loginName != ''">login_name,</if>
         <if test="userName != null and userName != ''">user_name,</if>

@@ -11,7 +11,7 @@ import com.zhglxt.cms.mapper.ColumnMapper;
 import com.zhglxt.cms.mapper.SiteMapper;
 import com.zhglxt.cms.service.ISiteService;
 import com.zhglxt.common.util.ShiroUtils;
-import com.zhglxt.common.util.uuid.IdUtils;
+import com.zhglxt.common.util.uuid.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,14 +48,14 @@ public class SiteServiceImpl implements ISiteService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int insertSite(Map<String, Object> paramMap) {
-        String siteId = IdUtils.fastSimpleUUID();
+        String siteId = UUID.fastUUID().toString(true);
         paramMap.put("id", siteId);
         paramMap.put("createBy", ShiroUtils.getLoginName());
         paramMap.put("updateBy", ShiroUtils.getLoginName());
 
         //每新增一个站点，栏目表都插入一条作为树形结构的顶级栏目
         Map<String, Object> columnMenuRoot = Maps.newHashMap();
-        columnMenuRoot.put("id", IdUtils.fastSimpleUUID());
+        columnMenuRoot.put("id", UUID.fastUUID().toString(true));
         columnMenuRoot.put("parentId", 0);//默认栏目Root的父id为0
         columnMenuRoot.put("siteId", siteId);//站点id
         columnMenuRoot.put("name", "栏目");//顶级栏目名称

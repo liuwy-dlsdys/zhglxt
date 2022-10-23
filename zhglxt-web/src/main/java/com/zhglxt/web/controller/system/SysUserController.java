@@ -10,10 +10,10 @@ import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.enums.BusinessType;
-import com.zhglxt.common.util.IDCardUtils;
 import com.zhglxt.common.util.ShiroUtils;
 import com.zhglxt.common.util.StringUtils;
 import com.zhglxt.common.util.poi.ExcelUtil;
+import com.zhglxt.common.util.uuid.UUID;
 import com.zhglxt.framework.shiro.service.SysPasswordService;
 import com.zhglxt.framework.shiro.util.AuthorizationUtils;
 import com.zhglxt.system.service.ISysPostService;
@@ -69,7 +69,7 @@ public class SysUserController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "用户管理", businessType = BusinessType.EXPORT)
+    @Log(title = "用户管理-导出", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:user:export")
     @PostMapping("/export")
     @ResponseBody
@@ -79,7 +79,7 @@ public class SysUserController extends BaseController {
         return util.exportExcel(list, "用户数据");
     }
 
-    @Log(title = "用户管理", businessType = BusinessType.IMPORT)
+    @Log(title = "用户管理-导入", businessType = BusinessType.IMPORT)
     @RequiresPermissions("system:user:import")
     @PostMapping("/importData")
     @ResponseBody
@@ -115,7 +115,7 @@ public class SysUserController extends BaseController {
      * 新增保存用户
      */
     @RequiresPermissions("system:user:add")
-    @Log(title = "用户管理", businessType = BusinessType.INSERT)
+    @Log(title = "用户管理-新增", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysUser user) {
@@ -131,6 +131,7 @@ public class SysUserController extends BaseController {
                 && UserConstants.USER_EMAIL_NOT_UNIQUE.equals(userService.checkEmailUnique(user))) {
             return error("新增用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
         }
+        user.setUserId(UUID.fastUUID().toString(true));
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         user.setCreateBy(getLoginName());
@@ -155,7 +156,7 @@ public class SysUserController extends BaseController {
      * 修改保存用户
      */
     @RequiresPermissions("system:user:edit")
-    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
+    @Log(title = "用户管理-修改", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysUser user) {

@@ -286,7 +286,7 @@ public class SysUserServiceImpl implements ISysUserService {
     public void insertUserRole(String userId, String[] roleIds) {
         if (StringUtils.isNotNull(roleIds)) {
             // 新增用户与角色管理
-            List<SysUserRole> list = new ArrayList<SysUserRole>();
+            List<SysUserRole> list = new ArrayList<>();
             for (String roleId : roleIds) {
                 SysUserRole ur = new SysUserRole();
                 ur.setUserId(userId);
