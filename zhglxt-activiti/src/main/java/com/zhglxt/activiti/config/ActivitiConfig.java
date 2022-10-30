@@ -2,10 +2,18 @@ package com.zhglxt.activiti.config;
 
 import com.zhglxt.activiti.service.ext.CustomGroupEntityManagerFactory;
 import com.zhglxt.activiti.service.ext.CustomUserEntityManagerFactory;
-import org.activiti.engine.*;
+import org.activiti.engine.DynamicBpmnService;
+import org.activiti.engine.FormService;
+import org.activiti.engine.HistoryService;
+import org.activiti.engine.IdentityService;
+import org.activiti.engine.ManagementService;
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngineConfiguration;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
 import org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl;
 import org.activiti.engine.impl.interceptor.SessionFactory;
-import org.activiti.image.impl.DefaultProcessDiagramGenerator;
 import org.activiti.spring.ProcessEngineFactoryBean;
 import org.activiti.spring.SpringProcessEngineConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,7 +98,7 @@ public class ActivitiConfig {
         //历史记录保存模式
         processEngineConfiguration.setHistory("full");
 
-        processEngineConfiguration.setProcessDiagramGenerator(new DefaultProcessDiagramGenerator());
+        processEngineConfiguration.setProcessDiagramGenerator(new CustomProcessDiagramGenerator());
 
         //自定义用户和组
         List<SessionFactory> customSessionFactories = new ArrayList<>();

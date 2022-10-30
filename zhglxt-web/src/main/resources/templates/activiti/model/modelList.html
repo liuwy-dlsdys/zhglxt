@@ -35,11 +35,11 @@
     $(function () {
         var options = {
             url: prefix + "/modelList",
-            createUrl : prefix+"/myAdd",
+            createUrl : prefix+"/add",
             removeUrl: prefix + "/remove",
             updateUrl: prefix + "/editModel?modelId={id}",
             exportUrl: prefix + "/export",
-            deploy: prefix + "/myDeploy/",
+            deploy: prefix + "/deployModel/",
             sortName: "createTime",
             sortOrder: "desc",
             modalName: "模型管理",
@@ -90,7 +90,7 @@
 
     function deploy(id) {
         $.modal.confirm("确认要部署该流程吗？", function () {
-            var url = prefix + "/myDeploy?id=" + id;
+            var url = prefix + "/deployModel?id=" + id;
             $.operate.get(url);
         });
     }

@@ -14,9 +14,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CustomUserEntityManagerFactory implements SessionFactory {
-    /*
-        自定义类CustomUserEntityManagerFactory实现SessionFactory接口，重写getSessionType和openSession方法，核心代码如下：
-    */
+
     @Autowired
     private CustomUserEntityManager customUserEntityManager;
 

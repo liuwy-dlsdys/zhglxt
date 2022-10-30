@@ -22,18 +22,19 @@ import org.apache.commons.io.IOUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-
-import static org.activiti.editor.constants.ModelDataJsonConstants.MODEL_DESCRIPTION;
-import static org.activiti.editor.constants.ModelDataJsonConstants.MODEL_NAME;
 
 /**
  * 模型管理 操作处理
@@ -47,12 +48,9 @@ public class ActModelController extends BaseController {
     @Autowired
     private ActModelService actModelService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @RequiresPermissions("activiti:model:view")
-    @RequestMapping("/myModel")
-    public String myModel() {
+    @RequestMapping("/index")
+    public String index() {
         return prefix + "/modelList";
     }
 
@@ -66,53 +64,27 @@ public class ActModelController extends BaseController {
     /**
      * 跳转到-新增模型
      */
-    @GetMapping("/myAdd")
-    public String myAdd() {
-        return prefix + "/modelAdd";
+    @GetMapping("/add")
+    public String addModel() {
+        return prefix + "/addModel";
     }
 
     /**
-     * 保存新增模型
+     * 创建模型
      */
     @RequiresPermissions("activiti:model:add")
-    @Log(title = "我的流程模型管理", businessType = BusinessType.INSERT)
-    @RequestMapping("/myAddModle")
+    @Log(title = "创建模型", businessType = BusinessType.INSERT)
+    @RequestMapping("/createModle")
     @ResponseBody
-    public AjaxResult myAddModle(HttpServletRequest request) {
+    public AjaxResult createModle(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
-        int msg = 0;
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
-        try {
-            org.activiti.engine.repository.Model modelData = actModelService.create(paramMap);
-            if (!modelData.getId().isEmpty()) {
-                msg = 1;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            logger.error("创建模型失败：", e);
-        }
-        return toAjax(msg);
+        actModelService.createModle(paramMap);
+        return AjaxResult.success();
     }
 
-    @GetMapping("/{modelId}/json")
-    @ResponseBody
-    public ObjectNode getEditorJson(@PathVariable String modelId) {
-        ObjectNode modelNode = actModelService.selectWrapModelById(modelId);
-        return modelNode;
-    }
-
-    @GetMapping("/edit/{modelId}")
-    public String edit(@PathVariable("modelId") String modelId) {
-        return redirect("/modeler.html?modelId=" + modelId);
-    }
-
-    /**
-     * 导入stencil配置文件
-     *
-     * @return
-     */
     @GetMapping(value = "/editor/stencilset", produces = "application/json;charset=utf-8")
     @ResponseBody
     public String getStencilset() {
@@ -124,6 +96,30 @@ public class ActModelController extends BaseController {
         }
     }
 
+    @GetMapping("/edit/{modelId}")
+    public String edit(@PathVariable("modelId") String modelId) {
+        return redirect("/modeler.html?modelId=" + modelId);
+    }
+
+    @Log(title = "模型管理-保存", businessType = BusinessType.UPDATE)
+    @PutMapping(value = "/{modelId}/save")
+    @ResponseBody
+    public AjaxResult save(@PathVariable String modelId, String name, String description, String json_xml, String svg_xml){
+        if (GlobalConfig.isDemoEnabled()) {
+            return error("演示模式不允许本操作");
+        }
+        Model model = actModelService.selectModelById(modelId);
+        actModelService.update(model,name,description,json_xml, svg_xml);
+        return AjaxResult.success();
+    }
+
+    @GetMapping("/{modelId}/json")
+    @ResponseBody
+    public ObjectNode getEditorJson(@PathVariable String modelId) {
+        ObjectNode modelNode = actModelService.selectWrapModelById(modelId);
+        return modelNode;
+    }
+
     @Log(title = "删除模型", businessType = BusinessType.DELETE)
     @RequiresPermissions("activiti:model:remove")
     @PostMapping("/remove")
@@ -133,23 +129,6 @@ public class ActModelController extends BaseController {
             return error("演示模式不允许本操作");
         }
         return toAjax(actModelService.deleteModelIds(ids));
-    }
-
-
-
-    @Log(title = "模型管理", businessType = BusinessType.UPDATE)
-    @PutMapping(value = "/{modelId}/save")
-    @ResponseBody
-    public void save(@PathVariable String modelId, String name, String description, String json_xml,
-                     String svg_xml) throws IOException {
-        Model model = actModelService.selectModelById(modelId);
-        ObjectNode modelJson = (ObjectNode) objectMapper.readTree(model.getMetaInfo());
-        modelJson.put(MODEL_NAME, name);
-        modelJson.put(MODEL_DESCRIPTION, description);
-        model.setMetaInfo(modelJson.toString());
-        model.setName(name);
-        actModelService.update(model, json_xml, svg_xml);
-
     }
 
     @Log(title = "导出指定模型", businessType = BusinessType.EXPORT)
@@ -174,8 +153,6 @@ public class ActModelController extends BaseController {
         }
     }
 
-    //===================================================================================================
-
     /**
      * 模型管理列表
      */
@@ -195,21 +172,15 @@ public class ActModelController extends BaseController {
         return redirect("/modeler.html?modelId=" + paramMap.get("modelId").toString());
     }
 
-    /**
-     * 部署流程
-     *
-     * @return
-     * @throws Exception
-     */
-    @Log(title = "发布流程", businessType = BusinessType.UPDATE)
+    @Log(title = "部署模型", businessType = BusinessType.UPDATE)
     @RequiresPermissions("activiti:model:deploy")
-    @RequestMapping("/myDeploy")
+    @RequestMapping("/deployModel")
     @ResponseBody
-    public AjaxResult myDeploy(HttpServletRequest request) {
+    public AjaxResult deployModel(HttpServletRequest request) {
         if (GlobalConfig.isDemoEnabled()) {
             return error("演示模式不允许本操作");
         }
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
-        return actModelService.myDeployProcess(paramMap);
+        return actModelService.deployModel(paramMap);
     }
 }

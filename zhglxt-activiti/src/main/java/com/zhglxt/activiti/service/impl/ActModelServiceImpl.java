@@ -28,13 +28,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.activiti.editor.constants.ModelDataJsonConstants.MODEL_DESCRIPTION;
 import static org.activiti.editor.constants.ModelDataJsonConstants.MODEL_ID;
 import static org.activiti.editor.constants.ModelDataJsonConstants.MODEL_NAME;
 /**
@@ -74,9 +78,17 @@ public class ActModelServiceImpl implements ActModelService {
      * @param json_xml json参数
      * @param svg_xml  xml参数
      */
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public void update(Model model, String json_xml, String svg_xml) {
+    public void update(Model model,String name,String description, String json_xml, String svg_xml) {
         try {
+
+            ObjectNode modelJson = (ObjectNode) objectMapper.readTree(model.getMetaInfo());
+            modelJson.put(MODEL_NAME, name);
+            modelJson.put(MODEL_DESCRIPTION, description);
+            model.setMetaInfo(modelJson.toString());
+            model.setName(name);
+
             repositoryService.saveModel(model);
             repositoryService.addModelEditorSource(model.getId(), json_xml.getBytes("utf-8"));
             InputStream svgStream = new ByteArrayInputStream(svg_xml.getBytes("utf-8"));
@@ -205,11 +217,11 @@ public class ActModelServiceImpl implements ActModelService {
     }
 
     /**
-     * 我的部署流程
+     * 部署流程
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public AjaxResult myDeployProcess(Map<String, Object> paramMap) {
+    public AjaxResult deployModel(Map<String, Object> paramMap) {
         try {
             org.activiti.engine.repository.Model modelData = repositoryService.getModel(paramMap.get("id").toString());
             BpmnJsonConverter jsonConverter = new BpmnJsonConverter();
@@ -222,19 +234,15 @@ public class ActModelServiceImpl implements ActModelService {
             if (!StringUtils.endsWith(processName, ".bpmn20.xml")) {
                 processName += ".bpmn20.xml";
             }
-//			System.out.println("========="+processName+"============"+modelData.getName());
             ByteArrayInputStream in = new ByteArrayInputStream(bpmnBytes);
-            Deployment deployment = repositoryService.createDeployment().name(modelData.getName())
-                    .addInputStream(processName, in).deploy();
-//					.addString(processName, new String(bpmnBytes)).deploy();
+            Deployment deployment = repositoryService.createDeployment().name(modelData.getName()).addInputStream(processName, in).deploy();
 
             // 设置流程分类
             List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery().deploymentId(deployment.getId()).list();
             for (ProcessDefinition processDefinition : list) {
                 repositoryService.setProcessDefinitionCategory(processDefinition.getId(), modelData.getCategory());
-//				AjaxResult.success("部署成功，流程ID=" + processDefinition.getId());
             }
-            if (list.size() == 0) {
+            if (CollectionUtils.isEmpty(list)) {
                 return AjaxResult.error("部署失败，没有流程。");
             }
             return AjaxResult.success("部署成功");
@@ -245,42 +253,38 @@ public class ActModelServiceImpl implements ActModelService {
     }
 
     /**
-     * 添加模型
-     *
-     * @throws UnsupportedEncodingException
+     * 创建模型
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public Model create(Map<String, Object> paramMap) throws UnsupportedEncodingException {
+    public void createModle(Map<String, Object> paramMap){
+        Model model = repositoryService.newModel();
+        ObjectNode modelNode = objectMapper.createObjectNode();
+        modelNode.put(ModelDataJsonConstants.MODEL_NAME, paramMap.get("name").toString());
+        String description = StringUtils.defaultString(paramMap.get("description").toString());
+        modelNode.put(ModelDataJsonConstants.MODEL_DESCRIPTION, description);
+        modelNode.put(ModelDataJsonConstants.MODEL_REVISION, 1);
+        model.setName(paramMap.get("name").toString());
+        model.setKey(StringUtils.defaultString(paramMap.get("key").toString()));
+        model.setMetaInfo(modelNode.toString());
+        model.setCategory(paramMap.get("category").toString());
+        // 存入表act_re_model
+        repositoryService.saveModel(model);
+
+        // 创建模型时完善ModelEditorSource，这里是对画布的相关设置
         ObjectNode editorNode = objectMapper.createObjectNode();
         editorNode.put("id", "canvas");
         editorNode.put("resourceId", "canvas");
-
+        ObjectNode stencilSetNode = objectMapper.createObjectNode();
+        stencilSetNode.put("namespace","http://b3mn.org/stencilset/bpmn2.0#");
+        editorNode.put("stencilset", stencilSetNode);
         ObjectNode properties = objectMapper.createObjectNode();
         properties.put("process_author", "sys");
         editorNode.put("properties", properties);
-
-        ObjectNode stencilset = objectMapper.createObjectNode();
-        stencilset.put("namespace", "http://b3mn.org/stencilset/bpmn2.0#");
-        editorNode.put("stencilset", stencilset);
-
-        Model modelData = repositoryService.newModel();
-        //描述
-        String description = StringUtils.defaultString(paramMap.get("description").toString());
-        modelData.setKey(StringUtils.defaultString(paramMap.get("key").toString()));
-        modelData.setName(paramMap.get("name").toString());
-        modelData.setCategory(paramMap.get("category").toString());
-        modelData.setVersion(Integer.parseInt(String.valueOf(repositoryService.createModelQuery().modelKey(modelData.getKey()).count() + 1)));
-
-        ObjectNode modelObjectNode = objectMapper.createObjectNode();
-        modelObjectNode.put(ModelDataJsonConstants.MODEL_NAME, paramMap.get("name").toString());
-        modelObjectNode.put(ModelDataJsonConstants.MODEL_REVISION, modelData.getVersion());
-        modelObjectNode.put(ModelDataJsonConstants.MODEL_DESCRIPTION, description);
-        modelData.setMetaInfo(modelObjectNode.toString());
-
-        repositoryService.saveModel(modelData);
-        repositoryService.addModelEditorSource(modelData.getId(), editorNode.toString().getBytes("utf-8"));
-
-        return modelData;
+        try {
+            repositoryService.addModelEditorSource(model.getId(),editorNode.toString().getBytes("utf-8"));
+        } catch (Exception e) {
+            throw new ActivitiException("创建模型时完善ModelEditorSource服务异常：{}",e);
+        }
     }
 }

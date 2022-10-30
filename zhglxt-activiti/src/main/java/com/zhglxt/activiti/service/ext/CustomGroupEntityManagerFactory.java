@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CustomGroupEntityManagerFactory implements SessionFactory {
+
     @Autowired
     private CustomGroupEntityManager customGroupEntityManager;
 

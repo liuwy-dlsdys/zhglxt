@@ -44,6 +44,7 @@
 <script th:inline="javascript">
     var removeFlag = [[${@permission.hasPermi('activiti:process:remove')}]];
     var modelFlag = [[${@permission.hasPermi('activiti:process:model')}]];
+	var datas = [[${@dict.getType('act_category')}]];
     var prefix = ctx + "activiti/process";
 
     $(function () {
@@ -52,7 +53,7 @@
             url: prefix + "/list",
             createUrl: prefix + "/add",
             removeUrl: prefix + "/remove",
-            modalName: "流程",
+            modalName: "流程列表",
             search: false,
             showExport: false,
             columns: [{
@@ -76,7 +77,10 @@
             },
             {
                 field: 'category',
-                title: '流程类别'
+                title: '流程类别',
+				formatter: function (value, row, index) {
+					return $.table.selectDictLabel(datas, value);
+				}
             },
             {
                 field: 'version',

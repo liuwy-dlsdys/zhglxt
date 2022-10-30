@@ -48,6 +48,7 @@ activitiModeler
             suffix: '.json'
         });
 
+        // todo 会保存到浏览器的 cookie 中缓存，所以修改后需要清理cookie缓存，再打开才能生效
         $translateProvider.preferredLanguage('zh-CN');
 
         // remember language

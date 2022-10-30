@@ -14,6 +14,7 @@ import org.activiti.engine.*;
 import org.activiti.engine.delegate.Expression;
 import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricProcessInstance;
+import org.activiti.engine.impl.persistence.entity.CommentEntity;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Comment;
@@ -133,7 +134,7 @@ public class ActTaskService {
 
         // 设置流程变量
         if (vars == null) {
-            vars = Maps.newHashMap();
+            vars = new HashMap<>();
         }
 
         // 设置流程标题
@@ -209,7 +210,20 @@ public class ActTaskService {
                 if (StringUtils.isNotBlank(histIns.getTaskId())) {
                     List<Comment> commentList = taskService.getTaskComments(histIns.getTaskId());
                     if (!CollectionUtils.isEmpty(commentList)) {
-                        atMap.put("comment", commentList.get(0).getFullMessage());
+                        Comment comment = commentList.get(0);
+                        CommentEntity commentEntity = null;
+                        /*
+                         * 1、查看act_hi_comment 表中的字段类型 发现 message 是varchar类型，而 fullmessage 是 longblob 类型，所以getFullMessage会跟随部署的系统编码,保存到数据库中的，blob字段可能会出现乱码
+                         * 2、查看taskService.addComment(taskId, procInsId, comment)方法实现中的 AddCommentCmd 的源码发现： message 批注中的长度超过163会被截取，导致内容不完整。所以批注过多的还是得选择获取FullMessage中的数据
+                         *
+                         * 如果使用getFullMessage(),需要修改服务配置 或 启动参数
+                         * 一、tomcat部署war：修改Tomcat的catalina.bat参数：找到Tomcat的bin目录下的catalina.bat文件进行修改。在@echo off的下面添加： set "JAVA_OPTS=%JAVA_OPTS% %JSSE_OPTS% -Dfile.encoding=UTF-8"
+                         * 二、jar启动：设置编码格式 java -jar -Dfile.encoding=utf-8 xx.jar
+                         */
+                        if(comment instanceof CommentEntity){
+                            commentEntity= (CommentEntity) comment;
+                        }
+                        atMap.put("comment", commentEntity.getMessage());
                     }
                 }
                 //任务历时
@@ -353,11 +367,6 @@ public class ActTaskService {
             maps.put("procDef", procDefMap);
             maps.put("status", "claim");
 
-
-//			map.put("taskVars", task.getTaskLocalVariables());
-//			map.put("procIns", runtimeService.createProcessInstanceQuery().processInstanceId(task.getProcessInstanceId()).singleResult());
-//			map.put("procExecUrl", ActUtils.getProcExeUrl(task.getProcessDefinitionId()));
-//			System.out.println(task.getId()+"  =  "+task.getProcessVariables() + "  ========== " + task.getTaskLocalVariables());
             resultList.add(maps);
         }
         return resultList;

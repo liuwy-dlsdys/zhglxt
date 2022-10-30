@@ -6,8 +6,6 @@ import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.page.TableDataInfo;
 import org.activiti.engine.repository.Model;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 /**
@@ -21,7 +19,7 @@ public interface ActModelService {
      * @param modelEntityDto 模型信息
      * @return 模型集合
      */
-    public TableDataInfo selectModelList(ModelEntityDto modelEntityDto);
+    TableDataInfo selectModelList(ModelEntityDto modelEntityDto);
 
     /**
      * 查询模型编辑器
@@ -29,7 +27,7 @@ public interface ActModelService {
      * @param modelId 模型ID
      * @return json信息
      */
-    public ObjectNode selectWrapModelById(String modelId);
+    ObjectNode selectWrapModelById(String modelId);
 
     /**
      * 查询模型信息
@@ -37,56 +35,56 @@ public interface ActModelService {
      * @param modelId 模型ID
      * @return 模型信息
      */
-    public Model selectModelById(String modelId);
+    Model selectModelById(String modelId);
 
     /**
      * 修改模型信息
      *
-     * @param model    模型信息
+     * @param model 模型信息
+     * @param name 名称
+     * @param description 描述信息
      * @param json_xml json参数
      * @param svg_xml  xml参数
-     * @throws IOException
      */
-    public void update(Model model, String json_xml, String svg_xml);
+    void update(Model model, String name, String description, String json_xml, String svg_xml);
 
     /**
      * 批量删除模型信息
      *
-     * @param ids 需要删除的数据ID
-     * @return
+     * @param ids 需要删除的ID列表
+     * @return boolean
      */
-    public boolean deleteModelIds(String ids);
+    boolean deleteModelIds(String ids);
 
     /**
      * 获取资源文件信息
      *
      * @param modelId 模型ID
-     * @return 资源文件信息
+     * @return byte[]
      */
-    public byte[] getModelEditorSource(String modelId);
+    byte[] getModelEditorSource(String modelId);
 
     /**
-     * 我的 模型列表
+     * 模型列表
      *
-     * @param paramMap
-     * @return
+     * @param paramMap 参数map
+     * @return List<Map<String, Object>>
      */
-    public List<Map<String, Object>> modelList(Map<String, Object> paramMap);
+    List<Map<String, Object>> modelList(Map<String, Object> paramMap);
 
     /**
-     * 我的 部署流程
+     * 部署流程
      *
-     * @param paramMap
-     * @return
+     * @param paramMap 参数map
+     * @return AjaxResult
      */
-    public AjaxResult myDeployProcess(Map<String, Object> paramMap);
+    AjaxResult deployModel(Map<String, Object> paramMap);
 
     /**
-     * 我的 添加模型
+     * 添加模型
      *
-     * @param paramMap
-     * @return
+     * @param paramMap 参数map
      */
-    public Model create(Map<String, Object> paramMap) throws UnsupportedEncodingException;
+    void createModle(Map<String, Object> paramMap);
 
 }

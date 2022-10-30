@@ -2,7 +2,7 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8">
 <head>
-	<th:block th:include="include :: header('流程列表')" />
+	<th:block th:include="include :: header('流程管理')" />
 </head>
 <body class="gray-bg">
 
@@ -45,6 +45,7 @@
     var removeFlag = [[${@permission.hasPermi('activiti:process:remove')}]];
     var modelFlag = [[${@permission.hasPermi('activiti:process:model')}]];
     var editFlag = [[${@permission.hasPermi('activiti:process:edit')}]];
+	var datas = [[${@dict.getType('act_category')}]];
     var prefix = ctx + "activiti/process";
 
     $(function () {
@@ -62,7 +63,10 @@
             {
                 field: 'category',
                 title: '流程分类',
-                align:'center'
+                align:'center',
+				formatter: function (value, row, index) {
+					return $.table.selectDictLabel(datas, value);
+				}
             },
             {
                 field: 'id',
