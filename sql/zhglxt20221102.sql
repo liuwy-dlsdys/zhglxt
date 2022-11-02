@@ -1925,7 +1925,7 @@ INSERT INTO `sys_menu` VALUES ('1128', '流程', '1126', '20', '#', 'menuItem', 
 INSERT INTO `sys_menu` VALUES ('1130', '流程列表', '1128', '10', '/activiti/process', 'menuItem', 'C', '0', '1', 'activiti:process:view', '#', 'system', '2020-07-15 19:51:10', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1131', '运行中的流程', '1128', '20', '/activiti/process/toRunningList', 'menuItem', 'C', '0', '1', 'activiti:process:list', '#', 'system', '2020-07-15 19:53:42', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1132', '流程管理', '1128', '30', '/activiti/process/myProcess', 'menuItem', 'C', '0', '1', 'activiti:process:view,activiti:model:add', '#', 'system', '2020-07-15 20:05:03', '', null, '');
-INSERT INTO `sys_menu` VALUES ('1133', '模型管理', '1127', '20', '/activiti/model/myModel', 'menuItem', 'C', '0', '1', 'activiti:model:view', '#', 'system', '2020-07-15 20:05:51', '', null, '');
+INSERT INTO `sys_menu` VALUES ('1133', '模型管理', '1127', '20', '/activiti/model/index', 'menuItem', 'C', '0', '1', 'activiti:model:view', '#', 'system', '2020-07-15 20:05:51', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1134', '删除运行流程实例', '1131', '10', '#', 'menuItem', 'F', '0', '1', 'activiti:process:edit', '#', 'system', '2020-07-15 20:07:01', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1139', '系统接口（knife4j）', '3', '10', '/doc.html', 'menuBlank', 'C', '0', '1', '', 'fa fa-exchange', 'system', '2020-10-01 13:20:58', 'system', '2020-10-01 13:22:19', '');
 INSERT INTO `sys_menu` VALUES ('1141', '缓存监控', '2', '10', '/monitor/cache', 'menuItem', 'C', '0', '1', 'monitor:cache:view', 'fa fa-cube', 'system', '2020-11-23 16:08:00', 'system', '2020-11-23 16:09:11', '缓存监控菜单');
