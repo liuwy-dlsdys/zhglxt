@@ -125,15 +125,15 @@
                 <version>3.3.1</version>
                 <configuration>
                     <!--打war时，同时把lib目录下的jar也打进去-->
-                    <!--<webResources>
-                       <resource>
-                         <directory>${project.basedir}/src/main/resources/lib</directory>
-                            <targetPath>WEB-INF/lib/</targetPath>
-                            <includes>
-                              <include>**/*.jar</include>
-                            </includes>
-                       </resource>
-                     </webResources>-->
+<!--                    <webResources>-->
+<!--                        <resource>-->
+<!--                            <directory>${project.basedir}/src/main/resources/lib</directory>-->
+<!--                            <targetPath>WEB-INF/lib/</targetPath>-->
+<!--                            <includes>-->
+<!--                                <include>**/*.jar</include>-->
+<!--                            </includes>-->
+<!--                        </resource>-->
+<!--                    </webResources>-->
                     <!--打包配置-->
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <warName>${project.artifactId}</warName>

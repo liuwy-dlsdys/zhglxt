@@ -25,15 +25,20 @@
             </p>
         </div>
     </div>
-    <div style="float:left;margin-top: 8px;width: 1px;height: 220px;background: darkgray;margin-left: 5px;"></div>
+    <div style="float:left;margin-top: 8px;width: 1px;height: 260px;background: darkgray;margin-left: 5px;"></div>
     <div class="col-sm-5">
         <h2><b>温馨提示：</b></h2>
         <p style="text-indent: 2em;font-size: 18px">
             部署到Tomcat服务器时，在线办公-个人办公-（我的任务、请假申请）-（任务办理、详情）-流转信息-提交意见，如果出现乱码？
         </p>
+        <p style="font-size: 18px">解决方案：</p>
         <p style="text-indent: 2em;font-size: 18px">
-            解决方案：修改Tomcat的catalina.bat参数：找到Tomcat的bin目录下的catalina.bat文件进行修改。在@echo off的下面添加：
+            windows版本：进入Tomcat的bin目录，编辑catalina.bat文件，在@echo off下面添加：
             <i style="color: #ca4440">set "JAVA_OPTS=%JAVA_OPTS% %JSSE_OPTS% -Dfile.encoding=UTF-8"</i>
+        </p>
+        <p style="text-indent: 2em;font-size: 18px">
+            Linux版本：进入Tomcat的bin目录，编辑catalina.sh文件，在cygwin=false前面添加：
+            <i style="color: #ca4440">JAVA_OPTS="-server -Xms1024m -Xmx1024m -Dfile.encoding=UTF-8"</i>
         </p>
     </div>
 </div>
