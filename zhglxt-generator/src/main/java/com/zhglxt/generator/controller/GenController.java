@@ -6,7 +6,6 @@ import com.alibaba.druid.sql.ast.SQLStatement;
 import com.alibaba.druid.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement;
 import com.alibaba.fastjson.JSON;
 import com.zhglxt.common.annotation.Log;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.entity.CxSelect;
@@ -120,9 +119,6 @@ public class GenController extends BaseController {
     @PostMapping("/importTable")
     @ResponseBody
     public AjaxResult importTableSave(String tables) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         String[] tableNames = Convert.toStrArray(tables);
         // 查询表信息
         List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
@@ -164,9 +160,6 @@ public class GenController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated GenTable genTable) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         genTableService.validateEdit(genTable);
         genTableService.updateGenTable(genTable);
         return AjaxResult.success();
@@ -177,9 +170,6 @@ public class GenController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         genTableService.deleteGenTableByIds(ids);
         return AjaxResult.success();
     }

@@ -71,9 +71,6 @@ public class SysProfileController extends BaseController {
     @PostMapping("/resetPwd")
     @ResponseBody
     public AjaxResult resetPwd(String oldPassword, String newPassword) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         SysUser user = getSysUser();
 
         //超级管理员用户&角色不允许操作
@@ -122,9 +119,6 @@ public class SysProfileController extends BaseController {
     @PostMapping("/update")
     @ResponseBody
     public AjaxResult update(SysUser user) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         SysUser currentUser = getSysUser();
         currentUser.setUserName(user.getUserName());
         currentUser.setEmail(user.getEmail());
@@ -156,9 +150,6 @@ public class SysProfileController extends BaseController {
     @PostMapping("/updateAvatar")
     @ResponseBody
     public AjaxResult updateAvatar(@RequestParam("avatarfile") MultipartFile file) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         SysUser currentUser = getSysUser();
         try {
             if (!file.isEmpty()) {

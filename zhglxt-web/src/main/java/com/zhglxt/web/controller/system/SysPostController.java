@@ -63,9 +63,6 @@ public class SysPostController extends BaseController {
     @ResponseBody
     public AjaxResult remove(String ids) {
         try {
-            if (GlobalConfig.isDemoEnabled()) {
-                return error("演示模式不允许本操作");
-            }
             return toAjax(postService.deletePostByIds(ids));
         } catch (Exception e) {
             return error(e.getMessage());
@@ -88,9 +85,6 @@ public class SysPostController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysPost post) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         if (UserConstants.POST_NAME_NOT_UNIQUE.equals(postService.checkPostNameUnique(post))) {
             return error("新增岗位'" + post.getPostName() + "'失败，岗位名称已存在");
         } else if (UserConstants.POST_CODE_NOT_UNIQUE.equals(postService.checkPostCodeUnique(post))) {
@@ -118,9 +112,6 @@ public class SysPostController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysPost post) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         if (UserConstants.POST_NAME_NOT_UNIQUE.equals(postService.checkPostNameUnique(post))) {
             return error("修改岗位'" + post.getPostName() + "'失败，岗位名称已存在");
         } else if (UserConstants.POST_CODE_NOT_UNIQUE.equals(postService.checkPostCodeUnique(post))) {

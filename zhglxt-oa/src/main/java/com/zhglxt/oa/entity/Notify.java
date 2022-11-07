@@ -10,22 +10,63 @@ import java.util.List;
  * @Date 2020/12/19
  */
 public class Notify extends BaseEntity {
-    private static final long serialVersionUID = 608892740078533759L;
-    private String id;            // 主键id
-    private String notifyType;    // 类型
-    private String notifyTitle;    // 标题
-    private String notifyContent; // 内容
-    private String files;        // 附件
-    private String status;        // 状态
-    private String readNum;        // 已读
-    private String unReadNum;    // 未读
-    private boolean isSelf;        // 是否只查询自己的通知
-    private String readFlag;    // 本人阅读状态
-    private String delFlag;    // 删除标记（0：正常；1：删除；2：审核）
 
-    private String userId;        //用户id
-    private List<String> userIds; //用户ids
-    private List<String> deptUserIds; //部门用户ids
+    /**
+     * 主键id
+     **/
+    private String id;
+    /**
+     * 类型
+     **/
+    private String notifyType;
+    /**
+     * 标题
+     **/
+    private String notifyTitle;
+    /**
+     *  内容
+     **/
+    private String notifyContent;
+    /**
+     * 附件
+     **/
+    private String files;
+    /**
+     * 状态
+     **/
+    private String status;
+    /**
+     * 已读数
+     **/
+    private String readNum;
+    /**
+     * 未读数
+     **/
+    private String unReadNum;
+    /**
+     * 是否只查询自己的通知
+     **/
+    private boolean isSelf;
+    /**
+     * 本人阅读状态
+     **/
+    private String readFlag;
+    /**
+     * 删除标记（0：正常；1：删除；2：审核）
+     **/
+    private String delFlag;
+    /**
+     * 用户id
+     **/
+    private String userId;
+    /**
+     * 用户ids
+     **/
+    private List<String> userIds;
+    /**
+     * 部门用户ids
+     **/
+    private List<String> deptUserIds;
 
     public String getId() {
         return id;

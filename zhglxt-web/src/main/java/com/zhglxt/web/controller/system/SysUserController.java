@@ -1,7 +1,6 @@
 package com.zhglxt.web.controller.system;
 
 import com.zhglxt.common.annotation.Log;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
@@ -84,9 +83,6 @@ public class SysUserController extends BaseController {
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
         List<SysUser> userList = util.importExcel(file.getInputStream());
         String message = userService.importUser(userList, updateSupport, getLoginName());
@@ -119,9 +115,6 @@ public class SysUserController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysUser user) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         if (UserConstants.USER_NAME_NOT_UNIQUE.equals(userService.checkLoginNameUnique(user))) {
             return error("新增用户'" + user.getLoginName() + "'失败，登录账号已存在");
         } else if (StringUtils.isNotEmpty(user.getPhonenumber())
@@ -160,9 +153,6 @@ public class SysUserController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysUser user) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         //超级系统管理员&角色不允许操作
         userService.checkUserAllowed(user);
         userService.checkUserDataScope(user.getUserId());
@@ -197,9 +187,6 @@ public class SysUserController extends BaseController {
     @PostMapping("/resetPwd")
     @ResponseBody
     public AjaxResult resetPwdSave(SysUser user) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         //管理员用户&角色不允许操作
         userService.checkUserAllowed(user);
         userService.checkUserDataScope(user.getUserId());
@@ -235,9 +222,6 @@ public class SysUserController extends BaseController {
     @PostMapping("/authRole/insertAuthRole")
     @ResponseBody
     public AjaxResult insertAuthRole(String userId, String[] roleIds) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式，不允许操作");
-        }
         userService.checkUserDataScope(userId);
         userService.insertUserAuth(userId, roleIds);
         AuthorizationUtils.clearAllCachedAuthorizationInfo();
@@ -249,9 +233,6 @@ public class SysUserController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式，不允许操作");
-        }
         if (ArrayUtils.contains(Convert.toLongArray(ids), getUserId()))
         {
             return error("当前用户不能删除");
@@ -294,9 +275,6 @@ public class SysUserController extends BaseController {
     @PostMapping("/changeStatus")
     @ResponseBody
     public AjaxResult changeStatus(SysUser user) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         //管理员用户&角色不允许操作
         userService.checkUserAllowed(user);
         userService.checkUserDataScope(user.getUserId());

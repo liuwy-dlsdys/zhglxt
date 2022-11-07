@@ -1,7 +1,6 @@
 package com.zhglxt.web.controller.system;
 
 import com.zhglxt.common.annotation.Log;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
@@ -80,9 +79,6 @@ public class SysRoleController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysRole role) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         if (UserConstants.ROLE_NAME_NOT_UNIQUE.equals(roleService.checkRoleNameUnique(role))) {
             return error("新增角色'" + role.getRoleName() + "'失败，角色名称已存在");
         } else if (UserConstants.ROLE_KEY_NOT_UNIQUE.equals(roleService.checkRoleKeyUnique(role))) {
@@ -113,9 +109,6 @@ public class SysRoleController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysRole role) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         //管理员用户&角色不允许操作
 //    	  roleService.checkRoleAllowed(role);
 //        roleService.checkRoleDataScope(role.getRoleId());
@@ -149,9 +142,6 @@ public class SysRoleController extends BaseController {
     @PostMapping("/authDataScope")
     @ResponseBody
     public AjaxResult authDataScopeSave(SysRole role) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         //管理员用户&角色不允许操作
 //    	roleService.checkRoleAllowed(role);
         roleService.checkRoleDataScope(role.getRoleId());
@@ -168,9 +158,6 @@ public class SysRoleController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         return toAjax(roleService.deleteRoleByIds(ids));
     }
 
@@ -208,9 +195,6 @@ public class SysRoleController extends BaseController {
     @PostMapping("/changeStatus")
     @ResponseBody
     public AjaxResult changeStatus(SysRole role) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         //管理员用户&角色不允许操作
         roleService.checkRoleAllowed(role);
         roleService.checkRoleDataScope(role.getRoleId());
@@ -247,10 +231,6 @@ public class SysRoleController extends BaseController {
     @PostMapping("/authUser/cancel")
     @ResponseBody
     public AjaxResult cancelAuthUser(SysUserRole userRole) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
-
         SysRole role = new SysRole();
         role.setRoleId(userRole.getRoleId());
 
@@ -268,10 +248,6 @@ public class SysRoleController extends BaseController {
     @PostMapping("/authUser/cancelAll")
     @ResponseBody
     public AjaxResult cancelAuthUserAll(String roleId, String userIds) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
-
         SysRole role = new SysRole();
         role.setRoleId(roleId);
 
@@ -310,9 +286,6 @@ public class SysRoleController extends BaseController {
     @PostMapping("/authUser/selectAll")
     @ResponseBody
     public AjaxResult selectAuthUserAll(String roleId, String userIds) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         roleService.checkRoleDataScope(roleId);
         return toAjax(roleService.insertAuthUsers(roleId, userIds));
     }

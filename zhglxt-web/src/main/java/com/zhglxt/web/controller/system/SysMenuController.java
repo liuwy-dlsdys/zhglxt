@@ -57,9 +57,6 @@ public class SysMenuController extends BaseController {
     @GetMapping("/remove/{menuId}")
     @ResponseBody
     public AjaxResult remove(@PathVariable("menuId") String menuId) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         if (menuService.selectCountMenuByParentId(menuId) > 0) {
             return AjaxResult.warn("存在子菜单,不允许删除");
         }
@@ -95,9 +92,6 @@ public class SysMenuController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysMenu menu) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         if (UserConstants.MENU_NAME_NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu))) {
             return error("新增菜单'" + menu.getMenuName() + "'失败，菜单名称已存在");
         }
@@ -124,9 +118,6 @@ public class SysMenuController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysMenu menu) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         if (UserConstants.MENU_NAME_NOT_UNIQUE.equals(menuService.checkMenuNameUnique(menu))) {
             return error("修改菜单'" + menu.getMenuName() + "'失败，菜单名称已存在");
         }

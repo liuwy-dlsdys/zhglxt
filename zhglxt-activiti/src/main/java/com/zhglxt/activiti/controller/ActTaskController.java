@@ -3,7 +3,6 @@ package com.zhglxt.activiti.controller;
 import com.zhglxt.activiti.entity.Act;
 import com.zhglxt.activiti.service.impl.ActTaskService;
 import com.zhglxt.activiti.util.ActUtils;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.page.TableDataInfo;
@@ -101,9 +100,6 @@ public class ActTaskController extends BaseController {
     public AjaxResult claim(HttpServletRequest request) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
         try {
-            if (GlobalConfig.isDemoEnabled()) {
-                return error("演示模式不允许本操作");
-            }
             actTaskService.claim(paramMap);
             return success(StringUtils.format("操作成功"));
         } catch (Exception e) {
@@ -121,9 +117,6 @@ public class ActTaskController extends BaseController {
     public AjaxResult deleteTask(HttpServletRequest request) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
         try {
-            if (GlobalConfig.isDemoEnabled()) {
-                return error("演示模式不允许本操作");
-            }
             actTaskService.deleteTask(paramMap);
             return success(StringUtils.format("操作成功"));
         } catch (Exception e) {

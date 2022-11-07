@@ -3,7 +3,6 @@ package com.zhglxt.activiti.controller;
 import com.zhglxt.activiti.entity.ProcessDefinitionDto;
 import com.zhglxt.activiti.service.ActProcessService;
 import com.zhglxt.common.annotation.Log;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.page.TableDataInfo;
@@ -67,9 +66,6 @@ public class ActProcessController extends BaseController {
     @ResponseBody
     public AjaxResult addSave(@RequestParam String category, @RequestParam("file") MultipartFile file)
             throws IOException {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         InputStream fileInputStream = file.getInputStream();
         String fileName = file.getOriginalFilename();
         return actProcessService.saveNameDeplove(fileInputStream, fileName, category);
@@ -80,9 +76,6 @@ public class ActProcessController extends BaseController {
     @ResponseBody
     public AjaxResult convertToModel(@PathVariable("processId") String processId) {
         try {
-            if (GlobalConfig.isDemoEnabled()) {
-                return error("演示模式不允许本操作");
-            }
             Model model = actProcessService.convertToModel(processId);
             return success(StringUtils.format("转换模型成功，模型编号[{}]", model.getId()));
         } catch (Exception e) {
@@ -108,9 +101,6 @@ public class ActProcessController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         return toAjax(actProcessService.deleteProcessDefinitionByDeploymentIds(ids));
     }
 
@@ -157,9 +147,6 @@ public class ActProcessController extends BaseController {
     @ResponseBody
     public AjaxResult deleteProcIns(HttpServletRequest request) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         return toAjax(actProcessService.deleteProcIns(paramMap));
     }
 
@@ -175,9 +162,6 @@ public class ActProcessController extends BaseController {
     public AjaxResult updateState(@PathVariable("state") String state, HttpServletRequest request) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
         try {
-            if (GlobalConfig.isDemoEnabled()) {
-                return error("演示模式不允许本操作");
-            }
             actProcessService.updateState(state, paramMap);
             return success(StringUtils.format("操作成功"));
         } catch (Exception e) {

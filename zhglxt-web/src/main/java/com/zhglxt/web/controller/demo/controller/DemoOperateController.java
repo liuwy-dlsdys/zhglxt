@@ -133,9 +133,6 @@ public class DemoOperateController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(UserOperateModel user) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         Integer userId = users.size() + 1;
         user.setUserId(userId);
         return AjaxResult.success(users.put(userId, user));
@@ -166,9 +163,6 @@ public class DemoOperateController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(UserOperateModel user) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         return AjaxResult.success(users.put(user.getUserId(), user));
     }
 
@@ -199,9 +193,6 @@ public class DemoOperateController extends BaseController {
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         ExcelUtil<UserOperateModel> util = new ExcelUtil<UserOperateModel>(UserOperateModel.class);
         List<UserOperateModel> userList = util.importExcel(file.getInputStream());
         String message = importUser(userList, updateSupport);

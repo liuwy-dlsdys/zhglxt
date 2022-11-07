@@ -33,8 +33,8 @@
         </p>
         <p style="font-size: 18px">解决方案：</p>
         <p style="text-indent: 2em;font-size: 18px">
-            windows版本：进入Tomcat的bin目录，编辑catalina.bat文件，在@echo off下面添加：
-            <i style="color: #ca4440">set "JAVA_OPTS=%JAVA_OPTS% %JSSE_OPTS% -Dfile.encoding=UTF-8"</i>
+            windows版本：进入Tomcat的bin目录，编辑catalina.bat文件，在@echo off下面添加：<br>
+            <i style="color: #ca4440">set "JAVA_OPTS=%JAVA_OPTS% %JSSE_OPTS% -Xms1024m -Xmx1024m -Dfile.encoding=UTF-8"</i>
         </p>
         <p style="text-indent: 2em;font-size: 18px">
             Linux版本：进入Tomcat的bin目录，编辑catalina.sh文件，在cygwin=false前面添加：
@@ -56,12 +56,13 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#version" href="#latest_version">latest version</a><code class="pull-right">2022.09.07-2022.10.30</code>
+                                        <a data-toggle="collapse" data-parent="#version" href="#latest_version">latest version</a><code class="pull-right">2022.09.07-2022.11.07</code>
                                     </h5>
                                 </div>
                                 <div id="latest_version" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                         <ol>
+                                            <li>修复sheet超出最大行数异常问题</li>
                                             <li>优化activiti工作流</li>
                                             <li>升级oshi到最新版本6.3.0</li>
                                             <li>优化select2搜索下拉后校验必填样式问题(I5VZY0)</li>

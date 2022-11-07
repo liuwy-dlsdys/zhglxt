@@ -77,9 +77,6 @@ public class LeaveController extends BaseController {
     @RequestMapping("/addLeave")
     @ResponseBody
     public AjaxResult addLeave(HttpServletRequest request) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
         return toAjax(leaveService.addLeave(paramMap));
 
@@ -89,9 +86,6 @@ public class LeaveController extends BaseController {
     @RequestMapping("/editLeave")
     @ResponseBody
     public AjaxResult editLeave(HttpServletRequest request) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
         return toAjax(leaveService.editLeave(paramMap));
 
@@ -109,9 +103,6 @@ public class LeaveController extends BaseController {
     @ResponseBody
     public AjaxResult updateLeaveInFoByIds(HttpServletRequest request) {
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         return toAjax(leaveService.updateLeaveInFoToArray(paramMap));
     }
 
@@ -175,9 +166,6 @@ public class LeaveController extends BaseController {
     @RequestMapping("/saveLeaveAudit")
     @ResponseBody
     public AjaxResult saveAudit(Leave leave) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         if (!"xiaojia".equals(leave.getAct().getTaskDefKey())) {
             if (StringUtils.isBlank(leave.getAct().getFlag()) || StringUtils.isBlank(leave.getAct().getComment())) {
                 return AjaxResult.error(StringUtils.format("请检查任务流转标识是否正确或者审批意见是否为空。"));

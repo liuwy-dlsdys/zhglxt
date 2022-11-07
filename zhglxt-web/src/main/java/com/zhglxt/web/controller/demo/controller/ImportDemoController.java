@@ -2,7 +2,6 @@ package com.zhglxt.web.controller.demo.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.zhglxt.common.annotation.Log;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.entity.sys.SysUser;
@@ -67,9 +66,6 @@ public class ImportDemoController extends BaseController {
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         EasyExcel.read(file.getInputStream(), ImportSysUserTemplate.class, new EasyExcelListener(importDemoMapper)).sheet().doRead();
         return AjaxResult.success(true);
     }
@@ -87,9 +83,6 @@ public class ImportDemoController extends BaseController {
     @PostMapping("/clean")
     @ResponseBody
     public AjaxResult clean() {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         importDemoMapper.clean();
         return success();
     }

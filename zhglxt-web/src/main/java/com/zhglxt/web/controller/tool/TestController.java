@@ -55,9 +55,6 @@ public class TestController extends BaseController {
     })
     @PostMapping("/save")
     public R<String> save(UserEntity user) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return R.fail("演示模式不允许本操作");
-        }
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId())) {
             return R.fail("用户ID不能为空");
         }

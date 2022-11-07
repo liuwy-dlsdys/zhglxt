@@ -1,7 +1,6 @@
 package com.zhglxt.web.controller.system;
 
 import com.zhglxt.common.annotation.Log;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.entity.sys.SysDictData;
@@ -73,9 +72,6 @@ public class SysDictDataController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysDictData dict) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         dict.setCreateBy(getLoginName());
         return toAjax(dictDataService.insertDictData(dict));
     }
@@ -98,9 +94,6 @@ public class SysDictDataController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysDictData dict) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         dict.setUpdateBy(getLoginName());
         return toAjax(dictDataService.updateDictData(dict));
     }
@@ -110,9 +103,6 @@ public class SysDictDataController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         dictDataService.deleteDictDataByIds(ids);
         return success();
     }

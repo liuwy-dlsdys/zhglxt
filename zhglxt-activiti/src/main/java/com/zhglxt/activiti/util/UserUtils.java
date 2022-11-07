@@ -20,12 +20,12 @@ public class UserUtils {
      * 根据登录名获取用户
      *
      * @param loginName
-     * @return 取不到返回null
+     * @return SysUser
      */
     public static SysUser getByLoginName(String loginName) {
         SysUser user = userDao.selectUserByLoginName(loginName);
         if (user != null) {
-            user.setRoles(roleDao.selectRolesByUserId(user.getRoleId()));
+            user.setRoles(roleDao.selectRolesByUserId(user.getUserId()));
         }
         return user;
     }

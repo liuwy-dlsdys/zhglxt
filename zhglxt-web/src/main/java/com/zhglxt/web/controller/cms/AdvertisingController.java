@@ -4,7 +4,6 @@ import com.zhglxt.cms.entity.Advertising;
 import com.zhglxt.cms.service.IAdvertisingService;
 import com.zhglxt.cms.service.ISiteService;
 import com.zhglxt.common.annotation.Log;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.page.TableDataInfo;
@@ -88,9 +87,6 @@ public class AdvertisingController extends BaseController {
     @RequestMapping("/addAdvertising")
     @ResponseBody
     public AjaxResult addAdvertising(HttpServletRequest request) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
 
             paramMap.put("id", UUID.fastUUID().toString(true));
@@ -108,9 +104,6 @@ public class AdvertisingController extends BaseController {
     @RequestMapping("/editAdvertising")
     @ResponseBody
     public AjaxResult editAdvertising(HttpServletRequest request) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
 
         paramMap.put("siteId", siteService.selectOneSite().getId());
@@ -130,9 +123,6 @@ public class AdvertisingController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult deleteAdvertising(String ids) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         return toAjax(advertisingService.deleteAdvertising(Convert.toStrArray(ids)));
     }
 

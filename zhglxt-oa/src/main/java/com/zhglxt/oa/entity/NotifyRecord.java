@@ -9,12 +9,26 @@ import java.util.Date;
  * @Date 2020/12/19
  **/
 public class NotifyRecord extends BaseEntity {
-    private static final long serialVersionUID = 4516546433085451511L;
-    private String id;       // 主键id
-    private String notifyId; // 通知通告ID
-    private String userId;     // 接受人
-    private String readFlag; // 阅读标记（0：未读；1：已读）
-    private Date readDate;     // 阅读时间
+    /**
+     * 主键id
+     **/
+    private String id;
+    /**
+     * 通知通告ID
+     **/
+    private String notifyId;
+    /**
+     * 接收人id
+     **/
+    private String userId;
+    /**
+     * 阅读标记（0：未读；1：已读）
+     **/
+    private String readFlag;
+    /**
+     * 阅读时间
+     **/
+    private Date readDate;
 
     public String getId() {
         return id;

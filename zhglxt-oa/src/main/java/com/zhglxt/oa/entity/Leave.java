@@ -13,19 +13,50 @@ import java.util.Date;
  * @Date 2019/9/27
  **/
 public class Leave extends ActEntity<Leave> {
-    private static final long serialVersionUID = -7436137115943178295L;
-    private SysUser user;    //	归属用户
-    private SysDept dept;    //	归属部门
-    private String post;//岗位
-    private String content;// 请假原因
-    private Date startTime;    // 请假开始日期
-    private Date endTime;    // 请假结束日期
-    private String leaveType;    // 请假类型
-
-    private String exeDate;//	执行时间
-    private String deptText;// 部门经理意见
-    private String hrText;    // HR意见
-    private String zjlText;// 总经理意见
+    /**
+     * 归属用户
+     **/
+    private SysUser user;
+    /**
+     * 归属部门
+     **/
+    private SysDept dept;
+    /**
+     * /岗位
+     **/
+    private String post;
+    /**
+     * 请假原因
+     **/
+    private String content;
+    /**
+     * 请假开始日期
+     **/
+    private Date startTime;
+    /**
+     * 请假结束日期
+     **/
+    private Date endTime;
+    /**
+     * 请假类型
+     **/
+    private String leaveType;
+    /**
+     * 执行时间
+     **/
+    private String exeDate;
+    /**
+     * 部门经理意见
+     **/
+    private String deptText;
+    /**
+     * HR意见
+     **/
+    private String hrText;
+    /**
+     * 总经理意见
+     **/
+    private String zjlText;
 
     public SysUser getUser() {
         return user;

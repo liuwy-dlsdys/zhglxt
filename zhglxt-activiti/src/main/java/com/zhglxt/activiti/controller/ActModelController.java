@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.zhglxt.activiti.entity.ModelEntityDto;
 import com.zhglxt.activiti.service.ActModelService;
 import com.zhglxt.common.annotation.Log;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.page.TableDataInfo;
@@ -22,12 +21,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -77,9 +71,6 @@ public class ActModelController extends BaseController {
     @RequestMapping("/createModle")
     @ResponseBody
     public AjaxResult createModle(HttpServletRequest request) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
         actModelService.createModle(paramMap);
         return AjaxResult.success();
@@ -105,9 +96,6 @@ public class ActModelController extends BaseController {
     @PutMapping(value = "/{modelId}/save")
     @ResponseBody
     public AjaxResult save(@PathVariable String modelId, String name, String description, String json_xml, String svg_xml){
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         Model model = actModelService.selectModelById(modelId);
         actModelService.update(model,name,description,json_xml, svg_xml);
         return AjaxResult.success();
@@ -125,9 +113,6 @@ public class ActModelController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         return toAjax(actModelService.deleteModelIds(ids));
     }
 
@@ -177,9 +162,6 @@ public class ActModelController extends BaseController {
     @RequestMapping("/deployModel")
     @ResponseBody
     public AjaxResult deployModel(HttpServletRequest request) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         Map<String, Object> paramMap = WebUtil.paramsToMap(request.getParameterMap());
         return actModelService.deployModel(paramMap);
     }

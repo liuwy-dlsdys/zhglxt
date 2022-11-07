@@ -1,7 +1,6 @@
 package com.zhglxt.web.controller.system;
 
 import com.zhglxt.common.annotation.Log;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
@@ -75,9 +74,6 @@ public class SysDictTypeController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysDictType dict) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         if (UserConstants.DICT_TYPE_NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict))) {
             return error("新增字典'" + dict.getDictName() + "'失败，字典类型已存在");
         }
@@ -103,9 +99,6 @@ public class SysDictTypeController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysDictType dict) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         if (UserConstants.DICT_TYPE_NOT_UNIQUE.equals(dictTypeService.checkDictTypeUnique(dict))) {
             return error("修改字典'" + dict.getDictName() + "'失败，字典类型已存在");
         }
@@ -118,9 +111,6 @@ public class SysDictTypeController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         dictTypeService.deleteDictTypeByIds(ids);
         return success();
     }

@@ -1,7 +1,6 @@
 package com.zhglxt.framework.shiro.session;
 
 import com.zhglxt.common.util.IpUtils;
-import com.zhglxt.common.util.ServletUtils;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.SessionContext;
@@ -25,7 +24,7 @@ public class OnlineSessionFactory implements SessionFactory {
             WebSessionContext sessionContext = (WebSessionContext) initData;
             HttpServletRequest request = (HttpServletRequest) sessionContext.getServletRequest();
             if (request != null) {
-                UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
+                UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
                 // 获取客户端操作系统
                 String os = userAgent.getOperatingSystem().getName();
                 // 获取客户端浏览器

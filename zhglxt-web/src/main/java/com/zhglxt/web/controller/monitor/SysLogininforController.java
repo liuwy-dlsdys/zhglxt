@@ -1,7 +1,6 @@
 package com.zhglxt.web.controller.monitor;
 
 import com.zhglxt.common.annotation.Log;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.page.TableDataInfo;
@@ -66,9 +65,6 @@ public class SysLogininforController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         return toAjax(logininforService.deleteLogininforByIds(ids));
     }
 
@@ -77,9 +73,6 @@ public class SysLogininforController extends BaseController {
     @PostMapping("/clean")
     @ResponseBody
     public AjaxResult clean() {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         logininforService.cleanLogininfor();
         return success();
     }

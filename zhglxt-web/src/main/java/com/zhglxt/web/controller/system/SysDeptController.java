@@ -71,9 +71,6 @@ public class SysDeptController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysDept dept) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         if (UserConstants.DEPT_NAME_NOT_UNIQUE.equals(deptService.checkDeptNameUnique(dept))) {
             return error("新增部门'" + dept.getDeptName() + "'失败，部门名称已存在");
         }
@@ -104,10 +101,6 @@ public class SysDeptController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysDept dept) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
-
         String deptId = dept.getDeptId();
         deptService.checkDeptDataScope(deptId);
 
@@ -130,9 +123,6 @@ public class SysDeptController extends BaseController {
     @GetMapping("/remove/{deptId}")
     @ResponseBody
     public AjaxResult remove(@PathVariable("deptId") String deptId) {
-        if (GlobalConfig.isDemoEnabled()) {
-            return error("演示模式不允许本操作");
-        }
         if (deptService.selectDeptCount(deptId) > 0) {
             return AjaxResult.warn("存在下级部门,不允许删除");
         }
