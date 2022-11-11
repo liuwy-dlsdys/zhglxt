@@ -2,7 +2,7 @@ package com.zhglxt.activiti.util;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Maps;
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 
 import java.util.Map;

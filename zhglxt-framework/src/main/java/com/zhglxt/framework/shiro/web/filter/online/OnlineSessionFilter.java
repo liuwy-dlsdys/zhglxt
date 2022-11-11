@@ -5,7 +5,8 @@ import com.zhglxt.common.constant.ShiroConstants;
 import com.zhglxt.common.core.entity.sys.SysRole;
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.enums.OnlineStatus;
-import com.zhglxt.common.util.ShiroUtils;
+import com.zhglxt.common.utils.ShiroUtils;
+import com.zhglxt.common.utils.StringUtils;
 import com.zhglxt.framework.shiro.session.OnlineSession;
 import com.zhglxt.framework.shiro.session.OnlineSessionDAO;
 import org.apache.shiro.session.Session;
@@ -22,10 +23,11 @@ import java.util.List;
 
 /**
  * 自定义访问控制
- *
+ * 
  * @author ruoyi
  */
-public class OnlineSessionFilter extends AccessControlFilter {
+public class OnlineSessionFilter extends AccessControlFilter
+{
     /**
      * 强制退出后重定向的地址
      */
@@ -39,26 +41,31 @@ public class OnlineSessionFilter extends AccessControlFilter {
      */
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
-            throws Exception {
+            throws Exception
+    {
         Subject subject = getSubject(request, response);
-        if (subject == null || subject.getSession() == null) {
+        if (subject == null || subject.getSession() == null)
+        {
             return true;
         }
         Session session = onlineSessionDAO.readSession(subject.getSession().getId());
-        if (session != null && session instanceof OnlineSession) {
+        if (session != null && session instanceof OnlineSession)
+        {
             OnlineSession onlineSession = (OnlineSession) session;
             request.setAttribute(ShiroConstants.ONLINE_SESSION, onlineSession);
             // 把user对象设置进去
-            boolean isGuest = onlineSession.getUserId() == null || onlineSession.getUserId().equals("0");
-            if (isGuest == true) {
+            boolean isGuest = StringUtils.isEmpty(onlineSession.getUserId()) || "0".equals(onlineSession.getUserId());
+            if (isGuest == true)
+            {
                 SysUser user = ShiroUtils.getSysUser();
-                if (user != null) {
+                if (user != null)
+                {
                     onlineSession.setUserId(user.getUserId());
                     onlineSession.setLoginName(user.getLoginName());
-                    onlineSession.setAvatar(user.getAvatar());
+					onlineSession.setAvatar(user.getAvatar());
                     onlineSession.setDeptName(user.getDept().getDeptName());
 
-                    List<String> lists = new ArrayList<String>();
+                    List<String> lists = new ArrayList<>();
                     //获取当前用户的所有角色
                     List<SysRole> roles = user.getRoles();
                     if (roles.size() > 0) {
@@ -92,7 +99,8 @@ public class OnlineSessionFilter extends AccessControlFilter {
                 }
             }
 
-            if (onlineSession.getStatus() == OnlineStatus.off_line) {
+            if (onlineSession.getStatus() == OnlineStatus.off_line)
+            {
                 return false;
             }
         }
@@ -103,22 +111,28 @@ public class OnlineSessionFilter extends AccessControlFilter {
      * 表示当访问拒绝时是否已经处理了；如果返回true表示需要继续处理；如果返回false表示该拦截器实例已经处理了，将直接返回即可。
      */
     @Override
-    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
+    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception
+    {
         Subject subject = getSubject(request, response);
-        if (subject != null) {
+        if (subject != null)
+        {
             subject.logout();
         }
         saveRequestAndRedirectToLogin(request, response);
         return false;
     }
 
-    // 跳转到登录页
+    /**
+     * 跳转到登录页
+     */
     @Override
-    protected void redirectToLogin(ServletRequest request, ServletResponse response) throws IOException {
+    protected void redirectToLogin(ServletRequest request, ServletResponse response) throws IOException
+    {
         WebUtils.issueRedirect(request, response, loginUrl);
     }
 
-    public void setOnlineSessionDAO(OnlineSessionDAO onlineSessionDAO) {
+    public void setOnlineSessionDAO(OnlineSessionDAO onlineSessionDAO)
+    {
         this.onlineSessionDAO = onlineSessionDAO;
     }
 }

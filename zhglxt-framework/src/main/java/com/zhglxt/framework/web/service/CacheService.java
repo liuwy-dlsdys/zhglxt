@@ -1,7 +1,7 @@
 package com.zhglxt.framework.web.service;
 
 import com.zhglxt.common.constant.Constants;
-import com.zhglxt.common.util.CacheUtils;
+import com.zhglxt.common.utils.CacheUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Service;
 

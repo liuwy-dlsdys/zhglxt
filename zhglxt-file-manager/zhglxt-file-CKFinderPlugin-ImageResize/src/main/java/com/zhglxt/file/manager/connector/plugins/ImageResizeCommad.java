@@ -82,7 +82,7 @@ public class ImageResizeCommad extends XMLCommand implements IEventHandler {
             return Constants.Errors.CKFINDER_CONNECTOR_ERROR_UNAUTHORIZED;
         }
 
-        if (this.fileName == null || this.fileName.equals("")) {
+        if (this.fileName == null || "".equals(this.fileName)) {
             return Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_NAME;
         }
 
@@ -150,7 +150,7 @@ public class ImageResizeCommad extends XMLCommand implements IEventHandler {
             String fileExt = FileUtils.getFileExtension(fileName);
             for (String size : SIZES) {
                 if (sizesFromReq.get(size) != null
-                        && sizesFromReq.get(size).equals("1")) {
+                        && "1".equals(sizesFromReq.get(size))) {
                     String thumbName = fileNameWithoutExt.concat("_").concat(size).concat(".").concat(fileExt);
                     File thumbFile = new File(configuration.getTypes().get(this.type).getPath().concat(this.currentFolder).concat(thumbName));
                     for (PluginParam param : pluginInfo.getParams()) {
@@ -208,7 +208,7 @@ public class ImageResizeCommad extends XMLCommand implements IEventHandler {
         String reqHeight = request.getParameter("height");
         this.wrongReqSizesParams = false;
         try {
-            if (reqWidth != null && !reqWidth.equals("")) {
+            if (reqWidth != null && !"".equals(reqWidth)) {
                 this.width = Integer.valueOf(reqWidth);
             } else {
                 this.width = null;
@@ -218,7 +218,7 @@ public class ImageResizeCommad extends XMLCommand implements IEventHandler {
             this.wrongReqSizesParams = true;
         }
         try {
-            if (reqHeight != null && !reqHeight.equals("")) {
+            if (reqHeight != null && !"".equals(reqHeight)) {
                 this.height = Integer.valueOf(reqHeight);
             } else {
                 this.height = null;

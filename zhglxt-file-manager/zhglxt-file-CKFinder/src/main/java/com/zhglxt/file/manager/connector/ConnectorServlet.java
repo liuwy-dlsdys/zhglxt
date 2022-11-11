@@ -107,7 +107,7 @@ public class ConnectorServlet extends HttpServlet {
         }
         try {
 
-            if (command == null || command.equals("")) {
+            if (command == null || "".equals(command)) {
                 throw new ConnectorException(
                         Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_COMMAND, false);
             }
@@ -205,7 +205,7 @@ public class ConnectorServlet extends HttpServlet {
     private void checkPostRequest(final HttpServletRequest request)
             throws ConnectorException {
         if (request.getParameter("CKFinderCommand") == null
-                || !(request.getParameter("CKFinderCommand").equals("true"))) {
+                || !("true".equals(request.getParameter("CKFinderCommand")))) {
             throw new ConnectorException(
                     Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_REQUEST, true);
         }
@@ -228,7 +228,7 @@ public class ConnectorServlet extends HttpServlet {
                              final String currentCommand)
             throws ServletException {
         try {
-            if (currentCommand != null && !currentCommand.equals("")) {
+            if (currentCommand != null && !"".equals(currentCommand)) {
                 Command command = CommandHandlerEnum.valueOf(
                         currentCommand.toUpperCase()).getCommand();
                 if (command instanceof XMLCommand) {
@@ -363,7 +363,7 @@ public class ConnectorServlet extends HttpServlet {
         /**
          * {@code Set} holding enumeration values,
          */
-        private static final HashSet<String> enumValues = new HashSet<String>();
+        private static final HashSet<String> ENUM_VALUES = new HashSet<String>();
 
         /**
          * Enum constructor to set command.
@@ -379,7 +379,7 @@ public class ConnectorServlet extends HttpServlet {
          */
         private static void setEnums() {
             for (CommandHandlerEnum enumValue : CommandHandlerEnum.values()) {
-                enumValues.add(enumValue.name());
+                ENUM_VALUES.add(enumValue.name());
             }
         }
 
@@ -390,10 +390,10 @@ public class ConnectorServlet extends HttpServlet {
          * @return {@code true} is command exists, {@code false} otherwise
          */
         public static boolean contains(String enumValue) {
-            if (enumValues.isEmpty()) {
+            if (ENUM_VALUES.isEmpty()) {
                 setEnums();
             }
-            for (String value : enumValues) {
+            for (String value : ENUM_VALUES) {
                 if (value.equals(enumValue)) {
                     return true;
                 }

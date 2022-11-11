@@ -1,6 +1,6 @@
 package com.zhglxt.common.xss;
 
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

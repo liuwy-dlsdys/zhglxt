@@ -59,7 +59,7 @@ public class DeleteFolderCommand extends XMLCommand implements IPostCommand {
                 AccessControlUtil.CKFINDER_CONNECTOR_ACL_FOLDER_DELETE)) {
             return Constants.Errors.CKFINDER_CONNECTOR_ERROR_UNAUTHORIZED;
         }
-        if (this.currentFolder.equals("/")) {
+        if ("/".equals(this.currentFolder)) {
             return Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_REQUEST;
         }
 

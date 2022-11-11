@@ -1,7 +1,7 @@
 package com.zhglxt.common.core.page;
 
 import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.util.ServletUtils;
+import com.zhglxt.common.utils.ServletUtils;
 
 /**
  * 表格数据处理

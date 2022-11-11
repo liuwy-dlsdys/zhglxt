@@ -77,7 +77,7 @@ public abstract class XMLCommand extends Command {
             throw new ConnectorException(this.exception);
         }
         Element rootElement = creator.getDocument().createElement("Connector");
-        if (this.type != null && !type.equals("")) {
+        if (this.type != null && !"".equals(type)) {
             rootElement.setAttribute("resourceType", this.type);
         }
         if (mustAddCurrentFolderNode()) {

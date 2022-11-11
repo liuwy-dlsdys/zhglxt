@@ -3,7 +3,7 @@ package com.zhglxt.framework.interceptor;
 import com.zhglxt.common.annotation.RepeatSubmit;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.json.JSON;
-import com.zhglxt.common.util.ServletUtils;
+import com.zhglxt.common.utils.ServletUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;

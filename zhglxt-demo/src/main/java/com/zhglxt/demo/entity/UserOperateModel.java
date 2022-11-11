@@ -3,7 +3,7 @@ package com.zhglxt.demo.entity;
 import com.zhglxt.common.annotation.Excel;
 import com.zhglxt.common.annotation.Excel.Type;
 import com.zhglxt.common.core.entity.BaseEntity;
-import com.zhglxt.common.util.DateUtils;
+import com.zhglxt.common.utils.DateUtils;
 
 import java.util.Date;
 /**

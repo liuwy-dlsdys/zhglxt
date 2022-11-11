@@ -1,6 +1,6 @@
 package com.zhglxt.common.core.text;
 
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 
 /**
  * 字符串格式化

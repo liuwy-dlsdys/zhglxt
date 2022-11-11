@@ -195,7 +195,7 @@ public class InitCommand extends XMLCommand {
         rootElement.appendChild(element);
 
         Set<String> types;
-        if (super.type != null && !super.type.equals("")) {
+        if (super.type != null && !"".equals(super.type)) {
             types = new LinkedHashSet<String>();
             types.add(super.type);
         } else {

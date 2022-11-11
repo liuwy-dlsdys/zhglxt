@@ -1,14 +1,12 @@
 package com.zhglxt.oa.service.impl;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.zhglxt.common.core.entity.Ztree;
 import com.zhglxt.common.core.entity.sys.SysDept;
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.util.ShiroUtils;
-import com.zhglxt.common.util.StringUtils;
-import com.zhglxt.common.util.uuid.UUID;
+import com.zhglxt.common.utils.ShiroUtils;
+import com.zhglxt.common.utils.StringUtils;
+import com.zhglxt.common.utils.uuid.UUID;
 import com.zhglxt.oa.entity.Notify;
 import com.zhglxt.oa.entity.NotifyRecord;
 import com.zhglxt.oa.mapper.NotifyMapper;
@@ -22,9 +20,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 /**
  * @Description 通知通告业务实现层
  * @Author liuwy
@@ -61,11 +62,11 @@ public class NotifyServiceImpl implements INotifyService {
         int i = notifyMapper.insertNotify(notify);
 
         //发布状态才保存到通知记录表
-        if (notify.getStatus().equals("1")) {
+        if ("1".equals(notify.getStatus())) {
             // 更新发送接受人记录
             ntifyRecordMapper.deleteByNotifyId(Convert.toStrArray(notify.getId()));
             //获取接收人列表
-            List<NotifyRecord> list = Lists.newArrayList();
+            List<NotifyRecord> list = new ArrayList<>();
             List<String> userIds = notify.getUserIds();
 
             List<SysUser> sysUsers = sysUserMapper.selectUserList(new SysUser());
@@ -101,7 +102,7 @@ public class NotifyServiceImpl implements INotifyService {
             notifyRecord.setNotifyId(notifyEnitty.getId());
             List<NotifyRecord> ntifyRecordList = ntifyRecordMapper.selectByNotify(notifyRecord);
             if (!CollectionUtils.isEmpty(ntifyRecordList)) {
-                List<String> userIds = Lists.newArrayList();
+                List<String> userIds = new ArrayList<>();
                 ntifyRecordList.stream().forEach(i -> {
                     userIds.add(i.getUserId());
                 });
@@ -119,12 +120,12 @@ public class NotifyServiceImpl implements INotifyService {
         notify.setUpdateBy(ShiroUtils.getLoginName());
 
         //发布状态才保存到通知记录表
-        if (notify.getStatus().equals("1")) {
+        if ("1".equals(notify.getStatus())) {
             //先删除原有的通告记录数据
             ntifyRecordMapper.deleteByNotifyId(Convert.toStrArray(notify.getId()));
 
             //再重新插入接收人
-            List<NotifyRecord> list = Lists.newArrayList();
+            List<NotifyRecord> list = new ArrayList<>();
             List<String> userIds = notify.getUserIds();
 
             List<SysUser> sysUsers = sysUserMapper.selectUserList(new SysUser());
@@ -167,7 +168,7 @@ public class NotifyServiceImpl implements INotifyService {
         notifyRecord.setUserId(userId);
         List<NotifyRecord> notifyRecords = ntifyRecordMapper.selectByNotify(notifyRecord);
         if (!CollectionUtils.isEmpty(notifyRecords)) {
-            if (notifyRecords.get(0).getReadFlag().equals("0")) {
+            if ("0".equals(notifyRecords.get(0).getReadFlag())) {
                 ntifyRecordMapper.updateNotifyRecordByNotifyIdAndUserId(notifyId, userId);
             }
         }
@@ -180,7 +181,7 @@ public class NotifyServiceImpl implements INotifyService {
 
         //新增页面 默认无选中用户
         if(userIds.size()==1){
-            if(userIds.get(0).equals("undefined")){
+            if("undefined".equals(userIds.get(0))){
                 userIds.clear();
             }
         }
@@ -211,14 +212,14 @@ public class NotifyServiceImpl implements INotifyService {
     private List<String> editDeptUserTreeView(List<String> userIds) {
         //筛选出需要勾选的用户部门数据
         List<SysUser> sysUsers = sysUserMapper.selectUserListByIdList(userIds);
-        List<String> deptIds= Lists.newArrayList();
+        List<String> deptIds= new ArrayList<>();
         if(!CollectionUtils.isEmpty(sysUsers)){
             //获取用户对应的部门id
             deptIds = sysUsers.stream().map(SysUser::getDeptId).collect(Collectors.toList()).stream().distinct().collect(Collectors.toList());
         }
 
         //所有需要选中的部门
-        List<String> three = Lists.newArrayList();
+        List<String> three = new ArrayList<>();
 
         if(!CollectionUtils.isEmpty(deptIds)){
             three.addAll(deptIds);
@@ -259,7 +260,7 @@ public class NotifyServiceImpl implements INotifyService {
         //1、查询所有部门下的用户
         List<SysDeptUser> sysDeptUserList = deptMapper.selectDeptUser();
         //用户分组
-        Map<String, List<SysDeptUser>> sysDeptUserCollect = Maps.newHashMap();
+        Map<String, List<SysDeptUser>> sysDeptUserCollect = new HashMap<>();
         if(!CollectionUtils.isEmpty(sysDeptUserList)){
             //根据部门id进行用户分组
             sysDeptUserCollect = sysDeptUserList.stream().collect(Collectors.groupingBy(SysDeptUser::getDeptId));
@@ -269,7 +270,7 @@ public class NotifyServiceImpl implements INotifyService {
         List<SysDept> deptList = deptMapper.selectDeptAll();
 
         // 封装部门下的用户列表
-        List<SysDept> childrenDept = Lists.newArrayList();
+        List<SysDept> childrenDept = new ArrayList<>();
         for (SysDept dept:deptList) {
             //如果该部门中存在用户
             if(sysDeptUserCollect.containsKey(dept.getDeptId())){
@@ -301,7 +302,7 @@ public class NotifyServiceImpl implements INotifyService {
      * @return 树结构列表
      */
     public List<Ztree> initZtree(List<SysDept> depts,List<String> userIds) {
-        List<Ztree> ztrees = Lists.newArrayList();
+        List<Ztree> ztrees = new ArrayList<>();
         boolean isCheck = StringUtils.isNotNull(userIds);
         for (SysDept dept : depts) {
             Ztree ztree = new Ztree();

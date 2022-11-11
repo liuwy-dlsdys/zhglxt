@@ -84,7 +84,7 @@ public class DeleteFilesCommand extends XMLCommand implements IPostCommand {
                 return Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_REQUEST;
             }
 
-            if (fileItem.getFolder() == null || fileItem.getFolder().equals("")
+            if (fileItem.getFolder() == null || "".equals(fileItem.getFolder())
                     || Pattern.compile(Constants.INVALID_PATH_REGEX).matcher(
                     fileItem.getFolder()).find()) {
                 return Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_REQUEST;

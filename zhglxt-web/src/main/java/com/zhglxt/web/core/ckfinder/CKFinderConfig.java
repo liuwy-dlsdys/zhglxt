@@ -3,8 +3,8 @@ package com.zhglxt.web.core.ckfinder;
 
 import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.entity.sys.SysUser;
-import com.zhglxt.common.util.ShiroUtils;
-import com.zhglxt.common.util.file.FileUtils;
+import com.zhglxt.common.utils.ShiroUtils;
+import com.zhglxt.common.utils.file.FileUtils;
 import com.zhglxt.file.manager.connector.configuration.Configuration;
 import com.zhglxt.file.manager.connector.configuration.Events;
 import com.zhglxt.file.manager.connector.errors.ConnectorException;
@@ -28,6 +28,13 @@ import java.util.Scanner;
 /**
  * CKFinder配置
  * 注意：在生产服务器上，建议使用更细粒度的身份验证方法，checkAuthentication方法是从Configuration类中重写此方法，以确保请求来自经过身份验证的用户。
+ *
+ * 集成CKFinder插件，主要有以下几个注意点：
+ * 1、resources下添加 ckfinder.xml
+ * 2、ShiroConfig.java 添加过滤路径
+ * 3、ResourcesConfig.java  addResourceHandlers添加路径转发
+ * 4、OnlineSessionFilter.java 设置文件权限
+ *
  * @author liuwy
  * @date 2019/11/29
  */
@@ -59,7 +66,7 @@ public class CKFinderConfig extends Configuration {
             for (int i = 0; i < nodeList.getLength(); ++i) {
                 Node childNode = nodeList.item(i);
                 //是否启用CKFinder。修改为true，表示开启ckfinder功能。默认是false
-                if (childNode.getNodeName().equals("enabled")) {
+                if (CKFinderConstant.NODE_ENABLED.equals(childNode.getNodeName())) {
                     if (servletConf.getInitParameter("enabled") == null) {
                         this.enabled = Boolean.valueOf(childNode.getTextContent().trim()).booleanValue();
                     } else {
@@ -68,7 +75,7 @@ public class CKFinderConfig extends Configuration {
                 }
                 /* baseDir和baseURL都应该指向服务器上相同的位置*/
                 //提供服务器(物理机器)上目录的绝对路径
-                if (childNode.getNodeName().equals("baseDir")) {
+                if (CKFinderConstant.NODE_BASE_DIR.equals(childNode.getNodeName())) {
                     if (servletConf.getInitParameter("baseDir") == null) {
                         this.baseDir = childNode.getTextContent().trim();
                     } else {
@@ -78,7 +85,7 @@ public class CKFinderConfig extends Configuration {
                     this.baseDir = PathUtils.addSlashToEnd(this.baseDir);
                 }
                 //提供用户文件目录的完整URL或相对于域的路径
-                if (childNode.getNodeName().equals("baseURL")) {
+                if (CKFinderConstant.NODE_BASE_URL.equals(childNode.getNodeName())) {
                     if (servletConf.getInitParameter("baseURL") == null) {
                         this.baseURL = childNode.getTextContent().trim();
                     } else {
@@ -88,16 +95,16 @@ public class CKFinderConfig extends Configuration {
                     this.baseURL = PathUtils.addSlashToEnd(this.baseURL);
                 }
 
-                if (childNode.getNodeName().equals("licenseName")) {
+                if (CKFinderConstant.NODE_LICENSE_NAME.equals(childNode.getNodeName())) {
                     this.licenseName = childNode.getTextContent().trim();
                 }
-                if (childNode.getNodeName().equals("licenseKey")) {
+                if (CKFinderConstant.NODE_LICENSE_KEY.equals(childNode.getNodeName())) {
                     this.licenseKey = childNode.getTextContent().trim();
                 }
 
                 String value;
                 //设置上传图像的最大大小。如果上传的图像更大，它就会更大。按比例缩小。设置为0则禁用此功能
-                if (childNode.getNodeName().equals("imgWidth")) {
+                if (CKFinderConstant.NODE_IMG_WIDTH.equals(childNode.getNodeName())) {
                     value = childNode.getTextContent().trim();
                     value = value.replaceAll("//D", "");
 
@@ -109,7 +116,7 @@ public class CKFinderConfig extends Configuration {
                 }
 
                 //设置上传图像的质量
-                if (childNode.getNodeName().equals("imgQuality")) {
+                if (CKFinderConstant.NODE_IMG_QUALITY.equals(childNode.getNodeName())) {
                     value = childNode.getTextContent().trim();
                     value = value.replaceAll("//D", "");
                     method = clazz.getDeclaredMethod("adjustQuality", new Class[]{String.class});
@@ -118,7 +125,7 @@ public class CKFinderConfig extends Configuration {
                 }
 
                 //设置上传图像的高度
-                if (childNode.getNodeName().equals("imgHeight")) {
+                if (CKFinderConstant.NODE_IMG_HEIGHT.equals(childNode.getNodeName())) {
                     value = childNode.getTextContent().trim();
                     value = value.replaceAll("//D", "");
                     try {
@@ -129,28 +136,28 @@ public class CKFinderConfig extends Configuration {
                 }
 
                 //设置缓存目录
-                if (childNode.getNodeName().equals("thumbs")) {
+                if (CKFinderConstant.NODE_THUMBS.equals(childNode.getNodeName())) {
                     method = clazz.getDeclaredMethod("setThumbs", new Class[]{NodeList.class});
                     method.setAccessible(true);
                     method.invoke(this, childNode.getChildNodes());
                 }
 
                 //设置访问权限控制(已使用session进行文件控制权限控制：请查看OnlineSessionFilter.java类)
-                if (childNode.getNodeName().equals("accessControls")) {
+                if (CKFinderConstant.NODE_ACCESS_CONTROLS.equals(childNode.getNodeName())) {
                     method = clazz.getDeclaredMethod("setACLs", new Class[]{NodeList.class});
                     method.setAccessible(true);
                     method.invoke(this, childNode.getChildNodes());
                 }
 
                 //设置不允许创建以"xxx"字符开头的文件夹
-                if (childNode.getNodeName().equals("hideFolders")) {
+                if (CKFinderConstant.NODE_HIDE_FOLDERS.equals(childNode.getNodeName())) {
                     method = clazz.getDeclaredMethod("setHiddenFolders", new Class[]{NodeList.class});
                     method.setAccessible(true);
                     method.invoke(this, childNode.getChildNodes());
                 }
 
                 //设置 文件 不显示/上传到 CKFinder
-                if (childNode.getNodeName().equals("hideFiles")) {
+                if (CKFinderConstant.NODE_HIDE_FILES.equals(childNode.getNodeName())) {
                     method = clazz.getDeclaredMethod("setHiddenFiles", new Class[]{NodeList.class});
                     method.setAccessible(true);
                     method.invoke(this, childNode.getChildNodes());
@@ -158,56 +165,56 @@ public class CKFinderConfig extends Configuration {
 
                 //如果启用了CheckDoubleExtension，则.后文件名的每个部分都进行检查，不仅仅是最后一部分。
                 // 比如，上传foo.php.rar就是拒绝的，因为“php”在拒绝的扩展列表中。
-                if (childNode.getNodeName().equals("checkDoubleExtension")) {
+                if (CKFinderConstant.NODE_CHECK_DOUBLE_EXTENSION.equals(childNode.getNodeName())) {
                     this.doubleExtensions = Boolean.valueOf(childNode.getTextContent().trim()).booleanValue();
                 }
 
                 //增加IIS web服务器上的安全性。
                 //如果启用，CKFinder将不允许创建文件夹和上传名称包含特殊字符的文件
-                if (childNode.getNodeName().equals("disallowUnsafeCharacters")) {
+                if (CKFinderConstant.NODE_DISALLOW_UNSAFE_CHARACTERS.equals(childNode.getNodeName())) {
                     this.disallowUnsafeCharacters = Boolean.valueOf(childNode.getTextContent().trim()).booleanValue();
                 }
 
                 //强制为文件和文件夹使用ASCII名称。如果启用，字符与diactric标记将自动转换为ASCII字母。
-                if (childNode.getNodeName().equals("forceASCII")) {
+                if (CKFinderConstant.NODE_FORCE_ASCII.equals(childNode.getNodeName())) {
                     this.forceASCII = Boolean.valueOf(childNode.getTextContent().trim()).booleanValue();
                 }
 
                 //是否检查缩放后文件大小。否则，会在上传后立即检查。
-                if (childNode.getNodeName().equals("checkSizeAfterScaling")) {
+                if (CKFinderConstant.NODE_CHECK_SIZE_AFTER_SCALING.equals(childNode.getNodeName())) {
                     this.checkSizeAfterScaling = Boolean.valueOf(childNode.getTextContent().trim()).booleanValue();
                 }
 
                 //为了安全起见,对于具有以下扩展名的文件，在第一个Kb的数据中允许使用HTML
                 Scanner sc;
-                if (childNode.getNodeName().equals("htmlExtensions")) {
+                if (CKFinderConstant.NODE_HTML_EXTENSIONS.equals(childNode.getNodeName())) {
                     value = childNode.getTextContent();
                     sc = (new Scanner(value)).useDelimiter(",");
                     while (sc.hasNext()) {
                         String val = sc.next();
-                        if (val != null && !val.equals("")) {
+                        if (val != null && !"".equals(val)) {
                             this.htmlExtensions.add(val.trim().toLowerCase());
                         }
                     }
                 }
 
                 //对图像文件执行其他检查.如果设置为true，则验证图像大小
-                if (childNode.getNodeName().equals("secureImageUploads")) {
+                if (CKFinderConstant.NODE_SECURE_IMAGE_UPLOADS.equals(childNode.getNodeName())) {
                     this.secureImageUploads = Boolean.valueOf(childNode.getTextContent().trim()).booleanValue();
                 }
 
                 //设置编码
-                if (childNode.getNodeName().equals("uriEncoding")) {
+                if (CKFinderConstant.NODE_URI_ENCODING.equals(childNode.getNodeName())) {
                     this.uriEncoding = childNode.getTextContent().trim();
                 }
 
                 //设置CKFinder检索时必须使用的会话变量名. 当前用户的“role”,可以在“accessControls”中使用设置
-                if (childNode.getNodeName().equals("userRoleSessionVar")) {
+                if (CKFinderConstant.NODE_USER_ROLE_SESSION_VAR.equals(childNode.getNodeName())) {
                     this.userRoleSessionVar = childNode.getTextContent().trim();
                 }
 
                 //默认的资源类型
-                if (childNode.getNodeName().equals("defaultResourceTypes")) {
+                if (CKFinderConstant.NODE_DEFAULT_RESOURCE_TYPES.equals(childNode.getNodeName())) {
                     value = childNode.getTextContent().trim();
                     sc = (new Scanner(value)).useDelimiter(",");
                     while (sc.hasNext()) {
@@ -216,14 +223,14 @@ public class CKFinderConfig extends Configuration {
                 }
 
                 //插件
-                if (childNode.getNodeName().equals("plugins")) {
+                if (CKFinderConstant.NODE_PLUGINS.equals(childNode.getNodeName())) {
                     method = clazz.getDeclaredMethod("setPlugins", new Class[]{Node.class});
                     method.setAccessible(true);
                     method.invoke(this, childNode);
 
                 }
                 //基本路径构建器的实现
-                if (childNode.getNodeName().equals("basePathBuilderImpl")) {
+                if (CKFinderConstant.NODE_BASE_PATH_BUILDER_IMPL.equals(childNode.getNodeName())) {
                     method = clazz.getDeclaredMethod("setBasePathImpl", new Class[]{String.class});
                     method.setAccessible(true);
                     method.invoke(this, childNode.getTextContent().trim());

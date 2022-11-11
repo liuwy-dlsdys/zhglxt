@@ -1,6 +1,6 @@
 package com.zhglxt.common.xss;
 
-import com.zhglxt.common.util.html.EscapeUtil;
+import com.zhglxt.common.utils.html.EscapeUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;

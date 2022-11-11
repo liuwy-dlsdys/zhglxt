@@ -40,10 +40,10 @@ public class CKFinderSetupCKEditor extends TagSupport {
 
     @Override
     public int doStartTag() throws JspException {
-        if (imageType == null || imageType.equals("")) {
+        if (imageType == null || "".equals(imageType)) {
             imageType = DEFAULT_IMAGE_TYPE;
         }
-        if (flashType == null || flashType.equals("")) {
+        if (flashType == null || "".equals(flashType)) {
             flashType = DEFAULT_FLASH_TYPE;
         }
         Map<String, Map<String, String>> attr = new HashMap<String, Map<String, String>>();
@@ -55,7 +55,7 @@ public class CKFinderSetupCKEditor extends TagSupport {
         params.put("filebrowserFlashBrowseUrl", buildBrowseUrl(flashType));
         params.put("filebrowserFlashUploadUrl", buildUploadUrl(flashType));
 
-        if (editor == null || editor.equals("")) {
+        if (editor == null || "".equals(editor)) {
             attr.put("*", params);
         } else {
             attr.put(editor, params);

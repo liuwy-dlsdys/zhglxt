@@ -62,7 +62,7 @@ public class WatermarkCommand implements IEventHandler {
     private BufferedImage getWatermakImage(final WatermarkSettings settings) throws IOException {
         final String source = settings.getSource();
         final BufferedImage watermark;
-        if (source == null || source.equals("")) {
+        if (source == null || "".equals(source)) {
             watermark = ImageIO.read(getClass().getResourceAsStream(DEFAULT_WATERMARK));
         } else {
             watermark = ImageIO.read(new File(source));

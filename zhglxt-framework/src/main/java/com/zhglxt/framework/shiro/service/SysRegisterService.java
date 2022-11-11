@@ -4,7 +4,7 @@ import com.zhglxt.common.constant.Constants;
 import com.zhglxt.common.constant.ShiroConstants;
 import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.entity.sys.SysUser;
-import com.zhglxt.common.util.*;
+import com.zhglxt.common.utils.*;
 import com.zhglxt.framework.manager.AsyncManager;
 import com.zhglxt.framework.manager.factory.AsyncFactory;
 import com.zhglxt.system.service.ISysUserService;
@@ -30,11 +30,6 @@ public class SysRegisterService {
     public String register(SysUser user) {
         String msg = "", loginName = user.getLoginName(), password = user.getPassword(),idCard=user.getIdCard();
 
-        if(!StringUtils.isEmpty(idCard)){
-            if(!"".equals(IDCardUtils.IDCardValidate(idCard))){
-                msg = IDCardUtils.IDCardValidate(idCard);
-            }
-        }
         if (ShiroConstants.CAPTCHA_ERROR.equals(ServletUtils.getRequest().getAttribute(ShiroConstants.CURRENT_CAPTCHA))) {
             msg = "验证码错误";
         } else if (StringUtils.isEmpty(loginName)) {
@@ -49,6 +44,10 @@ public class SysRegisterService {
             msg = "账户长度必须在2到20个字符之间";
         } else if (UserConstants.USER_NAME_NOT_UNIQUE.equals(userService.checkLoginNameUnique(user))) {
             msg = "保存用户'" + loginName + "'失败，注册账号已存在";
+        }else if(!StringUtils.isEmpty(idCard)){
+            if(!"".equals(IDCardUtils.IDCardValidate(idCard))){
+                msg = IDCardUtils.IDCardValidate(idCard);
+            }
         } else {
             user.setSalt(ShiroUtils.randomSalt());
             user.setPassword(passwordService.encryptPassword(loginName, password, user.getSalt()));

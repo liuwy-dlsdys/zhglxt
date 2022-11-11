@@ -1,13 +1,12 @@
 package com.zhglxt.web.controller.oa;
 
 import com.zhglxt.common.annotation.Log;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.entity.Ztree;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.enums.BusinessType;
-import com.zhglxt.common.util.ShiroUtils;
+import com.zhglxt.common.utils.ShiroUtils;
 import com.zhglxt.oa.entity.Notify;
 import com.zhglxt.oa.service.INotifyService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

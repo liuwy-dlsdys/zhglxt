@@ -7,7 +7,7 @@ import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.enums.BusinessType;
 import com.zhglxt.common.enums.OnlineStatus;
-import com.zhglxt.common.util.ShiroUtils;
+import com.zhglxt.common.utils.ShiroUtils;
 import com.zhglxt.framework.shiro.session.OnlineSession;
 import com.zhglxt.framework.shiro.session.OnlineSessionDAO;
 import com.zhglxt.system.entity.SysUserOnline;

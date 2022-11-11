@@ -1,6 +1,6 @@
 package com.zhglxt.common.annotation;
 
-import com.zhglxt.common.util.poi.ExcelHandlerAdapter;
+import com.zhglxt.common.utils.poi.ExcelHandlerAdapter;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 

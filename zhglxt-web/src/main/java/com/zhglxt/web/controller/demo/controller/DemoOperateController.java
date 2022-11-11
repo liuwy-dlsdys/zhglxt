@@ -1,6 +1,5 @@
 package com.zhglxt.web.controller.demo.controller;
 
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.page.PageDomain;
@@ -8,8 +7,8 @@ import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.core.page.TableSupport;
 import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.exception.ServiceException;
-import com.zhglxt.common.util.StringUtils;
-import com.zhglxt.common.util.poi.ExcelUtil;
+import com.zhglxt.common.utils.StringUtils;
+import com.zhglxt.common.utils.poi.ExcelUtil;
 import com.zhglxt.demo.entity.CustomerModel;
 import com.zhglxt.demo.entity.UserOperateModel;
 import org.springframework.stereotype.Controller;

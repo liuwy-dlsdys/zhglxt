@@ -1,6 +1,6 @@
 package com.zhglxt.framework.web.entity.server;
 
-import com.zhglxt.common.util.Arith;
+import com.zhglxt.common.utils.Arith;
 
 /**
  * 內存相关信息

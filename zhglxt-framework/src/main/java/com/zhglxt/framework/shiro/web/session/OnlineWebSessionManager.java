@@ -1,9 +1,9 @@
 package com.zhglxt.framework.shiro.web.session;
 
 import com.zhglxt.common.constant.ShiroConstants;
-import com.zhglxt.common.util.StringUtils;
-import com.zhglxt.common.util.bean.BeanUtils;
-import com.zhglxt.common.util.spring.SpringUtils;
+import com.zhglxt.common.utils.StringUtils;
+import com.zhglxt.common.utils.bean.BeanUtils;
+import com.zhglxt.common.utils.spring.SpringUtils;
 import com.zhglxt.framework.shiro.session.OnlineSession;
 import com.zhglxt.system.entity.SysUserOnline;
 import com.zhglxt.system.service.ISysUserOnlineService;

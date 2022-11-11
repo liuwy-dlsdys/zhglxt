@@ -42,16 +42,16 @@ public class FileUtils {
     private static final int MAX_BUFFER_SIZE = 1024;
     private static final Map<String, String> UTF8_LOWER_ACCENTS = new HashMap<String, String>();
     private static final Map<String, String> UTF8_UPPER_ACCENTS = new HashMap<String, String>();
-    private static final Map<String, String> encodingMap;
-    private static final Pattern drivePatt = Pattern.compile("^[a-zA-Z]{1}:[/\\\\]");
-    private static final Pattern invalidFileNamePatt = Pattern.compile(Constants.INVALID_FILE_NAME_REGEX);
-    private static final Logger fileUtilsLogger = Logger.getLogger(FileUtils.class.getName());
+    private static final Map<String, String> ENCODING_MAP;
+    private static final Pattern DRIVE_PATT = Pattern.compile("^[a-zA-Z]{1}:[/\\\\]");
+    private static final Pattern INVALID_FILE_NAME_PATT = Pattern.compile(Constants.INVALID_FILE_NAME_REGEX);
+    private static final Logger FILE_UTILS_LOGGER = Logger.getLogger(FileUtils.class.getName());
     private static final String WEB_INF_FOLDER_NAME = "/WEB-INF/";
     private static final String ROOT_FOLDER_NAME = "/ROOT";
     private static final String DOMAINS_FOLDER_NAME = "/domains/";
     private static final String DOCROOT_FOLDER_NAME = "/docroot";
     private static final String CKFINDER_FOLDER_NAME = "/ckfinder";
-    private static String fuClassPath;
+    private static String FU_CLASS_PATH;
 
     static {
         Map<String, String> mapHelper = new HashMap<String, String>();
@@ -61,7 +61,7 @@ public class FileUtils {
         mapHelper.put("%29", ")");
         mapHelper.put("%7E", "~");
         mapHelper.put("[+]", "%20");
-        encodingMap = Collections.unmodifiableMap(mapHelper);
+        ENCODING_MAP = Collections.unmodifiableMap(mapHelper);
     }
 
     /**
@@ -193,7 +193,7 @@ public class FileUtils {
                     in.close();
                 }
             } catch (IOException e) {
-                fileUtilsLogger.log(Level.SEVERE, "Error when closing stream.", e);
+                FILE_UTILS_LOGGER.log(Level.SEVERE, "Error when closing stream.", e);
             }
         }
     }
@@ -242,12 +242,12 @@ public class FileUtils {
      * @throws ConnectorException when {@code ServletContext} is {@code null} or full path to resource cannot be obtained.
      */
     public static String getFullPath(String path, boolean isAbsolute, boolean shouldExist) throws ConnectorException {
-        if (path != null && !path.equals("")) {
+        if (path != null && !"".equals(path)) {
             if (isAbsolute) {
                 if (path.startsWith("/")) {
                     //Check if this isn't Windows Path.
                     String temporary = PathUtils.removeSlashFromBeginning(path);
-                    if (isStartsWithPattern(drivePatt, temporary)) {
+                    if (isStartsWithPattern(DRIVE_PATT, temporary)) {
                         path = temporary;
                     }
                 }
@@ -258,7 +258,7 @@ public class FileUtils {
                 try {
                     java.net.URL url = sc.getResource(tempPath);
                     //For srevers like Tomcat 6-7 the getResource method returns JNDI URL.
-                    if (url != null && url.getProtocol() != null && url.getProtocol().equalsIgnoreCase("jndi")) {
+                    if (url != null && url.getProtocol() != null && "jndi".equalsIgnoreCase(url.getProtocol())) {
                         //Assume file is inside application context and try to get path.
                         //This method will fail if war is not exploaded.
                         String result = sc.getRealPath(tempPath.replace(sc.getContextPath(), ""));
@@ -291,10 +291,10 @@ public class FileUtils {
                     }
 
                     //For servers like Tomact 8 getResource method should return file:// url.
-                    if (path.startsWith("/") || isStartsWithPattern(drivePatt, path)) {
+                    if (path.startsWith("/") || isStartsWithPattern(DRIVE_PATT, path)) {
                         //This is most likely absolute path.
                         String absolutePath = checkAndReturnPath(shouldExist, path);
-                        if (absolutePath != null && !absolutePath.equals("")) {
+                        if (absolutePath != null && !"".equals(absolutePath)) {
                             return absolutePath;
                         } else {
                             //If absolute path has failed, give it one last try with relative path.
@@ -354,7 +354,7 @@ public class FileUtils {
      * @throws ConnectorException when {@code ServletContext} is {@code null} or path to resource cannot be obtained.
      */
     public static String calculatePathFromBaseUrl(String path) throws ConnectorException {
-        if (path != null && !path.equals("")) {
+        if (path != null && !"".equals(path)) {
             ServletContext sc = ServletContextFactory.getServletContext();
             String tempPath = PathUtils.addSlashToBeginning(path);
             String finalPath;
@@ -382,10 +382,10 @@ public class FileUtils {
 
                 String tcPath = getTomcatRootPath(sc, finalPath);
                 String gfPath = getGlassFishRootPath(sc, finalPath);
-                if (!tcPath.equals("")) {
+                if (!"".equals(tcPath)) {
                     tempPath = filterRelativePathChars(tempPath);
                     finalPath = tcPath + tempPath;
-                } else if (!gfPath.equals("")) {
+                } else if (!"".equals(gfPath)) {
                     tempPath = filterRelativePathChars(tempPath);
                     finalPath = gfPath + tempPath;
                 } else {
@@ -441,7 +441,7 @@ public class FileUtils {
         if (index >= 0) {
             path = PathUtils.addSlashToEnd(path);
             String key = path.substring(index + DOMAINS_FOLDER_NAME.length());
-            if (!key.equals("")) {
+            if (!"".equals(key)) {
                 if (key.indexOf("/") > 0) {
                     key = key.substring(0, key.indexOf("/"));
                 }
@@ -490,7 +490,7 @@ public class FileUtils {
      * @return absolute path to FileUtils.java file.
      */
     private static String getClassPath() throws ConnectorException {
-        if (fuClassPath == null || fuClassPath.equals("")) {
+        if (FU_CLASS_PATH == null || "".equals(FU_CLASS_PATH)) {
             java.net.URL url = FileUtils.class.getResource("FileUtils.class");
             String finalPath = null;
             String filePathPrefix = "file:/";
@@ -517,13 +517,13 @@ public class FileUtils {
             if (finalPath != null && finalPath.startsWith("/")) {
                 //Check if this isn't Windows Path.
                 String temporary = PathUtils.removeSlashFromBeginning(finalPath);
-                if (isStartsWithPattern(drivePatt, temporary)) {
+                if (isStartsWithPattern(DRIVE_PATT, temporary)) {
                     finalPath = temporary;
                 }
             }
-            fuClassPath = finalPath;
+            FU_CLASS_PATH = finalPath;
         }
-        return fuClassPath;
+        return FU_CLASS_PATH;
     }
 
     /**
@@ -547,7 +547,7 @@ public class FileUtils {
      */
     public static boolean checkIfDirIsHidden(final String dirName,
                                              final IConfiguration conf) {
-        if (dirName == null || dirName.equals("")) {
+        if (dirName == null || "".equals(dirName)) {
             return false;
         }
         String dir = PathUtils.removeSlashFromEnd(PathUtils.escape(dirName));
@@ -628,7 +628,7 @@ public class FileUtils {
      * @return true if file name is correct
      */
     public static boolean checkFileName(final String fileName) {
-        return !(fileName == null || fileName.equals("")
+        return !(fileName == null || "".equals(fileName)
                 || fileName.charAt(fileName.length() - 1) == '.'
                 || fileName.contains("..")
                 || checkFolderNamePattern(fileName));
@@ -641,7 +641,7 @@ public class FileUtils {
      * @return true if it does contain disallowed characters.
      */
     private static boolean checkFolderNamePattern(final String fileName) {
-        return invalidFileNamePatt.matcher(fileName).find();
+        return INVALID_FILE_NAME_PATT.matcher(fileName).find();
     }
 
     /**
@@ -809,10 +809,10 @@ public class FileUtils {
             String content = new String(buff);
             content = content.toLowerCase().trim();
 
-            if (Pattern.compile("<!DOCTYPE\\W+X?HTML.+",
-                    Pattern.CASE_INSENSITIVE
-                            | Pattern.DOTALL
-                            | Pattern.MULTILINE).matcher(content).matches()) {
+            // 此处预编译，可以提高效率
+            String regex="<!DOCTYPE\\W+X?HTML.+";
+            Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE | Pattern.DOTALL | Pattern.MULTILINE);;
+            if (pattern.matcher(content).matches()) {
                 return true;
             }
 
@@ -825,25 +825,24 @@ public class FileUtils {
                 }
             }
 
-            if (Pattern.compile("type\\s*=\\s*[\'\"]?\\s*(?:\\w*/)?(?:ecma|java)",
-                    Pattern.CASE_INSENSITIVE
-                            | Pattern.DOTALL
-                            | Pattern.MULTILINE).matcher(content).find()) {
+            // 此处预编译，可以提高效率
+            String regex1="type\\s*=\\s*[\'\"]?\\s*(?:\\w*/)?(?:ecma|java)";
+            Pattern pattern1 = Pattern.compile(regex1,Pattern.CASE_INSENSITIVE | Pattern.DOTALL | Pattern.MULTILINE);
+            if (pattern1.matcher(content).find()) {
                 return true;
             }
 
-            if (Pattern.compile(
-                    "(?:href|src|data)\\s*=\\s*[\'\"]?\\s*(?:ecma|java)script:",
-                    Pattern.CASE_INSENSITIVE
-                            | Pattern.DOTALL
-                            | Pattern.MULTILINE).matcher(content).find()) {
+            // 此处预编译，可以提高效率
+            String regex2="(?:href|src|data)\\s*=\\s*[\'\"]?\\s*(?:ecma|java)script:";
+            Pattern pattern2 = Pattern.compile(regex2,Pattern.CASE_INSENSITIVE | Pattern.DOTALL | Pattern.MULTILINE);
+            if (pattern2.matcher(content).find()) {
                 return true;
             }
 
-            if (Pattern.compile("url\\s*\\(\\s*[\'\"]?\\s*(?:ecma|java)script:",
-                    Pattern.CASE_INSENSITIVE
-                            | Pattern.DOTALL
-                            | Pattern.MULTILINE).matcher(content).find()) {
+            // 此处预编译，可以提高效率
+            String regex3="url\\s*\\(\\s*[\'\"]?\\s*(?:ecma|java)script:";
+            Pattern pattern3 = Pattern.compile(regex3,Pattern.CASE_INSENSITIVE | Pattern.DOTALL | Pattern.MULTILINE);
+            if (pattern3.matcher(content).find()) {
                 return true;
             }
         } catch (IOException e) {
@@ -921,7 +920,7 @@ public class FileUtils {
 
     public static String encodeURIComponent(final String fileName) throws UnsupportedEncodingException {
         String fileNameHelper = URLEncoder.encode(fileName, "utf-8");
-        for (Map.Entry<String, String> entry : encodingMap.entrySet()) {
+        for (Map.Entry<String, String> entry : ENCODING_MAP.entrySet()) {
             fileNameHelper = fileNameHelper.replaceAll(entry.getKey(), entry.getValue());
         }
         return fileNameHelper;

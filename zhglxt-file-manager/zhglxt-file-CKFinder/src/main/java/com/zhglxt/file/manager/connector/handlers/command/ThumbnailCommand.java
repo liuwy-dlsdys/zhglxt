@@ -61,51 +61,51 @@ public class ThumbnailCommand extends Command {
     /**
      * Backup map holding mime types for images just in case if they aren't set in a request
      */
-    private static final HashMap<String, String> imgMimeTypeMap = new HashMap<String, String>(57);
+    private static final HashMap<String, String> IMG_MIME_TYPE_MAP = new HashMap<String, String>(57);
 
     static {
-        imgMimeTypeMap.put(".art", "image/x-jg");
-        imgMimeTypeMap.put(".bm", "image/bmp");
-        imgMimeTypeMap.put(".bmp", "image/bmp");
-        imgMimeTypeMap.put(".dwg", "image/vnd.dwg");
-        imgMimeTypeMap.put(".dxf", "image/vnd.dwg");
-        imgMimeTypeMap.put(".fif", "image/fif");
-        imgMimeTypeMap.put(".flo", "image/florian");
-        imgMimeTypeMap.put(".fpx", "image/vnd.fpx");
-        imgMimeTypeMap.put(".g3", "image/g3fax");
-        imgMimeTypeMap.put(".gif", "image/gif");
-        imgMimeTypeMap.put(".ico", "image/x-icon");
-        imgMimeTypeMap.put(".ief", "image/ief");
-        imgMimeTypeMap.put(".iefs", "image/ief");
-        imgMimeTypeMap.put(".jut", "image/jutvision");
-        imgMimeTypeMap.put(".mcf", "image/vasa");
-        imgMimeTypeMap.put(".nap", "image/naplps");
-        imgMimeTypeMap.put(".naplps", "image/naplps");
-        imgMimeTypeMap.put(".nif", "image/x-niff");
-        imgMimeTypeMap.put(".niff", "image/x-niff");
-        imgMimeTypeMap.put(".pct", "image/x-pict");
-        imgMimeTypeMap.put(".pcx", "image/x-pcx");
-        imgMimeTypeMap.put(".pgm", "image/x-portable-graymap");
-        imgMimeTypeMap.put(".pic", "image/pict");
-        imgMimeTypeMap.put(".pict", "image/pict");
-        imgMimeTypeMap.put(".pm", "image/x-xpixmap");
-        imgMimeTypeMap.put(".png", "image/png");
-        imgMimeTypeMap.put(".pnm", "image/x-portable-anymap");
-        imgMimeTypeMap.put(".ppm", "image/x-portable-pixmap");
-        imgMimeTypeMap.put(".ras", "image/x-cmu-raster");
-        imgMimeTypeMap.put(".rast", "image/cmu-raster");
-        imgMimeTypeMap.put(".rf", "image/vnd.rn-realflash");
-        imgMimeTypeMap.put(".rgb", "image/x-rgb");
-        imgMimeTypeMap.put(".rp", "  image/vnd.rn-realpix");
-        imgMimeTypeMap.put(".svf", "image/vnd.dwg");
-        imgMimeTypeMap.put(".svf", "image/x-dwg");
-        imgMimeTypeMap.put(".tiff", "image/tiff");
-        imgMimeTypeMap.put(".turbot", "image/florian");
-        imgMimeTypeMap.put(".wbmp", "image/vnd.wap.wbmp");
-        imgMimeTypeMap.put(".xif", "image/vnd.xiff");
-        imgMimeTypeMap.put(".xpm", "image/x-xpixmap");
-        imgMimeTypeMap.put(".x-png", "image/png");
-        imgMimeTypeMap.put(".xwd", "image/x-xwindowdump");
+        IMG_MIME_TYPE_MAP.put(".art", "image/x-jg");
+        IMG_MIME_TYPE_MAP.put(".bm", "image/bmp");
+        IMG_MIME_TYPE_MAP.put(".bmp", "image/bmp");
+        IMG_MIME_TYPE_MAP.put(".dwg", "image/vnd.dwg");
+        IMG_MIME_TYPE_MAP.put(".dxf", "image/vnd.dwg");
+        IMG_MIME_TYPE_MAP.put(".fif", "image/fif");
+        IMG_MIME_TYPE_MAP.put(".flo", "image/florian");
+        IMG_MIME_TYPE_MAP.put(".fpx", "image/vnd.fpx");
+        IMG_MIME_TYPE_MAP.put(".g3", "image/g3fax");
+        IMG_MIME_TYPE_MAP.put(".gif", "image/gif");
+        IMG_MIME_TYPE_MAP.put(".ico", "image/x-icon");
+        IMG_MIME_TYPE_MAP.put(".ief", "image/ief");
+        IMG_MIME_TYPE_MAP.put(".iefs", "image/ief");
+        IMG_MIME_TYPE_MAP.put(".jut", "image/jutvision");
+        IMG_MIME_TYPE_MAP.put(".mcf", "image/vasa");
+        IMG_MIME_TYPE_MAP.put(".nap", "image/naplps");
+        IMG_MIME_TYPE_MAP.put(".naplps", "image/naplps");
+        IMG_MIME_TYPE_MAP.put(".nif", "image/x-niff");
+        IMG_MIME_TYPE_MAP.put(".niff", "image/x-niff");
+        IMG_MIME_TYPE_MAP.put(".pct", "image/x-pict");
+        IMG_MIME_TYPE_MAP.put(".pcx", "image/x-pcx");
+        IMG_MIME_TYPE_MAP.put(".pgm", "image/x-portable-graymap");
+        IMG_MIME_TYPE_MAP.put(".pic", "image/pict");
+        IMG_MIME_TYPE_MAP.put(".pict", "image/pict");
+        IMG_MIME_TYPE_MAP.put(".pm", "image/x-xpixmap");
+        IMG_MIME_TYPE_MAP.put(".png", "image/png");
+        IMG_MIME_TYPE_MAP.put(".pnm", "image/x-portable-anymap");
+        IMG_MIME_TYPE_MAP.put(".ppm", "image/x-portable-pixmap");
+        IMG_MIME_TYPE_MAP.put(".ras", "image/x-cmu-raster");
+        IMG_MIME_TYPE_MAP.put(".rast", "image/cmu-raster");
+        IMG_MIME_TYPE_MAP.put(".rf", "image/vnd.rn-realflash");
+        IMG_MIME_TYPE_MAP.put(".rgb", "image/x-rgb");
+        IMG_MIME_TYPE_MAP.put(".rp", "  image/vnd.rn-realpix");
+        IMG_MIME_TYPE_MAP.put(".svf", "image/vnd.dwg");
+        IMG_MIME_TYPE_MAP.put(".svf", "image/x-dwg");
+        IMG_MIME_TYPE_MAP.put(".tiff", "image/tiff");
+        IMG_MIME_TYPE_MAP.put(".turbot", "image/florian");
+        IMG_MIME_TYPE_MAP.put(".wbmp", "image/vnd.wap.wbmp");
+        IMG_MIME_TYPE_MAP.put(".xif", "image/vnd.xiff");
+        IMG_MIME_TYPE_MAP.put(".xpm", "image/x-xpixmap");
+        IMG_MIME_TYPE_MAP.put(".x-png", "image/png");
+        IMG_MIME_TYPE_MAP.put(".xwd", "image/x-xwindowdump");
     }
 
     @Override
@@ -138,7 +138,7 @@ public class ThumbnailCommand extends Command {
                 FileUtils.getFileExtension(this.fileName).toLowerCase());
         String mimeType = sc.getMimeType(tempFileName);
         if (mimeType == null || mimeType.length() == 0) {
-            mimeType = ThumbnailCommand.imgMimeTypeMap.get(fileName.toLowerCase().substring(fileName.lastIndexOf(".")));
+            mimeType = ThumbnailCommand.IMG_MIME_TYPE_MAP.get(fileName.toLowerCase().substring(fileName.lastIndexOf(".")));
         }
 
         if (mimeType == null) {

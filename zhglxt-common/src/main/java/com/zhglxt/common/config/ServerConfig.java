@@ -1,6 +1,6 @@
 package com.zhglxt.common.config;
 
-import com.zhglxt.common.util.ServletUtils;
+import com.zhglxt.common.utils.ServletUtils;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;

@@ -3,7 +3,7 @@ package com.zhglxt.activiti.persistence;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zhglxt.common.core.entity.sys.SysUser;
-import com.zhglxt.common.util.ShiroUtils;
+import com.zhglxt.common.utils.ShiroUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 

@@ -2,10 +2,10 @@ package com.zhglxt.quartz.util;
 
 import com.zhglxt.common.constant.Constants;
 import com.zhglxt.common.constant.ScheduleConstants;
-import com.zhglxt.common.util.ExceptionUtil;
-import com.zhglxt.common.util.StringUtils;
-import com.zhglxt.common.util.bean.BeanUtils;
-import com.zhglxt.common.util.spring.SpringUtils;
+import com.zhglxt.common.utils.ExceptionUtil;
+import com.zhglxt.common.utils.StringUtils;
+import com.zhglxt.common.utils.bean.BeanUtils;
+import com.zhglxt.common.utils.spring.SpringUtils;
 import com.zhglxt.quartz.entity.SysJob;
 import com.zhglxt.quartz.entity.SysJobLog;
 import com.zhglxt.quartz.service.ISysJobLogService;

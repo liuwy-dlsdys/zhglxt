@@ -1,6 +1,6 @@
 package com.zhglxt.common.xss;
 
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * 防止XSS攻击的过滤器

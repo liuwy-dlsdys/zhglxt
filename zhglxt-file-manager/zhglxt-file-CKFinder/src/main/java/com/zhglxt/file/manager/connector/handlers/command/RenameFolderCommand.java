@@ -84,7 +84,7 @@ public class RenameFolderCommand extends XMLCommand implements IPostCommand {
             return Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_NAME;
         }
 
-        if (this.currentFolder.equals("/")) {
+        if ("/".equals(this.currentFolder)) {
             return Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_REQUEST;
         }
 

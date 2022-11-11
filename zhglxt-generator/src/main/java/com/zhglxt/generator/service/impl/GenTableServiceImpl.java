@@ -7,7 +7,7 @@ import com.zhglxt.common.constant.GenConstants;
 import com.zhglxt.common.core.text.CharsetKit;
 import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.exception.ServiceException;
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 import com.zhglxt.generator.entity.GenTable;
 import com.zhglxt.generator.entity.GenTableColumn;
 import com.zhglxt.generator.mapper.GenTableColumnMapper;

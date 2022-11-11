@@ -113,7 +113,7 @@ public class MoveFilesCommand extends XMLCommand implements IPostCommand {
                 return Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_REQUEST;
             }
 
-            if (file.getFolder() == null || file.getFolder().equals("")) {
+            if (file.getFolder() == null || "".equals(file.getFolder())) {
                 return Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_REQUEST;
             }
             if (FileUtils.checkFileExtension(file.getName(),

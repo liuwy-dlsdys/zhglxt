@@ -1,6 +1,6 @@
 package com.zhglxt.web.core.ckfinder;
 
-import com.zhglxt.common.util.file.FileUtils;
+import com.zhglxt.common.utils.file.FileUtils;
 import com.zhglxt.file.manager.connector.ConnectorServlet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;

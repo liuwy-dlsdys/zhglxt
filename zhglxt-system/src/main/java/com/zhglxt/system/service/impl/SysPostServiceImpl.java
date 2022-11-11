@@ -3,7 +3,7 @@ package com.zhglxt.system.service.impl;
 import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.exception.ServiceException;
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 import com.zhglxt.system.entity.SysPost;
 import com.zhglxt.system.mapper.SysPostMapper;
 import com.zhglxt.system.mapper.SysUserPostMapper;

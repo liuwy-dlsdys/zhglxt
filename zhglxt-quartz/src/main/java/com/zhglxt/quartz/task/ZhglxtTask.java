@@ -1,6 +1,6 @@
 package com.zhglxt.quartz.task;
 
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 import org.springframework.stereotype.Component;
 
 /**

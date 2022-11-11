@@ -72,7 +72,7 @@ public class XMLErrorCommand extends XMLCommand {
     @Override
     protected boolean checkParam(final String reqParam)
             throws ConnectorException {
-        if (reqParam == null || reqParam.equals("")) {
+        if (reqParam == null || "".equals(reqParam)) {
             return true;
         }
         return !Pattern.compile(Constants.INVALID_PATH_REGEX).matcher(reqParam).find();
@@ -137,7 +137,7 @@ public class XMLErrorCommand extends XMLCommand {
     @Override
     protected void getCurrentFolderParam(final HttpServletRequest request) {
         String currFolder = getParameter(request, "currentFolder");
-        if (!(currFolder == null || currFolder.equals(""))) {
+        if (!(currFolder == null || "".equals(currFolder))) {
             this.currentFolder = PathUtils.addSlashToBeginning(PathUtils.addSlashToEnd(currFolder));
         }
     }

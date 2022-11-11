@@ -2,7 +2,7 @@ package com.zhglxt.generator.entity;
 
 import com.zhglxt.common.constant.GenConstants;
 import com.zhglxt.common.core.entity.BaseEntity;
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.validation.Valid;

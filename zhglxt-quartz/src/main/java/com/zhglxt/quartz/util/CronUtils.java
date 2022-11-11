@@ -1,6 +1,6 @@
 package com.zhglxt.quartz.util;
 
-import com.zhglxt.common.util.DateUtils;
+import com.zhglxt.common.utils.DateUtils;
 import org.quartz.CronExpression;
 import org.quartz.TriggerUtils;
 import org.quartz.impl.triggers.CronTriggerImpl;

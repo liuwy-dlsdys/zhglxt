@@ -2,8 +2,8 @@ package com.zhglxt.framework.shiro.web.filter.captcha;
 
 import com.google.code.kaptcha.Constants;
 import com.zhglxt.common.constant.ShiroConstants;
-import com.zhglxt.common.util.ShiroUtils;
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.ShiroUtils;
+import com.zhglxt.common.utils.StringUtils;
 import org.apache.shiro.web.filter.AccessControlFilter;
 
 import javax.servlet.ServletRequest;

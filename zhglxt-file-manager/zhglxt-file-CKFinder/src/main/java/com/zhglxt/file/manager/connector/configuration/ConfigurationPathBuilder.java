@@ -35,7 +35,7 @@ public class ConfigurationPathBuilder extends DefaultPathBuilder {
         } catch (Exception e) {
             baseURL = null;
         }
-        if (baseURL == null || baseURL.equals("")) {
+        if (baseURL == null || "".equals(baseURL)) {
             baseURL = super.getBaseUrl(request);
         }
 
@@ -57,7 +57,7 @@ public class ConfigurationPathBuilder extends DefaultPathBuilder {
         } catch (Exception e) {
             baseDir = null;
         }
-        if (baseDir == null || baseDir.equals("")) {
+        if (baseDir == null || "".equals(baseDir)) {
             return super.getBaseDir(request);
         } else {
             return baseDir;

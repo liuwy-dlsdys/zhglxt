@@ -136,8 +136,8 @@ public class ResourceType {
         try {
             //No XML node, no value, value equals 0 = no resource type maxSize
             if (maxSize == null
-                    || maxSize.equals("")
-                    || maxSize.equals("0")) {
+                    || "".equals(maxSize)
+                    || "0".equals(maxSize)) {
                 return null;
             }
             return parseMaxSize();

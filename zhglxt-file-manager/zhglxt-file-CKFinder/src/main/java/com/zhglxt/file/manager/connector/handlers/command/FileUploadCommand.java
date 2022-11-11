@@ -123,7 +123,7 @@ public class FileUploadCommand extends Command implements IPostCommand {
                         + this.currentFolder;
             }
 
-            if (this.responseType != null && this.responseType.equals("txt")) {
+            if (this.responseType != null && "txt".equals(this.responseType)) {
                 out.write((this.newFileName + "|" + errorMsg).getBytes("UTF-8"));
             } else {
                 if (checkFuncNum()) {
@@ -371,7 +371,8 @@ public class FileUploadCommand extends Command implements IPostCommand {
         int number = 0;
 
         String nameWithoutExtension = FileUtils.getFileNameWithoutExtension(name, false);
-        Pattern p = Pattern.compile("^(AUX|COM\\d|CLOCK\\$|CON|NUL|PRN|LPT\\d)$", Pattern.CASE_INSENSITIVE);
+        String regEx="^(AUX|COM\\d|CLOCK\\$|CON|NUL|PRN|LPT\\d)$";
+        Pattern p = Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
         Matcher m = p.matcher(nameWithoutExtension);
         boolean protectedName = m.find();
 
@@ -509,7 +510,8 @@ public class FileUploadCommand extends Command implements IPostCommand {
      * @return file name of uploaded item
      */
     private String getFileItemName(final FileItem item) {
-		Pattern p = Pattern.compile("[^\\\\/]+$");
+        String regEx="[^\\\\/]+$";
+		Pattern p = Pattern.compile(regEx);
 		Matcher m = p.matcher(item.getName());
 		return (m.find()) ? m.group(0) : "";
 
@@ -528,7 +530,7 @@ public class FileUploadCommand extends Command implements IPostCommand {
     @Override
     protected boolean checkParam(final String reqParam)
             throws ConnectorException {
-        if (reqParam == null || reqParam.equals("")) {
+        if (reqParam == null || "".equals(reqParam)) {
             return true;
         }
         if (Pattern.compile(Constants.INVALID_PATH_REGEX).matcher(reqParam).find()) {

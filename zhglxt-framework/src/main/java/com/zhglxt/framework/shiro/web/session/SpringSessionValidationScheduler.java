@@ -1,6 +1,6 @@
 package com.zhglxt.framework.shiro.web.session;
 
-import com.zhglxt.common.util.Threads;
+import com.zhglxt.common.utils.Threads;
 import org.apache.shiro.session.mgt.DefaultSessionManager;
 import org.apache.shiro.session.mgt.SessionValidationScheduler;
 import org.apache.shiro.session.mgt.ValidatingSessionManager;

@@ -1,7 +1,6 @@
 package com.zhglxt.web.controller.system;
 
 import com.zhglxt.common.annotation.Log;
-import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.controller.BaseController;
 import com.zhglxt.common.core.entity.AjaxResult;
@@ -9,7 +8,7 @@ import com.zhglxt.common.core.entity.Ztree;
 import com.zhglxt.common.core.entity.sys.SysMenu;
 import com.zhglxt.common.core.entity.sys.SysRole;
 import com.zhglxt.common.enums.BusinessType;
-import com.zhglxt.common.util.ShiroUtils;
+import com.zhglxt.common.utils.ShiroUtils;
 import com.zhglxt.framework.shiro.util.AuthorizationUtils;
 import com.zhglxt.system.service.ISysMenuService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

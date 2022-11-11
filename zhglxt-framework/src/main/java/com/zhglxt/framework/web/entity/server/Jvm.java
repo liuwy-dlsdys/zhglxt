@@ -1,7 +1,7 @@
 package com.zhglxt.framework.web.entity.server;
 
-import com.zhglxt.common.util.Arith;
-import com.zhglxt.common.util.DateUtils;
+import com.zhglxt.common.utils.Arith;
+import com.zhglxt.common.utils.DateUtils;
 
 import java.lang.management.ManagementFactory;
 

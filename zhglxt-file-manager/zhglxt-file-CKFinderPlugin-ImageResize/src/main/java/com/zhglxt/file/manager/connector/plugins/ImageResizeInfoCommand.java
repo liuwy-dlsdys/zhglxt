@@ -74,7 +74,7 @@ public class ImageResizeInfoCommand extends XMLCommand implements IEventHandler 
             return Constants.Errors.CKFINDER_CONNECTOR_ERROR_UNAUTHORIZED;
         }
 
-        if (fileName == null || fileName.equals("")
+        if (fileName == null || "".equals(fileName)
                 || !FileUtils.checkFileName(this.fileName)
                 || FileUtils.checkIfFileIsHidden(this.fileName, this.configuration)) {
             return Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_REQUEST;

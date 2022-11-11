@@ -8,7 +8,7 @@ import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.enums.BusinessType;
-import com.zhglxt.common.util.WebUtil;
+import com.zhglxt.common.utils.WebUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

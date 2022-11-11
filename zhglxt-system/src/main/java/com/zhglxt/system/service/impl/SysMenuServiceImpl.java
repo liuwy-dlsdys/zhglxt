@@ -5,7 +5,7 @@ import com.zhglxt.common.core.entity.Ztree;
 import com.zhglxt.common.core.entity.sys.SysMenu;
 import com.zhglxt.common.core.entity.sys.SysRole;
 import com.zhglxt.common.core.entity.sys.SysUser;
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 import com.zhglxt.system.mapper.SysMenuMapper;
 import com.zhglxt.system.mapper.SysRoleMenuMapper;
 import com.zhglxt.system.service.ISysMenuService;

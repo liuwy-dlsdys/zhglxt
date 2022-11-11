@@ -1,7 +1,7 @@
 package com.zhglxt.activiti.util;
 
 import com.zhglxt.common.core.entity.sys.SysUser;
-import com.zhglxt.common.util.SpringContextHolder;
+import com.zhglxt.common.utils.SpringContextHolder;
 import com.zhglxt.system.mapper.SysRoleMapper;
 import com.zhglxt.system.mapper.SysUserMapper;
 

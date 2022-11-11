@@ -2,7 +2,7 @@ package com.zhglxt.framework.shiro.realm;
 
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.exception.user.*;
-import com.zhglxt.common.util.ShiroUtils;
+import com.zhglxt.common.utils.ShiroUtils;
 import com.zhglxt.framework.shiro.service.SysLoginService;
 import com.zhglxt.system.service.ISysMenuService;
 import com.zhglxt.system.service.ISysRoleService;

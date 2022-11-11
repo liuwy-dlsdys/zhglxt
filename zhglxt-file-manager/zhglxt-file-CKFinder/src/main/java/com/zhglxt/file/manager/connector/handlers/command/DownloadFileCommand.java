@@ -135,7 +135,7 @@ public class DownloadFileCommand extends Command {
                                   final ServletContext sc) {
         String mimetype = sc.getMimeType(fileName);
         response.setCharacterEncoding("utf-8");
-        if (this.format != null && this.format.equals("text")) {
+        if (this.format != null && "text".equals(this.format)) {
             response.setContentType("text/plain; charset=utf-8");
         } else {
             if (mimetype != null) {

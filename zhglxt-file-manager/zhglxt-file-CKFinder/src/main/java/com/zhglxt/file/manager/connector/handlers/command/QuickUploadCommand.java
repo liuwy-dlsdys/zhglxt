@@ -30,7 +30,7 @@ public class QuickUploadCommand extends FileUploadCommand {
     @Override
     protected void handleOnUploadCompleteResponse(final OutputStream out,
                                                   final String errorMsg) throws IOException {
-        if (this.responseType != null && this.responseType.equalsIgnoreCase("json")) {
+        if (this.responseType != null && "json".equalsIgnoreCase(this.responseType)) {
             handleJSONResponse(out, errorMsg, null);
         } else {
             out.write("<script type=\"text/javascript\">".getBytes("UTF-8"));
@@ -55,7 +55,7 @@ public class QuickUploadCommand extends FileUploadCommand {
     @Override
     protected void handleOnUploadCompleteCallFuncResponse(final OutputStream out,
                                                           final String errorMsg, final String path) throws IOException {
-        if (this.responseType != null && this.responseType.equalsIgnoreCase("json")) {
+        if (this.responseType != null && "json".equalsIgnoreCase(this.responseType)) {
             handleJSONResponse(out, errorMsg, path);
         } else {
             out.write("<script type=\"text/javascript\">".getBytes("UTF-8"));
@@ -79,7 +79,7 @@ public class QuickUploadCommand extends FileUploadCommand {
     public void setResponseHeader(final HttpServletResponse response,
                                   final ServletContext sc) {
         response.setCharacterEncoding("utf-8");
-        if (this.responseType != null && this.responseType.equalsIgnoreCase("json")) {
+        if (this.responseType != null && "json".equalsIgnoreCase(this.responseType)) {
             response.setContentType("application/json");
         } else {
             response.setContentType("text/html");
@@ -105,7 +105,7 @@ public class QuickUploadCommand extends FileUploadCommand {
         jsonObj.put("uploaded", this.uploaded ? new Integer(1) : new Integer(0));
 
         if (uploaded) {
-            if (path != null && !path.equals("")) {
+            if (path != null && !"".equals(path)) {
                 jsonObj.put(
                         "url",
                         path
@@ -123,7 +123,7 @@ public class QuickUploadCommand extends FileUploadCommand {
             }
         }
 
-        if (errorMsg != null && !errorMsg.equals("")) {
+        if (errorMsg != null && !"".equals(errorMsg)) {
             Map<String, Object> jsonErrObj = new HashMap<String, Object>();
             jsonErrObj.put("number", this.errorCode);
             jsonErrObj.put("message", errorMsg);

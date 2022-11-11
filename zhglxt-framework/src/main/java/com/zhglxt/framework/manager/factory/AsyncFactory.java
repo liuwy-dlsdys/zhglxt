@@ -1,8 +1,8 @@
 package com.zhglxt.framework.manager.factory;
 
 import com.zhglxt.common.constant.Constants;
-import com.zhglxt.common.util.*;
-import com.zhglxt.common.util.spring.SpringUtils;
+import com.zhglxt.common.utils.*;
+import com.zhglxt.common.utils.spring.SpringUtils;
 import com.zhglxt.framework.shiro.session.OnlineSession;
 import com.zhglxt.system.entity.SysLogininfor;
 import com.zhglxt.system.entity.SysOperLog;

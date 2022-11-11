@@ -2,13 +2,13 @@ package com.zhglxt.activiti.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.common.collect.Maps;
+import com.zhglxt.activiti.constant.ActConstant;
 import com.zhglxt.activiti.entity.ProcessDefinitionDto;
 import com.zhglxt.activiti.service.ActProcessService;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 import org.activiti.bpmn.converter.BpmnXMLConverter;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.editor.constants.ModelDataJsonConstants;
@@ -142,7 +142,7 @@ public class ActProcessServiceImpl implements ActProcessService {
         ZipInputStream zipInputStream = null;
         try {
             String extension = FilenameUtils.getExtension(fileName);
-            if (extension.equals("zip")) {
+            if (ActConstant.ACT_FILE_EXTENSION_ZIP.equals(extension)) {
                 zipInputStream = new ZipInputStream(is);
                 // 创建流程定义
                 Deployment deployment = repositoryService.createDeployment().name(fileName)
@@ -253,7 +253,7 @@ public class ActProcessServiceImpl implements ActProcessService {
         List<ProcessInstance> list = processInstanceQuery.listPage(firstResult, maxResults);
         // 循环遍历
         for (ProcessInstance pi : list) {
-            HashMap<String, Object> piMap = Maps.newHashMap();
+            HashMap<String, Object> piMap = new HashMap<>();
             piMap.put("id", pi.getId());
             piMap.put("name", pi.getName());
             piMap.put("parentId", pi.getParentId());
@@ -299,10 +299,10 @@ public class ActProcessServiceImpl implements ActProcessService {
     @Override
     public boolean updateState(String state, Map<String, Object> paramMap) {
         boolean flag = false;
-        if (state.equals("active")) {
+        if (ActConstant.ACT_STATE_ACTIVE.equals(state)) {
             repositoryService.activateProcessDefinitionById(paramMap.get("procDefId").toString(), true, null);
             flag = true;
-        } else if (state.equals("suspend")) {
+        } else if (ActConstant.ACT_STATE_SUSPEND.equals(state)) {
             repositoryService.suspendProcessDefinitionById(paramMap.get("procDefId").toString(), true, null);
             flag = true;
         }

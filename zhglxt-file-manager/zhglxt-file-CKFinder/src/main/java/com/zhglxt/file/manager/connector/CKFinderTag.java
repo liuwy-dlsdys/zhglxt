@@ -89,11 +89,11 @@ public class CKFinderTag extends TagSupport {
         url = PathUtils.addSlashToEnd(url);
         url = url.concat(CKFINDER_DEFAULT_PAGE);
 
-        if (this.selectFunction != null && !this.selectFunction.equals("")) {
+        if (this.selectFunction != null && !"".equals(this.selectFunction)) {
             qs += "?action=js&amp;func=" + this.selectFunction;
         }
 
-        if (this.selectFunctionData != null && !this.selectFunctionData.equals("")) {
+        if (this.selectFunctionData != null && !"".equals(this.selectFunctionData)) {
             qs += !isNullOrEmpty(qs) ? "&amp;" : "?";
             try {
                 qs += "data=" + URLEncoder.encode(this.selectFunctionData, "UTF-8");
@@ -386,6 +386,6 @@ public class CKFinderTag extends TagSupport {
      * @return true if is empty or null
      */
     private static boolean isNullOrEmpty(final String string) {
-        return (string == null || string.equals(""));
+        return (string == null || "".equals(string));
     }
 }

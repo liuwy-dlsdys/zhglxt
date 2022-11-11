@@ -1,6 +1,6 @@
 package com.zhglxt.common.core.page;
 
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 
 /**
  * 分页数据

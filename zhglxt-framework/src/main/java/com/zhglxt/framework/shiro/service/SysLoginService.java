@@ -6,7 +6,7 @@ import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.enums.UserStatus;
 import com.zhglxt.common.exception.user.*;
-import com.zhglxt.common.util.*;
+import com.zhglxt.common.utils.*;
 import com.zhglxt.framework.manager.AsyncManager;
 import com.zhglxt.framework.manager.factory.AsyncFactory;
 import com.zhglxt.system.service.ISysUserService;

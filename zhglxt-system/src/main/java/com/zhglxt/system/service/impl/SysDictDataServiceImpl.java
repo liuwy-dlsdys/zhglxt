@@ -2,7 +2,7 @@ package com.zhglxt.system.service.impl;
 
 import com.zhglxt.common.core.entity.sys.SysDictData;
 import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.util.DictUtils;
+import com.zhglxt.common.utils.DictUtils;
 import com.zhglxt.system.mapper.SysDictDataMapper;
 import com.zhglxt.system.service.ISysDictDataService;
 import org.springframework.beans.factory.annotation.Autowired;

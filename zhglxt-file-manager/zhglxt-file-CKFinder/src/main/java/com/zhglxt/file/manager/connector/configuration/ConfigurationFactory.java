@@ -128,7 +128,7 @@ public final class ConfigurationFactory {
         }
 
         File file = new File(baseFolder);
-        if (!file.exists() && !request.getParameter("command").equals("Init")) {
+        if (!file.exists() && !"Init".equals(request.getParameter("command"))) {
             file.mkdir();
         }
         conf.setThumbsPath(file.getAbsolutePath());
@@ -153,7 +153,7 @@ public final class ConfigurationFactory {
             baseFolder = PathUtils.removeSlashFromEnd(baseFolder);
 
             boolean isFromUrl = false;
-            if (baseFolder == null || baseFolder.equals("")) {
+            if (baseFolder == null || "".equals(baseFolder)) {
                 baseFolder = PathUtils.removeSlashFromBeginning(url);
                 isFromUrl = true;
             }
@@ -166,7 +166,7 @@ public final class ConfigurationFactory {
             }
 
             file = new File(resourcePath);
-            if (!file.exists() && !request.getParameter("command").equals("Init")) {
+            if (!file.exists() && !"Init".equals(request.getParameter("command"))) {
                 FileUtils.createPath(file, false);
             }
             item.setPath(file.getAbsolutePath());

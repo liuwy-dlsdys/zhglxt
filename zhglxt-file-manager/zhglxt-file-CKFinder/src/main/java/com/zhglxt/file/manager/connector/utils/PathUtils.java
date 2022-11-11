@@ -29,7 +29,7 @@ public class PathUtils {
      * @return Escaped string, {@code null} or empty string.
      */
     public static String escape(String string) {
-        if (string == null || string.equals("")) {
+        if (string == null || "".equals(string)) {
             return string;
         }
         String prefix = "";
@@ -57,7 +57,7 @@ public class PathUtils {
      * @return String with slash character at the end, {@code null} or empty string.
      */
     public static String addSlashToEnd(String string) {
-        if (string != null && !string.equals("")
+        if (string != null && !"".equals(string)
                 && string.charAt(string.length() - 1) != '/') {
             return string.concat("/");
         }
@@ -86,7 +86,7 @@ public class PathUtils {
      * @return String without slash character at the beginning, {@code null} or empty string.
      */
     public static String removeSlashFromBeginning(String string) {
-        if (string != null && !string.equals("") && string.charAt(0) == '/') {
+        if (string != null && !"".equals(string) && string.charAt(0) == '/') {
             return string.substring(1, string.length());
         }
         return string;
@@ -99,7 +99,7 @@ public class PathUtils {
      * @return String without slash at the end, {@code null} or empty string.
      */
     public static String removeSlashFromEnd(String string) {
-        if (string != null && !string.equals("")
+        if (string != null && !"".equals(string)
                 && string.charAt(string.length() - 1) == '/') {
             return string.substring(0, string.length() - 1);
         }

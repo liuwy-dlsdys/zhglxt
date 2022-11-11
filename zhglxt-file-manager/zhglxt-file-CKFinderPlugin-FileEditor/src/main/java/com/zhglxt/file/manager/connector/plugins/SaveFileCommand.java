@@ -59,11 +59,11 @@ public class SaveFileCommand extends XMLCommand implements IEventHandler {
             return Constants.Errors.CKFINDER_CONNECTOR_ERROR_UNAUTHORIZED;
         }
 
-        if (this.fileName == null || this.fileName.equals("")) {
+        if (this.fileName == null || "".equals(this.fileName)) {
             return Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_NAME;
         }
 
-        if (this.fileContent == null || this.fileContent.equals("")) {
+        if (this.fileContent == null || "".equals(this.fileContent)) {
             return Constants.Errors.CKFINDER_CONNECTOR_ERROR_INVALID_REQUEST;
         }
 

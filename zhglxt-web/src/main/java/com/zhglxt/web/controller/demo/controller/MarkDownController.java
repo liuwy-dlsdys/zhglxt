@@ -1,7 +1,7 @@
 package com.zhglxt.web.controller.demo.controller;
 
 import com.zhglxt.common.core.controller.BaseController;
-import com.zhglxt.common.util.WebUtil;
+import com.zhglxt.common.utils.WebUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

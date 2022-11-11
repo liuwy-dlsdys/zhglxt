@@ -1,6 +1,6 @@
 package com.zhglxt.common.core.entity;
 
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 
 import java.util.HashMap;
 import java.util.Objects;

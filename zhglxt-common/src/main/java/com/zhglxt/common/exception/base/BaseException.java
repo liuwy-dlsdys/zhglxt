@@ -1,7 +1,7 @@
 package com.zhglxt.common.exception.base;
 
-import com.zhglxt.common.util.MessageUtils;
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.MessageUtils;
+import com.zhglxt.common.utils.StringUtils;
 
 /**
  * 基础异常

@@ -5,7 +5,7 @@ import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.entity.CxSelect;
 import com.zhglxt.common.json.JSONObject;
 import com.zhglxt.common.json.JSONObject.JSONArray;
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;

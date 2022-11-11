@@ -1,7 +1,7 @@
 package com.zhglxt.framework.web.entity;
 
-import com.zhglxt.common.util.Arith;
-import com.zhglxt.common.util.IpUtils;
+import com.zhglxt.common.utils.Arith;
+import com.zhglxt.common.utils.IpUtils;
 import com.zhglxt.framework.web.entity.server.*;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;

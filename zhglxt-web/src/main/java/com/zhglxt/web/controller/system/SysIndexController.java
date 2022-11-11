@@ -7,7 +7,7 @@ import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.entity.sys.SysMenu;
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.text.Convert;
-import com.zhglxt.common.util.*;
+import com.zhglxt.common.utils.*;
 import com.zhglxt.framework.shiro.service.SysPasswordService;
 import com.zhglxt.oa.entity.NotifyRecord;
 import com.zhglxt.oa.mapper.NotifyRecordMapper;

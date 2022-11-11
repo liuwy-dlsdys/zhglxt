@@ -151,7 +151,7 @@ public class GetFilesCommand extends XMLCommand {
                 elementData.getAttributes().add(attribute);
                 if (ImageUtils.isImage(file) && isAddThumbsAttr()) {
                     String attr = createThumbAttr(file);
-                    if (!attr.equals("")) {
+                    if (!"".equals(attr)) {
                         attribute = new XmlAttribute("thumb", attr);
                         elementData.getAttributes().add(attribute);
                     }
@@ -211,6 +211,6 @@ public class GetFilesCommand extends XMLCommand {
      * @return true if is set.
      */
     private boolean isShowThumbs() {
-        return (this.showThumbs != null && this.showThumbs.equals("1"));
+        return (this.showThumbs != null && "1".equals(this.showThumbs));
     }
 }

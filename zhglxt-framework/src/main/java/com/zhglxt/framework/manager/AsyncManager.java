@@ -1,7 +1,7 @@
 package com.zhglxt.framework.manager;
 
-import com.zhglxt.common.util.Threads;
-import com.zhglxt.common.util.spring.SpringUtils;
+import com.zhglxt.common.utils.Threads;
+import com.zhglxt.common.utils.spring.SpringUtils;
 
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;

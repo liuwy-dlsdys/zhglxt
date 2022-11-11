@@ -5,7 +5,7 @@ import com.zhglxt.common.constant.ShiroConstants;
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.exception.user.UserPasswordNotMatchException;
 import com.zhglxt.common.exception.user.UserPasswordRetryLimitExceedException;
-import com.zhglxt.common.util.MessageUtils;
+import com.zhglxt.common.utils.MessageUtils;
 import com.zhglxt.framework.manager.AsyncManager;
 import com.zhglxt.framework.manager.factory.AsyncFactory;
 import org.apache.shiro.cache.Cache;

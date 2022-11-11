@@ -123,7 +123,8 @@ public final class ErrorUtils {
                 // change "%20" to " "
                 JarFile jarFile = new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
                 Enumeration<JarEntry> entries = jarFile.entries();
-                Pattern pattern = Pattern.compile("lang.+\\.xml");
+                String str_lang ="lang.+\\.xml";
+                Pattern pattern = Pattern.compile(str_lang);
                 while (entries.hasMoreElements()) {
                     JarEntry jarEntry = (JarEntry) entries.nextElement();
                     if (checkJarEntry(jarEntry, pattern)) {

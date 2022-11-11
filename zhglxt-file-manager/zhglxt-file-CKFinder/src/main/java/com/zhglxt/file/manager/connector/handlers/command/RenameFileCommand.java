@@ -77,8 +77,8 @@ public class RenameFileCommand extends XMLCommand implements IPostCommand {
             this.newFileName = FileUtils.convertToASCII(this.newFileName);
         }
 
-        if (this.fileName != null && !this.fileName.equals("")
-                && this.newFileName != null && !this.newFileName.equals("")) {
+        if (this.fileName != null && !"".equals(this.fileName)
+                && this.newFileName != null && !"".equals(this.newFileName)) {
             this.addRenameNode = true;
         }
 

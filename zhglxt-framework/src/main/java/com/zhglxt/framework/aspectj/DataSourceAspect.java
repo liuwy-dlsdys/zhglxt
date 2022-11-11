@@ -2,7 +2,7 @@ package com.zhglxt.framework.aspectj;
 
 import com.zhglxt.common.annotation.DataSource;
 import com.zhglxt.common.config.datasource.DynamicDataSourceContextHolder;
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

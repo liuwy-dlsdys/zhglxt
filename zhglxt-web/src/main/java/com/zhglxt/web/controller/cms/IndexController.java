@@ -12,7 +12,7 @@ import com.zhglxt.cms.service.IAdvertisingService;
 import com.zhglxt.cms.service.IColumnService;
 import com.zhglxt.cms.service.ISiteService;
 import com.zhglxt.common.core.controller.BaseController;
-import com.zhglxt.common.util.WebUtil;
+import com.zhglxt.common.utils.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

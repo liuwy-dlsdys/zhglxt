@@ -159,7 +159,7 @@ public class ImportSysUser extends BaseEntity {
     }
 
     public static boolean isAdmin(String userId) {
-        return userId != null && userId.equals("1");
+        return userId != null && "1".equals(userId);
     }
 
     public String getDeptId() {

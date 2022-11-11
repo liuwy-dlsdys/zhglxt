@@ -105,8 +105,7 @@ public abstract class Command {
             if (checkConnector(request) && checkParam(this.currentFolder)) {
                 this.currentFolder = PathUtils.escape(this.currentFolder);
                 if (!checkHidden()) {
-                    if ((this.currentFolder == null || this.currentFolder.equals(""))
-                            || checkIfCurrFolderExists(request)) {
+                    if ((this.currentFolder == null || "".equals(this.currentFolder)) || checkIfCurrFolderExists(request)) {
                         this.type = getParameter(request, "type");
                     }
                 }
@@ -213,7 +212,7 @@ public abstract class Command {
      */
     protected boolean checkParam(final String reqParam)
             throws ConnectorException {
-        if (reqParam == null || reqParam.equals("")) {
+        if (reqParam == null || "".equals(reqParam)) {
             return true;
         }
         if (Pattern.compile(Constants.INVALID_PATH_REGEX).matcher(reqParam).find()) {
@@ -248,7 +247,7 @@ public abstract class Command {
      */
     protected void getCurrentFolderParam(final HttpServletRequest request) {
         String currFolder = getParameter(request, "currentFolder");
-        if (currFolder == null || currFolder.equals("")) {
+        if (currFolder == null || "".equals(currFolder)) {
             this.currentFolder = "/";
         } else {
             this.currentFolder = PathUtils.addSlashToBeginning(PathUtils.addSlashToEnd(currFolder));

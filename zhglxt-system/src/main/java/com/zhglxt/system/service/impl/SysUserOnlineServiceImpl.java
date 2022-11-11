@@ -1,8 +1,8 @@
 package com.zhglxt.system.service.impl;
 
 import com.zhglxt.common.constant.ShiroConstants;
-import com.zhglxt.common.util.DateUtils;
-import com.zhglxt.common.util.StringUtils;
+import com.zhglxt.common.utils.DateUtils;
+import com.zhglxt.common.utils.StringUtils;
 import com.zhglxt.system.entity.SysUserOnline;
 import com.zhglxt.system.mapper.SysUserOnlineMapper;
 import com.zhglxt.system.service.ISysUserOnlineService;

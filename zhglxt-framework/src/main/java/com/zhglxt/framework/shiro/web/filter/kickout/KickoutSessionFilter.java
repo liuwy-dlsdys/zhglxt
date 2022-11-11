@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zhglxt.common.constant.ShiroConstants;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.core.entity.sys.SysUser;
-import com.zhglxt.common.util.ServletUtils;
-import com.zhglxt.common.util.ShiroUtils;
+import com.zhglxt.common.utils.ServletUtils;
+import com.zhglxt.common.utils.ShiroUtils;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.session.Session;
@@ -26,11 +26,12 @@ import java.util.Deque;
 
 /**
  * 登录帐号控制过滤器
- *
+ * 
  * @author ruoyi
  */
-public class KickoutSessionFilter extends AccessControlFilter {
-    private final static ObjectMapper objectMapper = new ObjectMapper();
+public class KickoutSessionFilter extends AccessControlFilter
+{
+    private final static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     /**
      * 同一个用户最大会话数
@@ -52,18 +53,22 @@ public class KickoutSessionFilter extends AccessControlFilter {
 
     @Override
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o)
-            throws Exception {
+            throws Exception
+    {
         return false;
     }
 
     @Override
-    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
+    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception
+    {
         Subject subject = getSubject(request, response);
-        if (!subject.isAuthenticated() && !subject.isRemembered() || maxSession == -1) {
+        if (!subject.isAuthenticated() && !subject.isRemembered() || maxSession == -1)
+        {
             // 如果没有登录或用户最大会话数为-1，直接进行之后的流程
             return true;
         }
-        try {
+        try
+        {
             Session session = subject.getSession();
             // 当前登录用户
             SysUser user = ShiroUtils.getSysUser();
@@ -72,13 +77,15 @@ public class KickoutSessionFilter extends AccessControlFilter {
 
             // 读取缓存用户 没有就存入
             Deque<Serializable> deque = cache.get(loginName);
-            if (deque == null) {
+            if (deque == null)
+            {
                 // 初始化队列
                 deque = new ArrayDeque<Serializable>();
             }
 
             // 如果队列里没有此sessionId，且用户没有被踢出；放入队列
-            if (!deque.contains(sessionId) && session.getAttribute("kickout") == null) {
+            if (!deque.contains(sessionId) && session.getAttribute("kickout") == null)
+            {
                 // 将sessionId存入队列
                 deque.push(sessionId);
                 // 将用户的sessionId队列缓存
@@ -86,67 +93,84 @@ public class KickoutSessionFilter extends AccessControlFilter {
             }
 
             // 如果队列里的sessionId数超出最大会话数，开始踢人
-            while (deque.size() > maxSession) {
+            while (deque.size() > maxSession)
+            {
                 // 是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户；
                 Serializable kickoutSessionId = kickoutAfter ? deque.removeFirst() : deque.removeLast();
                 // 踢出后再更新下缓存队列
                 cache.put(loginName, deque);
 
-                try {
+                try
+                {
                     // 获取被踢出的sessionId的session对象
                     Session kickoutSession = sessionManager.getSession(new DefaultSessionKey(kickoutSessionId));
-                    if (null != kickoutSession) {
+                    if (null != kickoutSession)
+                    {
                         // 设置会话的kickout属性表示踢出了
                         kickoutSession.setAttribute("kickout", true);
                     }
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                     // 面对异常，我们选择忽略
                 }
             }
 
             // 如果被踢出了，(前者或后者)直接退出，重定向到踢出后的地址
-            if (session.getAttribute("kickout") != null && (Boolean) session.getAttribute("kickout") == true){
+            if (session.getAttribute("kickout") != null && (Boolean) session.getAttribute("kickout") == true)
+            {
                 // 退出登录
                 subject.logout();
                 saveRequest(request);
                 return isAjaxResponse(request, response);
             }
             return true;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             return isAjaxResponse(request, response);
         }
     }
 
-    private boolean isAjaxResponse(ServletRequest request, ServletResponse response) throws IOException {
+    private boolean isAjaxResponse(ServletRequest request, ServletResponse response) throws IOException
+    {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-        if (ServletUtils.isAjaxRequest(req)) {
+        if (ServletUtils.isAjaxRequest(req))
+        {
             AjaxResult ajaxResult = AjaxResult.error("您已在别处登录，请您修改密码或重新登录");
-            ServletUtils.renderString(res, objectMapper.writeValueAsString(ajaxResult));
-        } else {
+            ServletUtils.renderString(res, OBJECT_MAPPER.writeValueAsString(ajaxResult));
+        }
+        else
+        {
             WebUtils.issueRedirect(request, response, kickoutUrl);
         }
         return false;
     }
 
-    public void setMaxSession(int maxSession) {
+    public void setMaxSession(int maxSession)
+    {
         this.maxSession = maxSession;
     }
 
-    public void setKickoutAfter(boolean kickoutAfter) {
+    public void setKickoutAfter(boolean kickoutAfter)
+    {
         this.kickoutAfter = kickoutAfter;
     }
 
-    public void setKickoutUrl(String kickoutUrl) {
+    public void setKickoutUrl(String kickoutUrl)
+    {
         this.kickoutUrl = kickoutUrl;
     }
 
-    public void setSessionManager(SessionManager sessionManager) {
+    public void setSessionManager(SessionManager sessionManager)
+    {
         this.sessionManager = sessionManager;
     }
 
     // 设置Cache的key的前缀
-    public void setCacheManager(CacheManager cacheManager) {
+    public void setCacheManager(CacheManager cacheManager)
+    {
         // 必须和ehcache缓存配置中的缓存name一致
         this.cache = cacheManager.getCache(ShiroConstants.SYS_USERCACHE);
     }
