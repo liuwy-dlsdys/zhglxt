@@ -82,56 +82,56 @@
 
 ## 使用说明
 1. 安装好系统所需的运行、开发环境（JDK1.8+、MySQL5.7+、maven3.6+、Git环境等...）
-2. 使用IntelliJ IDEA拉取并打开项目
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/1.jpg?versionId=CAEQDRiBgICrx._C0xciIGY5YjU5ZjI3ZmY4NDQxMjRhZjRjMmE0YmQxNDM5Y2E0)
+2. 复制项目Git地址
+   ![](zhglxt-web/src/main/resources/static/img/sys/direction/a.png)
 
-3. 复制项目Git地址
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/2.jpg?versionId=CAEQDRiBgMC26veB1BciIGQ5MzJhMDdkZTFlNjRjYjE5Y2VhZmVjZjBjNGQ0M2Q4)
+3. 打开IntelliJ IDEA，把上面的Git地址粘贴到URL中，Clone项目代码到本地
+   ![](zhglxt-web/src/main/resources/static/img/sys/direction/b.png)
+   或者![](zhglxt-web/src/main/resources/static/img/sys/direction/b2.png)
 
-4. 接着填入IDEA
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/3.jpg?versionId=CAEQDRiBgMD8t._C0xciIGJlNzQwY2Y2ZGRmZjQ0ZjI4YzVhMzU2YmIxMzNkYjE3)
+4. 拉取完毕后，Maven就会自动下载项目所有依赖包到本地仓库。目录结构如下
+   ![](zhglxt-web/src/main/resources/static/img/sys/direction/c.png)
 
-5. 拉取完毕后，Maven就会自动下载项目所有依赖包到本地中央仓库。目录结构如下
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/4.jpg?versionId=CAEQDRiBgIC2wO_C0xciIDVjOTk0YmJjYzZiNDQzOTI5M2ExM2QyMTRiZWU5MGY2)
+5. 第一次启动，需要install安装到本地仓库
+   ![](zhglxt-web/src/main/resources/static/img/sys/direction/d.png)
 
-6. 第一次需要install安装到本地仓库
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/5.jpg?versionId=CAEQDRiBgMCkxu_C0xciIDI5MDQ3ZTE2YzIxYTRjN2NiZDA1YTI4NzIxMzE2OWI2)
+6. 导入数据文件的数据到本地MySQL数据库
+   ![](zhglxt-web/src/main/resources/static/img/sys/direction/e.png)
 
-7. 导入数据文件的数据到本地数据库  
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/11.jpg?versionId=CAEQDRiBgMCNooSC1BciIGUzNTVlZGUxNTQ3ZDRiNTdiMDQyMDExNDNhNWUyNTVl)
+7. 修改MySQL数据库的连接信息
+   ![](zhglxt-web/src/main/resources/static/img/sys/direction/f.png)
 
-8. 修改MySQL数据库的端口、用户名、密码为自己本地的数据库信息
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/6.jpg?versionId=CAEQDRiBgMDi2O_C0xciIDUxMzY3ZTBmNTljZjQ3YTY5OTAwNDcyMjJiODhmZGQx)
+8. 所有步骤没问题之后，就可以直接运行项目了，启动文件
+   ![](zhglxt-web/src/main/resources/static/img/sys/direction/g.png)
+   ![](zhglxt-web/src/main/resources/static/img/sys/direction/g2.png)
 
-9. 所有步骤没问题之后，就可以直接运行项目了，启动文件
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/7.jpg?versionId=CAEQDRiBgMDm2._C0xciIGZjNzdjNzlkNzZkYzQ5ZDViNzU5ZGU4YTNmNzM5YjE5)
+9. 登录账号密码：system/system【提示：系统中的所有用户的密码与该登录名一致。如 test1密码为test1；test2密码为test2】
 
-10. 访问路径：localhost:8888/zhglxt  登录账号密码：system/system【提示：系统中的所有用户的密码与该登录名一致。如 test1密码为test1；test2密码为test2】
+10. 打包部署（本项目是打成war包的方式进行部署的）
+    ![](zhglxt-web/src/main/resources/static/img/sys/direction/h.png)
 
-11. 打包部署（本项目是打成war包的方式进行部署的）
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/8.jpg?versionId=CAEQDRiBgICn1O_C0xciIGFjY2NmNmE2NTRhYzQzNjliYjk1ZTQ2NTY1YWM0OGM5)
-
-12. 打包完成后，到项目的目录下找到zhglxt\zhglxt-web\target\zhglxt-web.war包，重命名为zhglxt.war，然后直接放到Tomcat的webapps目录下，就可以运行起来了
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/9.jpg?versionId=CAEQDRiBgICwze_C0xciIGUwOTYwNmE2ZWM2ODQzODZiZjZmYmRlYzI0ZTA0Mjg3)
-
-13. 本项目不需要修改过多的配置信息，即可打包、部署、运行
+11. 打包完成后，到项目的目录下找到zhglxt\zhglxt-web\target\zhglxt-web.war包，重命名为zhglxt.war，然后直接放到Tomcat的webapps目录下，就可以运行起来了
+    ![](zhglxt-web/src/main/resources/static/img/sys/direction/i.png)
 
 ## 系统截图
 1. 后台登录页面
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/12.jpg?versionId=CAEQDRiBgMCMmpHl1BciIGI2ZTFlOTI3MjQ3NzRmMjA4YjQ1ZjM5ZjE0YTgxODBl)
+   ![](zhglxt-web/src/main/resources/static/img/sys/a.png)
 
 2. 后台首页
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/13.jpg?versionId=CAEQDRiBgIDRtJHl1BciIDlkZWM4YzlmNzQxNjRmNzdiODEwNWE0OGVmNzUyZmY1)
+   ![](zhglxt-web/src/main/resources/static/img/sys/b.png)
 
 3. CMS首页
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/14.jpg?versionId=CAEQDRiBgIDPr5Hl1BciIGZkNTdhMTBiN2ZkZjRiNzM4ZGVlYjc4YmYzZTQzYjBm)
-如需CMS官网资源文件（图片、音频），下载地址：https://pan.baidu.com/s/1t10HdP7w6QA-KukDF1av3A  提取码：asdf 解压后整个文件夹复制到系统D盘即可
+   ![](zhglxt-web/src/main/resources/static/img/sys/c.png)
+   如需CMS官网资源文件（图片、音频），下载地址：https://pan.baidu.com/s/1t10HdP7w6QA-KukDF1av3A  提取码：asdf 解压后整个文件夹复制到系统D盘即可
 
 4. 工作流
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/15.jpg?versionId=CAEQDRiBgMDUppHl1BciIDIwZGE2Y2U0OWZhZjRkMWFhNzAzNzc1NGUwZGZmMzA3)
+   ![](zhglxt-web/src/main/resources/static/img/sys/d.png)
+   ![](zhglxt-web/src/main/resources/static/img/sys/d2.png)
 
 5. 文件管理器
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/16.jpg?versionId=CAEQDRiBgMCVoJHl1BciIGFlNWU3M2E4ZmExMjRjZGU4YzM4ZWMyOTRmNzE2YjVk)
+   ![](zhglxt-web/src/main/resources/static/img/sys/e.png)
 
 6. 通知通告
-![](https://dlsdys-gz.oss-cn-guangzhou.aliyuncs.com/zhglxt/helpImages/sys/17.jpg?versionId=CAEQDRiBgMD_sJHl1BciIDEzMDJlN2I3ZTJiNTQwMjdiZDJiYTlkZjAyOGMxNDI2)
+   ![](zhglxt-web/src/main/resources/static/img/sys/f.png)
+   ![](zhglxt-web/src/main/resources/static/img/sys/f2.png)
+   ![](zhglxt-web/src/main/resources/static/img/sys/f3.png)
