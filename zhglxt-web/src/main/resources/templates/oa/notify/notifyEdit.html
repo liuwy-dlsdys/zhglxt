@@ -91,11 +91,35 @@
 
     function initSummernote(){
         $('.summernote').summernote({
+            toolbar: [
+                //编辑
+                ['edit',['undo','redo']],
+                //标题
+                ['headline', ['style']],
+                //样式
+                ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
+                //字体
+                ['fontface', ['fontname','color','fontsize']],
+                //对齐方式
+                ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
+                //行高
+                ['height', ['height']],
+                //表格
+                ['table', ['table']],
+                //插入：链接，图片，视频，水平线
+                ['insert', ['link','picture','video','hr']],
+                //全屏，代码视图
+                ['view', ['fullscreen', 'codeview']]
+            ],
             placeholder: '请输入公告内容',
             height: 320,
             lang: 'zh-CN',
             followingToolbar: false,
             dialogsInBody: true,
+            lineHeights:['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
+            fontNames: ['宋体','微软雅黑','楷体','黑体','隶书','Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica Neue', 'Helvetica', 'Impact',
+                'Lucida Grande', 'Tahoma', 'Times New Roman', 'Verdana'],
+            addDefaultFonts: false,
             callbacks: {
                 onImageUpload: function (files) {
                     sendFile(files[0], this);

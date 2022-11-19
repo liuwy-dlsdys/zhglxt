@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
+ * CKFinder 连接器 Servlet
  * @author liuwy
  * @date 2019/11/29
  */
@@ -16,11 +17,13 @@ import org.springframework.stereotype.Component;
 @Configuration
 public class CKFinderConnectorServlet {
 
+    /** 文件保存路径 */
     @Value("${zhglxt.profile}")
-    private String profile;//文件保存路径
+    private String profile;
 
+    /** 是否启用CKFinder插件 */
     @Value("${zhglxt.ckfinderEnabled}")
-    private String ckfinderEnabled;//是否启用CKFinder插件
+    private String ckfinderEnabled;
 
     @Bean
     public ServletRegistrationBean connectCKFinder() {
@@ -29,7 +32,7 @@ public class CKFinderConnectorServlet {
         registrationBean.addInitParameter("debug", "false");
         registrationBean.addInitParameter("configuration", "com.zhglxt.web.core.ckfinder.CKFinderConfig");
 
-        /*
+        /**
          * baseDir和baseURL都应该指向服务器上相同的位置  ——userfiles目录，其中包含CKFinder上传的所有用户文件.
          * baseDir是上传文件目录在服务器中的绝对路径.
          * baseURL是一个浏览器的访问路径(可以使用相对路径).
@@ -38,8 +41,7 @@ public class CKFinderConnectorServlet {
          * 这是因为服务器配置原因导致有可能根据baseURL找不到路径而出现故障,这个时候baseDir就能派上用场了。
          * 因为它是一个绝对路径，所以不受服务器配置的影响。
          *
-         *  */
-        //初始化ckfinder.xml 配置
+         **/
         registrationBean.addInitParameter("enabled", ckfinderEnabled);
         registrationBean.addInitParameter("baseDir", FileUtils.path(profile));
         registrationBean.addInitParameter("baseURL", FileUtils.path(profile));
