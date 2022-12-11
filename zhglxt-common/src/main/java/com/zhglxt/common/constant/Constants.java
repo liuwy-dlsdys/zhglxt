@@ -109,5 +109,5 @@ public class Constants {
     /**
      * 定时任务违规的字符
      */
-    public static final String[] JOB_ERROR_STR = { "java.net.URL", "javax.naming.InitialContext", "org.yaml.snakeyaml","org.springframework", "com.zhglxt.common.util.file" };
+    public static final String[] JOB_ERROR_STR = { "java.net.URL", "javax.naming.InitialContext", "org.yaml.snakeyaml","org.springframework", "com.zhglxt.common.utils.file", "com.zhglxt.common.config" };
 }

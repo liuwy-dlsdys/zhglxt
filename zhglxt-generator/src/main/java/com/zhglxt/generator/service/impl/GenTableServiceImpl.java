@@ -123,8 +123,8 @@ public class GenTableServiceImpl implements IGenTableService {
         genTable.setOptions(options);
         int row = genTableMapper.updateGenTable(genTable);
         if (row > 0) {
-            for (GenTableColumn cenTableColumn : genTable.getColumns()) {
-                genTableColumnMapper.updateGenTableColumn(cenTableColumn);
+            for (GenTableColumn genTableColumn : genTable.getColumns()) {
+                genTableColumnMapper.updateGenTableColumn(genTableColumn);
             }
         }
     }

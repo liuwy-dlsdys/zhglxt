@@ -35,7 +35,7 @@
 
         <!--验证码 -->
         <dependency>
-            <groupId>com.github.penggle</groupId>
+            <groupId>pro.fessional</groupId>
             <artifactId>kaptcha</artifactId>
             <version>${kaptcha.version}</version>
             <!-- 去除内置tomcat时，要把验证码的这个exclusions去掉。因为tomcat排除后需要servlet -->
