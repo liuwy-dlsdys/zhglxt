@@ -23,6 +23,14 @@ public interface SysConfigMapper {
     public SysConfig selectConfig(SysConfig config);
 
     /**
+     * 通过ID查询配置
+     *
+     * @param configId 参数ID
+     * @return 参数配置信息
+     */
+    public SysConfig selectConfigById(String configId);
+
+    /**
      * 查询参数配置列表
      *
      * @param config 参数配置信息
