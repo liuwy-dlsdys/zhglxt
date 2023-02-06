@@ -422,8 +422,8 @@ public class DemoTableController extends BaseController {
             rspData.setTotal(userList.size());
             return rspData;
         }
-        Integer pageNum = (pageDomain.getPageNum() - 1) * 10;
-        Integer pageSize = pageDomain.getPageNum() * 10;
+        Integer pageNum = (pageDomain.getPageNum() - 1) * pageDomain.getPageSize();
+        Integer pageSize = pageDomain.getPageNum() * pageDomain.getPageSize();
         if (pageSize > userList.size()) {
             pageSize = userList.size();
         }

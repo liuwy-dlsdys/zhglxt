@@ -56,12 +56,18 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#version" href="#latest_version">latest version</a><code class="pull-right">2022.12.18-2023-01-26</code>
+                                        <a data-toggle="collapse" data-parent="#version" href="#latest_version">latest version</a><code class="pull-right">2022.12.18-2023.02.06</code>
                                     </h5>
                                 </div>
                                 <div id="latest_version" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                         <ol>
+                                            <li>修复菜单栏快速点击导致展开折叠样式问题(I6CWMP)</li>
+                                            <li>连接池Druid支持新的配置connectTimeout和socketTimeout(I6CLL8)</li>
+                                            <li>修复异步加载表格树重置列表父节点展开异常问题(I6AGWH)</li>
+                                            <li>屏蔽定时任务bean违规的字符</li>
+                                            <li>解决单体版本表格行拖拽操作后，列表底部的总共记录条数变成了undefined问题</li>
+                                            <li>EhCacheManager改为从bean容器获取，不使用自动装配</li>
                                             <li>升级jquery到最新版v3.6.3</li>
                                             <li>修复页签属性refresh为undefined时页面被刷新问题</li>
                                             <li>主子表根据序号删除方法加入表格ID参数</li>

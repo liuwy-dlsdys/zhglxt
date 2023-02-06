@@ -182,7 +182,7 @@
                 $.ajax({
                     type: options.type,
                     url: options.url,
-                    data: $.extend(parms, options.ajaxParams),
+                    data: parms,
                     dataType: "json",
                     success: function(data, textStatus, jqXHR) {
                     	data = calculateObjectValue(options, options.responseHandler, [data], data);

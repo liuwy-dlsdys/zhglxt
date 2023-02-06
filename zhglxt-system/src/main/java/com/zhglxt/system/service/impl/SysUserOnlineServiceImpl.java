@@ -3,6 +3,7 @@ package com.zhglxt.system.service.impl;
 import com.zhglxt.common.constant.ShiroConstants;
 import com.zhglxt.common.utils.DateUtils;
 import com.zhglxt.common.utils.StringUtils;
+import com.zhglxt.common.utils.spring.SpringUtils;
 import com.zhglxt.system.entity.SysUserOnline;
 import com.zhglxt.system.mapper.SysUserOnlineMapper;
 import com.zhglxt.system.service.ISysUserOnlineService;
@@ -25,9 +26,6 @@ import java.util.List;
 public class SysUserOnlineServiceImpl implements ISysUserOnlineService {
     @Autowired
     private SysUserOnlineMapper userOnlineDao;
-
-    @Autowired
-    private EhCacheManager ehCacheManager;
 
     /**
      * 通过会话序号查询信息
@@ -108,6 +106,7 @@ public class SysUserOnlineServiceImpl implements ISysUserOnlineService {
      */
     @Override
     public void removeUserCache(String loginName, String sessionId) {
+        EhCacheManager ehCacheManager= SpringUtils.getBean(EhCacheManager.class);
         Cache<String, Deque<Serializable>> cache = ehCacheManager.getCache(ShiroConstants.SYS_USERCACHE);
         Deque<Serializable> deque = cache.get(loginName);
         if (StringUtils.isEmpty(deque) || deque.size() == 0) {
