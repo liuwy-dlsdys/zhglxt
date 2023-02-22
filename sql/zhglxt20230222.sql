@@ -1537,7 +1537,7 @@ INSERT INTO `sys_config` VALUES ('7', '用户管理-账号密码更新周期', '
 INSERT INTO `sys_config` VALUES ('8', '主框架页-菜单导航显示风格', 'sys.index.menuStyle', 'topnav', 'Y', 'system', '2020-10-16 15:35:20', 'system', '2021-05-31 22:23:00', '菜单导航显示风格（default为左侧导航菜单，topnav为顶部导航菜单）');
 INSERT INTO `sys_config` VALUES ('9', '主框架页-是否开启页脚', 'sys.index.footer', 'true', 'Y', 'system', '2020-10-16 15:35:20', 'system', '2020-12-12 19:02:45', '是否开启底部页脚显示（true显示，false隐藏）');
 INSERT INTO `sys_config` VALUES ('10', '主框架页-是否开启页签', 'sys.index.tagsView', 'true', 'Y', 'system', '2021-09-24 12:50:25', 'system', null, '是否开启菜单多页签显示（true显示，false隐藏）');
-
+INSERT INTO `sys_config` VALUES ('11', '用户登录-黑名单列表', 'sys.login.blackIPList', '\'\'', 'Y', 'system', '2023-02-20 21:52:26', '', null, '设置登录IP黑名单限制，多个匹配项以;分隔，支持匹配（*通配、网段）');
 -- ----------------------------
 -- Table structure for sys_dept
 -- ----------------------------
@@ -1993,6 +1993,7 @@ CREATE TABLE `sys_oper_log` (
   `status` int(1) DEFAULT '0' COMMENT '操作状态（0正常 1异常）',
   `error_msg` varchar(2000) DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime DEFAULT NULL COMMENT '操作时间',
+  `cost_time` bigint(20) default 0 comment '消耗时间',
   PRIMARY KEY (`oper_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='操作日志记录';
 

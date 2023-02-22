@@ -42,7 +42,7 @@ public class SysRegisterService {
         } else if (loginName.length() < UserConstants.USERNAME_MIN_LENGTH
                 || loginName.length() > UserConstants.USERNAME_MAX_LENGTH) {
             msg = "账户长度必须在2到20个字符之间";
-        } else if (UserConstants.USER_NAME_NOT_UNIQUE.equals(userService.checkLoginNameUnique(user))) {
+        } else if (userService.checkLoginNameUnique(user)) {
             msg = "保存用户'" + loginName + "'失败，注册账号已存在";
         }else if(!StringUtils.isEmpty(idCard)){
             if(!"".equals(IDCardUtils.IDCardValidate(idCard))){

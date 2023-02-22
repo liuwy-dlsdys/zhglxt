@@ -177,9 +177,6 @@
                         name: function () {
                             return $.common.trim($("#loginName").val());
                         }
-                    },
-                    dataFilter: function (data, type) {
-                        return $.validate.unique(data);
                     }
                 }
             },
@@ -197,9 +194,6 @@
                         name: function () {
                             return $.common.trim($("#email").val());
                         }
-                    },
-                    dataFilter: function (data, type) {
-                        return $.validate.unique(data);
                     }
                 }
             },
@@ -213,9 +207,6 @@
                         name: function () {
                             return $.common.trim($("#phonenumber").val());
                         }
-                    },
-                    dataFilter: function (data, type) {
-                        return $.validate.unique(data);
                     }
                 }
             },

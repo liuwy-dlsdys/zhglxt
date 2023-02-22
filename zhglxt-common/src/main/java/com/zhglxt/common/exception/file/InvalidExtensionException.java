@@ -1,7 +1,5 @@
 package com.zhglxt.common.exception.file;
 
-import org.apache.commons.fileupload.FileUploadException;
-
 import java.util.Arrays;
 
 /**

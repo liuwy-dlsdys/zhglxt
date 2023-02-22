@@ -127,5 +127,5 @@ public interface ISysMenuService {
      * @param menu 菜单信息
      * @return 结果
      */
-    public String checkMenuNameUnique(SysMenu menu);
+    public boolean checkMenuNameUnique(SysMenu menu);
 }

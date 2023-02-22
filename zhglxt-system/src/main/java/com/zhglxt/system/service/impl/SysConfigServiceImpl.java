@@ -172,13 +172,13 @@ public class SysConfigServiceImpl implements ISysConfigService {
      * @return 结果
      */
     @Override
-    public String checkConfigKeyUnique(SysConfig config) {
+    public boolean checkConfigKeyUnique(SysConfig config) {
         String configId = StringUtils.isNull(config.getConfigId()) ? "-1" : config.getConfigId();
         SysConfig info = configMapper.checkConfigKeyUnique(config.getConfigKey());
         if (StringUtils.isNotNull(info) && !info.getConfigId().equals(configId)) {
-            return UserConstants.CONFIG_KEY_NOT_UNIQUE;
+            return UserConstants.NOT_UNIQUE;
         }
-        return UserConstants.CONFIG_KEY_UNIQUE;
+        return UserConstants.UNIQUE;
     }
 
     /**

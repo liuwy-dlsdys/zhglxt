@@ -252,13 +252,13 @@ public class SysRoleServiceImpl implements ISysRoleService {
      * @return 结果
      */
     @Override
-    public String checkRoleNameUnique(SysRole role) {
+        public boolean checkRoleNameUnique(SysRole role) {
         String roleId = StringUtils.isNull(role.getRoleId()) ? "-1" : role.getRoleId();
         SysRole info = roleMapper.checkRoleNameUnique(role.getRoleName());
         if (StringUtils.isNotNull(info) && info.getRoleId().equals(roleId)) {
-            return UserConstants.ROLE_NAME_NOT_UNIQUE;
+            return UserConstants.NOT_UNIQUE;
         }
-        return UserConstants.ROLE_NAME_UNIQUE;
+        return UserConstants.UNIQUE;
     }
 
     /**
@@ -268,13 +268,13 @@ public class SysRoleServiceImpl implements ISysRoleService {
      * @return 结果
      */
     @Override
-    public String checkRoleKeyUnique(SysRole role) {
+    public boolean checkRoleKeyUnique(SysRole role) {
         String roleId = StringUtils.isNull(role.getRoleId()) ? "-1" : role.getRoleId();
         SysRole info = roleMapper.checkRoleKeyUnique(role.getRoleKey());
         if (StringUtils.isNotNull(info) && !info.getRoleId().equals(roleId)) {
-            return UserConstants.ROLE_KEY_NOT_UNIQUE;
+            return UserConstants.NOT_UNIQUE;
         }
-        return UserConstants.ROLE_KEY_UNIQUE;
+        return UserConstants.UNIQUE;
     }
 
     /**

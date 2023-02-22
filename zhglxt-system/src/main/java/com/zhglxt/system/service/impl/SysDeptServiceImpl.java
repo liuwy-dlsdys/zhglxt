@@ -275,13 +275,13 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * @return 结果
      */
     @Override
-    public String checkDeptNameUnique(SysDept dept) {
+    public boolean checkDeptNameUnique(SysDept dept) {
         String deptId = StringUtils.isNull(dept.getDeptId()) ? "-1" : dept.getDeptId();
         SysDept info = deptMapper.checkDeptNameUnique(dept.getDeptName(), dept.getParentId());
         if (StringUtils.isNotNull(info) && !info.getDeptId().equals(deptId)) {
-            return UserConstants.DEPT_NAME_NOT_UNIQUE;
+            return UserConstants.NOT_UNIQUE;
         }
-        return UserConstants.DEPT_NAME_UNIQUE;
+        return UserConstants.UNIQUE;
     }
 
     /**

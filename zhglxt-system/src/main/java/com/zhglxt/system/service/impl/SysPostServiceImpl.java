@@ -137,13 +137,13 @@ public class SysPostServiceImpl implements ISysPostService {
      * @return 结果
      */
     @Override
-    public String checkPostNameUnique(SysPost post) {
+    public boolean checkPostNameUnique(SysPost post) {
         String postId = StringUtils.isNull(post.getPostId()) ? "-1" : post.getPostId();
         SysPost info = postMapper.checkPostNameUnique(post.getPostName());
         if (StringUtils.isNotNull(info) && !info.getPostId().equals(postId)) {
-            return UserConstants.POST_NAME_NOT_UNIQUE;
+            return UserConstants.NOT_UNIQUE;
         }
-        return UserConstants.POST_NAME_UNIQUE;
+        return UserConstants.UNIQUE;
     }
 
     /**
@@ -153,12 +153,12 @@ public class SysPostServiceImpl implements ISysPostService {
      * @return 结果
      */
     @Override
-    public String checkPostCodeUnique(SysPost post) {
+    public boolean checkPostCodeUnique(SysPost post) {
         String postId = StringUtils.isNull(post.getPostId()) ? "-1" : post.getPostId();
         SysPost info = postMapper.checkPostCodeUnique(post.getPostCode());
         if (StringUtils.isNotNull(info) && !info.getPostId().equals(postId)) {
-            return UserConstants.POST_CODE_NOT_UNIQUE;
+            return UserConstants.NOT_UNIQUE;
         }
-        return UserConstants.POST_CODE_UNIQUE;
+        return UserConstants.UNIQUE;
     }
 }

@@ -228,7 +228,7 @@ public class ActTaskService {
                 }
                 //任务历时
                 if (StringUtils.isNotBlank(histIns.getEndTime())) {
-                    String taskFor = DateUtils.getDatePoor(histIns.getEndTime(), histIns.getStartTime());
+                    String taskFor = DateUtils.timeDistance(histIns.getEndTime(), histIns.getStartTime());
                     atMap.put("taskFor", taskFor);
                 }
                 arrayList.add(atMap);

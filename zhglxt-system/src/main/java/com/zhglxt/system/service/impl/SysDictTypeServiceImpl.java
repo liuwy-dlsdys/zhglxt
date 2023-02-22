@@ -197,13 +197,13 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
      * @return 结果
      */
     @Override
-    public String checkDictTypeUnique(SysDictType dict) {
+    public boolean checkDictTypeUnique(SysDictType dict) {
         String dictId = StringUtils.isNull(dict.getDictId()) ? "-1" : dict.getDictId();
         SysDictType dictType = dictTypeMapper.checkDictTypeUnique(dict.getDictType());
         if (StringUtils.isNotNull(dictType) && !dictType.getDictId().equals(dictId)) {
-            return UserConstants.DICT_TYPE_NOT_UNIQUE;
+            return UserConstants.NOT_UNIQUE;
         }
-        return UserConstants.DICT_TYPE_UNIQUE;
+        return UserConstants.UNIQUE;
     }
 
     /**
