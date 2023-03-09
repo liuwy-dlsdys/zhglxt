@@ -182,6 +182,7 @@
             sys_user u
         WHERE
             d.dept_id = u.dept_id
+          AND u.del_flag = '0'
         ORDER BY d.dept_id ASC
     </select>
 
