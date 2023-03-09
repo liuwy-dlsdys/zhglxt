@@ -126,7 +126,7 @@
 
 3. CMS首页
    ![](zhglxt-web/src/main/resources/static/img/sys/c.png)
-   如需CMS官网资源文件（图片、音频），下载地址：https://pan.baidu.com/s/1t10HdP7w6QA-KukDF1av3A  提取码：asdf 解压后整个文件夹复制到系统D盘即可
+   如需CMS官网资源文件（图片、音频），下载地址：链接：https://pan.baidu.com/s/15rrKWJNhSSP8pxnU7RNklQ?pwd=asdf 提取码：asdf 解压后整个文件夹复制到系统D盘即可
 
 4. 工作流
    ![](zhglxt-web/src/main/resources/static/img/sys/d.png)
