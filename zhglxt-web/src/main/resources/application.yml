@@ -23,13 +23,6 @@ server:
     # 应用的访问路径
     context-path: /zhglxt
   tomcat:
-    # 存放Tomcat的日志目录(win系统:  D:/tomcat/projects/zhglxt/logs   ;Linux系统: /usr/tomcaat/projects/zhglxt/logs)
-    basedir: D:/tomcat/projects/zhglxt/logs
-    accesslog:
-      # 开启日志记录
-      enabled: true
-      # 访问日志存放目录
-      directory: logs
     # tomcat的URI编码
     uri-encoding: UTF-8
     # 连接数满后的排队数，默认为100
