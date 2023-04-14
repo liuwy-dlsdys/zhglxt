@@ -181,7 +181,14 @@
                     }
                 },
                 {
-                    field: 'image',
+                    field: 'imageName',
+                    title: '缩略图名称',
+                    formatter: function (value, row, index) {
+                        return $.table.tooltip(value);
+                    }
+                },
+                {
+                    field: 'imageUrl',
                     title: '缩略图',
                     formatter: function (value, row, index) {
                         return $.table.imageView(value);

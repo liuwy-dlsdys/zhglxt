@@ -164,7 +164,7 @@
     If enabled, CKFinder will disallow creating folders and uploading files whose names contain characters
     that are not safe under an IIS web server.
     -->
-    <disallowUnsafeCharacters>false</disallowUnsafeCharacters>
+    <disallowUnsafeCharacters>true</disallowUnsafeCharacters>
     <!--
     Due to security issues with Apache modules, it is recommended to leave the
     following setting enabled.
@@ -205,7 +205,7 @@
     Force ASCII names for files and folders. If enabled, characters with diactric
     marks will be automatically converted to ASCII letters.
     -->
-    <forceASCII>false</forceASCII>
+    <forceASCII>true</forceASCII>
     <!--
     Enables protection in the connector.
     The default CSRF protection mechanism is based on double submit cookies, where

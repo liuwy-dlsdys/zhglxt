@@ -70,7 +70,7 @@ public class OnlineSessionFilter extends AccessControlFilter
                     List<SysRole> roles = user.getRoles();
                     if (roles.size() > 0) {
                         for (int i = 0; i < roles.size(); i++) {
-                            //保存角色key带list中
+                            //保存角色key到list中
                             lists.add(roles.get(i).getRoleKey().trim());
                         }
                     }

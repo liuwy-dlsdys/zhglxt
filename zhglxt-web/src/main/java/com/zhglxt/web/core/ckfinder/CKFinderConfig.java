@@ -208,7 +208,7 @@ public class CKFinderConfig extends Configuration {
                     this.uriEncoding = childNode.getTextContent().trim();
                 }
 
-                //设置CKFinder检索时必须使用的会话变量名. 当前用户的“role”,可以在“accessControls”中使用设置
+                //设置CKFinder检索时必须使用的会话变量名. 当前用户的“role”,可以在zhglxt-web/src/main/resources/ckfinder.xml的“accessControls”中设置
                 if (CKFinderConstant.NODE_USER_ROLE_SESSION_VAR.equals(childNode.getNodeName())) {
                     this.userRoleSessionVar = childNode.getTextContent().trim();
                 }

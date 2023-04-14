@@ -18,7 +18,8 @@ public class Article implements Serializable {
     private String link;//文章链接
     private String content;//文章内容
     private String titleColor;//标题颜色
-    private String image;//文章图片
+    private String imageUrl;//文章图片路径
+    private String imageName;//文章图片名称
     private String keywords;//关键字
     private String description;//描述、摘要
     private String weight;//权重，越大越靠前
@@ -97,12 +98,20 @@ public class Article implements Serializable {
         this.titleColor = titleColor;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     public String getKeywords() {

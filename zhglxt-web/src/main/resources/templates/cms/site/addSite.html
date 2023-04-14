@@ -40,8 +40,11 @@
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">背景音乐：</label>
-            <div class="col-sm-8">
+            <div class="col-sm-5">
                 <input class="form-control" type="text" name="bgMusic" id="bgMusic">
+            </div>
+            <div class="col-sm-3">
+                <a class="btn btn-success" onclick="BrowseServer('Files:/music/', 'bgMusic')">选择</a>
             </div>
         </div>
         <div class="form-group">
@@ -77,6 +80,7 @@
 </div>
 <th:block th:include="include :: footer"/>
 <th:block th:include="include :: summernote-js"/>
+<th:block th:include="include :: CKFinder-js"/>
 <script type="text/javascript" th:inline="javascript">
     var prefix = ctx + "cms/site";
     $(function () {
@@ -132,6 +136,37 @@
     function doSubmit(index, layero) {
         var body = $.modal.getChildFrame(index);
         $.modal.close(index);
+    }
+
+    function BrowseServer(startupPath, updateId) {
+        // 打开资源管理器对话框
+        CKFinder.popup({
+            // 模态框标题
+            popupTitle: "请选择背景音乐文件",
+            // 设置浏览器窗口大小
+            height: 557,
+            width: 777,
+            // 指定资源类型
+            types: "Files",
+            // 要显示的资源类型。默认情况下，CKFinder 显示所有可用的资源类型。如果资源类型属性 设置后，CKFinder 将仅显示指定的资源类型。
+            resourceType: "Files",
+            // 只读
+            readOnly: true,
+            // CKFinder的访问路径 (default = "/ckfinder/").
+            basePath: ctx + 'ckfinder/',
+            baseUrl: ctx + 'ckfinder/',
+            // 打开的路径: "Type:/path/to/directory/"
+            startupPath: startupPath,
+            // 需要更新的字段的Id
+            selectActionData: updateId,
+            // 选择文件时调用的函数名称
+            selectActionFunction: setFileField,
+        });
+    }
+
+    //选择文件时调用
+    function setFileField(fileUrl, data) {
+        $("#bgMusic").val(data["fileUrl"]);
     }
 </script>
 </body>
