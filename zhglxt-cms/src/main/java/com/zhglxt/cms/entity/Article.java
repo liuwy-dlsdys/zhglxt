@@ -10,29 +10,98 @@ import java.util.Date;
  */
 public class Article implements Serializable {
     private static final long serialVersionUID = -1395263694069887623L;
-    private String id;//主键id
-    private String columnId;//栏目编号
-    private String columnName;//栏目名称
-    private String columnFlag;//栏目标识
-    private String title;//标题
-    private String link;//文章链接
-    private String content;//文章内容
-    private String titleColor;//标题颜色
-    private String imageUrl;//文章图片路径
-    private String imageName;//文章图片名称
-    private String keywords;//关键字
-    private String description;//描述、摘要
-    private String weight;//权重，越大越靠前
-    private Date weightTime;//权重期限
-    private String hits;//点击数
-    private String posId;//推荐位，多选
-    private String status;//0.显示、1.隐藏
-    private String createBy;//创建人
-    private Date createTime;//创建时间
-    private String updateBy;//更新人
-    private Date updateTime;//更新时间
-    private String remark;//备注
-    private String sort;//排序
+    /**
+     * 主键id
+     **/
+    private String id;
+    /**
+     * 栏目编号
+     **/
+    private String columnId;
+    /**
+     * 栏目名称
+     **/
+    private String columnName;
+    /**
+     * 栏目标识
+     **/
+    private String columnFlag;
+    /**
+     * 标题
+     **/
+    private String title;
+    /**
+     * 文章链接
+     **/
+    private String link;
+    /**
+     * 文章内容
+     **/
+    private String content;
+    /**
+     * 标题颜色
+     **/
+    private String titleColor;
+    /**
+     * 文章图片路径
+     **/
+    private String imageUrl;
+    /**
+     * 文章图片名称
+     **/
+    private String imageName;
+    /**
+     * 关键字
+     **/
+    private String keywords;
+    /**
+     * 描述、摘要
+     **/
+    private String description;
+    /**
+     * 权重，越大越靠前
+     **/
+    private String weight;
+    /**
+     * 权重期限
+     **/
+    private Date weightTime;
+    /**
+     * 点击数
+     **/
+    private String hits;
+    /**
+     * 推荐位，多选
+     **/
+    private String posId;
+    /**
+     * 0.显示、1.隐藏
+     **/
+    private String status;
+    /**
+     * 创建人
+     **/
+    private String createBy;
+    /**
+     * 创建时间
+     **/
+    private Date createTime;
+    /**
+     * 更新人
+     **/
+    private String updateBy;
+    /**
+     * 更新时间
+     **/
+    private Date updateTime;
+    /**
+     * 备注
+     **/
+    private String remark;
+    /**
+     * 排序
+     **/
+    private String sort;
 
     public String getId() {
         return id;

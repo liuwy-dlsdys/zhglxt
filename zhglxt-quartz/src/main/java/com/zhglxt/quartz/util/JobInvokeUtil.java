@@ -30,7 +30,7 @@ public class JobInvokeUtil {
             Object bean = SpringUtils.getBean(beanName);
             invokeMethod(bean, methodName, methodParams);
         } else {
-            Object bean = Class.forName(beanName).newInstance();
+            Object bean = Class.forName(beanName).getDeclaredConstructor().newInstance();
             invokeMethod(bean, methodName, methodParams);
         }
     }
