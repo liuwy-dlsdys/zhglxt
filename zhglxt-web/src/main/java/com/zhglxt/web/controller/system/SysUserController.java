@@ -68,7 +68,8 @@ public class SysUserController extends BaseController {
     public TableDataInfo list(SysUser user) {
         startPage();
         List<SysUser> list = userService.selectUserList(user);
-        return getDataTable(list);
+        List<SysUser> collect = list.stream().filter(u -> !u.getUserId().equals("1")).collect(Collectors.toList());
+        return getDataTable(SysUser.isAdmin(ShiroUtils.getSysUser().getUserId())?list:collect);
     }
 
     @Log(title = "用户管理-导出", businessType = BusinessType.EXPORT)
@@ -105,7 +106,9 @@ public class SysUserController extends BaseController {
      */
     @GetMapping("/add")
     public String add(ModelMap mmap) {
-        mmap.put("roles", roleService.selectRoleAll());
+        List<SysRole> sysRoles = roleService.selectRoleAll();
+        List<SysRole> collect = sysRoles.stream().filter(u -> !u.getRoleId().equals("1")).collect(Collectors.toList());
+        mmap.put("roles", SysUser.isAdmin(ShiroUtils.getSysUser().getUserId())?sysRoles:collect);
         mmap.put("posts", postService.selectPostAll());
         return prefix + "/add";
     }
@@ -138,7 +141,7 @@ public class SysUserController extends BaseController {
     @RequiresPermissions("system:user:edit")
     @GetMapping("/edit/{userId}")
     public String edit(@PathVariable("userId") String userId, ModelMap mmap) {
-        userService.checkUserDataScope(userId);
+        //userService.checkUserDataScope(userId);
         List<SysRole> roles = roleService.selectRolesByUserId(userId);
         mmap.put("user", userService.selectUserById(userId));
         mmap.put("roles", SysUser.isAdmin(userId) ? roles : roles.stream().filter(r -> !r.isAdmin()).collect(Collectors.toList()));
@@ -156,7 +159,7 @@ public class SysUserController extends BaseController {
     public AjaxResult editSave(@Validated SysUser user) {
         //超级系统管理员&角色不允许操作
         userService.checkUserAllowed(user);
-        userService.checkUserDataScope(user.getUserId());
+        //userService.checkUserDataScope(user.getUserId());
 
         //数据校验
         if (!userService.checkLoginNameUnique(user))

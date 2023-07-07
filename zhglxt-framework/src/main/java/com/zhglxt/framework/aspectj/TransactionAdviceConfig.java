@@ -92,6 +92,7 @@ public class TransactionAdviceConfig {
         source.addTransactionalMethod("audit*", txAttr_REQUIRED);
         source.addTransactionalMethod("claim*", txAttr_REQUIRED);
         source.addTransactionalMethod("convert*", txAttr_REQUIRED);
+        source.addTransactionalMethod("change*", txAttr_REQUIRED);
 
         /*使用以下字符开头命名的方法,开启只读模式,提高数据库访问性能*/
         source.addTransactionalMethod("get*", txAttr_REQUIRED_READONLY);

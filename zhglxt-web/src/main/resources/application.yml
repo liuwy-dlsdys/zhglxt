@@ -155,7 +155,7 @@ knife4j:
     # 是否开启自定义Footer
     enableFooterCustom: true
     # 自定义Footer内容
-    footerCustomContent: Copyright 2019-now [WEB应用系统](http://zhglxt.dlsdys.com/)
+    footerCustomContent: Copyright 2019-2023 [WEB应用系统](http://zhglxt.dlsdys.com/) liuwy
     # 是否开启动态参数调试功能
     enableDynamicParameter: true
     # 是否启用调试
