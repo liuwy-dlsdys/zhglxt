@@ -716,7 +716,7 @@
             <div class="tab-pane" id="tabDay">
                 <div class="radio">
                     <label>
-                        <input type="radio" name="rdoDay" id="day_all"> 每小时 允许的通配符[, - * /]
+                        <input type="radio" name="rdoDay" id="day_all"> 每日 允许的通配符[, - * /]
                     </label>
                 </div>
                 <div class="radio">
@@ -1134,7 +1134,8 @@
 <script th:src="@{/zhglxt/js/zhglxt-ui.js}"></script>
 <script th:src="@{/js/cron.js}"></script>
 <script th:inline="javascript">
-var prefix = [[@{/}]] + "monitor/job";
+
+var prefix = /*[[@{/}]]*/'' + "monitor/job";
 
 // 查询最近10次运行时间
 $('#runBtn').click(function() {

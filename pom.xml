@@ -20,7 +20,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-        <shiro.version>1.10.1</shiro.version>
+        <shiro.version>1.12.0</shiro.version>
         <thymeleaf.extras.shiro.version>2.1.0</thymeleaf.extras.shiro.version>
         <mybatis.boot.version>2.2.2</mybatis.boot.version>
         <druid.version>1.2.16</druid.version>
@@ -30,7 +30,7 @@
         <mybatis-spring-boot.version>2.2.0</mybatis-spring-boot.version>
         <pagehelper.boot.version>1.4.3</pagehelper.boot.version>
         <fastjson.version>1.2.83</fastjson.version>
-        <oshi.version>6.4.3</oshi.version>
+        <oshi.version>6.4.4</oshi.version>
         <commons.io.version>2.11.0</commons.io.version>
         <poi.version>4.1.2</poi.version>
         <velocity.version>2.3</velocity.version>

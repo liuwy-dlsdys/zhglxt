@@ -106,7 +106,11 @@
                 },
                 {
                     field: 'configValue',
-                    title: '参数键值'
+                    title: '参数键值',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        return $.table.tooltip(value, 10, "open");
+                    }
                 },
                 {
                     field: 'configType',
