@@ -27,7 +27,7 @@
         <result property="updateBy" column="update_by"/>
         <result property="updateTime" column="update_time"/>
         <result property="remark" column="remark"/>
-        <association property="dept" column="dept_id" javaType="com.zhglxt.common.core.entity.sys.SysDept" resultMap="deptResult"/>
+        <association property="dept" javaType="com.zhglxt.common.core.entity.sys.SysDept" resultMap="deptResult"/>
         <collection property="roles" javaType="java.util.List" resultMap="RoleResult"/>
     </resultMap>
 
