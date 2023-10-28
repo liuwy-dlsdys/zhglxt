@@ -94,8 +94,8 @@
                     align: 'center',
                     formatter: function (value, row, index) {
                         var actions = [];
-                        actions.push('<a class="btn btn-info btn-xs ' + listFlag + '" href="#" onclick="leaveDetail(\'' + row.id + '\')"><i class="fa fa-play-circle-o"></i>详情</a> ');
-                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        actions.push('<a class="btn btn-info btn-xs ' + listFlag + '" href="javascript:;" onclick="leaveDetail(\'' + row.id + '\')"><i class="fa fa-play-circle-o"></i>详情</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:;" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
                         return actions.join('');
                     }
                 }]
