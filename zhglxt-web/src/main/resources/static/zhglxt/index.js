@@ -72,6 +72,14 @@ $(window).bind("load resize", function() {
     }
 });
 
+function openToCurrentTab(obj) {
+    if (isScrollToTop) {
+        $(obj).show().siblings('.zhglxt_iframe').hide();
+    } else {
+        $(obj).css({"visibility": "visible", "position": "static"}).siblings('.zhglxt_iframe').css({"visibility": "hidden", "position": "absolute"});
+    }
+}
+
 function syncMenuTab(dataId) {
     if(isLinkage) {
         var $dataObj = $('a[href$="' + decodeURI(dataId) + '"]');
@@ -157,7 +165,7 @@ $(function() {
             // 显示tab对应的内容区
             $('.zhglxt_iframe').each(function() {
                 if ($(this).data('id') == currentId) {
-                    $(this).show().siblings('.zhglxt_iframe').hide();
+                    openToCurrentTab(this);
                 }
             });
             $(element).addClass('active').siblings('.menuTab').removeClass('active');
@@ -289,7 +297,7 @@ $(function() {
                     // 显示tab对应的内容区
                     $('.mainContent .zhglxt_iframe').each(function() {
                         if ($(this).data('id') == dataUrl) {
-                            $(this).show().siblings('.zhglxt_iframe').hide();
+                            openToCurrentTab(this);
                             return false;
                         }
                     });
@@ -308,7 +316,11 @@ $(function() {
 
             // 添加选项卡对应的iframe
             var str1 = '<iframe class="zhglxt_iframe" name="iframe' + dataIndex + '" width="100%" height="100%" src="' + dataUrl + '" frameborder="0" data-id="' + dataUrl + '" data-refresh="' + isRefresh + '" seamless></iframe>';
-            $('.mainContent').find('iframe.zhglxt_iframe').hide().parents('.mainContent').append(str1);
+            if (isScrollToTop) {
+                $('.mainContent').find('iframe.zhglxt_iframe').hide().parents('.mainContent').append(str1);
+            } else {
+                $('.mainContent').find('iframe.zhglxt_iframe').css({"visibility": "hidden", "position": "absolute"}).parents('.mainContent').append(str1);
+            }
 
             $.modal.loading("数据加载中，请稍后...");
 
@@ -351,7 +363,7 @@ $(function() {
 
                 $('.mainContent .zhglxt_iframe').each(function() {
                     if ($(this).data('id') == activeId) {
-                        $(this).show().siblings('.zhglxt_iframe').hide();
+                        openToCurrentTab(this);
                         return false;
                     }
                 });
@@ -379,7 +391,7 @@ $(function() {
                 $(this).parents('.menuTab').prev('.menuTab:last').addClass('active');
                 $('.mainContent .zhglxt_iframe').each(function() {
                     if ($(this).data('id') == activeId) {
-                        $(this).show().siblings('.zhglxt_iframe').hide();
+                        openToCurrentTab(this);
                         return false;
                     }
                 });
@@ -399,7 +411,7 @@ $(function() {
                     $('.menuTab[data-id="' + panelUrl + '"]').addClass('active').siblings('.menuTab').removeClass('active');
                     $('.mainContent .zhglxt_iframe').each(function() {
                         if ($(this).data('id') == panelUrl) {
-                            $(this).show().siblings('.zhglxt_iframe').hide();
+                            openToCurrentTab(this);
                             return false;
                         }
                     });
@@ -441,7 +453,7 @@ $(function() {
             // 显示tab对应的内容区
             $('.mainContent .zhglxt_iframe').each(function() {
                 if ($(this).data('id') == currentId) {
-                    $(this).show().siblings('.zhglxt_iframe').hide();
+                    openToCurrentTab(this);
                     isRefresh = $.common.nullToDefault($(this).data('refresh'), false);
                     return false;
                 }
@@ -493,7 +505,11 @@ $(function() {
             $(this).remove();
         });
         $('.page-tabs-content').children("[data-id]:first").each(function() {
-            $('.zhglxt_iframe[data-id="' + $(this).data('id') + '"]').show();
+            if (isScrollToTop) {
+                $('.zhglxt_iframe[data-id="' + $(this).data('id') + '"]').show();
+            } else {
+                $('.zhglxt_iframe[data-id="' + $(this).data('id') + '"]').css({"visibility": "visible", "position": "static"});
+            }
             $(this).addClass("active");
         });
         $('.page-tabs-content').css("margin-left", "0");

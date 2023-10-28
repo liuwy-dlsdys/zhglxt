@@ -37,6 +37,9 @@
     <select id="selectOperLogList" parameterType="com.zhglxt.system.entity.SysOperLog" resultMap="SysOperLogResult">
         <include refid="selectOperLogVo"/>
         <where>
+            <if test="operIp != null and operIp != ''">
+                AND oper_ip like concat('%', #{operIp}, '%')
+            </if>
             <if test="title != null and title != ''">
                 AND title like concat('%', #{title}, '%')
             </if>
