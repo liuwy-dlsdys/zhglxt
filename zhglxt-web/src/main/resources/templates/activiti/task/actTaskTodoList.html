@@ -75,6 +75,17 @@
 		});
     });
 
+	function htmlEscape(text){
+		return text.replace(/[<>"&]/g, function(match, pos, originalText){
+			switch(match){
+				case "<": return "&lt;";
+				case ">":return "&gt;";
+				case "&":return "&amp;";
+				case "\"":return "&quot;";
+			}
+		});
+	}
+
     function init(){
     	 var options = {
     	        	uniqueId: "id",
@@ -83,6 +94,8 @@
     	            modalName: "我的任务",
     	            search: false,
     	            showExport: false,
+			        // 直接显示html标签
+			        escape:true,
     	            columns: [{
     	                checkbox: true
     	            },
@@ -91,9 +104,16 @@
     	                formatter: function (value, row, index) {
     	                	var action ="";
     	                	if(row.task.assignee==null){
-    	                    	action = '<a href="#" th:title="签收任务">'+row.vars.title+'</a>';
+    	                    	action = '<a href="javascript:void(0)" th:title="签收任务">'+row.vars.title+'</a>';
     	                	}else{
-    	                    	action = '<a href="#" onclick="taskTodo(\'' + row.task.id + '\',\'' + row.task.name + '\',\'' + row.task.taskDefinitionKey + '\',\'' + row.task.processDefinitionId + '\',\'' + row.task.processInstanceId + '\',\'' + row.status + '\')">'+row.vars.title+'</a>';
+    	                    	action = '<a href="javascript:void(0)"  onclick="taskTodo(\''
+										+ row.task.id + '\',\''
+										+ row.task.name + '\',\''
+										+ row.task.taskDefinitionKey + '\',\''
+										+ row.task.processDefinitionId + '\',\''
+										+ row.task.processInstanceId + '\',\''
+										+ row.status + '\')">'+htmlEscape(row.vars.title)
+										+'</a>';
     	                	}
     	                    return action;
     	                }
@@ -101,7 +121,7 @@
     	            {
     	                title: '当前环节',
     	                formatter: function (value, row, index) {
-    	                	var action = '<a href="#" onclick="taskTracking(\'' + row.task.processDefinitionId + '\',\'' + row.task.processInstanceId + '\')">'+row.task.name+'</a>';
+    	                	var action = '<a href="javascript:void(0)" onclick="taskTracking(\'' + row.task.processDefinitionId + '\',\'' + row.task.processInstanceId + '\')">'+row.task.name+'</a>';
     	                    return action;
     	                }
     	            },
