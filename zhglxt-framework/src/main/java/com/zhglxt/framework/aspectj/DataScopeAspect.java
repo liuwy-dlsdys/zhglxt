@@ -28,7 +28,7 @@ public class DataScopeAspect {
     public static final String DATA_SCOPE_ALL = "1";
 
     /**
-     * 自定数据权限
+     * 自定义数据权限
      */
     public static final String DATA_SCOPE_CUSTOM = "2";
 
