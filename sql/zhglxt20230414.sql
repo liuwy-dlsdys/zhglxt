@@ -1533,7 +1533,7 @@ INSERT INTO `sys_config` VALUES ('2', '用户管理-账号初始密码', 'sys.us
 INSERT INTO `sys_config` VALUES ('3', '主框架页-侧边栏主题', 'sys.index.sideTheme', 'theme-blue', 'Y', 'system', '2018-03-16 11:33:00', 'system', '2020-12-12 19:01:23', '深黑主题theme-dark，浅色主题theme-light，深蓝主题theme-blue');
 INSERT INTO `sys_config` VALUES ('4', '账号自助-是否开启用户注册功能', 'sys.account.registerUser', 'false', 'Y', 'system', '2020-05-01 17:24:28', 'system', '2021-07-06 11:19:36', '是否开启注册用户功能（true开启，false关闭）');
 INSERT INTO `sys_config` VALUES ('5', '用户管理-密码字符范围', 'sys.account.chrtype', '0', 'Y', 'system', '2020-08-03 15:49:09', 'system', '2020-08-03 15:54:49', '默认任意字符范围，0任意（密码可以输入任意字符），1数字（密码只能为0-9数字），2英文字母（密码只能为a-z和A-Z字母），3字母和数字（密码必须包含字母，数字）,4字母数字和特殊字符（目前支持的特殊字符包括：~!@#$%^&*()-=_+）');
-INSERT INTO `sys_config` VALUES ('6', '用户管理-初始密码修改策略', 'sys.account.initPasswordModify', '0', 'Y', 'system', '2020-10-16 15:35:20', '', null, '0：初始密码修改策略关闭，没有任何提示，1：提醒用户，如果未修改初始密码，则在登录时就会提醒修改密码对话框');
+INSERT INTO `sys_config` VALUES ('6', '用户管理-初始密码修改策略', 'sys.account.initPasswordModify', '1', 'Y', 'system', '2020-10-16 15:35:20', '', null, '0：初始密码修改策略关闭，没有任何提示，1：提醒用户，如果未修改初始密码，则在登录时就会提醒修改密码对话框');
 INSERT INTO `sys_config` VALUES ('7', '用户管理-账号密码更新周期', 'sys.account.passwordValidateDays', '0', 'Y', 'system', '2020-10-16 15:35:20', '', null, '密码更新周期（填写数字，数据初始化值为0不限制，若修改必须为大于0小于365的正整数），如果超过这个周期登录系统时，则在登录时就会提醒修改密码对话框');
 INSERT INTO `sys_config` VALUES ('8', '主框架页-菜单导航显示风格', 'sys.index.menuStyle', 'topnav', 'Y', 'system', '2020-10-16 15:35:20', 'system', '2021-05-31 22:23:00', '菜单导航显示风格（default为左侧导航菜单，topnav为顶部导航菜单）');
 INSERT INTO `sys_config` VALUES ('9', '主框架页-是否开启页脚', 'sys.index.footer', 'true', 'Y', 'system', '2020-10-16 15:35:20', 'system', '2020-12-12 19:02:45', '是否开启底部页脚显示（true显示，false隐藏）');
@@ -1957,7 +1957,7 @@ CREATE TABLE `sys_notice` (
   `notice_id` int(4) NOT NULL AUTO_INCREMENT COMMENT '公告ID',
   `notice_title` varchar(50) NOT NULL COMMENT '公告标题',
   `notice_type` char(1) NOT NULL COMMENT '公告类型（1通知 2公告）',
-  `notice_content` varchar(2000) DEFAULT NULL COMMENT '公告内容',
+  `notice_content` longblob DEFAULT NULL COMMENT '公告内容',
   `status` char(1) DEFAULT '0' COMMENT '公告状态（0正常 1关闭）',
   `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',

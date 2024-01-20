@@ -64,6 +64,7 @@
     $(function () {
         var options = {
             url: prefix + "/list",
+            viewUrl: prefix + "/view/{id}",
             createUrl: prefix + "/add",
             updateUrl: prefix + "/edit/{id}",
             removeUrl: prefix + "/remove",
@@ -79,7 +80,7 @@
                     field: 'noticeTitle',
                     title: '公告标题',
                     formatter: function (value, row, index) {
-                        return '<a onclick="$.operate.editFull(\'' + row.noticeId + '\')">' + row.noticeTitle + '</a>';
+                        return '<a href="javascript:void(0)" onclick="$.operate.view(\'' + row.noticeId + '\')">' + value + '</a>';
                     }
                 },
                 {

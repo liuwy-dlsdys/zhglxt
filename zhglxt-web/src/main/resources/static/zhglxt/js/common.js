@@ -5,15 +5,8 @@
 
 var startLayDate;
 var endLayDate;
+var isScrollToTop = parent.isScrollToTop;
 $(function() {
-
-    //  layer扩展皮肤
-    if (window.layer !== undefined) {
-        layer.config({
-            extend: 'moon/style.css',
-            skin: 'layer-ext-moon'
-        });
-    }
 
     // 回到顶部绑定
     if ($.fn.toTop !== undefined) {
@@ -48,7 +41,7 @@ $(function() {
     });
 
     // laydate 时间控件绑定
-    if ($(".select-time").length > 0) {
+    if ($(".select-time").length > 0 && $('#startTime').length > 0 && $('#endTime').length > 0) {
         layui.use('laydate', function() {
             var laydate = layui.laydate;
             startLayDate = laydate.render({
@@ -287,7 +280,7 @@ function createMenuItem(dataUrl, menuName, isRefresh) {
 
         // 添加选项卡对应的iframe
         var str1 = '<iframe class="zhglxt_iframe" name="iframe' + dataIndex + '" width="100%" height="100%" src="' + dataUrl + '" frameborder="0" data-id="' + dataUrl + '" data-panel="' + panelUrl + '" seamless></iframe>';
-        if (parent.isScrollToTop) {
+        if (isScrollToTop) {
             $('.mainContent', topWindow).find('iframe.zhglxt_iframe').hide().parents('.mainContent').append(str1);
         } else {
             $('.mainContent', topWindow).find('iframe.zhglxt_iframe').css({"visibility": "hidden", "position": "absolute"}).parents('.mainContent').append(str1);
@@ -361,7 +354,7 @@ function activeWindow() {
 }
 
 function openToCurrentTab(obj) {
-    if (parent.isScrollToTop) {
+    if (isScrollToTop) {
         $(obj).show().siblings('.zhglxt_iframe').hide();
     } else {
         $(obj).css({"visibility": "visible", "position": "static"}).siblings('.zhglxt_iframe').css({"visibility": "hidden", "position": "absolute"});

@@ -8,6 +8,7 @@ import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.core.page.TableDataInfo;
 import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.enums.BusinessType;
+import com.zhglxt.common.utils.DateUtils;
 import com.zhglxt.common.utils.ShiroUtils;
 import com.zhglxt.common.utils.StringUtils;
 import com.zhglxt.common.utils.poi.ExcelUtil;
@@ -131,6 +132,7 @@ public class SysUserController extends BaseController {
         user.setUserId(UUID.fastUUID().toString(true));
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
+        user.setPwdUpdateDate(DateUtils.getNowDate());
         user.setCreateBy(getLoginName());
         return toAjax(userService.insertUser(user));
     }
