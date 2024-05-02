@@ -1,5 +1,6 @@
 package com.zhglxt.framework.config;
 
+import com.zhglxt.common.constant.Constants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -21,7 +22,7 @@ public class I18nConfig implements WebMvcConfigurer {
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
         // 默认语言
-        slr.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
+        slr.setDefaultLocale(Constants.DEFAULT_LOCALE);
         return slr;
     }
 

@@ -131,6 +131,9 @@
                     $th = $('<th style="width:36px"></th>');
                 } else {
                     $th = $('<th style="' + ((column.width) ? ('width:' + column.width + ((column.widthUnit) ? column.widthUnit : 'px')) : '') + '" class="' + column.field + '_cls"></th>');
+                    if (column.align) {
+                        $th.css("text-align", column.align);
+                    }
                 }
                 if((!target.isFixWidth)&& column.width){
                     target.isFixWidth = column.width.indexOf("px")>-1?true:false;
@@ -182,7 +185,7 @@
                 $.ajax({
                     type: options.type,
                     url: options.url,
-                    data: parms,
+                    data: $.extend(parms, options.ajaxParams),
                     dataType: "json",
                     success: function(data, textStatus, jqXHR) {
                     	data = calculateObjectValue(options, options.responseHandler, [data], data);
@@ -703,7 +706,8 @@
 	                        if (_ls && _ls.length > 0) {
 	                            $.each(_ls, function(index, item) {
 	                                var _p_icon = $("#" + $(item).attr("pid")).children().eq(options.expandColumn).find(".treetable-expander");
-	                                if (_p_icon.hasClass(options.expanderExpandedClass)) {
+	                                var _p_display = $("#" + $(item).attr("pid")).css('display');
+	                                if (_p_icon.hasClass(options.expanderExpandedClass) && _p_display == 'table') {
 	                                    $(item).css("display", "table");
 	                                }
 	                            });
@@ -734,7 +738,7 @@
                                     $.ajax({
                                         type: options.type,
                                         url: options.dataUrl,
-                                        data: $.extend(parms, options.ajaxParams),
+                                        data: parms,
                                         dataType: "json",
                                         success: function(data, textStatus, jqXHR) {
                                             $("#" + row_id + "_load").remove();

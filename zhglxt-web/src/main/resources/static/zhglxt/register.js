@@ -6,12 +6,6 @@ $(function () {
     });
 });
 
-$.validator.setDefaults({
-    submitHandler: function () {
-        register();
-    }
-});
-
 function register() {
     var idCard = $.common.trim($("input[name='idCard']").val());
     var username = $.common.trim($("input[name='username']").val());
@@ -68,7 +62,8 @@ function validateRule() {
             },
             password: {
                 required: true,
-                minlength: 5
+                minlength: 5,
+                specialSign: true
             },
             confirmPassword: {
                 required: true,
@@ -92,6 +87,9 @@ function validateRule() {
                 required: icon + "请再次输入您的密码",
                 equalTo: icon + "两次密码输入不一致"
             }
+        },
+        submitHandler: function(form) {
+            register();
         }
     })
 }

@@ -71,7 +71,7 @@ public class SysUser extends BaseEntity {
     /**
      * 手机号码
      */
-    @Excel(name = "手机号码")
+    @Excel(name = "手机号码", cellType = ColumnType.TEXT)
     private String phonenumber;
 
     /**

@@ -67,7 +67,7 @@ public class ImportSysUser extends BaseEntity {
     /**
      * 手机号码
      */
-    @Excel(name = "手机号码")
+    @Excel(name = "手机号码", cellType = Excel.ColumnType.TEXT)
     private String phoneNumber;
 
     /**
