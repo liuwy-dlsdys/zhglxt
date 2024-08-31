@@ -26,7 +26,7 @@ public class SysUser extends BaseEntity {
     /**
      * 用户ID
      */
-    @Excel(name = "用户序号", cellType = ColumnType.STRING, prompt = "用户编号")
+    @Excel(name = "用户序号", type = Type.EXPORT, cellType = ColumnType.STRING, prompt = "用户编号")
     private String userId;
 
     /**

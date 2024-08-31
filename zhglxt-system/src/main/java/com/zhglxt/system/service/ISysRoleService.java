@@ -120,7 +120,7 @@ public interface ISysRoleService {
      *
      * @param roleId 角色id
      */
-    public void checkRoleDataScope(String roleId);
+    public void checkRoleDataScope(String... roleId);
 
     /**
      * 通过角色ID查询角色使用数量

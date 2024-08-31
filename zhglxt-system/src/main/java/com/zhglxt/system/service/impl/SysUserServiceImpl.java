@@ -16,6 +16,7 @@ import com.zhglxt.system.entity.SysUserPost;
 import com.zhglxt.system.entity.SysUserRole;
 import com.zhglxt.system.mapper.*;
 import com.zhglxt.system.service.ISysConfigService;
+import com.zhglxt.system.service.ISysDeptService;
 import com.zhglxt.system.service.ISysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +56,9 @@ public class SysUserServiceImpl implements ISysUserService {
 
     @Autowired
     private ISysConfigService configService;
+
+    @Autowired
+    private ISysDeptService deptService;
 
     @Autowired
     protected Validator validator;
@@ -452,13 +456,14 @@ public class SysUserServiceImpl implements ISysUserService {
         int failureNum = 0;
         StringBuilder successMsg = new StringBuilder();
         StringBuilder failureMsg = new StringBuilder();
-        String password = configService.selectConfigByKey("sys.user.initPassword");
         for (SysUser user : userList) {
             try {
                 // 验证是否存在这个用户
                 SysUser u = userMapper.selectUserByLoginName(user.getLoginName());
                 if (StringUtils.isNull(u)) {
                     BeanValidators.validateWithException(validator, user);
+                    deptService.checkDeptDataScope(user.getDeptId());
+                    String password = configService.selectConfigByKey("sys.user.initPassword");
                     user.setPassword(Md5Utils.hash(user.getLoginName() + password));
                     user.setCreateBy(operName);
                     userMapper.insertUser(user);
@@ -467,6 +472,7 @@ public class SysUserServiceImpl implements ISysUserService {
                     BeanValidators.validateWithException(validator, user);
                     checkUserAllowed(u);
                     checkUserDataScope(u.getUserId());
+                    deptService.checkDeptDataScope(user.getDeptId());
                     user.setUserId(u.getUserId());
                     user.setUpdateBy(operName);
                     userMapper.updateUser(user);

@@ -292,19 +292,22 @@ public class SysRoleServiceImpl implements ISysRoleService {
     /**
      * 校验角色是否有数据权限
      *
-     * @param roleId 角色id
+     * @param roleIds 角色id
      */
     @Override
-    public void checkRoleDataScope(String roleId)
+    public void checkRoleDataScope(String... roleIds)
     {
         if (!SysUser.isAdmin(ShiroUtils.getUserId()))
         {
-            SysRole role = new SysRole();
-            role.setRoleId(roleId);
-            List<SysRole> roles = SpringUtils.getAopProxy(this).selectRoleList(role);
-            if (StringUtils.isEmpty(roles))
+            for (String roleId : roleIds)
             {
-                throw new ServiceException("没有权限访问角色数据！");
+                SysRole role = new SysRole();
+                role.setRoleId(roleId);
+                List<SysRole> roles = SpringUtils.getAopProxy(this).selectRoleList(role);
+                if (StringUtils.isEmpty(roles))
+                {
+                    throw new ServiceException("没有权限访问角色数据！");
+                }
             }
         }
     }
