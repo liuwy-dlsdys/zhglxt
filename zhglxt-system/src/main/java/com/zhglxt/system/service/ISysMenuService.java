@@ -14,7 +14,8 @@ import java.util.Set;
  *
  * @author ruoyi
  */
-public interface ISysMenuService {
+public interface ISysMenuService
+{
     /**
      * 根据用户ID查询菜单
      *
@@ -26,7 +27,7 @@ public interface ISysMenuService {
     /**
      * 查询系统菜单列表
      *
-     * @param menu   菜单信息
+     * @param menu 菜单信息
      * @param userId 用户ID
      * @return 菜单列表
      */
@@ -49,9 +50,17 @@ public interface ISysMenuService {
     public Set<String> selectPermsByUserId(String userId);
 
     /**
+     * 根据角色ID查询权限
+     * 
+     * @param roleId 角色ID
+     * @return 权限列表
+     */
+    public Set<String> selectPermsByRoleId(String roleId);
+
+    /**
      * 根据角色ID查询菜单
      *
-     * @param role   角色对象
+     * @param role 角色对象
      * @param userId 用户ID
      * @return 菜单列表
      */
