@@ -22,6 +22,8 @@ server:
   servlet:
     # 应用的访问路径
     context-path: /zhglxt
+  # http请求头大小
+  max-http-header-size: 65536
   tomcat:
     # tomcat的URI编码
     uri-encoding: UTF-8
@@ -32,7 +34,6 @@ server:
       max: 800
       # Tomcat启动初始化的线程数，默认值10
       min-spare: 100
-
 # Spring配置
 spring:
   # 模板引擎

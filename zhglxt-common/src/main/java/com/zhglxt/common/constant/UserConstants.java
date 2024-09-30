@@ -26,6 +26,9 @@ public class UserConstants {
      */
     public static final String USER_DISABLE = "1";
 
+    /** 角色正常状态 */
+    public static final String ROLE_NORMAL = "0";
+
     /**
      * 角色封禁状态
      */
