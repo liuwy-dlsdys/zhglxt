@@ -1,6 +1,7 @@
 package com.zhglxt.common.utils.poi;
 
 import com.zhglxt.common.annotation.Excel;
+import com.zhglxt.common.annotation.Excel.ColumnType;
 import com.zhglxt.common.annotation.Excel.Type;
 import com.zhglxt.common.annotation.Excels;
 import com.zhglxt.common.config.GlobalConfig;
@@ -62,7 +63,7 @@ public class ExcelUtil<T>
     /**
      * Excel sheet最大行数，默认65536
      */
-    public static final int SHEET_SIZE = 65536;
+    public static final int sheetSize = 65536;
 
     /**
      * 工作表名称
@@ -150,6 +151,11 @@ public class ExcelUtil<T>
     public Class<T> clazz;
 
     /**
+     * 需要显示列属性
+     */
+    public String[] includeFields;
+
+    /**
      * 需要排除列属性
      */
     public String[] excludeFields;
@@ -160,17 +166,26 @@ public class ExcelUtil<T>
     }
 
     /**
+     * 仅在Excel中显示列属性
+     *
+     * @param fields 列属性名 示例[单个"name"/多个"id","name"]
+     */
+    public void showColumn(String... fields)
+    {
+        this.includeFields = fields;
+    }
+
+    /**
      * 隐藏Excel中列属性
      *
      * @param fields 列属性名 示例[单个"name"/多个"id","name"]
-     * @throws Exception
      */
     public void hideColumn(String... fields)
     {
         this.excludeFields = fields;
     }
 
-    public void init(List<T> list, String sheetName, String title, Excel.Type type)
+    public void init(List<T> list, String sheetName, String title, Type type)
     {
         if (list == null)
         {
@@ -285,7 +300,7 @@ public class ExcelUtil<T>
      */
     public List<T> importExcel(String sheetName, InputStream is, int titleNum) throws Exception
     {
-        this.type = Excel.Type.IMPORT;
+        this.type = Type.IMPORT;
         this.wb = WorkbookFactory.create(is);
         List<T> list = new ArrayList<T>();
         // 如果指定sheet名,则取指定sheet中的内容 否则默认指向第1个sheet
@@ -437,7 +452,7 @@ public class ExcelUtil<T>
                         {
                             val = dataFormatHandlerAdapter(val, attr, null);
                         }
-                        else if (Excel.ColumnType.IMAGE == attr.cellType() && StringUtils.isNotEmpty(pictures))
+                        else if (ColumnType.IMAGE == attr.cellType() && StringUtils.isNotEmpty(pictures))
                         {
                             PictureData image = pictures.get(row.getRowNum() + "_" + entry.getKey());
                             if (image == null)
@@ -481,7 +496,7 @@ public class ExcelUtil<T>
      */
     public AjaxResult exportExcel(List<T> list, String sheetName, String title)
     {
-        this.init(list, sheetName, title, Excel.Type.EXPORT);
+        this.init(list, sheetName, title, Type.EXPORT);
         return exportExcel();
     }
 
@@ -511,7 +526,7 @@ public class ExcelUtil<T>
     {
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setCharacterEncoding("utf-8");
-        this.init(list, sheetName, title, Excel.Type.EXPORT);
+        this.init(list, sheetName, title, Type.EXPORT);
         exportExcel(response);
     }
 
@@ -535,7 +550,7 @@ public class ExcelUtil<T>
      */
     public AjaxResult importTemplateExcel(String sheetName, String title)
     {
-        this.init(null, sheetName, title, Excel.Type.IMPORT);
+        this.init(null, sheetName, title, Type.IMPORT);
         return exportExcel();
     }
 
@@ -561,7 +576,7 @@ public class ExcelUtil<T>
     {
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setCharacterEncoding("utf-8");
-        this.init(null, sheetName, title, Excel.Type.IMPORT);
+        this.init(null, sheetName, title, Type.IMPORT);
         exportExcel(response);
     }
 
@@ -621,7 +636,7 @@ public class ExcelUtil<T>
     public void writeSheet()
     {
         // 取出一共有多少个sheet.
-        int sheetNo = Math.max(1, (int) Math.ceil(list.size() * 1.0 / SHEET_SIZE));
+        int sheetNo = Math.max(1, (int) Math.ceil(list.size() * 1.0 / sheetSize));
         for (int index = 0; index < sheetNo; index++)
         {
             createSheet(sheetNo, index);
@@ -647,7 +662,7 @@ public class ExcelUtil<T>
                     this.createHeadCell(excel, row, column++);
                 }
             }
-            if (Excel.Type.EXPORT.equals(type))
+            if (Type.EXPORT.equals(type))
             {
                 fillExcelData(index, row);
                 addStatisticsRow();
@@ -664,8 +679,8 @@ public class ExcelUtil<T>
     @SuppressWarnings("unchecked")
     public void fillExcelData(int index, Row row)
     {
-        int startNo = index * SHEET_SIZE;
-        int endNo = Math.min(startNo + SHEET_SIZE, list.size());
+        int startNo = index * sheetSize;
+        int endNo = Math.min(startNo + sheetSize, list.size());
         int rowNo = (1 + rownum) - startNo;
         for (int i = startNo; i < endNo; i++)
         {
@@ -687,7 +702,6 @@ public class ExcelUtil<T>
                     subMergedLastRowNum++;
                 }
             }
-
             int column = 0;
             for (Object[] os : fields)
             {
@@ -880,7 +894,7 @@ public class ExcelUtil<T>
             dataFont.setFontHeightInPoints((short) 10);
             dataFont.setColor(excel.color().index);
             style.setFont(dataFont);
-            if (Excel.ColumnType.TEXT == excel.cellType())
+            if (ColumnType.TEXT == excel.cellType())
             {
                 DataFormat dataFormat = wb.createDataFormat();
                 style.setDataFormat(dataFormat.getFormat("@"));
@@ -921,7 +935,7 @@ public class ExcelUtil<T>
      */
     public void setCellVo(Object value, Excel attr, Cell cell)
     {
-        if (Excel.ColumnType.STRING == attr.cellType() || Excel.ColumnType.TEXT == attr.cellType())
+        if (ColumnType.STRING == attr.cellType() || ColumnType.TEXT == attr.cellType())
         {
             String cellValue = Convert.toStr(value);
             // 对于任何以表达式触发字符 =-+@开头的单元格，直接使用tab字符作为前缀，防止CSV注入。
@@ -935,14 +949,14 @@ public class ExcelUtil<T>
             }
             cell.setCellValue(StringUtils.isNull(cellValue) ? attr.defaultValue() : cellValue + attr.suffix());
         }
-        else if (Excel.ColumnType.NUMERIC == attr.cellType())
+        else if (ColumnType.NUMERIC == attr.cellType())
         {
             if (StringUtils.isNotNull(value))
             {
                 cell.setCellValue(StringUtils.contains(Convert.toStr(value), ".") ? Convert.toDouble(value) : Convert.toInt(value));
             }
         }
-        else if (Excel.ColumnType.IMAGE == attr.cellType())
+        else if (ColumnType.IMAGE == attr.cellType())
         {
             ClientAnchor anchor = new XSSFClientAnchor(0, 0, 0, 0, (short) cell.getColumnIndex(), cell.getRow().getRowNum(), (short) (cell.getColumnIndex() + 1), cell.getRow().getRowNum() + 1);
             String imagePath = Convert.toStr(value);
@@ -1443,46 +1457,86 @@ public class ExcelUtil<T>
         List<Field> tempFields = new ArrayList<>();
         tempFields.addAll(Arrays.asList(clazz.getSuperclass().getDeclaredFields()));
         tempFields.addAll(Arrays.asList(clazz.getDeclaredFields()));
-        for (Field field : tempFields)
+        if (StringUtils.isNotEmpty(includeFields))
         {
-            if (!ArrayUtils.contains(this.excludeFields, field.getName()))
+            for (Field field : tempFields)
             {
-                // 单注解
-                if (field.isAnnotationPresent(Excel.class))
+                if (ArrayUtils.contains(this.includeFields, field.getName()) || field.isAnnotationPresent(Excels.class))
                 {
-                    Excel attr = field.getAnnotation(Excel.class);
-                    if (attr != null && (attr.type() == Excel.Type.ALL || attr.type() == type))
+                    addField(fields, field);
+                }
+            }
+        }
+        else if (StringUtils.isNotEmpty(excludeFields))
+        {
+            for (Field field : tempFields)
+            {
+                if (!ArrayUtils.contains(this.excludeFields, field.getName()))
+                {
+                    addField(fields, field);
+                }
+            }
+        }
+        else
+        {
+            for (Field field : tempFields)
+            {
+                addField(fields, field);
+            }
+        }
+        return fields;
+    }
+
+    /**
+     * 添加字段信息
+     */
+    public void addField(List<Object[]> fields, Field field)
+    {
+        // 单注解
+        if (field.isAnnotationPresent(Excel.class))
+        {
+            Excel attr = field.getAnnotation(Excel.class);
+            if (attr != null && (attr.type() == Type.ALL || attr.type() == type))
+            {
+                field.setAccessible(true);
+                fields.add(new Object[] { field, attr });
+            }
+            if (Collection.class.isAssignableFrom(field.getType()))
+            {
+                subMethod = getSubMethod(field.getName(), clazz);
+                ParameterizedType pt = (ParameterizedType) field.getGenericType();
+                Class<?> subClass = (Class<?>) pt.getActualTypeArguments()[0];
+                this.subFields = FieldUtils.getFieldsListWithAnnotation(subClass, Excel.class);
+            }
+        }
+
+        // 多注解
+        if (field.isAnnotationPresent(Excels.class))
+        {
+            Excels attrs = field.getAnnotation(Excels.class);
+            Excel[] excels = attrs.value();
+            for (Excel attr : excels)
+            {
+                if (StringUtils.isNotEmpty(includeFields))
+                {
+                    if (ArrayUtils.contains(this.includeFields, field.getName() + "." + attr.targetAttr())
+                            && (attr != null && (attr.type() == Type.ALL || attr.type() == type)))
                     {
                         field.setAccessible(true);
                         fields.add(new Object[] { field, attr });
                     }
-                    if (Collection.class.isAssignableFrom(field.getType()))
-                    {
-                        subMethod = getSubMethod(field.getName(), clazz);
-                        ParameterizedType pt = (ParameterizedType) field.getGenericType();
-                        Class<?> subClass = (Class<?>) pt.getActualTypeArguments()[0];
-                        this.subFields = FieldUtils.getFieldsListWithAnnotation(subClass, Excel.class);
-                    }
                 }
-
-                // 多注解
-                if (field.isAnnotationPresent(Excels.class))
+                else
                 {
-                    Excels attrs = field.getAnnotation(Excels.class);
-                    Excel[] excels = attrs.value();
-                    for (Excel attr : excels)
+                    if (!ArrayUtils.contains(this.excludeFields, field.getName() + "." + attr.targetAttr())
+                            && (attr != null && (attr.type() == Type.ALL || attr.type() == type)))
                     {
-                        if (!ArrayUtils.contains(this.excludeFields, field.getName() + "." + attr.targetAttr())
-                                && (attr != null && (attr.type() == Type.ALL || attr.type() == type)))
-                        {
-                            field.setAccessible(true);
-                            fields.add(new Object[] { field, attr });
-                        }
+                        field.setAccessible(true);
+                        fields.add(new Object[] { field, attr });
                     }
                 }
             }
         }
-        return fields;
     }
 
     /**
