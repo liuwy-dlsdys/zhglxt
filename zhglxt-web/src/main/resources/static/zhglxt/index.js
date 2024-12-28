@@ -72,7 +72,7 @@ function openToCurrentTab(obj) {
     if (isScrollToTop) {
         $(obj).show().siblings('.zhglxt_iframe').hide();
     } else {
-        $(obj).css({"visibility": "visible", "position": "static"}).siblings('.zhglxt_iframe').css({"visibility": "hidden", "position": "absolute"});
+        $(obj).css({"visibility": "visible", "position": "static"}).siblings('.zhglxt_iframe').css({"visibility": "hidden", "position": "absolute", "left": "0", "top": "0"});
     }
 }
 
@@ -313,10 +313,11 @@ $(function() {
             // 添加选项卡对应的iframe
             var str1 = '<iframe class="zhglxt_iframe" name="iframe' + dataIndex + '" width="100%" height="100%" src="' + dataUrl + '" frameborder="0" data-id="' + dataUrl + '" data-refresh="' + isRefresh + '" seamless></iframe>';
             if (isScrollToTop) {
-                $('.mainContent').find('iframe.zhglxt_iframe').hide().parents('.mainContent').append(str1);
+                $('.mainContent').find('iframe.zhglxt_iframe').hide();
             } else {
-                $('.mainContent').find('iframe.zhglxt_iframe').css({"visibility": "hidden", "position": "absolute"}).parents('.mainContent').append(str1);
+                $('.mainContent').find('iframe.zhglxt_iframe').css({"visibility": "hidden", "position": "absolute", "left": "0", "top": "0"}).parents('.mainContent').append(str1);
             }
+            $('.mainContent').append(str1);
 
             $.modal.loading("数据加载中，请稍后...");
 

@@ -15,6 +15,7 @@ import com.zhglxt.common.enums.BusinessType;
 import com.zhglxt.common.utils.StringUtils;
 import com.zhglxt.common.utils.security.PermissionUtils;
 import com.zhglxt.common.utils.sql.SqlUtil;
+import com.zhglxt.generator.config.GenConfig;
 import com.zhglxt.generator.entity.GenTable;
 import com.zhglxt.generator.entity.GenTableColumn;
 import com.zhglxt.generator.service.IGenTableColumnService;
@@ -232,6 +233,10 @@ public class GenController extends BaseController {
     @GetMapping("/genCode/{tableName}")
     @ResponseBody
     public AjaxResult genCode(@PathVariable("tableName") String tableName) {
+        if (!GenConfig.isAllowOverwrite())
+        {
+            return AjaxResult.error("【系统预设】不允许生成文件覆盖到本地");
+        }
         genTableService.generatorCode(tableName);
         return AjaxResult.success();
     }

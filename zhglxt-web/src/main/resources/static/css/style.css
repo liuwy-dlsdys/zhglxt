@@ -3036,12 +3036,6 @@ body.boxed-layout #wrapper {
     display: block;
 }
 
-.clear {
-    /*会影响到datetimepicker日期和时间插件的清除按钮*/
-    /*display: block;
-    overflow: hidden;*/
-}
-
 a {
     cursor: pointer;
 }
