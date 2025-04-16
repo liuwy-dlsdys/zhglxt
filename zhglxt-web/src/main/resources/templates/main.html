@@ -56,12 +56,21 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#version" href="#latest_version">latest version</a><code class="pull-right">2024.12.28-2024.12.28</code>
+                                        <a data-toggle="collapse" data-parent="#version" href="#latest_version">latest version</a><code class="pull-right">2024.12.28-2025.04.16</code>
                                     </h5>
                                 </div>
                                 <div id="latest_version" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                         <ol>
+                                            <li>新增CSRF防护功能</li>
+                                            <li>升级tomcat到最新版本9.0.102</li>
+                                            <li>优化导出Excel日期格式双击离开后与设定的格式不一致问题</li>
+                                            <li>HttpUtils加入请求类型传参</li>
+                                            <li>优化空指针异常时日志无法记录错误信息问题</li>
+                                            <li>新增表格参数（自定义radio/checkbox的name值）</li>
+                                            <li>移除login_name更新字段</li>
+                                            <li>修复successCallback方法对于非特定表格类型无响应问题(IBG6ZD)</li>
+                                            <li>修复定时任务参数值带括号时异常问题(IBEBOX)</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -76,6 +85,7 @@
                                 <div id="v480" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ol>
+                                            <li>代码生成新增配置是否允许文件覆盖到本地</li>
                                             <li>修复多选下拉框open导致页签空白问题(IBBP7A)</li>
                                             <li>升级jquery.validate到最新版本v1.21.0</li>
                                             <li>优化select2下拉框必填背景色无法清空问题(IBB9XN)</li>

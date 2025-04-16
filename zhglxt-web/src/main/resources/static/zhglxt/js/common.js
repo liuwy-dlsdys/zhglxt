@@ -283,7 +283,7 @@ function createMenuItem(dataUrl, menuName, isRefresh) {
         if (isScrollToTop) {
             $('.mainContent', topWindow).find('iframe.zhglxt_iframe').hide();
         } else {
-            $('.mainContent', topWindow).find('iframe.zhglxt_iframe').css({"visibility": "hidden", "position": "absolute", "left": "0", "top": "0"}).parents('.mainContent').append(str1);
+            $('.mainContent', topWindow).find('iframe.zhglxt_iframe').css({"visibility": "hidden", "position": "absolute", "left": "0", "top": "0"});
         }
         $('.mainContent', topWindow).append(str1);
 
@@ -546,6 +546,12 @@ function _stopIt(e) {
 
 /** 设置全局ajax处理 */
 $.ajaxSetup({
+    beforeSend: function (xhr, settings) {
+        var csrftoken = $('meta[name=csrf-token]').attr('content')
+        if (($.common.equalsIgnoreCase(settings.type, "POST"))) {
+            xhr.setRequestHeader("csrf_token", csrftoken)
+        }
+    },
     complete: function(XMLHttpRequest, textStatus) {
         if (textStatus == 'timeout') {
             $.modal.alertWarning("服务器超时，请稍后再试！");

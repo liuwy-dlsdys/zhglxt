@@ -5,7 +5,7 @@ zhglxt:
   # 版本
   version: 4.8.0
   # 版权年份
-  copyrightYear: 2024
+  copyrightYear: 2025
   # 实例演示开关
   demoEnabled: false
   # 文件路径 （ Windows配置:  D:/zhglxt_userfiles   ;Linux配置:   /usr/projects/zhglxt/zhglxt_userfiles ）
@@ -98,6 +98,13 @@ xss:
   excludes: /system/notice/*,/oa/notify/*
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+
+# 防止csrf攻击
+csrf:
+  # 过滤开关
+  enabled: true
+  # 白名单（多个用逗号分隔）
+  whites:
 
 # Swagger配置
 swagger:

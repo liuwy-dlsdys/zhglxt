@@ -144,6 +144,7 @@ var table = {
                     rowStyle: options.rowStyle,                         // 通过自定义函数设置行样式
                     footerStyle: options.footerStyle,                   // 通过自定义函数设置页脚样式
                     headerStyle: options.headerStyle,                   // 通过自定义函数设置标题样式
+                    selectItemName: options.selectItemName,             // 自定义radio/checkbox的name值
                     columns: options.columns,                           // 显示列信息（*）
                     data: options.data,                                 // 被加载的数据
                     responseHandler: $.table.responseHandler,           // 在加载服务器发送来的数据之前处理函数
@@ -276,6 +277,7 @@ var table = {
                     } else if ($.common.equals("open", target)) {
                         top.layer.alert(input.val(), {
                             title: "信息内容",
+                            area: ['400px', ''],
                             shadeClose: true,
                             btn: ['确认'],
                             btnclass: ['btn btn-primary'],
@@ -1098,7 +1100,11 @@ var table = {
                     type: type,
                     dataType: dataType,
                     data: data,
-                    beforeSend: function () {
+                    beforeSend: function (xhr, settings) {
+                        var csrftoken = $('meta[name=csrf-token]').attr('content');
+                        if ($.common.equalsIgnoreCase(settings.type, "POST")) {
+                            xhr.setRequestHeader("csrf_token", csrftoken);
+                        }
                         $.modal.loading("正在处理中，请稍后...");
                     },
                     success: function(result) {
@@ -1299,7 +1305,11 @@ var table = {
                     type: "post",
                     dataType: "json",
                     data: data,
-                    beforeSend: function () {
+                    beforeSend: function (xhr, settings) {
+                        var csrftoken = $('meta[name=csrf-token]').attr('content');
+                        if (($.common.equalsIgnoreCase(settings.type, "POST"))) {
+                            xhr.setRequestHeader("csrf_token", csrftoken);
+                        }
                         $.modal.loading("正在处理中，请稍后...");
                         $.modal.disable();
                     },
@@ -1319,7 +1329,11 @@ var table = {
                     type: "post",
                     dataType: "json",
                     data: data,
-                    beforeSend: function () {
+                    beforeSend: function (xhr, settings) {
+                        var csrftoken = $('meta[name=csrf-token]').attr('content');
+                        if (($.common.equalsIgnoreCase(settings.type, "POST"))) {
+                            xhr.setRequestHeader("csrf_token", csrftoken);
+                        }
                         $.modal.loading("正在处理中，请稍后...");
                     },
                     success: function(result) {
@@ -1345,7 +1359,11 @@ var table = {
                     type: "post",
                     dataType: "json",
                     data: data,
-                    beforeSend: function () {
+                    beforeSend: function (xhr, settings) {
+                        var csrftoken = $('meta[name=csrf-token]').attr('content');
+                        if (($.common.equalsIgnoreCase(settings.type, "POST"))) {
+                            xhr.setRequestHeader("csrf_token", csrftoken);
+                        }
                         $.modal.loading("正在处理中，请稍后...");
                     },
                     success: function(result) {
@@ -1392,14 +1410,15 @@ var table = {
                     if($.common.isEmpty(parent.table)) {
                         $.modal.msgSuccessReload(result.msg);
                     } else if (parent.table.options.type == table_type.bootstrapTable) {
-                        $.modal.close();
                         parent.$.modal.msgSuccess(result.msg);
                         parent.$.table.refresh();
                     } else if (parent.table.options.type == table_type.bootstrapTreeTable) {
-                        $.modal.close();
                         parent.$.modal.msgSuccess(result.msg);
                         parent.$.treeTable.refresh();
+                    } else {
+                        parent.$.modal.msgSuccess(result.msg);
                     }
+                    $.modal.close();
                 } else if (result.code == web_status.WARNING) {
                     $.modal.alertWarning(result.msg)
                 }  else {

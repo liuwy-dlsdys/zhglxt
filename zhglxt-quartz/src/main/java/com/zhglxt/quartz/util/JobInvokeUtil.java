@@ -93,7 +93,7 @@ public class JobInvokeUtil {
      * @return method方法相关参数列表
      */
     public static List<Object[]> getMethodParams(String invokeTarget) {
-        String methodStr = StringUtils.substringBetween(invokeTarget, "(", ")");
+        String methodStr = StringUtils.substringBetweenLast(invokeTarget, "(", ")");
         if (StringUtils.isEmpty(methodStr)) {
             return null;
         }

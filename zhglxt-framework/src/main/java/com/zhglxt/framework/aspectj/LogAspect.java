@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.PropertyPreFilters;
 import com.zhglxt.common.annotation.Log;
 import com.zhglxt.common.core.entity.sys.SysUser;
+import com.zhglxt.common.core.text.Convert;
 import com.zhglxt.common.enums.BusinessStatus;
 import com.zhglxt.common.json.JSON;
+import com.zhglxt.common.utils.ExceptionUtil;
 import com.zhglxt.common.utils.ServletUtils;
 import com.zhglxt.common.utils.ShiroUtils;
 import com.zhglxt.common.utils.StringUtils;
@@ -52,7 +54,7 @@ public class LogAspect {
      * 处理请求前执行
      */
     @Before(value = "@annotation(controllerLog)")
-    public void boBefore(JoinPoint joinPoint, Log controllerLog)
+    public void doBefore(JoinPoint joinPoint, Log controllerLog)
     {
         TIME_THREADLOCAL.set(System.currentTimeMillis());
     }
@@ -105,7 +107,7 @@ public class LogAspect {
 
             if (e != null) {
                 operLog.setStatus(BusinessStatus.FAIL.ordinal());
-                operLog.setErrorMsg(StringUtils.substring(e.getMessage(), 0, 2000));
+                operLog.setErrorMsg(StringUtils.substring(Convert.toStr(e.getMessage(), ExceptionUtil.getExceptionMessage(e)), 0, 2000));
             }
             // 设置方法名称
             String className = joinPoint.getTarget().getClass().getName();

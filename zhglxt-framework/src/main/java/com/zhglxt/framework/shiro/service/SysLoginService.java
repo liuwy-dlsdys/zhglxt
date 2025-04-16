@@ -1,26 +1,13 @@
 package com.zhglxt.framework.shiro.service;
 
-import java.util.List;
-import java.util.Set;
-
 import com.zhglxt.common.constant.Constants;
 import com.zhglxt.common.constant.ShiroConstants;
 import com.zhglxt.common.constant.UserConstants;
 import com.zhglxt.common.core.entity.sys.SysRole;
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.enums.UserStatus;
-import com.zhglxt.common.exception.user.BlackListException;
-import com.zhglxt.common.exception.user.CaptchaException;
-import com.zhglxt.common.exception.user.UserBlockedException;
-import com.zhglxt.common.exception.user.UserDeleteException;
-import com.zhglxt.common.exception.user.UserNotExistsException;
-import com.zhglxt.common.exception.user.UserPasswordNotMatchException;
-import com.zhglxt.common.utils.DateUtils;
-import com.zhglxt.common.utils.IpUtils;
-import com.zhglxt.common.utils.MessageUtils;
-import com.zhglxt.common.utils.ServletUtils;
-import com.zhglxt.common.utils.ShiroUtils;
-import com.zhglxt.common.utils.StringUtils;
+import com.zhglxt.common.exception.user.*;
+import com.zhglxt.common.utils.*;
 import com.zhglxt.framework.manager.AsyncManager;
 import com.zhglxt.framework.manager.factory.AsyncFactory;
 import com.zhglxt.system.service.ISysConfigService;
@@ -28,6 +15,9 @@ import com.zhglxt.system.service.ISysMenuService;
 import com.zhglxt.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * 登录校验方法
@@ -164,7 +154,7 @@ public class SysLoginService
             // 设置permissions属性，以便数据权限匹配权限
             for (SysRole role : roles)
             {
-                if (StringUtils.equals(role.getStatus(), UserConstants.ROLE_NORMAL))
+                if (StringUtils.equals(role.getStatus(), UserConstants.ROLE_NORMAL) && !role.isAdmin())
                 {
                     Set<String> rolePerms = menuService.selectPermsByRoleId(role.getRoleId());
                     role.setPermissions(rolePerms);

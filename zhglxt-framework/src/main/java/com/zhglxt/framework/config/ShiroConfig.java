@@ -10,6 +10,7 @@ import com.zhglxt.framework.shiro.session.OnlineSessionDAO;
 import com.zhglxt.framework.shiro.session.OnlineSessionFactory;
 import com.zhglxt.framework.shiro.web.filter.LogoutFilter;
 import com.zhglxt.framework.shiro.web.filter.captcha.CaptchaValidateFilter;
+import com.zhglxt.framework.shiro.web.filter.csrf.CsrfValidateFilter;
 import com.zhglxt.framework.shiro.web.filter.kickout.KickoutSessionFilter;
 import com.zhglxt.framework.shiro.web.filter.online.OnlineSessionFilter;
 import com.zhglxt.framework.shiro.web.filter.sync.SyncOnlineSessionFilter;
@@ -131,6 +132,18 @@ public class ShiroConfig {
     private boolean rememberMe;
 
     /**
+     * 是否开启csrf
+     */
+    @Value("${csrf.enabled: false}")
+    private boolean csrfEnabled;
+
+    /**
+     * csrf白名单链接
+     */
+    @Value("${csrf.whites: ''}")
+    private String csrfWhites;
+
+    /**
      * 缓存管理器 使用Ehcache实现
      */
     @Bean
@@ -246,6 +259,17 @@ public class ShiroConfig {
     }
 
     /**
+     * csrf过滤器
+     */
+    public CsrfValidateFilter csrfValidateFilter()
+    {
+        CsrfValidateFilter csrfValidateFilter = new CsrfValidateFilter();
+        csrfValidateFilter.setEnabled(csrfEnabled);
+        csrfValidateFilter.setCsrfWhites(StringUtils.str2List(csrfWhites, ","));
+        return csrfValidateFilter;
+    }
+
+    /**
      * Shiro过滤器配置
      */
     @Bean
@@ -284,6 +308,7 @@ public class ShiroConfig {
         filters.put("onlineSession", onlineSessionFilter());
         filters.put("syncOnlineSession", syncOnlineSessionFilter());
         filters.put("captchaValidate", captchaValidateFilter());
+        filters.put("csrfValidateFilter", csrfValidateFilter());
         filters.put("kickout", kickoutSessionFilter());
         // 注销成功，则跳转到指定页面
         filters.put("logout", logoutFilter());
@@ -303,7 +328,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/profile/markdown/upload/**", "anon");
 
         // 所有请求需要认证
-        filterChainDefinitionMap.put("/**", "user,kickout,onlineSession,syncOnlineSession");
+        filterChainDefinitionMap.put("/**", "user,kickout,onlineSession,syncOnlineSession,csrfValidateFilter");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         return shiroFilterFactoryBean;
