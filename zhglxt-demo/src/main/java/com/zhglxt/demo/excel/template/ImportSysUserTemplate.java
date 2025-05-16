@@ -55,9 +55,9 @@ public class ImportSysUserTemplate extends BaseEntity {
     private String sex;
 
     /**
-     * 帐号状态（0正常 1停用）
+     * 账号状态（0正常 1停用）
      */
-    @ExcelProperty(value ="帐号状态")
+    @ExcelProperty(value ="账号状态")
     private String status;
 
     /**

@@ -56,12 +56,16 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h5 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#version" href="#latest_version">latest version</a><code class="pull-right">2024.12.28-2025.04.16</code>
+                                        <a data-toggle="collapse" data-parent="#version" href="#latest_version">latest version</a><code class="pull-right">2024.12.28-2025.05.16</code>
                                     </h5>
                                 </div>
                                 <div id="latest_version" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                         <ol>
+                                            <li>优化角色进入分配页校验数据权限</li>
+                                            <li>角色禁用不允许分配</li>
+                                            <li>进入重置密码页校验数据权限</li>
+                                            <li>进入授权角色页校验数据权限</li>
                                             <li>新增CSRF防护功能</li>
                                             <li>升级tomcat到最新版本9.0.102</li>
                                             <li>优化导出Excel日期格式双击离开后与设定的格式不一致问题</li>
@@ -1001,7 +1005,7 @@
                                             <li>jquery-zTree树插件版本升级到3.5.44</li>
                                             <li>表格树标题内容支持html语义化标签</li>
                                             <li>主子表示例添加日期列</li>
-                                            <li>强退后立即清理登录帐号的缓存会话信息，防止强退后的用户继续进行访问操作</li>
+                                            <li>强退后立即清理登录账号的缓存会话信息，防止强退后的用户继续进行访问操作</li>
                                             <li>操作日志查询方式调整</li>
                                             <li>修复更新表格插件后导致的记住我错误</li>
                                             <li>代码生成支持富文本控件</li>

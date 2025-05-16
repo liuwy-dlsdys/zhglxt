@@ -279,7 +279,7 @@ var table = {
                             title: "信息内容",
                             area: ['400px', ''],
                             shadeClose: true,
-                            btn: ['确认'],
+                            btn: ['关闭'],
                             btnclass: ['btn btn-primary'],
                         });
                     }
@@ -782,7 +782,7 @@ var table = {
                 top.layer.alert(content, {
                     icon: $.modal.icon(type),
                     title: "系统提示",
-                    btn: ['确认'],
+                    btn: ['关闭'],
                     btnclass: ['btn btn-primary'],
                 });
             },
@@ -1103,7 +1103,7 @@ var table = {
                     beforeSend: function (xhr, settings) {
                         var csrftoken = $('meta[name=csrf-token]').attr('content');
                         if ($.common.equalsIgnoreCase(settings.type, "POST")) {
-                            xhr.setRequestHeader("csrf_token", csrftoken);
+                            xhr.setRequestHeader("X-CSRF-Token", csrftoken);
                         }
                         $.modal.loading("正在处理中，请稍后...");
                     },
@@ -1308,7 +1308,7 @@ var table = {
                     beforeSend: function (xhr, settings) {
                         var csrftoken = $('meta[name=csrf-token]').attr('content');
                         if (($.common.equalsIgnoreCase(settings.type, "POST"))) {
-                            xhr.setRequestHeader("csrf_token", csrftoken);
+                            xhr.setRequestHeader("X-CSRF-Token", csrftoken);
                         }
                         $.modal.loading("正在处理中，请稍后...");
                         $.modal.disable();
@@ -1332,7 +1332,7 @@ var table = {
                     beforeSend: function (xhr, settings) {
                         var csrftoken = $('meta[name=csrf-token]').attr('content');
                         if (($.common.equalsIgnoreCase(settings.type, "POST"))) {
-                            xhr.setRequestHeader("csrf_token", csrftoken);
+                            xhr.setRequestHeader("X-CSRF-Token", csrftoken);
                         }
                         $.modal.loading("正在处理中，请稍后...");
                     },
@@ -1362,7 +1362,7 @@ var table = {
                     beforeSend: function (xhr, settings) {
                         var csrftoken = $('meta[name=csrf-token]').attr('content');
                         if (($.common.equalsIgnoreCase(settings.type, "POST"))) {
-                            xhr.setRequestHeader("csrf_token", csrftoken);
+                            xhr.setRequestHeader("X-CSRF-Token", csrftoken);
                         }
                         $.modal.loading("正在处理中，请稍后...");
                     },

@@ -25,11 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -72,9 +68,13 @@ public class SysUserController extends BaseController {
     @ResponseBody
     public TableDataInfo list(SysUser user) {
         startPage();
+        /*
         List<SysUser> list = userService.selectUserList(user);
         List<SysUser> collect = list.stream().filter(u -> !u.getUserId().equals("1")).collect(Collectors.toList());
         return getDataTable(SysUser.isAdmin(ShiroUtils.getSysUser().getUserId())?list:collect);
+        */
+        List<SysUser> list = userService.selectUserList(user);
+        return getDataTable(list);
     }
 
     @Log(title = "用户管理-导出", businessType = BusinessType.EXPORT)
@@ -109,6 +109,7 @@ public class SysUserController extends BaseController {
     /**
      * 新增用户
      */
+    @RequiresPermissions("system:user:add")
     @GetMapping("/add")
     public String add(ModelMap mmap) {
         List<SysRole> sysRoles = roleService.selectRoleAll();
@@ -205,6 +206,7 @@ public class SysUserController extends BaseController {
     @RequiresPermissions("system:user:resetPwd")
     @GetMapping("/resetPwd/{userId}")
     public String resetPwd(@PathVariable("userId") String userId, ModelMap mmap) {
+        userService.checkUserDataScope(userId);
         mmap.put("user", userService.selectUserById(userId));
         return prefix + "/resetPwd";
     }
@@ -231,8 +233,10 @@ public class SysUserController extends BaseController {
     /**
      * 进入授权角色页
      */
+    @RequiresPermissions("system:user:edit")
     @GetMapping("/authRole/{userId}")
     public String authRole(@PathVariable("userId") String userId, ModelMap mmap) {
+        userService.checkUserDataScope(userId);
         SysUser user = userService.selectUserById(userId);
         // 获取用户所属的角色列表
         List<SysRole> roles = roleService.selectRolesByUserId(userId);

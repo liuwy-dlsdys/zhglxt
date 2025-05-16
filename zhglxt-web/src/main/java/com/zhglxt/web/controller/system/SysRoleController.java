@@ -17,11 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -69,6 +65,7 @@ public class SysRoleController extends BaseController {
     /**
      * 新增角色
      */
+    @RequiresPermissions("system:role:add")
     @GetMapping("/add")
     public String add() {
         return prefix + "/add";
@@ -133,6 +130,7 @@ public class SysRoleController extends BaseController {
      */
     @GetMapping("/authDataScope/{roleId}")
     public String authDataScope(@PathVariable("roleId") String roleId, ModelMap mmap) {
+        roleService.checkRoleDataScope(roleId);
         mmap.put("role", roleService.selectRoleById(roleId));
         return prefix + "/dataScope";
     }
@@ -210,6 +208,7 @@ public class SysRoleController extends BaseController {
     @RequiresPermissions("system:role:edit")
     @GetMapping("/authUser/{roleId}")
     public String authUser(@PathVariable("roleId") String roleId, ModelMap mmap) {
+        roleService.checkRoleDataScope(roleId);
         mmap.put("role", roleService.selectRoleById(roleId));
         return prefix + "/authUser";
     }
@@ -263,6 +262,7 @@ public class SysRoleController extends BaseController {
     /**
      * 选择用户
      */
+    @RequiresPermissions("system:role:list")
     @GetMapping("/authUser/selectUser/{roleId}")
     public String selectUser(@PathVariable("roleId") String roleId, ModelMap mmap) {
         mmap.put("role", roleService.selectRoleById(roleId));

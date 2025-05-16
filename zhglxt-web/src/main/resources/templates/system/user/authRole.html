@@ -65,10 +65,11 @@
             columns: [{
                 checkbox: true,
                 formatter: function (value, row, index) {
+                    var state = row.status == '1' ? true : false;
                     if ($.common.isEmpty(value)) {
-                        return {checked: row.flag};
+                        return { checked: row.flag, disabled: state };
                     } else {
-                        return {checked: value}
+                        return { checked: value, disabled: state };
                     }
                 }
             },
