@@ -485,12 +485,6 @@
         }
 
         $("[data-toggle='tooltip']").tooltip();
-
-        <!-- /* 页面添加水印 */ -->
-        if([[${pageWatermark}]]){
-            var systemName = '[[${systemName}]]';
-            $.common.watermark({ "watermark_txt": systemName})
-        }
         
         <!-- /* 进入系统自动跳转当前用户所拥有的第一菜单 */ -->
         var menus= [[${menus}]];
