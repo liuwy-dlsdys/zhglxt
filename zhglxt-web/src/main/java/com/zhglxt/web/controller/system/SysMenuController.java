@@ -15,11 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -72,6 +68,7 @@ public class SysMenuController extends BaseController {
     /**
      * 新增
      */
+    @RequiresPermissions("system:menu:add")
     @GetMapping("/add/{parentId}")
     public String add(@PathVariable("parentId") String parentId, ModelMap mmap) {
         SysMenu menu = null;
@@ -126,6 +123,17 @@ public class SysMenuController extends BaseController {
         menu.setUpdateBy(getLoginName());
         AuthorizationUtils.clearAllCachedAuthorizationInfo();
         return toAjax(menuService.updateMenu(menu));
+    }
+
+    /**
+     * 保存菜单排序
+     */
+    @PostMapping("/updateSort")
+    @ResponseBody
+    public AjaxResult updateSort(@RequestParam String[] menuIds, @RequestParam String[] orderNums)
+    {
+        menuService.updateMenuSort(menuIds, orderNums);
+        return success();
     }
 
     /**

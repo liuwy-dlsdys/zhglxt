@@ -245,18 +245,26 @@
                     </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-right welcome-message">
-                    <li shiro:hasRole="sys"><a data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="官网" th:href="@{/cms/index.html}" target="_blank"><i class="fa fa-question-circle"></i>官网</a></li>
-                    <li><a data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="锁定屏幕" href="#"
-                           id="lockScreen"><i class="fa fa-lock"></i> 锁屏</a></li>
-                    <li><a data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="全屏显示" href="#"
-                           id="fullScreen"><i class="fa fa-arrows-alt"></i> 全屏</a></li>
-                    <i>
-                        <a data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="通知"
-                           th:href="@{/oa/notify/myNotify}" class="menuItem" style="color: #fff;font-weight: 600;">
+                    <li shiro:hasRole="sys">
+                        <a data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="官网" th:href="@{/cms/index.html}" target="_blank">
+                            <i class="fa fa-question-circle"></i>官网
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="锁定屏幕" href="#" id="lockScreen">
+                            <i class="fa fa-lock"></i> 锁屏
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="全屏显示" href="#" id="fullScreen">
+                            <i class="fa fa-arrows-alt"></i> 全屏
+                        </a>
+                    </li>
+                    <i shiro:hasRole="sys">
+                        <a data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="通知" th:href="@{/oa/notify/myNotify}" class="menuItem" style="color: #fff;font-weight: 600;">
                             <i class="fa fa-comment-o"></i> 通知
                         </a>
-                        <i style="padding: 0 3px;font-size: 12px;text-align: center;background-color: #FF5722;color: #fff;border-radius: 2px;"
-                           th:if="${notifyNumber>0}">[[${notifyNumber}]]</i>
+                        <i style="padding: 0 3px;font-size: 12px;text-align: center;background-color: #FF5722;color: #fff;border-radius: 2px;" th:if="${notifyNumber>0}">[[${notifyNumber}]]</i>
                     </i>
                     <li class="dropdown user-menu">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-hover="dropdown">
@@ -300,7 +308,7 @@
             </button>
             <nav class="page-tabs menuTabs">
                 <div class="page-tabs-content">
-                    <a href="javascript:;" class="active menuTab" th:data-id="@{/system/main}">首页</a>
+                    <a href="javascript:;" class="menuTab" th:data-id="@{/system/main}">首页</a>
                 </div>
             </nav>
             <button class="roll-nav roll-right tabRight">
@@ -395,12 +403,19 @@
         }
     }
 
+    // 默认激活页签
+    function tabActive() {
+        $('.menuTab[data-id="' + ctx + 'system/main"]').addClass('active');
+    }
+
     $(function () {
         var lockPath = storage.get('lockPath');
         if ($.common.equals("history", mode) && window.performance.navigation.type === 1) {
             var url = storage.get('publicPath');
             if ($.common.isNotEmpty(url)) {
                 applyPath(url);
+            } else {
+                tabActive();
             }
         } else if ($.common.isNotEmpty(lockPath)) {
             applyPath(lockPath);
@@ -414,6 +429,7 @@
                 if ($.common.equals("history", mode)) {
                     storage.set('publicPath', "");
                 }
+                tabActive();
             }
         }
 

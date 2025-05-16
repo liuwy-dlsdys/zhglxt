@@ -5,12 +5,15 @@ import com.zhglxt.common.core.entity.Ztree;
 import com.zhglxt.common.core.entity.sys.SysMenu;
 import com.zhglxt.common.core.entity.sys.SysRole;
 import com.zhglxt.common.core.entity.sys.SysUser;
+import com.zhglxt.common.core.text.Convert;
+import com.zhglxt.common.exception.ServiceException;
 import com.zhglxt.common.utils.StringUtils;
 import com.zhglxt.system.mapper.SysMenuMapper;
 import com.zhglxt.system.mapper.SysRoleMenuMapper;
 import com.zhglxt.system.service.ISysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.MessageFormat;
 import java.util.*;
@@ -277,6 +280,31 @@ public class SysMenuServiceImpl implements ISysMenuService {
     @Override
     public int updateMenu(SysMenu menu) {
         return menuMapper.updateMenu(menu);
+    }
+
+    /**
+     * 保存菜单排序
+     *
+     * @param menuIds 菜单ID
+     * @param orderNums 排序ID
+     */
+    @Transactional
+    public void updateMenuSort(String[] menuIds, String[] orderNums)
+    {
+        try
+        {
+            for (int i = 0; i < menuIds.length; i++)
+            {
+                SysMenu menu = new SysMenu();
+                menu.setMenuId(Convert.toStr(menuIds[i]));
+                menu.setOrderNum(orderNums[i]);
+                menuMapper.updateMenuSort(menu);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("保存排序异常，请联系管理员");
+        }
     }
 
     /**
