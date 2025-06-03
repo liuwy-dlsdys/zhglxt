@@ -61,7 +61,7 @@
                     title: '公告标题',
                     align: 'center',
                     formatter: function (value, row, index) {
-                        return '<a onclick="$.operate.editFullS(\'' + row.id + '\')">' + row.notifyTitle + '</a>';
+                        return '<a onclick="$.modal.openTab(\'我的公告\', \'' + prefix + '\' + \'/self/\' + \'' + row.id + '\')">' + row.notifyTitle + '</a>';
                     }
                 },
                 {
