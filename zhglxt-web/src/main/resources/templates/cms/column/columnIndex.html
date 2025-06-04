@@ -51,6 +51,9 @@
     var datas = [[${@dict.getType('cms_show_hide')}]];
     var datas2 = [[${@dict.getType('cms_yes_no')}]];
     var prefix = ctx + "cms/column"
+
+    var originalOrders = {};
+    
     $(function () {
         var options = {
             code: "id",
