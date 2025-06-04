@@ -40,4 +40,9 @@ public interface ColumnMapper {
      * 根据站点id删除该站点的所有栏目数据
      */
     void deleteColumnsBySiteIds(String[] ids);
+
+    /**
+     * 保存栏目菜单排序
+     */
+    public void updateColumnSort(Column column);
 }

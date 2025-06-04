@@ -132,4 +132,13 @@
         </foreach>
     </delete>
 
+    <update id="updateColumnSort" parameterType="Column">
+        update cms_column
+        <set>
+            sort = #{sort},
+            update_time = sysdate()
+        </set>
+        where column_id = #{id}
+    </update>
+
 </mapper> 

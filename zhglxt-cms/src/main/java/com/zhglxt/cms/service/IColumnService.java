@@ -35,4 +35,9 @@ public interface IColumnService {
      * 查询栏目列表（前端栏目下拉显示需要的数据结构）
      */
     public List<Column> selectCMSColumnList(Map<String, Object> paramMap);
+
+    /**
+     * 保存栏目菜单排序
+     */
+    public void updateColumnSort(String[] menuIds, String[] orderNums);
 }

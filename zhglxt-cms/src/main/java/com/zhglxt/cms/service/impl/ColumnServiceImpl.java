@@ -6,6 +6,7 @@ import com.zhglxt.cms.entity.Column;
 import com.zhglxt.cms.mapper.ColumnMapper;
 import com.zhglxt.cms.service.IColumnService;
 import com.zhglxt.cms.service.ISiteService;
+import com.zhglxt.common.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -122,5 +123,24 @@ public class ColumnServiceImpl implements IColumnService {
     @Transactional(rollbackFor = Exception.class)
     public int updateColumn(Map<String, Object> paramMap) {
         return columnMapper.updateColumn(paramMap);
+    }
+
+    @Override
+    @Transactional
+    public void updateColumnSort(String[] menuIds, String[] orderNums) {
+        try
+        {
+            for (int i = 0; i < menuIds.length; i++)
+            {
+                Column column = new Column();
+                column.setId(menuIds[i]);
+                column.setSort(orderNums[i]);
+                columnMapper.updateColumnSort(column);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("保存排序异常，请联系管理员");
+        }
     }
 }

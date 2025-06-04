@@ -31,7 +31,10 @@
             <a class="btn btn-primary" onclick="$.operate.edit()" shiro:hasPermission="'cms:column:edit'">
                 <i class="fa fa-edit"></i> 修改
             </a>
-            <a class="btn btn-success" id="expandAllBtn">
+            <a class="btn btn-info" onclick="saveSort()">
+                <i class="fa fa-sort-amount-asc"></i> 保存排序
+            </a>
+            <a class="btn btn-default" id="expandAllBtn">
                 <i class="fa fa-exchange"></i> 展开/折叠
             </a>
         </div>
@@ -80,6 +83,17 @@
                     align: "left"
                 },
                 {
+                    field: 'sort',
+                    title: '排序',
+                    align: "left",
+                    formatter: function(value, row, index) {
+                        var menuIdText = $.common.sprintf("<input type='hidden' name='menuIds' value='%s'>", row.id);
+                        var orderNumText = $.common.sprintf("<input type='text' name='orderNums' value='%s' class='form-control' style='display: inline-block; width:60px; text-align:center;'>", row.sort);
+                        originalOrders[row.id] = row.sort;
+                        return menuIdText + orderNumText;
+                    }
+                },
+                {
                     field: 'outLink',
                     title: '是否外部链接',
                     align: "left",
@@ -92,7 +106,7 @@
                     title: '外部访问路径',
                     align: "left",
                     formatter: function (value, row, index) {
-                        return $.table.tooltip(value);
+                        return $.table.tooltip(value,5,'open');
                     }
                 },
                 {
@@ -103,16 +117,11 @@
                         return $.table.selectDictLabel(datas, row.display);
                     }
                 },
-                {
-                    field: 'sort',
-                    title: '排序',
-                    align: "left"
-                },
-                {
+                /*{
                     field: 'createTime',
                     title: '创建时间',
                     align: "left"
-                },
+                },*/
                 {
                     field: 'updateTime',
                     title: '更新时间',
@@ -143,6 +152,26 @@
         var columnId=$("#columnId").val();
         $.operate.add(columnId);
     }
+
+    /* 保存排序-栏目菜单 */
+    function saveSort() {
+        var changedMenuIds = [];
+        var changedOrderNums = [];
+        $("input[name='menuIds']").each(function() {
+            var menuId = $(this).val();
+            var currentOrder = $(this).next("input[name='orderNums']").val();
+            if (originalOrders[menuId] !== currentOrder) {
+                changedMenuIds.push(menuId);
+                changedOrderNums.push(currentOrder);
+            }
+        });
+        if (changedMenuIds.length === 0) {
+            $.modal.alertWarning("未检测到排序修改");
+            return;
+        }
+        $.operate.post(prefix + "/updateColumnSort", { "menuIds": changedMenuIds.join(","), "orderNums": changedOrderNums.join(",") });
+    }
+    
 </script>
 </body>
 </html>

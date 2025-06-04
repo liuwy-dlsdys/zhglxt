@@ -191,7 +191,10 @@
 
     <update id="updateMenuSort" parameterType="SysMenu">
         update sys_menu
-        set order_num = #{orderNum}
+        <set>
+            order_num = #{orderNum},
+            update_time = sysdate()
+        </set>
         where menu_id = #{menuId}
     </update>
 
