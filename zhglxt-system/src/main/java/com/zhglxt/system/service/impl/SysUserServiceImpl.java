@@ -267,7 +267,7 @@ public class SysUserServiceImpl implements ISysUserService {
      */
     public boolean updateUserAvatar(String userId, String avatar)
     {
-        return userMapper.updateUserAvatar(userId, avatar) > 0 ? true:false;
+        return userMapper.updateUserAvatar(userId, avatar) > 0;
     }
 
     /**
