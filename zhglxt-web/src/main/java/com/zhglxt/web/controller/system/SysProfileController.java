@@ -8,7 +8,9 @@ import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.common.enums.BusinessType;
 import com.zhglxt.common.utils.DateUtils;
 import com.zhglxt.common.utils.ShiroUtils;
+import com.zhglxt.common.utils.StringUtils;
 import com.zhglxt.common.utils.file.FileUploadUtils;
+import com.zhglxt.common.utils.file.FileUtils;
 import com.zhglxt.common.utils.file.MimeTypeUtils;
 import com.zhglxt.framework.shiro.service.SysPasswordService;
 import com.zhglxt.system.service.ISysUserService;
@@ -148,10 +150,16 @@ public class SysProfileController extends BaseController {
         SysUser currentUser = getSysUser();
         try {
             if (!file.isEmpty()) {
-                String avatar = FileUploadUtils.upload(GlobalConfig.getAvatarPath(), file, MimeTypeUtils.IMAGE_EXTENSION);
-                currentUser.setAvatar(avatar);
-                if (userService.updateUserInfo(currentUser) > 0) {
-                    setSysUser(userService.selectUserById(currentUser.getUserId()));
+                String avatar = FileUploadUtils.upload(GlobalConfig.getAvatarPath(), file, MimeTypeUtils.IMAGE_EXTENSION, true);
+                if (userService.updateUserAvatar(currentUser.getUserId(), avatar))
+                {
+                    String oldAvatar = currentUser.getAvatar();
+                    if (StringUtils.isNotEmpty(oldAvatar))
+                    {
+                        FileUtils.deleteFile(GlobalConfig.getProfile() + FileUtils.stripPrefix(oldAvatar));
+                    }
+                    currentUser.setAvatar(avatar);
+                    setSysUser(currentUser);
                     return success();
                 }
             }

@@ -259,6 +259,18 @@ public class SysUserServiceImpl implements ISysUserService {
     }
 
     /**
+     * 修改用户头像
+     *
+     * @param userId 用户ID
+     * @param avatar 头像地址
+     * @return 结果
+     */
+    public boolean updateUserAvatar(String userId, String avatar)
+    {
+        return userMapper.updateUserAvatar(userId, avatar) > 0 ? true:false;
+    }
+
+    /**
      * 用户授权角色
      *
      * @param userId  用户ID

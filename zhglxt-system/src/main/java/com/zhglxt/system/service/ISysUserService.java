@@ -2,6 +2,7 @@ package com.zhglxt.system.service;
 
 import com.zhglxt.common.core.entity.sys.SysUser;
 import com.zhglxt.system.entity.SysUserRole;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -123,6 +124,15 @@ public interface ISysUserService {
      * @return 结果
      */
     public int updateUserInfo(SysUser user);
+
+    /**
+     * 修改用户头像
+     *
+     * @param userId 用户ID
+     * @param avatar 头像地址
+     * @return 结果
+     */
+    public boolean updateUserAvatar(@Param("userId") String userId, @Param("avatar") String avatar);
 
     /**
      * 用户授权角色

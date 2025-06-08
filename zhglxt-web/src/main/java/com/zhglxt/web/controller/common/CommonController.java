@@ -2,7 +2,6 @@ package com.zhglxt.web.controller.common;
 
 import com.zhglxt.common.config.GlobalConfig;
 import com.zhglxt.common.config.ServerConfig;
-import com.zhglxt.common.constant.Constants;
 import com.zhglxt.common.core.entity.AjaxResult;
 import com.zhglxt.common.utils.StringUtils;
 import com.zhglxt.common.utils.file.FileUploadUtils;
@@ -205,7 +204,7 @@ public class CommonController {
             // 本地资源路径
             String localPath = GlobalConfig.getProfile();
             // 数据库资源地址
-            String downloadPath = localPath + StringUtils.substringAfter(resource, Constants.RESOURCE_PREFIX);
+            String downloadPath = localPath + FileUtils.stripPrefix(resource);
             // 下载名称
             String downloadName = StringUtils.substringAfterLast(downloadPath, "/");
             response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
