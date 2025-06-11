@@ -10,6 +10,12 @@
     </parent>
     <artifactId>zhglxt-web</artifactId>
     <packaging>war</packaging>
+
+    <properties>
+        <!-- 自定义war包名称 -->
+        <war.final.name>zhglxt</war.final.name>
+    </properties>
+
     <description>
         web服务入口
     </description>
@@ -136,7 +142,7 @@
 <!--                    </webResources>-->
                     <!--打包配置-->
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <warName>${project.artifactId}</warName>
+                    <warName>${war.final.name}</warName>
                 </configuration>
             </plugin>
 
