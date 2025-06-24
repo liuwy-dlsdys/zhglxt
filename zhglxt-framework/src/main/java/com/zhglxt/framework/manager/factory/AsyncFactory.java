@@ -84,7 +84,8 @@ public class AsyncFactory {
         return new TimerTask() {
             @Override
             public void run() {
-                String address = AddressUtils.getRealAddressByIP(ip);
+                //String address = AddressUtils.getRealAddressByIP(ip);
+                String address = AddressUtils.getRealAddressByIp2region(ip);
                 StringBuilder s = new StringBuilder();
                 s.append(LogUtils.getBlock(ip));
                 s.append(address);
