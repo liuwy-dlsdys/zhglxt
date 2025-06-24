@@ -147,9 +147,9 @@ public class SysProfileController extends BaseController {
     @PostMapping("/updateAvatar")
     @ResponseBody
     public AjaxResult updateAvatar(@RequestParam("avatarfile") MultipartFile file) {
-        SysUser currentUser = getSysUser();
         try {
             if (!file.isEmpty()) {
+                SysUser currentUser = getSysUser();
                 String avatar = FileUploadUtils.upload(GlobalConfig.getAvatarPath(), file, MimeTypeUtils.IMAGE_EXTENSION, true);
                 if (userService.updateUserAvatar(currentUser.getUserId(), avatar))
                 {
